@@ -3,47 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AG Blog & Portfolio</title>
+    <title>AG Blog & Database Engineering Portfolio</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #24292e; }
-        h1 { border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-        h2 { color: #0366d6; margin-top: 24px; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 10px 0; }
-        a { color: #0366d6; text-decoration: none; font-weight: bold; font-size: 1.1em; }
-        a:hover { text-decoration: underline; }
-        .section { background: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 6px; padding: 15px; margin-bottom: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 950px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #24292e; background-color: #fafbfc; }
+        h1 { border-bottom: 2px solid #eaecef; padding-bottom: 0.3em; margin-bottom: 5px; color: #1a1a1a; }
+        .subtitle { color: #586069; font-size: 1.1em; margin-bottom: 30px; }
+        h2 { color: #0366d6; margin-top: 0; font-size: 1.25em; border-bottom: 1px solid #e1e4e8; padding-bottom: 5px; }
+        ul { list-style-type: none; padding: 0; margin: 0; }
+        li { margin: 12px 0; display: flex; align-items: center; }
+        a { color: #0366d6; text-decoration: none; font-weight: 500; font-size: 1.05em; }
+        a:hover { text-decoration: underline; color: #02428f; }
+        .icon { margin-right: 8px; font-size: 1.1em; width: 20px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(430px, 1fr)); gap: 20px; }
+        .card { background: #ffffff; border: 1px solid #e1e4e8; border-radius: 6px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .sub-text { font-size: 0.85em; color: #586069; margin-left: 5px; }
     </style>
 </head>
 <body>
 
-    <h1>Welcome to AG Blog</h1>
-    <p>Hi, I'm Anurag. Welcome to my personal space where I document my technical notes, projects, and hobbies.</p>
+    <h1>Anurag's Database Engineering Blog</h1>
+    <p class="subtitle">Database Administration, Infrastructure Automation & Data DevOps Portfolio</p>
 
-    <div class="section">
-        <h2>📊 Database Engineering & SQL</h2>
-        <ul>
-            <li><a href="./sql_server/">📁 SQL Server Tutorials</a></li>
-            <li><a href="./mysql_db/">📁 MySQL Database Notes</a></li>
-            <li><a href="./postgresql/">📁 PostgreSQL Guide</a></li>
-            <li><a href="./oracle/">📁 Oracle Architecture</a></li>
-        </ul>
-    </div>
+    <div class="grid">
+        <!-- Database Management Systems -->
+        <div class="card">
+            <h2>📊 Database Management Systems</h2>
+            <ul>
+                <li><span class="icon">🔹</span><a href="./AzureSQL/">AzureSQL DB</a></li>
+                <li><span class="icon">🔹</span><a href="./sql_server/">Microsoft SQL Server</a></li>
+                <li><span class="icon">🔹</span><a href="./mysql/">MySQL</a></li>
+                <li><span class="icon">🔹</span><a href="./PostgreSQL/">PostgreSQL</a></li>
+                <li><span class="icon">🔹</span><a href="./Oracle/">Oracle Database</a></li>
+                <li><span class="icon">🟢</span><a href="./MongoDB/">MongoDB (NoSQL)</a></li>
+            </ul>
+        </div>
 
-    <div class="section">
-        <h2>💼 Professional Portfolio</h2>
-        <ul>
-            <li><a href="./resume/">📄 My Resume / CV</a></li>
-            <li><a href="./certificate/">🏆 Certifications</a></li>
-        </ul>
-    </div>
+        <!-- Automation & Scripting -->
+        <div class="card">
+            <h2>💻 DBA Automation & Scripting</h2>
+            <ul>
+                <li><span class="icon">🪟</span><a href="./PowerShell/">PowerShell Automation</a><span class="sub-text">(SQL Server & dbatools)</span></li>
+                <li><span class="icon">🐚</span><a href="./Shell_Scripting/">Bash & Shell Scripting</a><span class="sub-text">(Linux OS & Cron Automation)</span></li>
+                <li><span class="icon">🐧</span><a href="./Linux/">Linux Systems Administration</a></li>
+                <li><span class="icon">🔌</span><a href="./Hardware%20%26%20Networking/">Hardware & Networking</a></li>
+            </ul>
+        </div>
 
-    <div class="section">
-        <h2>🌱 Lifestyle & Hobbies</h2>
-        <ul>
-            <li><a href="./fitness/">🏋️ Fitness & Workout Logs</a></li>
-            <li><a href="./myplaylist/">🎵 Favorite Playlists</a></li>
-        </ul>
+        <!-- Data Integration & BI -->
+        <div class="card">
+            <h2>⚡ Data Integration & Analytics</h2>
+            <ul>
+                <li><span class="icon">☁️</span><a href="./Azure_Data_Factory/">Azure Data Factory (ADF)</a></li>
+                <li><span class="icon">🧱</span><a href="./Azure_Databricks/">Azure Databricks</a><span class="sub-text">(Spark Analytics)</span></li>
+                <li><span class="icon">🛠️</span><a href="./ETL_Tools/">ETL Tools & SSIS Packages</a></li>
+                <li><span class="icon">📈</span><a href="./SSRS/">SSRS</a><span class="sub-text">(SQL Server Reporting Services)</span></li>
+            </ul>
+        </div>
+
+        <!-- Database DevOps & Cost -->
+        <div class="card">
+            <h2>🔄 Database DevOps & Operations</h2>
+            <ul>
+                <li><span class="icon">⚙️</span><a href="./Database_DevOps_CI_CD/">Database CI/CD</a><span class="sub-text">(Schema Migrations & Actions)</span></li>
+                <li><span class="icon">🔍</span><a href="./Monitoring/">Infrastructure Monitoring</a></li>
+                <li><span class="icon">💰</span><a href="./Database_Infrastructure_Cost_Metrics/">Infrastructure Cost Metrics</a></li>
+            </ul>
+        </div>
+
+        <!-- Professional Profile & Personal -->
+        <div class="card">
+            <h2>💼 Profile & Lifestyle</h2>
+            <ul>
+                <li><span class="icon">📄</span><a href="./resume/">My Resume / CV</a></li>
+                <li><span class="icon">🏆</span><a href="./Certifications/">Certifications & Achievements</a></li>
+                <li><span class="icon">🏋️</span><a href="./fitness/">Fitness Logs</a></li>
+                <li><span class="icon">🎵</span><a href="./MyPlaylist/">Music Playlist</a></li>
+            </ul>
+        </div>
     </div>
 
 </body>
