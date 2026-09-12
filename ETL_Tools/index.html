@@ -1,1 +1,56 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSIS & ETL Tools Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px; }
+        h1 { color: #569cd6; border-bottom: 2px solid #2d2d2d; padding-bottom: 10px; margin-bottom: 30px; font-weight: 400; }
+        p { color: #aaaaaa; font-size: 1.1srem; line-height: 1.6; }
+        .menu-container { max-width: 800px; margin-top: 20px; }
+        .section-title { font-size: 1.3rem; color: #4fc1ff; margin-top: 30px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 12px; background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 6px; transition: all 0.2s ease; }
+        li:hover { background: #252526; border-color: #007acc; transform: translateX(5px); }
+        a { display: block; padding: 15px 20px; color: #d4d4d4; text-decoration: none; font-size: 1.05rem; font-weight: 500; }
+        a:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <h1>SSIS & ETL Tools Dashboard</h1>
+    <p>Welcome to the ETL operations portal. Select a practical guide below to view configuration steps, database migration workflows, and automated package deployment notes.</p>
+
+    <div class="menu-container">
+        
+        <div class="section-title">Core Concepts</div>
+        <ul>
+            <li><a href="./Introduction of SSIS.html">Introduction to SQL Server Integration Services (SSIS)</a></li>
+        </ul>
+
+        <div class="section-title">Oracle & Cloud Data Migrations</div>
+        <ul>
+            <li><a href="./SSIS SQL Server to Oracle Database ETL.html">SSIS: Loading Data from SQL Server to Oracle Database</a></li>
+            <li><a href="./SSIS Oracle query to Azure table.html">SSIS: Extracting Oracle Queries directly to Azure SQL Tables</a></li>
+            <li><a href="./SSIS Oracle to SQL Server.html">SSIS: Migrating Oracle Database Objects to SQL Server</a></li>
+        </ul>
+
+        <div class="section-title">Flat Files & Internal Data Flows</div>
+        <ul>
+            <li><a href="./SSIS Flat file to SQL Server Table.html">SSIS: Importing Flat Files into SQL Server Tables</a></li>
+            <li><a href="./SSIS Oracle to Random Flat File(Variables Expressions).html">SSIS: Exporting Oracle Data to Flat Files via Dynamic Variables & Expressions</a></li>
+            <li><a href="./SSIS From one view to another Table (Inserting data from one SQL Server Database view or table to another SQL table).html">SSIS: Moving Internal Data from Database Views to SQL Destination Tables</a></li>
+        </ul>
+
+        <div class="section-title">Packages & Job Scheduling</div>
+        <ul>
+            <li><a href="./SSIS Package Practical.html">SSIS: Hands-on Practical Exercises & Environment Setup</a></li>
+            <li><a href="./SSIS SSIS Package scheduling via agent job.html">SSIS: Automatically Scheduling Packages via SQL Server Agent Jobs</a></li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

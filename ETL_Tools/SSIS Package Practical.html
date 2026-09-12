@@ -1,0 +1,355 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<h1 dir="ltr" id="docs-internal-guid-381f779b-7fff-c44d-bfb7-5aa57c7aeb63" style="line-height: 2.8899999999999997; margin-bottom: 16.5pt; margin-top: 17pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 22pt; vertical-align: baseline; white-space: pre-wrap;">SSIS package:</span></h1>
+<h2 dir="ltr" style="line-height: 2.08; margin-bottom: 13pt; margin-top: 13pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 16pt; vertical-align: baseline; white-space: pre-wrap;">Why use SSIS:</span></h2>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<br /></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">â€œIn production environment rather than using the front end software like DOT NET APP for running daily EOD &amp; BOD tasks that involves many SP's to run again and again in loop. Why not develop a SSIS package and build logic in that, and schedule package to run from Agent Jobâ€¦so Performance gets improved.â€</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">In this first demo on SSIS package, i will using 3 servers:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Following are details of my servers:</span></div>
+<br />
+<ol style="margin-bottom: 0; margin-top: 0;">
+<li dir="ltr" style="font-family: &quot;Quattrocento Sans&quot;; font-size: 10pt; font-variant-east-asian: normal; font-variant-numeric: normal; list-style-type: decimal; margin-left: 3pt; vertical-align: baseline; white-space: pre;"><div dir="ltr" role="presentation" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-size: 10pt; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">MUMMSSQL-ADARSH server (base machine) --Primary</span></div>
+</li>
+</ol>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: italic; vertical-align: baseline; white-space: pre-wrap;">Installed servers on VM:</span></div>
+<br />
+<ol start="2" style="margin-bottom: 0; margin-top: 0;">
+<li dir="ltr" style="font-family: &quot;Quattrocento Sans&quot;; font-size: 10pt; font-variant-east-asian: normal; font-variant-numeric: normal; list-style-type: decimal; margin-left: 3pt; vertical-align: baseline; white-space: pre;"><div dir="ltr" role="presentation" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-size: 10pt; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">Node1 private ip address: 192.168.225.158</span></div>
+</li>
+<li dir="ltr" style="font-family: &quot;Quattrocento Sans&quot;; font-size: 10pt; font-variant-east-asian: normal; font-variant-numeric: normal; list-style-type: decimal; margin-left: 3pt; vertical-align: baseline; white-space: pre;"><div dir="ltr" role="presentation" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-size: 10pt; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">Node3 private ip address: 192.168.225.140&nbsp;</span></div>
+</li>
+</ol>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 289px; overflow: hidden; width: 515px;"><img height="179" src="https://lh4.googleusercontent.com/fkGLngD0jIvOSitwOr4Wr8z74AffRPodHHFw9aOfxfYMP4J2DLhc61G-b7FnQggdMJi0tQj3Q2BoLqx4ooDJWZO2rLgf7oUMj0-1Bb_S65QG1ZQWUoc2vpfYpPcTciThEtu0ATDTQR16U6duYQ" style="margin-left: 0px; margin-top: 0px;" width="320" /></span></span></div>
+<br />
+<br />
+<h2 dir="ltr" style="line-height: 2.08; margin-bottom: 13pt; margin-top: 13pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 16pt; vertical-align: baseline; white-space: pre-wrap;">Step 1: Create Database &amp; Table</span></h2>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">--Create database on target server ( in my case MUMMSSQL-ADARSH server (base machine))</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">create database ssis_test</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="background-color: white; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">use ssis_test</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">--Then create table</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">CREATE TABLE</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INFO</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SERVER NVARCHAR(200),</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAME SYSNAME&nbsp; &nbsp; &nbsp; &nbsp; ,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATE&nbsp; &nbsp; NVARCHAR(120) ,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECOVERY NVARCHAR(120) ,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WAIT &nbsp; &nbsp; NVARCHAR(120) ,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATE DATETIME</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</span></div>
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Check the output of following query , I want to insert this output into INFO table:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Query:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">-------------------------------------------------------------</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">SELECT</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@@servername) AS server,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state_desc &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recovery_model_desc&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_reuse_wait_desc&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ,</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create_date</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">FROM</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;master.sys.databases;</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">-------------------------------------------------------------</span></div>
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 167px; overflow: hidden; width: 562px;"><img height="167" src="https://lh4.googleusercontent.com/RHU50I_3PdubH5luUt_JcYRezppadlTsKduOxlW03Df6_KeyWZYMBE0VgbjzI_FNT_HHrC7r6bKyaCDtgzESMFciLV1P4o_WP5T3_v8Piu7NWXeR52JPWFThhN-bSfNVCIU5UGHk2RinIJl5Hw" style="margin-left: 0px; margin-top: 0px;" width="562" /></span></span></div>
+<br />
+<br />
+<br />
+<h2 dir="ltr" style="line-height: 2.08; margin-bottom: 13pt; margin-top: 13pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 16pt; vertical-align: baseline; white-space: pre-wrap;">Step2: Creating SSIS Package</span></h2>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Open Microsoft Visual Studio(SSDT Tools):</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Click on New project</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 131px; overflow: hidden; width: 513px;"><img height="131" src="https://lh4.googleusercontent.com/VVkrPDS-x2i7S-OVLgsBFTUe_dW_Rv7np8Q3JmxZXg8rIUcm186yAmniL6SkP_Fxhq0ADR31ft1vBraK2f5vxbBK2ZDmcNdkEvZlIg_K5e7Ex6yYnBfwjCBPQEfqQ7H3cGH3olny_5eWZEvr2g" style="margin-left: 0px; margin-top: 0px;" width="513" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Select Integration Services&nbsp;</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 204px; overflow: hidden; width: 374px;"><img height="204" src="https://lh3.googleusercontent.com/soMvow88lvA_Kq91ylIV2PX0Akzl7wnwiyt3a3-YgdzOyHYHA4nBGM8LTby-uNEodFNE9v8vRqbVTjYZ_0cLWGIHpVZxpfZD7_2p9LU9JIvpojjCmpJSBgDHyGBeqJk5g4R1bqMN8OjToAC9ew" style="margin-left: 0px; margin-top: 0px;" width="374" /></span></span></div>
+<br />
+<br />
+<br />
+<h3 dir="ltr" style="line-height: 2.08; margin-bottom: 13pt; margin-top: 13pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 16pt; vertical-align: baseline; white-space: pre-wrap;">2.1 Add new data flow in data flow design:</span></h3>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 171px; overflow: hidden; width: 182px;"><img height="171" src="https://lh3.googleusercontent.com/6rCE3ZzhAuyKbLbpYtOLqOWfVHB_VFcNL2dLnPf3Du55ngBCrf8thFVaAi9Vtnf_8EEtBIV3GmM6taVydz-XHp3HU8EPcpW1_g-Au921Q2bsXKqeMd4DeB-EP6ELhGji13vxGrv1RybnExOEcQ" style="margin-left: 0px; margin-top: 0px;" width="182" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Select Right click SSIS Toolbox add Data flow task</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 132px; overflow: hidden; width: 293px;"><img height="132" src="https://lh4.googleusercontent.com/18aTXBtIhmkqiR5KYgpYd2RizrtljfHx02l7odd9igObJoIa2bpbxNZnJ1n2eKloVn0WV9rZHqiZPD1lt6vjvW2Cno2KzWZBeM3g-vlJjCCuPIghp7w1-mdoDHdUSElWFZ5KwJcFdeZxW_I2yw" style="margin-left: 0px; margin-top: 0px;" width="293" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Double click data flow task.</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">And in all Data flow task add OLEDB Source and OLEDB destination for each servers</span></div>
+<br />
+<h4 dir="ltr" style="line-height: 1.88; margin-bottom: 14.5pt; margin-top: 14pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 14pt; vertical-align: baseline; white-space: pre-wrap;">2.1.1 OLEDB Source</span></h4>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 191px; overflow: hidden; width: 165px;"><img height="191" src="https://lh6.googleusercontent.com/TyEy4X2VIOwHV7wYnsq08etfcOGiRubEIaESBJrlx-9CZPVGL2vl0qq_kMHh6zSPUsdn7xdx4PYyYubL06bPTFkHJJ1eovKGpOS4hfFqB6-T253CNLBn1R2V4ZhTNlHC8JNeFP7Ma_h7QxLv2g" style="margin-left: 0px; margin-top: 0px;" width="165" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Like this:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 240px; overflow: hidden; width: 288px;"><img height="240" src="https://lh4.googleusercontent.com/UnAp369bITBBTssam9yzoW7ni9AnBpFpbmjWxzvNERy8vBP_NRnvNIx-7XJDUPYg-ZB4BUg3iptPXeump766h5idF-OGYI16AJzo1jo3haBfFgGyCnLCjyWsx9FZ77Um5_Wq9wHmVEmRBTXENw" style="margin-left: 0px; margin-top: 0px;" width="288" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Double click on OLEDB Source</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">It opens OLEDB Source Editor and click on new:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 190px; overflow: hidden; width: 576px;"><img height="190" src="https://lh6.googleusercontent.com/Cilw-bRUplH298tTZyVoQ1KGnZaDjockBEiBgLyWtWou9st7kjncsT_5paao8TGFpxrHfAEwNWpJiZzs-az8kpVAaDC5LZV8wlZvYebuC2PxxRVdWGyfxDvs_i6tVG-2lMNMMS4BcNERU5MMmQ" style="margin-left: 0px; margin-top: 0px;" width="576" /></span></span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Give server name for Sql Server Instance</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 436px; overflow: hidden; width: 449px;"><img height="436" src="https://lh6.googleusercontent.com/XAOhczqaUFEXT8YGP4g7Rk0H16uWAq5UT4gabMhu0USybtr06Awjwm0mF-vIbtowDTeXIAJ_V2yCh7EAsn6wrz4V8ImiczgDWw_QsV3UcC0SjWacV9lAGIbQ0lstxXA9xN1TLxGNsSy_bzMlAg" style="margin-left: 0px; margin-top: 0px;" width="449" /></span></span></div>
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Add server name and choose database.</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Run this query to get Server Name:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="background-color: white; color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt; vertical-align: baseline; white-space: pre-wrap;">select</span><span style="background-color: white; font-family: &quot;consolas&quot;; font-size: 9.5pt; vertical-align: baseline; white-space: pre-wrap;"> </span><span style="background-color: white; color: magenta; font-family: &quot;consolas&quot;; font-size: 9.5pt; vertical-align: baseline; white-space: pre-wrap;">@@servername</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="background-color: white; font-family: &quot;consolas&quot;; font-size: 9.5pt; vertical-align: baseline; white-space: pre-wrap;">MUMMSSQL</span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; vertical-align: baseline; white-space: pre-wrap;">-</span><span style="background-color: white; font-family: &quot;consolas&quot;; font-size: 9.5pt; vertical-align: baseline; white-space: pre-wrap;">ADARSH</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Test the connection:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 160px; overflow: hidden; width: 207px;"><img height="160" src="https://lh5.googleusercontent.com/UARqwrpYvM8rdga2sP9ZXDFhJyy3KU23THUSx2kbp7cE8CbI44o2AZF4KN4mwnnHjmEps9u8b09EJp-Ca67IrMbUKUzbdFcZf_DrePjdCaLtxG_5Qvs_RF84JrDkun45YsNEScMkGi4JmKmGNg" style="margin-left: 0px; margin-top: 0px;" width="207" /></span></span></div>
+<br />
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">After configuring window looks like:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 200px; overflow: hidden; width: 576px;"><img height="200" src="https://lh3.googleusercontent.com/S-pqjnCZiUZDu9oix50Xz2puEORDW8Gq8Bq8B79Xs7ZwUVKu7nQd1aIbrmjLU1a5QPkmGIE5LDp0BFPbIMzghkA4bKLqgv6FdeNVD6HNCEtWTmS0rXIphOrO7Sx6ORizN2hG17jePlQ8KknQ1w" style="margin-left: 0px; margin-top: 0px;" width="576" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Now provide Data access method</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Here I am using SQL Command</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 278px; overflow: hidden; width: 411px;"><img height="278" src="https://lh4.googleusercontent.com/SHhRBfg0vVt7BPh1NMXuJyd2momqsb836ryi6JAUHWGvs9jKcWDybd8BNOrkmJID4Oq0N09dJOGUhvav7936dMJc2IROVOis1Wo-UVo2wEhzl5zL4ETu2W-GSlLqimzYNnyH9NWfC89Py7k_Ag" style="margin-left: 0px; margin-top: 0px;" width="411" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Add SQL Command Text:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Put the query that I run earlier on primary server</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Test using</span><span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"> parse query and preview</span></div>
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 203px; overflow: hidden; width: 494px;"><img height="203" src="https://lh3.googleusercontent.com/KGM0TCVBBSeN358BpNuem4R6P5fHCVh86m_6Fnmfta1GirZDJ6H-mYoLHuCv_dqJkN1vrAwWWDhdD778H4mfaxk_48sMAMLnHpqjadUv1QGIzTio-Qvzf2TQ2clQp7ilg-nx6rAaOKr98qB6Ag" style="margin-left: 0px; margin-top: 0px;" width="494" /></span></span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<br /></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">At this step OLEDB Source has configured.</span></div>
+<br />
+<h4 dir="ltr" style="line-height: 1.88; margin-bottom: 14.5pt; margin-top: 14pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 14pt; vertical-align: baseline; white-space: pre-wrap;">2.1.2 OLEDB Destination:</span></h4>
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 267px; overflow: hidden; width: 293px;"><img height="267" src="https://lh4.googleusercontent.com/ARENvt3WOxDOg_TUwmHauIEn0Yu4JoDJ8A0r8jOzWVPcnniuCjv_NqmGPNS53nWQ8-T7UBSq2_t6rUX8ZhWPGE2qZisojaY3jmky3LFONOS_OEJWAKU2idrSKl_DJf44ku0-uqMsOki4nqcAuA" style="margin-left: 0px; margin-top: 0px;" width="293" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Double click on destination:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">------------------------------</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;Yes to warning:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">This component has no available input columns.</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Do you want to continue editing the available properties of this component?</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">------------------------------</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Choose data access:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Either table or view or table or view- fast load</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 344px; overflow: hidden; width: 543px;"><img height="344" src="https://lh4.googleusercontent.com/gEYuNB4PuYZOdA9dGpuPiMgaGmNgDOyPz2bZelzR6tzFvotyR5zwX7ZZ5q1UwJ7p-i7m-G_QuWCmKVwcoKhtlFkM0wGOtpHnJJschs3_F_U1iHglRWjMzNJ7yqDIyOZvEP_fJYKAXz2FanLghA" style="margin-left: 0px; margin-top: 0px;" width="543" /></span></span></div>
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Then goto Mappings:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;Then match input column to distination column</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 162px; overflow: hidden; width: 434px;"><img height="162" src="https://lh3.googleusercontent.com/2mxQF9C6urduoPBUIbEiuaR3c7e552nHB7SnKrcQJpb6Et73Yc3gC95djkoPNKi6YPj2GnglBZ2A6mjF44k56z921CiK2yxIXZ9t2QvydrhQh12Hq86_pk3Tm5uQW70kOkbZIJguRETXzbG_qg" style="margin-left: 0px; margin-top: 0px;" width="434" /></span></span></div>
+<br />
+<br />
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Execute task and check&nbsp;</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 349px; overflow: hidden; width: 403px;"><img height="349" src="https://lh6.googleusercontent.com/In6_qPOu_EAQxcKQqv0fJkIoypI6wMHbiR4g7cTYY5Gfc_JERfDfxgOMiP0ANoJEN9drfM3Tm8DcRahfDFEF8pRRj8j7iDfVottVaQGgqPPw4k7_HuYvhUwROS8eJsHFX2rgOKsVTT37_D82pw" style="margin-left: 0px; margin-top: 0px;" width="403" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Task is executed successfully and 41 rows gets added to destination table.</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 259px; overflow: hidden; width: 295px;"><img height="259" src="https://lh5.googleusercontent.com/v04mKHOWp_ZpFDFiPpBwXA82mcFvLoIUaloqXHkpc58mPTQDPHnTwRGa6S0PAiazYMv192lGzX_MjX6wNV5hVvO6nV0cE4TrF9b7x8XG6CTQL2zmSwR85rw-R6h0wNpEipEAqDEiXP6rigmKuw" style="margin-left: 0px; margin-top: 0px;" width="295" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Check in SSMS:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">If values are reflected in table :</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 145px; overflow: hidden; width: 487px;"><img height="145" src="https://lh6.googleusercontent.com/UD7WJ2PwKWeb0bwlMJfZF_2Ve9ZBtjaFs0PyVFawQ59zVEnqbtT6d9IXFOXAbwKaokgBgzWZJR9g2wMDTYn8dXC39X1S_dFfRhaxXXnas4EyqXY_BHM9E6tIpecsfEkVy81l3-wxvkYvj0VxUg" style="margin-left: 0px; margin-top: 0px;" width="487" /></span></span></div>
+<br />
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">So rows are added to table we configured</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Come back to SSDT</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Stop debugging Press Red button</span></div>
+<br />
+<h2 dir="ltr" style="line-height: 2.08; margin-bottom: 13pt; margin-top: 13pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 16pt; vertical-align: baseline; white-space: pre-wrap;">Step 4: ADD Another Servers</span></h2>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Now performing same on all servers for getting all server results combine into single table:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; padding: 0pt 0pt 0pt 5pt; text-align: justify; text-indent: -5pt;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;</span><span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Note:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; padding: 0pt 0pt 0pt 9.95pt; text-align: justify; text-indent: -9.95pt;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">In add connection by putting username and password and there no database is selected..as only select is performing.</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;&nbsp;And in OLEDB Destination choose the Server which is only one as primary destination table.</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">And check:&nbsp;</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">To execute both control flow tasks:&nbsp;</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Press big green start button:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 204px; overflow: hidden; width: 346px;"><img height="204" src="https://lh5.googleusercontent.com/3rSd6iZLeLe6CAi_inWprXOsFIPZPS7lrKEG8bQ6z2YnAv24D-MjiVZEda27c6GxufLggUwRykaiose0ZO3A8Tc19qqRkbSamET2Hc4Bbx-da2n0HSoMFRCBilIa6BwKSEzGm1ibqUvlvfvqcg" style="margin-left: 0px; margin-top: 0px;" width="346" /></span></span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Check if values are reflected:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 193px; overflow: hidden; width: 255px;"><img height="193" src="https://lh3.googleusercontent.com/r6KZuIipfz6nZxH8kuX1chmbjdMJ2cL6DRSaTim9nGHqvfJJsQ-waEd6eAico7b_6yXcAUPt_j-uE30VWSgf5U-mIjQl5t6uC8uXRapdlN3KWheQKIV8aJMbm618qioO_EPZjCMNvWTRosEevw" style="margin-left: 0px; margin-top: 0px;" width="255" /></span></span></div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<h2 dir="ltr" style="line-height: 2.08; margin-bottom: 13pt; margin-top: 13pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 16pt; vertical-align: baseline; white-space: pre-wrap;">Step 5: Truncate Existing Table Data</span></h2>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">But here I get previously values also:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">To truncate this add Execute SQL Task from SSIS Toolbox.</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Edit execute sql task:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Add connection and Query to execute</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;quattrocento sans&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Parse query and set bypass prepare to false</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 248px; overflow: hidden; width: 476px;"><img height="248" src="https://lh3.googleusercontent.com/9wuNNfXogqBCQhLo__RDe-Mq2BjgVoTwGGPnG6flby7xk-aYpi9na0772OAzfElNphL_8IijLYY859bLVpupHZm0oONQ-Apu5JMtBRx5kcYTBhFK2Ui0b9MiFpLtBuOYdjUjTTOFZ-5F5MqggA" style="margin-left: 0px; margin-top: 0px;" width="476" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">And map the arrows:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 204px; overflow: hidden; width: 321px;"><img height="204" src="https://lh4.googleusercontent.com/Bg77UzMC-ng1P_cshaAllJhv6EZIvOfUnUB9frvff0_KKId3kY6BFbD9KWJvSSSSCgxt7FgD16bSrajLaXNMDdcnSNM_tY7RfWwMa1VDa-ryRCqEstZu-h7GB-Kv-81jhzZobUB7jiRWJwcD2Q" style="margin-left: 0px; margin-top: 0px;" width="321" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10.5pt; vertical-align: baseline; white-space: pre-wrap;">Execute &amp; check output..</span></div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br /></div>
+

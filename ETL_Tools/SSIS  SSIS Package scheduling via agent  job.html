@@ -1,0 +1,106 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<b>SQL Server Agent :</b>&nbsp;It is a component of Microsoft SQL Server and it uses SQL Server to store job information. It is kind of background process tool to handle schedules jobs and other automated task. In simple words it runs scheduled background job continuously.</div>
+<div>
+<br /></div>
+<div>
+So now we will schedule our package.dtsx as a job to SQL Server Agent to run this task automatically.<br />
+In order to schedule a job in SQL Server Agent, Open SQL Server Agent -&gt; right click on Jobs -&gt; Create a New Job -&gt; Form Module Opens -&gt; Enter Job Name.</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgScMOhq5zRn43fTnqD0HzIZN1Zi-vTRyZc_KrMrWse7W8lCLUNAUG_M9qwWUgOwhfJbqICWNVxwPckHlS-yYhfOEvGHG8EoFvaw7dqq1JhjDou8sAgJgOKcPpbQMQV-czXDn-0A2DO3EDc/s1600/1579444371886096-0.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgScMOhq5zRn43fTnqD0HzIZN1Zi-vTRyZc_KrMrWse7W8lCLUNAUG_M9qwWUgOwhfJbqICWNVxwPckHlS-yYhfOEvGHG8EoFvaw7dqq1JhjDou8sAgJgOKcPpbQMQV-czXDn-0A2DO3EDc/s1600/1579444371886096-0.png" width="400" />
+  </a>
+</div>
+<div>
+<div class="separator">
+<br /></div>
+</div>
+<div>
+Now in the same form module if see on left hand side there is menu in that select steps -&gt; Click on New button. Here we need to specify what task we want to schedule.</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvCQoaRh9oICSAwe71qDKiHMyWclNijmWXC902GTQdh8mLssgiQs4ncxRMITyNzHMjPsjMMYsKqO_9jDWpQkD4eqeObj30VmKAfUBCTQ3QUREHUX1KWSKtPQ_OAGpwVEUlMQFz_rqKxJO6/s1600/1579444365107478-1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvCQoaRh9oICSAwe71qDKiHMyWclNijmWXC902GTQdh8mLssgiQs4ncxRMITyNzHMjPsjMMYsKqO_9jDWpQkD4eqeObj30VmKAfUBCTQ3QUREHUX1KWSKtPQ_OAGpwVEUlMQFz_rqKxJO6/s1600/1579444365107478-1.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator">
+<br /></div>
+</div>
+<div>
+Just specify nice name and in the type -&gt; Select SQL Integration Service Package why because we want to schedule integration service package -&gt; in the server text select appropriate server name -&gt; and in the package column select your deployed package as shown in below image.</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgF-5nPDWSYKnfNbk2nY4x7FYQyjyvSiTxJKm49531SIB6QAqDdcOLRYETbZg72INZ-9d8Nzu-wwVKWZ1sK7xQ2119Qys5ZvPLYkmGSYunaM8q48INHNcUlANlGiGH7sDODID4tXN_GBns8/s1600/1579444355892171-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgF-5nPDWSYKnfNbk2nY4x7FYQyjyvSiTxJKm49531SIB6QAqDdcOLRYETbZg72INZ-9d8Nzu-wwVKWZ1sK7xQ2119Qys5ZvPLYkmGSYunaM8q48INHNcUlANlGiGH7sDODID4tXN_GBns8/s1600/1579444355892171-2.png" width="400" />
+  </a>
+</div>
+<div class="separator">
+<br /></div>
+</div>
+<div>
+Here in this step go to -&gt; Schedule which should be under "Steps menu link" -&gt; New Button and Give nice name and schedule date time and other parameters as per your requirement like when you want to run (Daily/Weekly) and Schedule type so on.</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtFLG98-BI9u6LWLq-lZLHKAtl7fmjW4xNQLZJERcSuDgBAsdm4xRdyNgoAvu4OPinACAkYE-ZvgmNG5dfu4WiFj2sLlJU9W8eksrL-J5fOwv3B-47ehq3AGwKEwGebwVqE17CGWfS3ZUi/s1600/1579444343115255-3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtFLG98-BI9u6LWLq-lZLHKAtl7fmjW4xNQLZJERcSuDgBAsdm4xRdyNgoAvu4OPinACAkYE-ZvgmNG5dfu4WiFj2sLlJU9W8eksrL-J5fOwv3B-47ehq3AGwKEwGebwVqE17CGWfS3ZUi/s1600/1579444343115255-3.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhKVGhd1NSr0PRYWo3ZHE7eysvo2nLthfDoEYcO8H6UwT9uDQ1BK6o4l9Gf-3gThziUt5nCGhtemJRG2fJqV_2Xe5DKeeAdc1MmY8n6E2RyCZHhyh8hx21RP1acimXBycDNsvWx2QAyY9YD/s1600/1577730734673792-3.png" imageanchor="1"><br /></a></div>
+</div>
+<div>
+It will send you the email notification alert, when the JOB succeeds or fails.</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3fdKibKiXwBjbjiLGsJJAesuIW8XL5ZVaLQYyy9poDp82lvWTGrc3fCdEyspIltFAaFA5DSAWOnRK0_BEfY_AnShO-rIKU5icn7AP0HGOUbqzg7qADlgddt3OXHjhUFyUJON1Ulv7FaNd/s1600/1579444319803586-4.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3fdKibKiXwBjbjiLGsJJAesuIW8XL5ZVaLQYyy9poDp82lvWTGrc3fCdEyspIltFAaFA5DSAWOnRK0_BEfY_AnShO-rIKU5icn7AP0HGOUbqzg7qADlgddt3OXHjhUFyUJON1Ulv7FaNd/s1600/1579444319803586-4.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<br /></div>
+<div>
+If you want to notify an operator by e-mail, check&nbsp;<b>E-mail</b>, select an operator from the list.</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjbDlq_2A8dyXWIrjdFC9pCF_g_q-S7dUHmzH_JwSOIic6TdpFQ0AiTmFfhLSeYZNNfafmyX2Lv2Kg6vqLFNc51zycVtjDkNgMZhIsB7CovSizMRtYhS7uKPsv6MlGBGpY2JsvuTnu0GrvT/s1600/1579444306674753-5.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjbDlq_2A8dyXWIrjdFC9pCF_g_q-S7dUHmzH_JwSOIic6TdpFQ0AiTmFfhLSeYZNNfafmyX2Lv2Kg6vqLFNc51zycVtjDkNgMZhIsB7CovSizMRtYhS7uKPsv6MlGBGpY2JsvuTnu0GrvT/s1600/1579444306674753-5.png" width="400" />
+  </a>
+</div>
+<div>
+<br /></div>
+Verify email names in operator</div>
+<div>
+If youâ€™d like to add multiple e-mail addresses on this â€œ<i>Operator</i>â€ you separate each e-mail with a semi-colon. You would do this so that multiple people can be notified but you only have to refer to one operator in the SQL Agent Job.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgadkM4YXu8PvH5CE8xveR6svZrdM8gTbhmLXu5xUUo90tQuvIsi52hUKBDjkta-bkETHou_MUOwyfV_h1dy0UnT3xVF_ISKgWS5vUc8ng8zFbD5TGXmI7VxoKziLs7IjrT5ToxyuDJa17_/s1600/1577730725364217-5.png" imageanchor="1"></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgadkM4YXu8PvH5CE8xveR6svZrdM8gTbhmLXu5xUUo90tQuvIsi52hUKBDjkta-bkETHou_MUOwyfV_h1dy0UnT3xVF_ISKgWS5vUc8ng8zFbD5TGXmI7VxoKziLs7IjrT5ToxyuDJa17_/s1600/1577730725364217-5.png" imageanchor="1">
+  </a><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWMBF6Wen52j6OZP6kODnkl2Piu3kn0rGGusdKfUpRGM_P-NyyhLywhhPahjcpMB778KR7EzDy_qR2_CTs4igPWwGPDNtJlQ99OR7dyS6sOZiMLrHhqktRfkCgjfX6g0E15lUaRmeDzyao/s1600/1579444298720716-6.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWMBF6Wen52j6OZP6kODnkl2Piu3kn0rGGusdKfUpRGM_P-NyyhLywhhPahjcpMB778KR7EzDy_qR2_CTs4igPWwGPDNtJlQ99OR7dyS6sOZiMLrHhqktRfkCgjfX6g0E15lUaRmeDzyao/s1600/1579444298720716-6.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhW8ZNh0zWgYgzudQCWPQLF9zESiqqElxd2cydT5Jj7PImFQMPzRx6ZhtuYrpHPJqC_55t8uAZHImjd5vrarU1x3LJm-av78O8Ry1yp7kTjU5dDQIaYFuK8nwGPK4nC8grzW41ULK7odk8L/s1600/1577730720849230-6.png" imageanchor="1"><br /></a></div>
+</div>
+<div>
+<br /></div>
+</div>
+</div>
+

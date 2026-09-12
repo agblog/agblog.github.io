@@ -1,0 +1,218 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>Steps for Oracle to SQL package:</b><br />
+<div dir="ltr" style="text-align: left;" trbidi="on">
+Our requirement is to load data from Oracle to SQL with fresh data.</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<h2>
+<b>Prerequisites:&nbsp;</b></h2>
+<div>
+<b>Oracle provider: follow this link to install&nbsp;</b></div>
+<div>
+<b><br /></b></div>
+<div>
+<b>https://www.sqldose.com/2019/06/link-server-sql-to-oracle.html?m=1</b></div>
+<div>
+<b></b><br />
+<div class="separator" style="clear: both; text-align: center;">
+<b><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdzeRZMt3XqPa_MWWsu9h1W9arGECwVGFDmt780-URAJoLCfpxfZzPtSK2p9IRuBvO0DpzWhZeZTeFeeMMdv7zZrvvXH8rLxdULLvicwAqgumZ8KNsY_fmzqObXFYaOugv0KnXJI0he5lA/s1600/1583000521435494-0.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdzeRZMt3XqPa_MWWsu9h1W9arGECwVGFDmt780-URAJoLCfpxfZzPtSK2p9IRuBvO0DpzWhZeZTeFeeMMdv7zZrvvXH8rLxdULLvicwAqgumZ8KNsY_fmzqObXFYaOugv0KnXJI0he5lA/s1600/1583000521435494-0.png" width="400" />
+  </a>
+</b></div>
+</div>
+<div>
+<div class="separator">
+<br /></div>
+</div>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<b>
+Following are steps for inserting data from Oracle&nbsp;Database table</b> to <b>SQL Server Database table:</b></div>
+<div>
+<br /></div>
+<div>
+To do so, please drag and drop the <b>data flow task</b>&nbsp;and <b>Execute SQL Task</b> from the toolbox to the control flow.</div>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4C8CaFfiQmmB0wA_5zxAhSyRQ6K2Mx02fYL5lWCTT2N_cUu5roc9Q50ZxqIZrWlRH3dOqeF4RlDcdiq5R9n7KbVjGcmaIR-JVbfVHWT37OyrRJ8qf4deqxmVUx7-xtUuTMnhVAsj0vJyl/s1600/1583000512216711-1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4C8CaFfiQmmB0wA_5zxAhSyRQ6K2Mx02fYL5lWCTT2N_cUu5roc9Q50ZxqIZrWlRH3dOqeF4RlDcdiq5R9n7KbVjGcmaIR-JVbfVHWT37OyrRJ8qf4deqxmVUx7-xtUuTMnhVAsj0vJyl/s1600/1583000512216711-1.png" width="400" />
+  </a>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+Take connection of <b>SQL Server</b> and Insert <b>truncate sql table</b> in SQL Statement.</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtytiK-JREWm7IFnl5x9YAerAnMTtC_TwLZ0D4jm_3P03BKyyPAlbkampsugJrx98w0uCOuaGZ9K2BtOzCsWJwjsCUW2QXXTNW0mH8TcGzJba4gnd3cIyki9_6Y-6gOzCWJnjdQUZvhN3T/s1600/1583000501834765-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtytiK-JREWm7IFnl5x9YAerAnMTtC_TwLZ0D4jm_3P03BKyyPAlbkampsugJrx98w0uCOuaGZ9K2BtOzCsWJwjsCUW2QXXTNW0mH8TcGzJba4gnd3cIyki9_6Y-6gOzCWJnjdQUZvhN3T/s1600/1583000501834765-2.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+Double click on <b>data flow task</b> it will open the data flow tab. Now, Drag and drop <b>OLEDB Source</b>, <b>OLEDB Destination</b> and <b>Data Conversion</b> from <b>SSIS toolbox</b>&nbsp;to Data Flow tab and connect them.</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgI0qa_1gFFs8fMrLjh890yEBHYmQkJH8U7K589jNPJy1ydC4dfLhchiV6uWnhwwOscekHcPlpcnQlCmD4Nfq3QzJMx6wFv49HyEM2f3IhoXnkwF5RNE7pf08pqWWvV_txiVKuGg7NgudDB/s1600/1583000479387142-3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgI0qa_1gFFs8fMrLjh890yEBHYmQkJH8U7K589jNPJy1ydC4dfLhchiV6uWnhwwOscekHcPlpcnQlCmD4Nfq3QzJMx6wFv49HyEM2f3IhoXnkwF5RNE7pf08pqWWvV_txiVKuGg7NgudDB/s1600/1583000479387142-3.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+</div>
+<div>
+Right click on the <b>OLE DB Source and click Edit.</b> Select the SQL Server connection previously added and select the table created in Oracle Database.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqsqb0cwCN6mrQQY4hEFgCwDrHVNysXSHBmwIpY3s3DVjJXia3jkx-X0qGTe0yhahkiy0fQN0NpnnxhHCeCAbRWWIpAMRhKBlgZIL0PXP9XCEo819rA0FisodVim7dnGAP38sKbZMTIhxh/s1600/1583000916912454-0.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqsqb0cwCN6mrQQY4hEFgCwDrHVNysXSHBmwIpY3s3DVjJXia3jkx-X0qGTe0yhahkiy0fQN0NpnnxhHCeCAbRWWIpAMRhKBlgZIL0PXP9XCEo819rA0FisodVim7dnGAP38sKbZMTIhxh/s1600/1583000916912454-0.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div>
+<div>
+Connection:</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3iw2k20HDPvCHYfKtmOtm8m5RlE3_kONGwxt8kcvCVMwUtfpavapL_hYskHWHYwUa8qTgdztmnmF6VZfbpCY7uV0YBb204cs4ghjtvpWUT4LdHA9uN7BPM54n3Du0sA3l_iiDLYnr6Ph5/s1600/1583001270844756-0.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3iw2k20HDPvCHYfKtmOtm8m5RlE3_kONGwxt8kcvCVMwUtfpavapL_hYskHWHYwUa8qTgdztmnmF6VZfbpCY7uV0YBb204cs4ghjtvpWUT4LdHA9uN7BPM54n3Du0sA3l_iiDLYnr6Ph5/s1600/1583001270844756-0.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi901x4tcKkyQYQq0tixm3yFyk_pOYa3NU4XZBpUHQXq8kg6PgJOpMASCqYLacul3WagfrvyjiwXud8R1QSibrD1s_iu8QgBPULqivpOIizMLVmWzKcJYa6g24LTVRWOWvyFYvyJ2bWBHeH/s1600/1577807666335502-4.png" imageanchor="1"><br /></a></div>
+</div>
+</div>
+Click on Preview to check data is readable.</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1O84gyuBQ2xN3yZUjOmmbQILzb_WmeZCoJ_KnPJ4OYR4MzAZiWfZbyERs-cNSFwVXYLI0obeylOzb3BH20watc_MbjkKXTyfJpesuNxAwYyHAp3MgSriJ7_mcyOxf1kUVjlTPOlysmRYL/s1600/1583000908323912-1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1O84gyuBQ2xN3yZUjOmmbQILzb_WmeZCoJ_KnPJ4OYR4MzAZiWfZbyERs-cNSFwVXYLI0obeylOzb3BH20watc_MbjkKXTyfJpesuNxAwYyHAp3MgSriJ7_mcyOxf1kUVjlTPOlysmRYL/s1600/1583000908323912-1.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+Click on columns and choose specified and Click on OK to close.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfEhvceQu1lciwMIpvZTvXQk0gkvfqIIY-XonhzVSzcvIGddYmAJL3Py2uu7hnHpXahkmR92FpjcRkF_tQGWpZPDEQ3KcFRWKBHI7meUhM92sEOdn7eEBVeMY1ew6xsFq-7AvBJ6ea4W4m/s1600/1583000903551304-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfEhvceQu1lciwMIpvZTvXQk0gkvfqIIY-XonhzVSzcvIGddYmAJL3Py2uu7hnHpXahkmR92FpjcRkF_tQGWpZPDEQ3KcFRWKBHI7meUhM92sEOdn7eEBVeMY1ew6xsFq-7AvBJ6ea4W4m/s1600/1583000903551304-2.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<h2>
+Setting up the Data Conversion</h2>
+Destination <b>SQL Database</b> have <b>nvarchar</b> <b>datatype</b> and Source<b> Oracle</b> have <b>nvarchar2 data type.</b></div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEih1nsVQj_MIlcI_dZUYwXTUEwyZesDTYvIBZ-W5Ammt-5BtERmdy2kK1rVvpEdOKp9crs_H36A4b-xnN3xc60UaCanbaAptmR4yRpAzNrLVfC5_yfegXfnNZ2WjB126dTuLjE1aXMVB3ko/s1600/1583000892300429-3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEih1nsVQj_MIlcI_dZUYwXTUEwyZesDTYvIBZ-W5Ammt-5BtERmdy2kK1rVvpEdOKp9crs_H36A4b-xnN3xc60UaCanbaAptmR4yRpAzNrLVfC5_yfegXfnNZ2WjB126dTuLjE1aXMVB3ko/s1600/1583000892300429-3.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+</div>
+<div>
+Right click on the <b>Data Conversion Transformation Editor</b> and <b>click Edit</b>.&nbsp;</div>
+<div>
+In each of the boxes under Data Type, change from <b>Unicode String [DT_WSTR}</b> to <b>String {DT_STR}</b> and add the Length for each based on the Varchar lengths used in the CREATE TABLE statement in SSMS.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+The columns need to be converted from <b>Unicode to Non Unicode strings</b> to process the data into SQL Server. If they are left to the Default value of Unicode String, the task will fail.</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAD7VhTCPY7xPZd7zYQnZyGvS0Lg47fOAVKelMF56FyZjtALGOEBw3eXP6YRsmNlXZgVkCh0F2COpsEX8s-S_Je3iIcKp79fFVvNKtYQKTlueF77cQ05Rf0bGXZZ-4hNcbJSseWLO19YXu/s1600/1583001263725674-1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAD7VhTCPY7xPZd7zYQnZyGvS0Lg47fOAVKelMF56FyZjtALGOEBw3eXP6YRsmNlXZgVkCh0F2COpsEX8s-S_Je3iIcKp79fFVvNKtYQKTlueF77cQ05Rf0bGXZZ-4hNcbJSseWLO19YXu/s1600/1583001263725674-1.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVMgDKUG3cmB9N9W4H0zNKsUqSHXOFaiNgRsK1miy3JPxjYMOYY5I6RlRuE73TMNK9UyccriVyq6kZHrKBEfGQA01KqDAXkkZL62hSn7tiOpzyFGH43hOv8OQPe_Gfxt-CvEFNCl9uSzVA/s1600/1577807645036645-9.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><br />
+  </a>
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3ltfAY87RCdW2aw2mvUyT2Ms2z9JEoyzAaQTUx70t_IGC1LItP8BGk_2tbt19W3wJ-KD_3fYSzIoa8GIF7PzOXvsY06sqdg0XOxZxNUybS5_YaRH7IzO8ZP8-nK0AngiFAivQvwc9Gj14/s1600/1583001257342702-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3ltfAY87RCdW2aw2mvUyT2Ms2z9JEoyzAaQTUx70t_IGC1LItP8BGk_2tbt19W3wJ-KD_3fYSzIoa8GIF7PzOXvsY06sqdg0XOxZxNUybS5_YaRH7IzO8ZP8-nK0AngiFAivQvwc9Gj14/s1600/1583001257342702-2.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+</div>
+<div>
+Right click on the <b>OLE DB Destination</b> and <b>click Edit</b>. Select the <b>SQL Server connection</b> previously added and select the table created in SSMS. Click OK to close.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBgGIegnCenBIMqj4C4hbcsKzpd__cXQLx1-YwEPhYJMetfo80F1AkMLpQKNdriNp_cO14Is4FuQRZbcE76V0ELosfngzC8jTf9Bd53QAJON43RYUUv4hmwRve6M-K-fYSbkck512Q6Y21/s1600/1583001245628168-3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBgGIegnCenBIMqj4C4hbcsKzpd__cXQLx1-YwEPhYJMetfo80F1AkMLpQKNdriNp_cO14Is4FuQRZbcE76V0ELosfngzC8jTf9Bd53QAJON43RYUUv4hmwRve6M-K-fYSbkck512Q6Y21/s1600/1583001245628168-3.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+</div>
+<div>
+Click on the <b>OLEDB Destination</b> to setup the <b>Mappings</b> after fixing the above <b>Data Conversion</b> step.</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFkA3FGJ_Kq6kFxWf8elqI35H5oKzam_VAps3MdFxaCN60A1cbRBC6DWzmh8M179PWuytuFf2QQu3YixIlWTKGldQLtQsX9ZG9SonGxKTtJco20xziXloCBNXcSQThn582aw0w31V3Ou7H/s1600/1583000469312655-4.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFkA3FGJ_Kq6kFxWf8elqI35H5oKzam_VAps3MdFxaCN60A1cbRBC6DWzmh8M179PWuytuFf2QQu3YixIlWTKGldQLtQsX9ZG9SonGxKTtJco20xziXloCBNXcSQThn582aw0w31V3Ou7H/s1600/1583000469312655-4.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+</div>
+<div>
+<b>
+Build project and run.</b></div>
+<div>
+<br /></div>
+<div>
+ðŸ˜ŠEnjoy</div>
+</div>
+</div>
+

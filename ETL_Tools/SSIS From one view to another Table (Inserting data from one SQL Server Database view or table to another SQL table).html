@@ -1,0 +1,155 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+Inserting data from one SQL Server Database view or table to another SQL table</div>
+<div>
+<br /></div>
+<div>
+To do so, please drag and drop the data flow task from the toolbox to the control flow.</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7nH3mwn0DUe6bXOhqUeBj2kMNmLVrdgAA8kNS_dsCDpJK-rCuwWa8yRGI6q5KL9guYKFGEnMlt1E-r-WZhiFixCJdbdxWgPz10TOZ0QOI8Qq3LyTh4sYXtc-Y118qA3DcrkbzIMNG25RW/s1600/1579426227476162-0.png" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7nH3mwn0DUe6bXOhqUeBj2kMNmLVrdgAA8kNS_dsCDpJK-rCuwWa8yRGI6q5KL9guYKFGEnMlt1E-r-WZhiFixCJdbdxWgPz10TOZ0QOI8Qq3LyTh4sYXtc-Y118qA3DcrkbzIMNG25RW/s1600/1579426227476162-0.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<br /></div>
+<div>
+<div>
+Double click on data flow task it will open the data flow tab. Now, Drag and drop OLE DB Source from SSIS toolbox into the data flow region.</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhicyJFbBI4cNE4rxpsSG193EbJC_KSMf-75tB_1UirvR-8vpuZdVx0b_UzYnkT6MvWjdertVFxNDRAG2jENUGOVDZe2hUyNbrvnX_xnTOtzSPoPUFxdC5yF0ihTNM-VJRzO83fY8_Z57Jk/s1600/1579426222104337-1.png" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhicyJFbBI4cNE4rxpsSG193EbJC_KSMf-75tB_1UirvR-8vpuZdVx0b_UzYnkT6MvWjdertVFxNDRAG2jENUGOVDZe2hUyNbrvnX_xnTOtzSPoPUFxdC5yF0ihTNM-VJRzO83fY8_Z57Jk/s1600/1579426222104337-1.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+</div>
+</div>
+</div>
+<div>
+Double click on OLE DB source in the data flow region will open the connection manager settings.</div>
+<div>
+If you havenâ€™t created the OLE DB Connection Manager before click on the New button and configure it.</div>
+<div>
+<b>Data Access Mode:</b>&nbsp;This property of SSIS OLE DB Source provides four options for us:<br />
+<ul>
+<li><b>Table Or View:</b>&nbsp;If you select this option, It will display the list of available Tables present in the Database. And our job is to select the required tables from them.</li>
+<li><b>SQL Command:&nbsp;</b>If you select this option then, We have to write our own&nbsp;SQL Command.</li>
+<li><b>Table name Or View name variable:</b>&nbsp;For this option, you have to provide the variable name which holds the Table name or Views name.</li>
+<li><b>SQL Command from variable:</b>&nbsp;If you select this option, We have to provide the variable name which holds the SQL Command.</li>
+</ul>
+</div>
+<div>
+The SQL Command option provides following options<br />
+<ul>
+<li><b>SQL Command Text:</b>&nbsp;If you are familiar with SQL Queries, write it in the empty space provided by this option.</li>
+<li><b>Build Query:</b>&nbsp;It will open a Query Designer to design the required query using the Graphical User interface. Please refer to Query Builder in SSIS<!--/data/user/0/com.samsung.android.app.notes/files/share/clipdata_200119_144852_104.sdoc-->&nbsp;article.</li>
+<li><b>Parameters:</b>&nbsp;If your SQL query is parameterized (with ?), please assign the appropriate parameters using the dialog box.</li>
+<li><b>Browse:</b>&nbsp;Allow us to select the Query present in the file system.</li>
+<li><b>Parse Query:</b>&nbsp;This option checks whether the query successfully parsed or not</li>
+</ul>
+<div>
+Click on the preview button to see the data present in the table.</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvdL2C82rGeAhb7x2Phgb0o_57l1_ARo2HI1spwZ6X4NA5Rg6wNB97y7EYgBcDRN2WwKtOrUUdxn3gxh_PeMnkOhoX_SuTNiksJxPc9Ksfy_rji9Z_2FywgSIqhtVQqQAk_LW3BIqLIwc1/s1600/1579426216364440-2.png" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvdL2C82rGeAhb7x2Phgb0o_57l1_ARo2HI1spwZ6X4NA5Rg6wNB97y7EYgBcDRN2WwKtOrUUdxn3gxh_PeMnkOhoX_SuTNiksJxPc9Ksfy_rji9Z_2FywgSIqhtVQqQAk_LW3BIqLIwc1/s1600/1579426216364440-2.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div>
+<br /></div>
+Click on the columns tab to verify the columns. We can also remove the unwanted columns by unchecking them.</div>
+<div>
+Click ok to finish configuring OLE DB Source in SSIS.</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPso-IFpsFA_BHMcJXOLMALPqmOd6ti9wZq1R-yDtMqjjc4ixwp9BTrO6xK45TQNJHG1133J-HQuIxCimwFMHmZlJoXD436uolsMGNXR3yKHskXCOOFfb5Zm6fmzi_UsPY2JzAh-MV3VZ/s1600/1579426210779081-3.png" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPso-IFpsFA_BHMcJXOLMALPqmOd6ti9wZq1R-yDtMqjjc4ixwp9BTrO6xK45TQNJHG1133J-HQuIxCimwFMHmZlJoXD436uolsMGNXR3yKHskXCOOFfb5Zm6fmzi_UsPY2JzAh-MV3VZ/s1600/1579426210779081-3.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div>
+<br /></div>
+Data type source of view</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWEgdMLburtfEDb6kdQGzAC5Qzm6_s59obG83acJsjz_qLH5oRs7U-UCjpztHRvB3qvgWRm6no47xhYgE6PLK7GJIawacj10JWkttLcO37qpaM-lecEH-IVgFfymJhsajEGWUPa6ZwTwO-/s1600/1579426205113979-4.png" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWEgdMLburtfEDb6kdQGzAC5Qzm6_s59obG83acJsjz_qLH5oRs7U-UCjpztHRvB3qvgWRm6no47xhYgE6PLK7GJIawacj10JWkttLcO37qpaM-lecEH-IVgFfymJhsajEGWUPa6ZwTwO-/s1600/1579426205113979-4.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: start;">
+Destination table data type&nbsp;</div>
+</div>
+<div class="separator" style="clear: both; text-align: start;">
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhOGHJTSm-RAAy3AOeb8URwX0ZhjjwS5APfht_2IM5tJHglWbohvSSvZ_m43JKcvYwAUfliy2OH2CZJBDOJJqBwdbqpZlCL9Ia2N3lDWVPB-WKAzoYidyJSpDYZpJl2BaIiID48UvPoVO6J/s1600/1579426184484192-5.png" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhOGHJTSm-RAAy3AOeb8URwX0ZhjjwS5APfht_2IM5tJHglWbohvSSvZ_m43JKcvYwAUfliy2OH2CZJBDOJJqBwdbqpZlCL9Ia2N3lDWVPB-WKAzoYidyJSpDYZpJl2BaIiID48UvPoVO6J/s1600/1579426184484192-5.png" width="400" />
+  </a>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div>
+The SSIS OLE DB Destination is used to load data into a variety of database tables or views or SQL Commands. OLE DB destination editor provides us the choice to select the existing table(s), View(s), or you can create a new table.</div>
+<div>
+<br /></div>
+<div>
+Drag and drop the data flow task from the toolbox to the control flow. Next, rename it to SSIS OLE DB Destination.</div>
+</div>
+<div>
+Below screenshot will show you the list of available options in&nbsp;<b>the Connection Manager</b>&nbsp;tab:<br />
+<ul>
+<li><b>OLE DB Connection Manager:</b>&nbsp;Here, you have to select the existing&nbsp;OLE DB Connection Manager&nbsp;(if any); otherwise,&nbsp;<!--/data/user/0/com.samsung.android.app.notes/files/share/clipdata_200119_145045_681.sdoc-->click on the new button to create one. For this example, we are using the already created Connection manager.</li>
+<li><b>Name of the table or the View:</b>&nbsp;Here, you have to select the existing table or view to store the data. Otherwise, click the New button to create a new destination table.</li>
+<li><b>Keep Identity:</b>&nbsp;Please specify whether you want to load the identity values into the destination table or not by checking this option. This option is available only for the fast loads, and it unchecked by default.</li>
+<li><b>Keep Nulls:</b>&nbsp;Please specify whether you want to load the NULL values into the destination table or not by checking this option. This option is available only for the fast loads, and it unchecked by default.</li>
+<li><b>Table Lock:</b>&nbsp;While loading the data, Please specify whether you want to Lock the destination table or not</li>
+<li><b>Check Constraints:</b>&nbsp;While loading the data, please specify whether the destination table Check Constraints or not.</li>
+<li><b>Rows Per Batch:&nbsp;</b>Please specify the number of rows you want to send per batch. In real-time, it is always advisable to specify the value, and this can improve your performance.</li>
+<li><b>Maximum insert commit size:</b>&nbsp;Please specify the maximum batch size here.</li>
+</ul>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFEnc1Cuh2vxZJ8kCuPd7V4liHkGbVSeffdyK4aSLzcMxfHlaTWsB1nu5Gp98hbDhcTNGjeL51I0PTsCMRllpeXpxKwqsVDoAsoSOk8pYNUr66YXe9AUeEwRVEg9AUZ_G1cCLiO7KnwHqg/s1600/1579426172508337-6.png" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFEnc1Cuh2vxZJ8kCuPd7V4liHkGbVSeffdyK4aSLzcMxfHlaTWsB1nu5Gp98hbDhcTNGjeL51I0PTsCMRllpeXpxKwqsVDoAsoSOk8pYNUr66YXe9AUeEwRVEg9AUZ_G1cCLiO7KnwHqg/s1600/1579426172508337-6.png" width="400" />
+  </a>
+</div>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+</div>
+<div>
+Click on the Mappings tab to check whether the source columns exactly mapped to the SSIS OLE DB destination columns.</div>
+<div>
+Clicking OK to finish configuring the SSIS OLE DB Destination package.</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimpJRvrWH_IJuBQFGIXS8Sc0fkZqxR4fbpgUhGfNqC0iGXlRXyRTRlXHt5eowL7MiqsIjeLaY-oAjF8mTmsoMZusBYjumJvYkbVWCMmip3HlvOGRO6Tr6XN3H03tI6q2w88iBsRdkrsPnu/s1600/1579426162653797-7.png" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimpJRvrWH_IJuBQFGIXS8Sc0fkZqxR4fbpgUhGfNqC0iGXlRXyRTRlXHt5eowL7MiqsIjeLaY-oAjF8mTmsoMZusBYjumJvYkbVWCMmip3HlvOGRO6Tr6XN3H03tI6q2w88iBsRdkrsPnu/s1600/1579426162653797-7.png" width="400" />
+  </a>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+Build and run the package and see whether we transferred the data from OLE DB Source&nbsp;to OLE DB Destination.</div>
+</div>
+
