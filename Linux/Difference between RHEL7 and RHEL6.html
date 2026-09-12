@@ -1,0 +1,702 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<span style="color: #fce5cd;"><br /></span>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;"> </span></b></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">  </span></b></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span>
+<span style="color: #fce5cd;"><br /></span>
+<div class="uiqtextpara" style="margin-bottom: .0001pt; margin: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Diff.
+RHEL6 &amp; RHEL7</span></b></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoNormalTable" style="border-collapse: collapse; border: none; margin-left: .9pt; mso-border-alt: solid windowtext .5pt; mso-border-insideh: .5pt solid windowtext; mso-border-insidev: .5pt solid windowtext; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-table-layout-alt: fixed; width: 676px;">
+ <tbody>
+<tr style="height: 22.45pt; mso-yfti-firstrow: yes; mso-yfti-irow: 0;">
+  <td style="border: solid white 1.0pt; height: 22.45pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-left: none; border: solid white 1.0pt; height: 22.45pt; mso-border-alt: solid white .5pt; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-themecolor: background1; mso-border-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" valign="top" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">RHEL4</span></b></span></div>
+</td>
+  <td colspan="2" style="border-left: none; border: solid white 1.0pt; height: 22.45pt; mso-border-alt: solid white .5pt; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-themecolor: background1; mso-border-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" valign="top" width="108"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">5</span></b></span></div>
+</td>
+  <td colspan="2" style="border-left: none; border: solid white 1.0pt; height: 22.45pt; mso-border-alt: solid white .5pt; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-themecolor: background1; mso-border-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" valign="top" width="184"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">6</span></b></span></div>
+</td>
+  <td style="border-left: none; border: solid white 1.0pt; height: 22.45pt; mso-border-alt: solid white .5pt; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-themecolor: background1; mso-border-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" valign="top" width="228"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">7</span></b></span></div>
+</td>
+ </tr>
+<tr style="height: 14.8pt; mso-yfti-irow: 1;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">FILE system</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" valign="top" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">ext2</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" valign="top" width="108"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">ext3</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" valign="top" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">ext4</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" valign="top" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">xfs</span></span></div>
+</td>
+ </tr>
+<tr style="height: 11.65pt; mso-yfti-irow: 2;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Kernel code</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" valign="top" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Nahant</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" valign="top" width="108"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">tikanga</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" valign="top" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Santiago</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" valign="top" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">maipo</span></span></div>
+</td>
+ </tr>
+<tr style="height: 13.0pt; mso-yfti-irow: 3;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Nw support</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" valign="top" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">ipv4</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" valign="top" width="108"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">ipv4</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" valign="top" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">ipv4 and v6</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" valign="top" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">ipv4 and v6</span></span></div>
+</td>
+ </tr>
+<tr style="height: 14.35pt; mso-yfti-irow: 4;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Yum server</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" valign="top" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">no yum</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" valign="top" width="108"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">yes</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" valign="top" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">yes</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" valign="top" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">yes</span></span></div>
+</td>
+ </tr>
+<tr style="height: 16.6pt; mso-yfti-irow: 5;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 16.6pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Max supp File size</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 16.6pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" valign="top" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">2tb</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 16.6pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" valign="top" width="108"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">16tb</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 16.6pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">EXT4 16TB with XFS 100TB</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 16.6pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">EXT4 16TB with XFS 500TB</span></span></div>
+</td>
+ </tr>
+<tr style="height: 13.45pt; mso-yfti-irow: 6;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Lang support</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" valign="top" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">10</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" valign="top" width="108"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">15</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" valign="top" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">19</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" valign="top" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">22</span></span></div>
+</td>
+ </tr>
+<tr style="height: 14.8pt; mso-yfti-irow: 7;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Virtualization</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" valign="top" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">N/A</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" valign="top" width="108"><div align="center" class="MsoNormal" style="text-align: center;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">XEN Kernel</span></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" valign="top" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">KVM (Kernel BasedVirtualization)</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" valign="top" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">KVM included with Hyper-v Module</span></span></div>
+</td>
+ </tr>
+<tr style="height: 8.05pt; mso-yfti-irow: 8;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 8.05pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Boot Time</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 8.05pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 8.05pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 8.05pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">40 Sec</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 8.05pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">20 Sec</span></span></div>
+</td>
+ </tr>
+<tr style="height: 9.4pt; mso-yfti-irow: 9;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 9.4pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Default Database</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 9.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 9.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 9.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">MySQL</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 9.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">MariaDB</span></span></div>
+</td>
+ </tr>
+<tr style="height: 15.25pt; mso-yfti-irow: 10;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 15.25pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Processor Architecture</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 15.25pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 15.25pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 15.25pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">32Bit and 64Bit</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 15.25pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Only 64Bit.</span></span></div>
+</td>
+ </tr>
+<tr style="height: 62.95pt; mso-yfti-irow: 11;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 62.95pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">UID Information</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 62.95pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 62.95pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 62.95pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Normal User UID will start from 500
+  to 65534<br />
+  System Users UID will start from 1 to 499</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 62.95pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Normal User UID start from 1000 â€“
+  65534<br />
+  System Users UID will start from 1 to 999Because Services are increased
+  compare to RHEL 6</span></span></div>
+</td>
+ </tr>
+<tr style="height: 24.25pt; mso-yfti-irow: 12;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 24.25pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Boot Loader</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 24.25pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 24.25pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 24.25pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Grub 0.97<br />
+  /boot/grub/grub.conf</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 24.25pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Grub 2<br />
+  /boot/grub2/grub.conf</span></span></div>
+</td>
+ </tr>
+<tr style="height: 45.4pt; mso-yfti-irow: 13;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 45.4pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">System Logs</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 45.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 45.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 45.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">/var/log/</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 45.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">rsyslog</span></span></div>
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">/var/log<br />
+  journalctl</span></span></div>
+</td>
+ </tr>
+<tr style="height: 113.8pt; mso-yfti-irow: 14;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 113.8pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Run Levels</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 113.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 113.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 113.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">runlevel 0 â€“ Power Off<br />
+  runlevel 1 â€“ Single User Mode<br />
+  runlevel 2 â€“ Multi User without Networking<br />
+  runlevel 3 â€“ Multi User CLI<br />
+  runlevel 4 â€“ Not USed<br />
+  runlevel 5 â€“ GUI Mode<br />
+  runlevel 6 â€“ Restart</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 113.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">There is no run levels in RHEL 7. Run levels are called as
+  targets<br />
+  runlevel0.target -&gt; Poweroff.target<br />
+  runlevel0.target -&gt; rescue.target<br />
+  runlevel0.target -&gt; multi-user.target</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">runlevel0.target -&gt; multi-user.target</span></span></div>
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">runlevel0.target -&gt; multi-user.target<br />
+  runlevel0.target -&gt; graphical.target<br />
+  runlevel0.target -&gt; reboot.target</span></span></div>
+</td>
+ </tr>
+<tr style="height: 20.2pt; mso-yfti-irow: 15;">
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: solid white 1.0pt; border-right: solid white 1.0pt; border-top: none; height: 20.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Poweroff<span style="mso-spacerun: yes;">&nbsp; </span>&amp; Rebooting </span></span></div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 20.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 20.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 20.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">poweroff â€“ init 0<br />
+  reboot â€“ init 6</span></span></div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 20.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">systemctl poweroff<br />
+  systemctl reboot</span></span></div>
+</td>
+ </tr>
+<tr style="height: 71.5pt; mso-yfti-irow: 16;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 71.5pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Port Security</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 71.5pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 71.5pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 71.5pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Iptables by default service port is
+  enabled when service is switched on.</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 71.5pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">&nbsp;Firewalld instead of iptables.
+  Iptables can also support with RHEL 7, but we canâ€™t use both of them at the
+  same time. Firewall will not allow any port until and unless you enabled it.</span></span></div>
+</td>
+ </tr>
+<tr style="height: 50.8pt; mso-yfti-irow: 17;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 50.8pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Network Interface Grouping</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 50.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 50.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 50.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Bonding can be done as
+  Active-Backup, XOR, IEEE and Load Balancing&nbsp;</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 50.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Team Driver will support multiple
+  types of Teaming methods called Active-Backup, Load-balancing and Broadcast</span></span></div>
+</td>
+ </tr>
+<tr style="height: 24.7pt; mso-yfti-irow: 18;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 24.7pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Daemon &amp; First<span style="mso-spacerun: yes;">&nbsp; </span>Process ID</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 24.7pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 24.7pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 24.7pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Initd &nbsp;Process ID 1</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 24.7pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">&nbsp;Systemd Process ID 1</span></span></div>
+</td>
+ </tr>
+<tr style="height: 26.05pt; mso-yfti-irow: 19;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 26.05pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">KDUMP</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 26.05pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 26.05pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.0pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 26.05pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 137.75pt;" width="184"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Kdump doesâ€™t support with large RAM
+  Size&nbsp;</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 26.05pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">RHEL 7 can be supported up to 3TB</span></span></div>
+</td>
+ </tr>
+<tr style="height: 14.8pt; mso-yfti-irow: 20;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">max memory</span></b></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 81.35pt;" width="108"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="2" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.8pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 308.4pt;" width="411"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+ </tr>
+<tr style="height: 21.2pt; mso-yfti-irow: 21;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 21.2pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">x86</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">16gb</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.2pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">na</span></span></div>
+</td>
+ </tr>
+<tr style="height: 13.0pt; mso-yfti-irow: 22;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">x86_64</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">12tb[64tb]^15</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">12tb[64tb]^16</span></span></div>
+</td>
+ </tr>
+<tr style="height: 14.35pt; mso-yfti-irow: 23;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">Required minimum</span></b></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="5" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 389.75pt;" width="520"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+ </tr>
+<tr style="height: 25.15pt; mso-yfti-irow: 24;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 25.15pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">x86</span></span></div>
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 25.15pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 25.15pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 25.15pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">512mb minimum /1gb per loical cpu
+  recommended</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 25.15pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">na</span></span></div>
+</td>
+ </tr>
+<tr style="height: 23.35pt; mso-yfti-irow: 25;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 23.35pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">x86_64</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 23.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 23.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 23.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">1gb minimum /1gb per loical cpu
+  recommended</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 23.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">1gb minimum /1gb per loical cpu
+  recommended</span></span></div>
+</td>
+ </tr>
+<tr style="height: 21.55pt; mso-yfti-irow: 26;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 21.55pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">minimum diskspace</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.55pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.55pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.55pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">1gb minimum /5gb<span style="mso-spacerun: yes;">&nbsp; </span>recommended</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.55pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">10gb minimum /20gb<span style="mso-spacerun: yes;">&nbsp; </span>recommended</span></span></div>
+</td>
+ </tr>
+<tr style="height: .95pt; mso-yfti-irow: 27;">
+  <td style="border-top: none; border: solid white 1.0pt; height: .95pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">File systems &amp; Storage limits</span></b></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: .95pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="5" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: .95pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 389.75pt;" width="520"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+ </tr>
+<tr style="height: 21.85pt; mso-yfti-irow: 28;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 21.85pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><span style="color: #fce5cd;"><br /></span></td>
+  <td colspan="6" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 21.85pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 439.3pt;" width="586"><br /></td>
+ </tr>
+<tr style="height: 48.75pt; mso-yfti-irow: 29;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 48.75pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><br /></td>
+  <td colspan="6" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 48.75pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 439.3pt;" width="586"><br /></td>
+ </tr>
+<tr style="height: 13.0pt; mso-yfti-irow: 30;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">XFS max file sys size</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">300TB[16EB]^19</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.0pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">500TB[16EB]</span></span></div>
+</td>
+ </tr>
+<tr style="height: 14.35pt; mso-yfti-irow: 31;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">XFS max file size</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">100TB[8EB]</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 14.35pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">500TB[8EB]</span></span></div>
+</td>
+ </tr>
+<tr style="height: 18.4pt; mso-yfti-irow: 32;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 18.4pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">XFS max subdirectories</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 18.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 18.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 18.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">unlimited</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 18.4pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">unlimited</span></span></div>
+</td>
+ </tr>
+<tr style="height: 17.5pt; mso-yfti-irow: 33;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 17.5pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">EXT4 max file sys size</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 17.5pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 17.5pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 17.5pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">16TB[1EB]</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 17.5pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">50TB[1EB]</span></span></div>
+</td>
+ </tr>
+<tr style="height: 15.7pt; mso-yfti-irow: 34;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 15.7pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">EXT4 max file size</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 15.7pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 15.7pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 15.7pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">16TB</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 15.7pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">16TB</span></span></div>
+</td>
+ </tr>
+<tr style="height: 12.1pt; mso-yfti-irow: 35;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 12.1pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">max subdirectories</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 12.1pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 12.1pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 12.1pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">65000/unlimited</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 12.1pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">65000/unlimited</span></span></div>
+</td>
+ </tr>
+<tr style="height: 13.45pt; mso-yfti-irow: 36;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">EXT3 max file sys size</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">16TB</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 13.45pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">16TB</span></span></div>
+</td>
+ </tr>
+<tr style="height: 10.3pt; mso-yfti-irow: 37;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 10.3pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">EXT3 max file size</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 10.3pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 10.3pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 10.3pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">2TB</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 10.3pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">2TB</span></span></div>
+</td>
+ </tr>
+<tr style="height: 11.65pt; mso-yfti-irow: 38; mso-yfti-lastrow: yes;">
+  <td style="border-top: none; border: solid white 1.0pt; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 67.45pt;" valign="top" width="90"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">max subdirectories</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 49.55pt;" width="66"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 65.75pt;" width="88"><div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+</td>
+  <td colspan="3" style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 153.0pt;" width="204"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">32000</span></span></div>
+</td>
+  <td style="border-bottom: solid white 1.0pt; border-left: none; border-right: solid white 1.0pt; border-top: none; height: 11.65pt; mso-border-alt: solid white .5pt; mso-border-bottom-themecolor: background1; mso-border-left-alt: solid white .5pt; mso-border-left-themecolor: background1; mso-border-right-themecolor: background1; mso-border-themecolor: background1; mso-border-top-alt: solid white .5pt; mso-border-top-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 171.0pt;" width="228"><div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 8.0pt; line-height: 115%;">32000</span></span></div>
+</td>
+ </tr>
+<tr height="0">
+  <td style="border: none;" width="90"><span style="color: #fce5cd;"><br /></span></td>
+  <td style="border: none;" width="66"><span style="color: #fce5cd;"><br /></span></td>
+  <td style="border: none;" width="88"><span style="color: #fce5cd;"><br /></span></td>
+  <td style="border: none;" width="20"><span style="color: #fce5cd;"><br /></span></td>
+  <td style="border: none;" width="0"><span style="color: #fce5cd;"><br /></span></td>
+  <td style="border: none;" width="183"><span style="color: #fce5cd;"><br /></span></td>
+  <td style="border: none;" width="228"><span style="color: #fce5cd;"><br /></span></td>
+ </tr>
+</tbody></table>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+</div>
+</div>
+

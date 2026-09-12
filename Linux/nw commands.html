@@ -1,0 +1,710 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+
+<br />
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph;">
+<strong><span lang="EN-GB">troubleshoot
+commands in Linux.</span></strong></div>
+<h3>
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid black .5pt; mso-border-themecolor: text1; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-yfti-tbllook: 1184;">
+ <tbody>
+<tr style="mso-yfti-firstrow: yes; mso-yfti-irow: 0; mso-yfti-lastrow: yes;">
+  <td style="border: solid black 1.0pt; mso-border-alt: solid black .5pt; mso-border-themecolor: text1; mso-border-themecolor: text1; padding: 0in 5.4pt 0in 5.4pt; width: 462.1pt;" valign="top" width="616"><h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">1. ifconfig</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">ifconfig&nbsp;(interface configurator) command&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;is use to initialize an interface, assign&nbsp;IP&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">Address&nbsp;to interface
+  and&nbsp;enable&nbsp;or&nbsp;disable</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;interface on demand. With this
+  command&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">you can view&nbsp;IP Address&nbsp;and&nbsp;Hardware&nbsp;/&nbsp;MAC&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;address&nbsp;assign to interface and also&nbsp;MTU&nbsp;(Maximum transmission
+  unit) size.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ifconfig</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">eth0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Link encap:EthernetHWaddr 00:0C:29:28:FD:4C</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">inet addr:192.168.50.2<span style="mso-spacerun: yes;">&nbsp; </span>Bcast:192.168.50.255<span style="mso-spacerun: yes;">&nbsp; </span>Mask:255.255.255.0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>inet6 addr: fe80::20c:29ff:fe28:fd4c/64 Scope:Link</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>UP BROADCAST RUNNING MULTICAST<span style="mso-spacerun: yes;">&nbsp; </span>MTU:1500<span style="mso-spacerun: yes;">&nbsp; </span>Metric:1</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>RX packets:6093 errors:0 dropped:0 overruns:0 frame:0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>TX packets:4824 errors:0 dropped:0 overruns:0 carrier:0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>collisions:0 txqueuelen:1000</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>RX bytes:6125302 (5.8 MiB)<span style="mso-spacerun: yes;">&nbsp; </span>TX bytes:536966 (524.3 KiB)</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Interrupt:18 Base address:0x2000</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">lo<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Link encap:Local Loopback</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">inet addr:127.0.0.1<span style="mso-spacerun: yes;">&nbsp; </span>Mask:255.0.0.0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>inet6 addr: ::1/128 Scope:Host</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>UP LOOPBACK RUNNING<span style="mso-spacerun: yes;">&nbsp; </span>MTU:16436<span style="mso-spacerun: yes;">&nbsp; </span>Metric:1</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>RX packets:8 errors:0 dropped:0 overruns:0 frame:0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>TX packets:8 errors:0 dropped:0 overruns:0 carrier:0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>collisions:0 txqueuelen:0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>RX bytes:480 (480.0 b)<span style="mso-spacerun: yes;">&nbsp; </span>TX bytes:480 (480.0 b)</span></strong></pre>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">ifconfig&nbsp;with interface (eth0) command&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;only shows specific interface details like&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">IP Address,&nbsp;MAC Address&nbsp;etc.
+  with&nbsp;-a&nbsp;options&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">will display all available interface details if it&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;is disable also.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ifconfig eth0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">eth0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Link encap:EthernetHWaddr 00:0C:29:28:FD:4C</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">inet addr:192.168.50.2<span style="mso-spacerun: yes;">&nbsp; </span>Bcast:192.168.50.255<span style="mso-spacerun: yes;">&nbsp; </span>Mask:255.255.255.0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>inet6 addr: fe80::20c:29ff:fe28:fd4c/64 Scope:Link</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>UP BROADCAST RUNNING MULTICAST<span style="mso-spacerun: yes;">&nbsp; </span>MTU:1500<span style="mso-spacerun: yes;">&nbsp; </span>Metric:1</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>RX packets:6119 errors:0 dropped:0 overruns:0 frame:0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>TX packets:4841 errors:0 dropped:0 overruns:0 carrier:0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>collisions:0 txqueuelen:1000</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>RX bytes:6127464 (5.8 MiB)<span style="mso-spacerun: yes;">&nbsp; </span>TX bytes:539648 (527.0 KiB)</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Interrupt:18 Base address:0x2000</span></strong></pre>
+<h4 style="line-height: normal; mso-outline-level: 4;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Assigning IP Address and Gateway</span></strong></h4>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">Assigning an&nbsp;IP Address&nbsp;and&nbsp;Gateway&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">to
+  interface on the fly. The setting will</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;be removed in case of system reboot.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ifconfig eth0 192.168.50.5 netmask 255.255.255.0</span></strong></pre>
+<h4 style="line-height: normal; mso-outline-level: 4;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Enable or Disable Specific Interface</span></strong></h4>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">To&nbsp;enable&nbsp;or&nbsp;disable&nbsp;specific
+  Interface,&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">we use example command as follows.</span></strong></div>
+<h5 style="line-height: normal; mso-outline-level: 5;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Enable eth0</span></strong></h5>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ifup eth0</span></strong></pre>
+<h5 style="line-height: normal; mso-outline-level: 5;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Disable eth0</span></strong></h5>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ifdown eth0</span></strong></pre>
+<h4 style="line-height: normal; mso-outline-level: 4;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Setting MTU Size</span></strong></h4>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">By default&nbsp;MTU&nbsp;size is&nbsp;1500. We
+  can</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;set required&nbsp;MTU&nbsp;size with below&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">command. Replace&nbsp;XXXX&nbsp;with
+  size.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ifconfig eth0 mtu XXXX</span></strong></pre>
+<h4 style="line-height: normal; mso-outline-level: 4;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Set Interface in Promiscuous mode</span></strong></h4>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">Network interface&nbsp;only received packets&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;belongs to that particular&nbsp;NIC. If you put</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;interface in&nbsp;promiscuous&nbsp;mode
+  it will received&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">all the packets. This is very useful to capture&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">packets and
+  analyze later. For this you may&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">require superuser access.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ifconfig eth0 - promisc</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">2. PING Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">PING&nbsp;(Packet INternet Groper) command</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;is
+  the best way to test connectivity between&nbsp;two&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">nodes. Whether it is&nbsp;Local
+  Area Network&nbsp;(LAN) or&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">Wide Area Network&nbsp;(WAN). Ping use&nbsp;ICMP&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">(Internet
+  Control Message Protocol) to communicate</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;to other devices. You can ping host
+  name of&nbsp;ip address&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">using below command.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ping 4.2.2.2</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">PING 4.2.2.2 (4.2.2.2) 56(84) bytes of data.</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 4.2.2.2: icmp_seq=1 ttl=44 time=203 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 4.2.2.2: icmp_seq=2 ttl=44 time=201 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 4.2.2.2: icmp_seq=3 ttl=44 time=201 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">OR</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ping www.tecmint.com</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">PING tecmint.com (50.116.66.136) 56(84) bytes of data.</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 50.116.66.136: icmp_seq=1 ttl=47 time=284 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 50.116.66.136: icmp_seq=2 ttl=47 time=287 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 50.116.66.136: icmp_seq=3 ttl=47 time=285 ms</span></strong></pre>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">In&nbsp;Linux&nbsp;ping command keep executing
+  until&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">you interrupt. Ping with&nbsp;-c&nbsp;option exit after&nbsp;N</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;number
+  of request (success or error respond).</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ping -c 5 www.tecmint.com</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">PING tecmint.com (50.116.66.136) 56(84) bytes of data.</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 50.116.66.136: icmp_seq=1 ttl=47 time=285 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 50.116.66.136: icmp_seq=2 ttl=47 time=285 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 50.116.66.136: icmp_seq=3 ttl=47 time=285 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 50.116.66.136: icmp_seq=4 ttl=47 time=285 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">64 bytes from 50.116.66.136: icmp_seq=5 ttl=47 time=285 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">--- tecmint.com ping statistics ---</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">5 packets transmitted, 5 received, 0% packet loss, time 4295ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">rtt min/avg/max/mdev = 285.062/285.324/285.406/0.599 ms</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">3. TRACEROUTE Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">traceroute&nbsp;is a network troubleshooting
+  utility</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;which shows number of hops taken to reach&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">destination also determine
+  packets traveling path.&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">Below we are tracing route to global&nbsp;DNS server
+  IP&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">Address&nbsp;and able to reach destination also shows path</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;of that packet
+  is traveling.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># traceroute 4.2.2.2</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">traceroute to 4.2.2.2 (4.2.2.2), 30 hops max, 60 byte packets</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 1<span style="mso-spacerun: yes;">&nbsp; </span>192.168.50.1 (192.168.50.1)<span style="mso-spacerun: yes;">&nbsp; </span>0.217 ms<span style="mso-spacerun: yes;">&nbsp; </span>0.624 ms<span style="mso-spacerun: yes;">&nbsp; </span>0.133 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 2<span style="mso-spacerun: yes;">&nbsp; </span>227.18.106.27.mysipl.com (27.106.18.227)<span style="mso-spacerun: yes;">&nbsp; </span>2.343 ms<span style="mso-spacerun: yes;">&nbsp; </span>1.910 ms<span style="mso-spacerun: yes;">&nbsp; </span>1.799 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 3<span style="mso-spacerun: yes;">&nbsp; </span>221-231-119-111.mysipl.com (111.119.231.221)<span style="mso-spacerun: yes;">&nbsp; </span>4.334 ms<span style="mso-spacerun: yes;">&nbsp; </span>4.001 ms<span style="mso-spacerun: yes;">&nbsp; </span>5.619 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 4<span style="mso-spacerun: yes;">&nbsp; </span>10.0.0.5 (10.0.0.5)<span style="mso-spacerun: yes;">&nbsp; </span>5.386 ms<span style="mso-spacerun: yes;">&nbsp; </span>6.490 ms<span style="mso-spacerun: yes;">&nbsp; </span>6.224 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 5<span style="mso-spacerun: yes;">&nbsp; </span>gi0-0-0.dgw1.bom2.pacific.net.in (203.123.129.25)<span style="mso-spacerun: yes;">&nbsp; </span>7.798 ms<span style="mso-spacerun: yes;">&nbsp; </span>7.614 ms<span style="mso-spacerun: yes;">&nbsp; </span>7.378 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 6<span style="mso-spacerun: yes;">&nbsp; </span>115.113.165.49.static-mumbai.vsnl.net.in (115.113.165.49)<span style="mso-spacerun: yes;">&nbsp; </span>10.852 ms<span style="mso-spacerun: yes;">&nbsp; </span>5.389 ms<span style="mso-spacerun: yes;">&nbsp; </span>4.322 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 7<span style="mso-spacerun: yes;">&nbsp; </span>ix-0-100.tcore1.MLV-Mumbai.as6453.net (180.87.38.5)<span style="mso-spacerun: yes;">&nbsp; </span>5.836 ms<span style="mso-spacerun: yes;">&nbsp; </span>5.590 ms<span style="mso-spacerun: yes;">&nbsp; </span>5.503 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 8<span style="mso-spacerun: yes;">&nbsp; </span>if-9-5.tcore1.WYN-Marseille.as6453.net (80.231.217.17)<span style="mso-spacerun: yes;">&nbsp; </span>216.909 ms<span style="mso-spacerun: yes;">&nbsp; </span>198.864 ms<span style="mso-spacerun: yes;">&nbsp; </span>201.737 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"> 9<span style="mso-spacerun: yes;">&nbsp; </span>if-2-2.tcore2.WYN-Marseille.as6453.net (80.231.217.2)<span style="mso-spacerun: yes;">&nbsp; </span>203.305 ms<span style="mso-spacerun: yes;">&nbsp; </span>203.141 ms<span style="mso-spacerun: yes;">&nbsp; </span>202.888 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">10<span style="mso-spacerun: yes;">&nbsp; </span>if-5-2.tcore1.WV6-Madrid.as6453.net (80.231.200.6)<span style="mso-spacerun: yes;">&nbsp; </span>200.552 ms<span style="mso-spacerun: yes;">&nbsp; </span>202.463 ms<span style="mso-spacerun: yes;">&nbsp; </span>202.222 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">11<span style="mso-spacerun: yes;">&nbsp; </span>if-8-2.tcore2.SV8-Highbridge.as6453.net (80.231.91.26)<span style="mso-spacerun: yes;">&nbsp; </span>205.446 ms<span style="mso-spacerun: yes;">&nbsp; </span>215.885 ms<span style="mso-spacerun: yes;">&nbsp; </span>202.867 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">12<span style="mso-spacerun: yes;">&nbsp; </span>if-2-2.tcore1.SV8-Highbridge.as6453.net (80.231.139.2)<span style="mso-spacerun: yes;">&nbsp; </span>202.675 ms<span style="mso-spacerun: yes;">&nbsp; </span>201.540 ms<span style="mso-spacerun: yes;">&nbsp; </span>203.972 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">13<span style="mso-spacerun: yes;">&nbsp; </span>if-6-2.tcore1.NJY-Newark.as6453.net (80.231.138.18)<span style="mso-spacerun: yes;">&nbsp; </span>203.732 ms<span style="mso-spacerun: yes;">&nbsp; </span>203.496 ms<span style="mso-spacerun: yes;">&nbsp; </span>202.951 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">14<span style="mso-spacerun: yes;">&nbsp; </span>if-2-2.tcore2.NJY-Newark.as6453.net (66.198.70.2)<span style="mso-spacerun: yes;">&nbsp; </span>203.858 ms<span style="mso-spacerun: yes;">&nbsp; </span>203.373 ms<span style="mso-spacerun: yes;">&nbsp; </span>203.208 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">15<span style="mso-spacerun: yes;">&nbsp; </span>66.198.111.26 (66.198.111.26)<span style="mso-spacerun: yes;">&nbsp; </span>201.093 ms 63.243.128.25 (63.243.128.25)<span style="mso-spacerun: yes;">&nbsp; </span>206.597 ms 66.198.111.26 (66.198.111.26)<span style="mso-spacerun: yes;">&nbsp; </span>204.178 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">16<span style="mso-spacerun: yes;">&nbsp; </span>ae9.edge1.NewYork.Level3.net (4.68.62.185)<span style="mso-spacerun: yes;">&nbsp; </span>205.960 ms<span style="mso-spacerun: yes;">&nbsp; </span>205.740 ms<span style="mso-spacerun: yes;">&nbsp; </span>205.487 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">17<span style="mso-spacerun: yes;">&nbsp; </span>vlan51.ebr1.NewYork2.Level3.net (4.69.138.222)<span style="mso-spacerun: yes;">&nbsp; </span>203.867 ms vlan52.ebr2.NewYork2.Level3.net (4.69.138.254)<span style="mso-spacerun: yes;">&nbsp; </span>202.850 ms vlan51.ebr1.NewYork2.Level3.net (4.69.138.222)<span style="mso-spacerun: yes;">&nbsp; </span>202.351 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">18<span style="mso-spacerun: yes;">&nbsp; </span>ae-6-6.ebr2.NewYork1.Level3.net (4.69.141.21)<span style="mso-spacerun: yes;">&nbsp; </span>201.771 ms<span style="mso-spacerun: yes;">&nbsp; </span>201.185 ms<span style="mso-spacerun: yes;">&nbsp; </span>201.120 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">19<span style="mso-spacerun: yes;">&nbsp; </span>ae-81-81.csw3.NewYork1.Level3.net (4.69.134.74)<span style="mso-spacerun: yes;">&nbsp; </span>202.407 ms<span style="mso-spacerun: yes;">&nbsp; </span>201.479 ms ae-92-92.csw4.NewYork1.Level3.net (4.69.148.46)<span style="mso-spacerun: yes;">&nbsp; </span>208.145 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">20<span style="mso-spacerun: yes;">&nbsp; </span>ae-2-70.edge2.NewYork1.Level3.net (4.69.155.80)<span style="mso-spacerun: yes;">&nbsp; </span>200.572 ms ae-4-90.edge2.NewYork1.Level3.net (4.69.155.208)<span style="mso-spacerun: yes;">&nbsp; </span>200.402 ms ae-1-60.edge2.NewYork1.Level3.net (4.69.155.16)<span style="mso-spacerun: yes;">&nbsp; </span>203.573 ms</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">21<span style="mso-spacerun: yes;">&nbsp; </span>b.resolvers.Level3.net (4.2.2.2)<span style="mso-spacerun: yes;">&nbsp; </span>199.725 ms<span style="mso-spacerun: yes;">&nbsp; </span>199.190 ms<span style="mso-spacerun: yes;">&nbsp; </span>202.488 ms</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">4. NETSTAT Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">Netstat&nbsp;(Network Statistic) command
+  display&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">connection info, routing table information etc.&nbsp;</span></strong><br />
+<strong><span lang="EN-GB">To displays routing
+  table information use option as&nbsp;-r.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># netstat -r</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Kernel IP routing table</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Destination<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp; </span>Gateway<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Genmask<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Flags<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>MSS Window<span style="mso-spacerun: yes;">&nbsp; </span>irttIface</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">192.168.50.0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>*<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>255.255.255.0<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>U<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 eth0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">link-local<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>*<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>255.255.0.0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp; </span>U<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 eth0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">default<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>192.168.50.1<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>0.0.0.0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>UG<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 eth0</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">5. DIG Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">Dig&nbsp;(domain information groper) query&nbsp;DNS&nbsp;related</span></strong><br />
+<strong><span lang="EN-GB">&nbsp;information like&nbsp;A Record,&nbsp;CNAME,&nbsp;MX Record&nbsp;etc. This
+  command mainly use to troubleshoot&nbsp;DNS&nbsp;related query.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># dig www.tecmint.com; &lt;&lt;&gt;&gt;DiG 9.8.2rc1-RedHat-9.8.2-0.10.rc1.el6 &lt;&lt;&gt;&gt; www.tecmint.com</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">;; global options: +cmd</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">;; Got answer:</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">;; -&gt;&gt;HEADER&lt;</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">6. NSLOOKUP Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">nslookup&nbsp;command also use to find out&nbsp;DNS&nbsp;related
+  query. The following examples shows&nbsp;A Record&nbsp;(IP Address) of&nbsp;tecmint.com.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># nslookup www.tecmint.com</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">www.tecmint.com canonical name = tecmint.com.</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>tecmint.com</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Address: 50.116.66.136</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">7. ROUTE Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">route&nbsp;command also shows and manipulate&nbsp;ip&nbsp;routing
+  table. To see default routing table in&nbsp;Linux, type the following
+  command.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># route</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Kernel IP routing table</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Destination<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp; </span>Gateway<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Genmask<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Flags Metric Ref<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>Use Iface</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">192.168.50.0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>*<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>255.255.255.0<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>U<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp; </span>0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 eth0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">link-local<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>*<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>255.255.0.0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp; </span>U<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp; </span>1002<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 eth0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">default<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>192.168.50.1<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>0.0.0.0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>UG<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0 eth0</span></strong></pre>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">Adding, deleting routes and default Gateway
+  with following commands.</span></strong></div>
+<h5 style="line-height: normal; mso-outline-level: 5;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Route Adding</span></strong></h5>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># route add -net 10.10.10.0/24 gw 192.168.0.1</span></strong></pre>
+<h5 style="line-height: normal; mso-outline-level: 5;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Route Deleting</span></strong></h5>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># route del -net 10.10.10.0/24 gw 192.168.0.1</span></strong></pre>
+<h5 style="line-height: normal; mso-outline-level: 5;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Adding default Gateway</span></strong></h5>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># route add default gw 192.168.0.1</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">8. HOST Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">host&nbsp;command to find name to&nbsp;IP&nbsp;or&nbsp;IP&nbsp;to
+  name in&nbsp;IPv4&nbsp;or&nbsp;IPv6&nbsp;and also query&nbsp;DNS&nbsp;records.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># host www.google.com</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">www.google.com has address 173.194.38.180</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">www.google.com has address 173.194.38.176</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">www.google.com has address 173.194.38.177</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">www.google.com has address 173.194.38.178</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">www.google.com has address 173.194.38.179</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">www.google.com has IPv6 address 2404:6800:4003:802::1014</span></strong></pre>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">Using&nbsp;-t&nbsp;option we can find out DNS
+  Resource Records like&nbsp;CNAME,&nbsp;NS,&nbsp;MX,&nbsp;SOA&nbsp;etc.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># host -t CNAME www.redhat.com</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">www.redhat.com is an alias for wildcard.redhat.com.edgekey.net.</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">9. ARP Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">ARP&nbsp;(Address Resolution Protocol) is
+  useful to&nbsp;view&nbsp;/&nbsp;add&nbsp;the contents of the kernelâ€™s&nbsp;ARP
+  tables. To see default table use the command as.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># arp -e</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Address<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>HWtypeHWaddress<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;</span>Flags Mask<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Iface</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">192.168.50.1<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ether<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>00:50:56:c0:00:08<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>C<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>eth0</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">10. ETHTOOL Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">ethtool&nbsp;is a replacement of&nbsp;mii-tool.
+  It is to view, setting speed and duplex of your&nbsp;Network Interface Card&nbsp;(NIC).
+  You can set duplex permanently in&nbsp;/etc/sysconfig/network-scripts/ifcfg-eth0&nbsp;with&nbsp;ETHTOOL_OPTS&nbsp;variable.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># ethtool eth0</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">Settings for eth0:</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Current message level: 0x00000007 (7)</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Link detected: yes</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">11. IWCONFIG Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">iwconfig&nbsp;command in&nbsp;Linux&nbsp;is use
+  to configure a&nbsp;wireless network interface. You can see and set the basic&nbsp;Wi-Fi&nbsp;details
+  like&nbsp;SSID&nbsp;channel and encryption. You can refer man page of&nbsp;iwconfig&nbsp;to
+  know more.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># iwconfig [interface]</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">12. HOSTNAME Command</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">hostname&nbsp;is to identify in a network. Execute&nbsp;hostname&nbsp;command
+  to see the hostname of your box. You can set hostname permanently in&nbsp;/etc/sysconfig/network.
+  Need to reboot box once set a proper hostname.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># hostname</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">&nbsp;</span></strong></pre>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;">tecmint.com</span></strong></pre>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h3>
+<h3 style="line-height: normal; mso-outline-level: 3;">
+<strong><span lang="EN-GB" style="font-family: &quot;calibri light&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">13. GUI tool system-config-network</span></strong></h3>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<strong><span lang="EN-GB">Type&nbsp;system-config-network&nbsp;in command
+  prompt to configure network setting and you will get nice&nbsp;Graphical User
+  Interface&nbsp;(GUI) which may also use to configure&nbsp;IP Address,&nbsp;Gateway,&nbsp;DNS&nbsp;etc.
+  as shown below image.</span></strong></div>
+<pre><strong><span lang="EN-GB" style="font-family: &quot;courier new&quot;;"># system-config-network</span></strong></pre>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in;">
+<span lang="EN-GB"><strong><span style="font-family: &quot;calibri&quot; , &quot;sans-serif&quot;; text-decoration: none;"><span style="mso-ignore: vglayout;"></span></span></strong><strong><span style="font-family: &quot;calibri&quot; , &quot;sans-serif&quot;; mso-ascii-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-hansi-theme-font: minor-latin;"></span></strong></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in;">
+<br /></div>
+</td>
+ </tr>
+</tbody></table>
+<div class="MsoNormal">
+<br /></div>
+<!--[if gte mso 9]><xml>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="--"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]--><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+ {mso-style-name:"Table Normal";
+ mso-tstyle-rowband-size:0;
+ mso-tstyle-colband-size:0;
+ mso-style-noshow:yes;
+ mso-style-priority:99;
+ mso-style-qformat:yes;
+ mso-style-parent:"";
+ mso-padding-alt:0in 5.4pt 0in 5.4pt;
+ mso-para-margin-top:0in;
+ mso-para-margin-right:0in;
+ mso-para-margin-bottom:8.0pt;
+ mso-para-margin-left:0in;
+ line-height:107%;
+ mso-pagination:widow-orphan;
+ font-size:11.0pt;
+ font-family:"Calibri","sans-serif";
+ mso-ascii-font-family:Calibri;
+ mso-ascii-theme-font:minor-latin;
+ mso-hansi-font-family:Calibri;
+ mso-hansi-theme-font:minor-latin;}
+table.MsoTableGrid
+ {mso-style-name:"Table Grid";
+ mso-tstyle-rowband-size:0;
+ mso-tstyle-colband-size:0;
+ mso-style-priority:39;
+ mso-style-unhide:no;
+ border:solid black 1.0pt;
+ mso-border-themecolor:text1;
+ mso-border-alt:solid black .5pt;
+ mso-border-themecolor:text1;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt;
+ mso-border-insideh:.5pt solid black;
+ mso-border-insideh-themecolor:text1;
+ mso-border-insidev:.5pt solid black;
+ mso-border-insidev-themecolor:text1;
+ mso-para-margin:0in;
+ mso-para-margin-bottom:.0001pt;
+ mso-pagination:widow-orphan;
+ font-size:11.0pt;
+ font-family:"Calibri","sans-serif";
+ mso-ascii-font-family:Calibri;
+ mso-ascii-theme-font:minor-latin;
+ mso-hansi-font-family:Calibri;
+ mso-hansi-theme-font:minor-latin;
+ mso-ansi-language:EN-GB;
+ mso-fareast-language:EN-GB;}
+</style>
+<![endif]--></div>
+

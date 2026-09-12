@@ -1,0 +1,599 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<!--[if gte mso 9]><xml>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+
+<h1 style="margin-top: 15.0pt; vertical-align: baseline;">
+<b><span lang="EN-GB" style="color: #ffc000; font-size: 13.5pt; line-height: 107%; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-themecolor: accent4;">cut command in Linux with examples</span></b><span lang="EN-GB" style="color: #ffc000; font-size: 13.5pt; line-height: 107%; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-themecolor: accent4;"></span></h1>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">The
+cut command in UNIX is a command for cutting out the sections from each line of
+files and writing the result to standard output. It can be used to cut parts of
+a line by<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">byte position, character and field</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">. Basically the cut command slices a line
+and extracts the text. It is necessary to specify option with command otherwise
+it gives error. If more than one file name is provided then data from each file
+is<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">not precedes</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">by its file name.</span></div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Syntax:</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;"></span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">cut OPTION... [FILE]...</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+</div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Let
+us consider two files having name<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">state.txt</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">and<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">capital.txt</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">contains 5 names of the Indian states and
+capitals respectively.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; margin-bottom: 7.5pt; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">$ cat state.txt</span></pre>
+<pre style="border: none; margin-bottom: 7.5pt; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra Pradesh</span></pre>
+<pre style="border: none; margin-bottom: 7.5pt; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal Pradesh</span></pre>
+<pre style="border: none; margin-bottom: 7.5pt; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; margin-bottom: 7.5pt; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; margin-bottom: 7.5pt; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+</div>
+<div style="margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Without any option specified it displays
+error.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">cut: you must specify a list of bytes, characters, or fields</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Try 'cut --help' for more information.</span></pre>
+</div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Options and their Description with examples:</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;"></span></div>
+<div class="MsoNormal" style="line-height: 14.25pt; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-themecolor: accent4;"><br style="mso-special-character: line-break;" />
+<br style="mso-special-character: line-break;" />
+</span></div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">1. -b(byte):</span></strong><span class="apple-converted-space"><b><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">&nbsp;</span></b></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">To extract the specific bytes, you need to follow -b
+option with the list of byte numbers separated by comma. Range of bytes can
+also be specified using the hyphen(-). It is necessary to specify list of byte
+numbers otherwise it gives error.<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Tabs and backspaces</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">are treated like as a character of 1
+byte.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">List without ranges</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -b 1,2,3 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">And</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Aru</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Ass</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bih</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">&nbsp;</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">List with ranges</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -b 1-3,5-7 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andra</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Aruach</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assm</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihr</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhtti</span></pre>
+</div>
+<div style="margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">It uses a special form for selecting
+bytes from beginning upto the end of the line:</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; margin-bottom: 7.5pt; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">In this, 1- indicate from 1st byte to end byte of a line</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -b 1- state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">&nbsp;</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">In this, -3 indicate from 1st byte to 3rd byte of a line</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -b -3 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">And</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Aru</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Ass</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bih</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chh</span></pre>
+</div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">2. -c (column):</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">To cut by character use the -c option. This selects the
+characters given to the -c option. This can be a list of numbers separated
+comma or a range of numbers separated by hyphen(-).<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Tabs and backspaces</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">are treated as a character. It is
+necessary to specify list of character numbers otherwise it gives error with
+this option.</span></div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Syntax:</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;"></span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$cut -c [(k)-(n)/(k),(n)/(n)] filename</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+</div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Here,</span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">k</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">denotes the starting position of the
+character and<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">n</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">denotes the ending position of the
+character in each line, if<span class="apple-converted-space">&nbsp;</span></span><em><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">k</span></em><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">and<span class="apple-converted-space">&nbsp;</span></span><em><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">n</span></em><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">are separated by â€œ-â€ otherwise they are
+only the position of character in each line from the file taken as an input.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -c 2,5,7 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">nr</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">rah</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">sm</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">ir</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">hti</span></pre>
+</div>
+<div style="margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Above cut command prints second, fifth
+and seventh character from each line of the file.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -c 1-7 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunach</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhatti</span></pre>
+</div>
+<div style="margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Above cut command prints first seven
+characters of each line from the file.</span></div>
+<div style="margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Cut uses a special form for selecting
+characters from beginning upto the end of the line:</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -c 1- state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">&nbsp;</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Above command prints starting from first character to end. Here in command only starting</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">position is specified and the ending position is omitted.</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">&nbsp;</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -c -5 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhr</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Aruna</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhat</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">&nbsp;</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Above command prints starting position to the fifth character. Here the starting position</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">is omitted and the ending position is specified.</span></pre>
+</div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">3. -f (field):</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">-c</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">option is useful for fixed-length lines.
+Most unix files doesnâ€™t have fixed-length lines. To extract the useful
+information you need to cut by fields rather than columns. List of the fields
+number specified must be separated by comma.<span class="apple-converted-space">&nbsp;</span></span><em><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Ranges are not described with -f option</span></em><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">.<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">cut</span></strong><span class="apple-converted-space"><b><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">&nbsp;</span></b></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">uses<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">tab</span></strong><span class="apple-converted-space"><b><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">&nbsp;</span></b></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">as a default field delimiter but can also
+work with other delimiter by using<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">-d</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">option.<br />
+</span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Note:</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Space is not considered as delimiter in
+UNIX.</span></div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Syntax:</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;"></span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$cut -d "delimiter" -f (field number) file.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+</div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Like
+in the file<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">state.txt</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">fields are separated by space if -d
+option is not used then it prints whole line:</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -f 1 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+</div>
+<div style="margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">If -d option is used then it considered
+space as a field separator or delimiter:</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -d " " -f 1 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+<pre style="border: none; margin-bottom: 7.5pt; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Command prints field from first to fourth of each line from the file.</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Command:</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">$ cut -d " " -f 1-4 state.txt</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Output:</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+</div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">4. â€“complement:</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">As the name suggests it complement the output. This
+option can be used in the combination with other options either with<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">-f</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">or with<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">-c</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut --complement -d " " -f 1 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">&nbsp;</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut --complement -c 5 state.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andha Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunchal Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assa</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Biha</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhatisgarh</span></pre>
+</div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">5. â€“output-delimiter:</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">By default the output delimiter is same
+as input delimiter that we specify in the cut with<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">-d</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">option. To change the output delimiter use the option<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">â€“output-delimiter=â€delimiterâ€</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut -d " " -f 1,2 state.txt --output-delimiter='%'</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra%Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal%Pradesh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+</div>
+<div style="margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">Here cut command changes delimiter(%) in
+the standard output between the fields which is specified by using -f option .</span></div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">6. â€“version:</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">This option is used to display the version of cut which
+is currently running on your system.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cut --version</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">cut (GNU coreutils) 8.26</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Packaged by Cygwin (8.26-2)</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Copyright (C) 2016 Free Software Foundation, Inc.</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">License GPLv3+: GNU GPL version 3 or later .</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">This is free software: you are free to change and redistribute it.</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">There is NO WARRANTY, to the extent permitted by law.</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">&nbsp;</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Written by David M. Ihnat, David MacKenzie, and Jim Meyering.</span></pre>
+</div>
+<div align="center" style="margin-bottom: .0001pt; margin: 0in; text-align: center; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">Applications
+of cut Command</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;"></span></div>
+<div style="margin-bottom: .0001pt; margin: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">1. How to use tail with pipes(|):</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">The cut command can be piped with many
+other commands of the unix. In the following example output of the<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">cat</span></strong><span class="apple-converted-space"><b><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">&nbsp;</span></b></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">command is given as input to the<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">cut</span></strong><span class="apple-converted-space"><b><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">&nbsp;</span></b></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">command with<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 11.5pt; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">-f</span></strong><span class="apple-converted-space"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">&nbsp;</span></span><span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">option to sort the state names coming
+from file state.txt in the reverse order.</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cat state.txt | cut -d ' ' -f 1 | sort -r</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Chhattisgarh</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Bihar</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra</span></pre>
+</div>
+<div style="margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;">
+<span lang="EN-GB" style="color: #ffc000; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; font-size: 10.0pt; mso-themecolor: accent4;">It can also be piped with one or more
+filters for additional processing. Like in the following example, we are using
+cat, head and cut command and whose output is stored in the file name list.txt
+using directive(&gt;).</span></div>
+<div style="border: solid #EDEDED 1.0pt; mso-border-alt: solid #EDEDED .75pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 8.0pt;">
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cat state.txt | head -n 3 | cut -d ' ' -f 1 &gt; list.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">&nbsp;</span></strong></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><strong><span lang="EN-GB" style="border: none windowtext 1.0pt; color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-bidi-font-family: &quot;Courier New&quot;; mso-border-alt: none windowtext 0in; mso-themecolor: accent4; padding: 0in;">$ cat list.txt</span></strong><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;"></span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Andhra</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Arunachal</span></pre>
+<pre style="border: none; mso-border-alt: solid #EDEDED .75pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 8.0pt; padding: 0in; text-align: justify; text-justify: inter-ideograph; vertical-align: baseline;"><span lang="EN-GB" style="color: #ffc000; font-family: Consolas; font-size: 9.0pt; mso-themecolor: accent4;">Assam</span></pre>
+</div>
+<div class="MsoNormal">
+<br /></div>
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="--"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="59" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]--><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+ {mso-style-name:"Table Normal";
+ mso-tstyle-rowband-size:0;
+ mso-tstyle-colband-size:0;
+ mso-style-noshow:yes;
+ mso-style-priority:99;
+ mso-style-qformat:yes;
+ mso-style-parent:"";
+ mso-padding-alt:0in 5.4pt 0in 5.4pt;
+ mso-para-margin-top:0in;
+ mso-para-margin-right:0in;
+ mso-para-margin-bottom:8.0pt;
+ mso-para-margin-left:0in;
+ line-height:107%;
+ mso-pagination:widow-orphan;
+ font-size:11.0pt;
+ font-family:"Calibri","sans-serif";
+ mso-ascii-font-family:Calibri;
+ mso-ascii-theme-font:minor-latin;
+ mso-hansi-font-family:Calibri;
+ mso-hansi-theme-font:minor-latin;}
+</style>
+<![endif]--></div>
+

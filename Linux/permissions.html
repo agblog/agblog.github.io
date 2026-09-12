@@ -1,0 +1,481 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<h2>
+<span class="mw-headline" id="Viewing_permissions">Viewing permissions</span></h2>
+Use the <a class="mw-redirect" href="https://wiki.archlinux.org/index.php/Ls" title="Ls">ls</a> command's <code>-l</code> option to view the permissions (or <b>file mode</b>) set for the contents of a directory, for example:
+<br />
+
+<pre style="border-bottom: none; margin-bottom: 0; padding-bottom: 0.8em;">$ ls -l /path/to/directory</pre>
+<pre style="border-top-style: dashed; margin-top: 0; padding-top: 0.8em;">total 128
+drwxr-xr-x 2 archie users  4096 Jul  5 21:03 Desktop
+drwxr-xr-x 6 archie users  4096 Jul  5 17:37 Documents
+drwxr-xr-x 2 archie users  4096 Jul  5 13:45 Downloads
+-rw-rw-r-- 1 archie users  5120 Jun 27 08:28 customers.ods
+-rw-r--r-- 1 archie users  3339 Jun 27 08:28 todo
+-rwxr-xr-x 1 archie users  2048 Jul  6 12:56 myscript.sh
+</pre>
+The first column is what we must focus on. Taking an example value of <code>drwxrwxrwx+</code>, the meaning of each character is explained in the following tables:
+<br />
+
+<table class="wikitable">
+
+<tbody>
+<tr style="text-align: center;">
+<td> <code>d</code>
+</td>
+<td> <code>rwx</code>
+</td>
+<td> <code>rwx</code>
+</td>
+<td> <code>rwx</code>
+</td>
+<td> <code>+</code>
+</td></tr>
+<tr>
+<td> The file type, technically not part of its permissions. See <code>info ls -n "What information is listed"</code> for an explanation of the possible values.
+</td>
+<td> The permissions that the owner has over the file, explained below.
+</td>
+<td> The permissions that the group has over the file, explained below.
+</td>
+<td> The permissions that all the other users have over the file, explained below.
+</td>
+<td> A single character that specifies whether an alternate access 
+method applies to the file. When this character is a space, there is no 
+alternate access method. A <code>.</code> character indicates a file 
+with a security context, but no other alternate access method. A file 
+with any other combination of alternate access methods is marked with a <code>+</code> character, for example in the case of <a href="https://wiki.archlinux.org/index.php/Access_Control_Lists" title="Access Control Lists">Access Control Lists</a>.
+</td></tr>
+</tbody></table>
+Each of the three permission triads (<code>rwx</code> in the example above) can be made up of the following characters:
+<br />
+
+<table class="wikitable">
+<tbody>
+<tr>
+<th scope="col" style="width: 10%;">
+</th>
+<th scope="col" style="width: 10%;"> Character
+</th>
+<th scope="col" style="width: 30%;"> Effect on files
+</th>
+<th scope="col" style="width: 50%;"> Effect on directories
+</th></tr>
+<tr>
+<th rowspan="2" style="text-align: left;"> Read permission (first character)
+</th>
+<td style="text-align: center;"> <code>-</code>
+</td>
+<td> The file cannot be read.
+</td>
+<td> The directory's contents cannot be shown.
+</td></tr>
+<tr>
+<td style="text-align: center;"> <code>r</code>
+</td>
+<td> The file can be read.
+</td>
+<td> The directory's contents can be shown.
+</td></tr>
+<tr>
+<th rowspan="2" style="text-align: left;"> Write permission (second character)
+</th>
+<td style="text-align: center;"> <code>-</code>
+</td>
+<td> The file cannot be modified.
+</td>
+<td> The directory's contents cannot be modified.
+</td></tr>
+<tr>
+<td style="text-align: center;"> <code>w</code>
+</td>
+<td> The file can be modified.
+</td>
+<td> The directory's contents can be modified (create new files or 
+folders; rename or delete existing files or folders); requires the 
+execute permission to be also set, otherwise this permission has no 
+effect.
+</td></tr>
+<tr>
+<th rowspan="6" style="text-align: left;"> Execute permission (third character)
+</th>
+<td style="text-align: center;"> <code>-</code>
+</td>
+<td> The file cannot be executed.
+</td>
+<td> The directory cannot be accessed with <a class="mw-redirect" href="https://wiki.archlinux.org/index.php/Cd" title="Cd">cd</a>.
+</td></tr>
+<tr>
+<td style="text-align: center;"> <code>x</code>
+</td>
+<td> The file can be executed.
+</td>
+<td> The directory can be accessed with <a class="mw-redirect" href="https://wiki.archlinux.org/index.php/Cd" title="Cd">cd</a>;
+ this is the only permission bit that in practice can be considered to 
+be "inherited" from the ancestor directories, in fact if <i>any</i> folder in the path does not have the <code>x</code> bit set, the final file or folder cannot be accessed either, regardless of its permissions; see <span class="plainlinks archwiki-template-man" title="$ man 7 path_resolution"><a class="external text" href="https://jlk.fjfi.cvut.cz/arch/manpages/man/path_resolution.7" rel="nofollow">path_resolution(7)</a></span> for more information.
+</td></tr>
+<tr>
+<td style="text-align: center;"> <code>s</code>
+</td>
+<td colspan="2"> The <a class="extiw" href="https://en.wikipedia.org/wiki/setuid" title="w:setuid">setuid</a> bit when found in the <b>u</b>ser triad; the <b>setgid</b> bit when found in the <b>g</b>roup triad; it is not found in the <b>o</b>thers triad; it also implies that <code>x</code> is set.
+</td></tr>
+<tr>
+<td style="text-align: center;"> <code>S</code>
+</td>
+<td colspan="2"> Same as <code>s</code>, but <code>x</code> is not set; rare on regular files, and useless on folders.
+</td></tr>
+<tr>
+<td style="text-align: center;"> <code>t</code>
+</td>
+<td colspan="2"> The <a class="extiw" href="https://en.wikipedia.org/wiki/sticky_bit" title="w:sticky bit">sticky</a> bit; it can only be found in the <b>o</b>thers triad; it also implies that <code>x</code> is set.
+</td></tr>
+<tr>
+<td style="text-align: center;"> <code>T</code>
+</td>
+<td colspan="2"> Same as <code>t</code>, but <code>x</code> is not set; rare on regular files, and useless on folders.
+</td></tr>
+</tbody></table>
+See <code>info Coreutils -n "Mode Structure"</code> and <span class="plainlinks archwiki-template-man" title="$ man 1 chmod"><a class="external text" href="https://jlk.fjfi.cvut.cz/arch/manpages/man/chmod.1" rel="nofollow">chmod(1)</a></span> for more details.
+<br />
+
+<h3>
+<span class="mw-headline" id="Examples">Examples</span></h3>
+Let us see some examples to clarify:
+<br />
+
+<pre><b>drwx------</b> 6 archie users  4096 Jul  5 17:37 Documents
+</pre>
+Archie has full access to the Documents directory. He can list, 
+create files and rename, delete any file in Documents, regardless of 
+file permissions. His ability to access a file depends on the file's 
+permission. 
+<br />
+
+<pre><b>dr-x------</b> 6 archie users  4096 Jul  5 17:37 Documents
+</pre>
+Archie has full access except he can not create, rename, delete any 
+file. He can list the files and (if file's permission empowers) may 
+access an existing file in Documents.
+<br />
+
+<pre><b>d-wx------</b> 6 archie users  4096 Jul  5 17:37 Documents
+</pre>
+Archie can not do 'ls' in Documents but if he knows the name of an 
+existing file then he may list, rename, delete or (if file's permission 
+empowers him) access it. Also, he is able to create new files.
+<br />
+
+<pre><b>d--x------</b> 6 archie users  4096 Jul  5 17:37 Documents
+</pre>
+Archie is only capable of (if file's permission empowers him) access 
+those files in Documents which he knows of. He can not list already 
+existing files or create, rename, delete any of them.
+<br />
+You should keep in mind that we elaborate on directory 
+permissions and it has nothing to do with the individual file 
+permissions. When you create a new file it is the directory that 
+changes. That is why you need write permission to the directory.
+<br />
+Let us look at another example, this time of a file, not a directory:
+<br />
+
+<pre><b>-rw-r--r--</b> 1 archie users  5120 Jun 27 08:28 foobar
+</pre>
+Here we can see the first letter is not <code>d</code> but <code>-</code>. So we know it is a file, not a directory. Next the owner's permissions are <code>rw-</code>
+ so the owner has the ability to read and write but not execute. This 
+may seem odd that the owner does not have all three permissions, but the
+ <code>x</code> permission is not needed as it is a text/data file, to 
+be read by a text editor such as Gedit, EMACS, or software like R, and 
+not an executable in its own right (if it contained something like 
+python programming code then it very well could be). The group's 
+permssions are set to <code>r--</code>, so the group has the ability to 
+read the file but not write/edit it in any way â€” it is essentially like 
+setting something to read-only. We can see that the same permissions 
+apply to everyone else as well.
+<br />
+
+<h2>
+<span class="mw-headline" id="Changing_permissions">Changing permissions</span></h2>
+<a class="extiw" href="https://en.wikipedia.org/wiki/chmod" title="wikipedia:chmod">chmod</a> is a command in Linux and other Unix-like operating systems that allows to <i>ch</i>ange the permissions (or access <i>mod</i>e) of a file or directory.
+<br />
+
+<h3>
+<span class="mw-headline" id="Text_method">Text method</span></h3>
+To change the permissions â€” or <i>access mode</i> â€”&nbsp;of a file, use the <i>chmod</i> command in a terminal. Below is the command's general structure:
+<br />
+
+<pre>chmod <i>who</i>=<i>permissions</i> <i>filename</i>
+</pre>
+Where <code><i>who</i></code> is any from a range of letters, each signifying who is being given the permission. They are as follows:
+<br />
+
+<ul>
+<li> <code>u</code>: the <a class="mw-redirect" href="https://wiki.archlinux.org/index.php/User" title="User">user</a> that owns the file.</li>
+<li> <code>g</code>: the <a class="mw-redirect" href="https://wiki.archlinux.org/index.php/Group" title="Group">group</a> that the file belongs to.</li>
+<li> <code>o</code>: the <b>o</b>ther users, i.e. everyone else.</li>
+<li> <code>a</code>: <b>a</b>ll of the above; use this instead of typing <code>ugo</code>.</li>
+</ul>
+The permissions are the same as discussed in <a href="https://wiki.archlinux.org/index.php/File_permissions_and_attributes#Viewing_permissions">#Viewing permissions</a> (<code>r</code>, <code>w</code> and <code>x</code>).
+<br />
+Now have a look at some examples using this command. Suppose you 
+became very protective of the Documents directory and wanted to deny 
+everybody but yourself, permissions to read, write, and execute (or in 
+this case search/look) in it:
+<br />
+Before: <code>drwxr-xr-x 6 archie users  4096 Jul  5 17:37 Documents</code>
+<br />
+
+<pre>$ chmod g= Documents
+$ chmod o= Documents
+</pre>
+After: <code>drwx------ 6 archie users  4096 Jul  6 17:32 Documents</code>
+<br />
+Here, because you want to deny permissions, you do not put any letters after the <code>=</code> where permissions would be entered. Now you can see that only the owner's permissions are <code>rwx</code> and all other permissions are <code>-</code>. 
+<br />
+This can be reverted with:
+<br />
+Before: <code>drwx------ 6 archie users  4096 Jul  6 17:32 Documents</code>
+<br />
+
+<pre>$ chmod g=rx Documents
+$ chmod o=rx Documents
+</pre>
+After: <code>drwxr-xr-x 6 archie users  4096 Jul  6 17:32 Documents</code>
+<br />
+In the next example, you want to grant read and execute 
+permissions to the group, and other users, so you put the letters for 
+the permissions (<code>r</code> and <code>x</code>) after the <code>=</code>, with no spaces.
+<br />
+You can simplify this to put more than one <code><i>who</i></code> letter in the same command, e.g:
+<br />
+
+<pre>$ chmod go=rx Documents
+</pre>
+<div class="archwiki-template-box archwiki-template-box-note">
+<strong>Note:</strong> It does not matter in which order you put the <code><i>who</i></code> letters or the permission letters in a <code>chmod</code> command: you could have <code>chmod go=rx file</code> or <code>chmod og=xr file</code>. It is all the same.</div>
+Now let us consider a second example, suppose you want to change a <code>foobar</code> file so that you have read and write permissions, and fellow users in the group <code>users</code> who may be colleagues working on <code>foobar</code>, can also read and write to it, but other users can only read it:
+<br />
+Before: <code>-rw-r--r-- 1 archie users  5120 Jun 27 08:28 foobar</code>
+<br />
+
+<pre>$ chmod g=rw foobar
+</pre>
+After: <code>-rw-rw-r-- 1 archie users  5120 Jun 27 08:28 foobar</code>
+<br />
+This is exactly like the first example, but with a file, not a 
+directory, and you grant write permission (just so as to give an example
+ of granting every permission).
+<br />
+
+<h4>
+<span class="mw-headline" id="Text_method_shortcuts">Text method shortcuts</span></h4>
+The <i>chmod</i> command lets add and subtract permissions from an existing set using <code>+</code> or <code>-</code> instead of <code>=</code>. This is different from the above commands, which essentially re-write the permissions (e.g. to change a permission from <code>r--</code> to <code>rw-</code>, you still need to include <code>r</code> as well as <code>w</code> after the <code>=</code> in the <i>chmod</i> command invocation. If you missed out <code>r</code>, it would take away the <code>r</code> permission as they are being re-written with the <code>=</code>. Using <code>+</code> and <code>-</code> avoids this by adding or taking away from the <i>current</i> set of permissions).
+<br />
+Let us try this <code>+</code> and <code>-</code> method with the previous example of adding write permissions to the group:
+<br />
+Before: <code>-rw-r--r-- 1 archie users 5120 Jun 27 08:28 foobar</code>
+<br />
+
+<pre>$ chmod g+w foobar
+</pre>
+After: <code>-rw-rw-r-- 1 archie users  5120 Jun 27 08:28 foobar</code>
+<br />
+Another example, denying write permissions to all (<b>a</b>):
+<br />
+Before: <code>-rw-rw-r-- 1 archie users  5120 Jun 27 08:28 foobar</code>
+<br />
+
+<pre>$ chmod a-w foobar
+</pre>
+After: <code>-r--r--r-- 1 archie users  5120 Jun 27 08:28 foobar</code>
+<br />
+A different shortcut is the special <code>X</code> mode: this is not an actual file mode, but it is often used in conjunction with the <code>-R</code> option to set the executable bit only for directories, and leave it unchanged for regular files, for example:
+<br />
+
+<pre>$ chmod -R a+rX ./data/
+</pre>
+<h4>
+<span class="mw-headline" id="Copying_permissions">Copying permissions</span></h4>
+It is possible to tell <i>chmod</i> to copy the permissions from one 
+class, say the owner, and give those same permissions to group or even 
+all. To do this, instead of putting <code>r</code>, <code>w</code>, or <code>x</code> after the <code>=</code>, put another <i>who</i> letter. e.g:
+<br />
+Before: <code>-rw-r--r-- 1 archie users 5120 Jun 27 08:28 foobar</code>
+<br />
+
+<pre>$ chmod g=u foobar
+</pre>
+After: <code>-rw-rw-r-- 1 archie users 5120 Jun 27 08:28 foobar</code>
+<br />
+This command essentially translates to "change the permissions of group (<code>g=</code>), to be the same as the owning user (<code>=u</code>). Note that you cannot copy a set of permissions as well as grant new ones e.g.:
+<br />
+
+<pre>$ chmod g=wu foobar
+</pre>
+In that case <i>chmod</i> throw an error.
+<br />
+
+<h3>
+<span class="mw-headline" id="Numeric_method">Numeric method</span></h3>
+<i>chmod</i> can also set permissions using numbers.
+<br />
+Using numbers is another method which allows you to edit the 
+permissions for all three owner, group, and others at the same time, as 
+well as the setuid, setgid, and sticky bits. This basic structure of the
+ code is this:
+<br />
+
+<pre>$ chmod <i>xxx</i> <i>filename</i>
+</pre>
+Where <code><b>xxx</b></code> is a 3-digit number where each digit 
+can be anything from 0 to 7. The first digit applies to permissions for 
+owner, the second digit applies to permissions for group, and the third 
+digit applies to permissions for all others.
+<br />
+In this number notation, the values <code>r</code>, <code>w</code>, and <code>x</code> have their own number value:
+<br />
+
+<pre>r=4
+w=2
+x=1
+</pre>
+To come up with a 3-digit number you need to consider what 
+permissions you want owner, group, and user to have, and then total 
+their values up. For example, if you want to grant the owner of a 
+directory read write and execution permissions, and you want group and 
+everyone else to have just read and execute permissions, you would come 
+up with the numerical values like so:
+<br />
+
+<ul>
+<li> Owner: <code>rwx</code>=4+2+1=7</li>
+<li> Group: <code>r-x</code>=4+0+1=5</li>
+<li> Other: <code>r-x</code>=4+0+1=5</li>
+</ul>
+<pre>$ chmod 755 <i>filename</i>
+</pre>
+This is the equivalent of using the following: 
+<br />
+
+<pre>$ chmod u=rwx <i>filename</i>
+$ chmod go=rx <i>filename</i>
+</pre>
+Most folders and directories are set to <code>755</code> to allow reading, writing and execution to the owner, but deny writing to everyone else, and files are normally <code>644</code> to allow reading and writing for the owner but just reading for everyone else; refer to the last note on the lack of <code>x</code> permissions with non executable files: it is the same thing here. 
+<br />
+To see this in action with examples consider the previous example
+ that has been used but with this numerical method applied instead:
+<br />
+Before: <code>-rw-r--r-- 1 archie users  5120 Jun 27 08:28 foobar</code>
+<br />
+
+<pre>$ chmod 664 foobar
+</pre>
+After: <code>-rw-rw-r-- 1 archie users  5120 Jun 27 08:28 foobar</code>
+<br />
+If this were an executable the number would be <code>774</code> 
+if you wanted to grant executable permission to the owner and group. 
+Alternatively if you wanted everyone to only have read permission the 
+number would be <code>444</code>. Treating <code>r</code> as 4, <code>w</code> as 2, and <code>x</code> as 1 is probably the easiest way to work out the numerical values for using <code>chmod <i>xxx</i> <i>filename</i></code>,
+ but there is also a binary method, where each permission has a binary 
+number, and then that is in turn converted to a number. It is a bit more
+ convoluted, but here included for completeness.
+<br />
+Consider this permission set:
+<br />
+
+<pre>-rwxr-xr--
+</pre>
+If you put a 1 under each permission granted, and a 0 for every one not granted, the result would be something like this:
+<br />
+
+<pre>-rwxrwxr-x
+ 111111101
+</pre>
+You can then convert these binary numbers:
+<br />
+
+<pre>000=0     100=4
+001=1     101=5
+010=2     110=6
+011=3     111=7
+</pre>
+The value of the above would therefore be 775. 
+<br />
+Consider we wanted to remove the writable permission from group:
+<br />
+
+<pre>-rwxr-xr-x
+ 111101101
+</pre>
+The value would therefore be 755 and you would use <code>chmod 755 <i>filename</i></code>
+ to remove the writable permission. You will notice you get the same 
+three digit number no matter which method you use. Whether you use text 
+or numbers will depend on personal preference and typing speed. When you
+ want to restore a directory or file to default permissions e.g. read 
+and write (and execute) permission to the owner but deny write 
+permission to everyone else, it may be faster to use <code>chmod 755/644 <i>filename</i></code>.
+ However if you are changing the permissions to something out of the 
+norm, it may be simpler and quicker to use the text method as opposed to
+ trying to convert it to numbers, which may lead to a mistake. It could 
+be argued that there is not any real significant difference in the speed
+ of either method for a user that only needs to use <i>chmod</i> on occasion.
+<br />
+You can also use the numeric method to set the <code>setuid</code>, <code>setgid</code>, and <code>sticky</code> bits by using four digits. 
+<br />
+
+<pre>setuid=4
+setgid=2
+sticky=1
+</pre>
+For example, <code>chmod 2777 <i>filename</i></code> will set read/write/executable bits for everyone and also enable the <code>setgid</code> bit.
+<br />
+
+<h3>
+<span class="mw-headline" id="Bulk_chmod">Bulk chmod</span></h3>
+Generally directories and files should not have the same permissions. If it is necessary to bulk modify a directory tree, use <a class="mw-redirect" href="https://wiki.archlinux.org/index.php/Find" title="Find">find</a> to selectively modify one or the other.
+<br />
+To <i>chmod</i> only directories to 755:
+<br />
+
+<pre>$ find <i>directory</i> -type d -exec chmod 755 {} +
+</pre>
+To <i>chmod</i> only files to 644:
+<br />
+
+<pre>$ find <i>directory</i> -type f -exec chmod 644 {} +
+</pre>
+<h2>
+<span class="mw-headline" id="Changing_ownership">Changing ownership</span></h2>
+<a class="extiw" href="https://en.wikipedia.org/wiki/chown" title="wikipedia:chown">chown</a> changes the owner of a file or directory, which is quicker and easier than altering the permissions in some cases. 
+<br />
+Consider the following example, making a new partition with <a class="mw-redirect" href="https://wiki.archlinux.org/index.php/GParted" title="GParted">GParted</a>
+ for backup data. Gparted does this all as root so everything belongs to
+ root by default. This is all well and good but when it comes to writing
+ data to the mounted partition, permission is denied for regular users.
+<br />
+
+<pre>brw-rw---- 1 root disk 8,    9 Jul  6 16:02 sda9
+drwxr-xr-x 5 root root    4096 Jul  6 16:01 Backup
+</pre>
+As you can see the device in <code>/dev</code> is owned by root, as is the mount location (<code>/media/Backup</code>). To change the owner of the mount location one can do the following:
+<br />
+Before: <code>drwxr-xr-x 5 root  root 4096 Jul  6 16:01 Backup</code>
+<br />
+
+<pre># chown archie /media/Backup
+</pre>
+After: <code>drwxr-xr-x 5 archie  root 4096 Jul  6 16:01 Backup</code>
+<br />
+Now the partition can have data written to it by the new owner, 
+archie, without altering the permissions (as the owner triad already had
+ <code>rwx</code> permissions).
+<br />
+
+<div class="archwiki-template-box archwiki-template-box-note">
+<strong>Note:</strong> 
+<ul>
+<li> <code>chown</code> always clears the setuid and setgid bits.</li>
+<li> Non-root users cannot use <code>chown</code> to "give away" files they own to another user.</li>
+</ul>
+</div>
+</div>
+

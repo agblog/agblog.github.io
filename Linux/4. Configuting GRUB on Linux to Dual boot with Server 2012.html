@@ -1,0 +1,112 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<br id="docs-internal-guid-60dc17d2-7fff-70f2-a3ec-0e61e0322829" />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">After configuring we get both Linux and Windows Loader</span></div>
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 239px; overflow: hidden; width: 554px;"><img height="239" src="https://lh3.googleusercontent.com/QCZE_2ZxZ8BSvl8kgJbyOZErkLGhZvrKFSoUDjDrYVWOuJ1QItbhXo5En22sNe8ilz4uwLnuKuSDUaBorejm9WmT5yWB6Pb6nMBQd7XYKoGgYsBfDsXYq_Js3V58l2zFLowBSgj6Cf8ZveNuQQ" style="margin-left: 0px; margin-top: 0px;" width="554" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Start centos by entering your securables.</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Login to root user to perform changes</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Click on username not listed and login as root.</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Or login as current user then change to root user</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">#su - root</span></div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<span style="border: none; display: inline-block; height: 338px; overflow: hidden; width: 348px;"><img height="338" src="https://lh4.googleusercontent.com/4IdgDKL_QOAktATMTxI8p9TdadbEvzd2LhOTyf9wiifKj8krb0ukedEqaQkd7TkOhJBSI9wAwPQoHHamKaEhbxQI4Sh4MGBApSjZvwd_p1U7KtB3mDJtwP1Bq6FsM0absHBOlFFH7NRTEW-9ew" style="margin-left: 0px; margin-top: 0px;" width="348" /></span><br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">First step is to find which partition of windows is bootable.</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Type:- fdisk -l</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">In the Boot column the asterisk(*) mark shows it is boot partition and /dev/sda2 location.</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 444px; overflow: hidden; width: 554px;"><img height="444" src="https://lh5.googleusercontent.com/p_4zDAhSJmOT8htUBxPCG8noPjTUbR6O8Nhxt-_v5PICcsDojki1JIO-i9pTvfrCrVI9TO3ZsBHqxHlcJFcsrwfWkDkr01IFDc4ofAqRfOGK_3YXzAPnkovnWT3bgyiML81XpsxT2hHQ5aV6yQ" style="margin-left: 0px; margin-top: 0px;" width="554" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Now get UUID of bootable partition by uaing following</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">#blkid</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;Now at this location /dev/sda2 location note down the UUID.</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">And open the boot configuration file</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">#vim /etc/grub.d/41_custom</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">If you are not familiar with vim then use following command to open file in notepad</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">#gedit /etc/grub.d/41_custom</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 233px; overflow: hidden; width: 554px;"><img height="233" src="https://lh6.googleusercontent.com/nO-NOf-2RoJ6W3Zc9pKHsE9_0JrrOKTHEPQdh_1JdwOcV7dvL3qZ-aYZF0IzXfT4KHkB2YUwPecsSCB1vSV7yEBJHxyzgaHfkmfCniTO7F-qxzWsXJs8zHfdzZCSRFP03M33a_euZEvhS1cfkg" style="margin-left: 0px; margin-top: 0px;" width="554" /></span></span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Add following entry as marked in rectangle area, just replace with your UUID</span><span style="border: none; display: inline-block; height: 292px; overflow: hidden; width: 458px;"><img height="292" src="https://lh4.googleusercontent.com/C6D4_36CtAN5q-dETUUcSS2P1u2DLFdmvWogqOT19ErYAfzU0YyYn_FIrswuwzCC30YLS_WSdqj0RyLD0yrxHsg9AGFrjV6CbJjBljUzsb8QtGEttU6ahzyjfrWIJpycQJ4-7Xjxkwc8rYqTxQ" style="margin-left: 0px; margin-top: 0px;" width="458" /></span></div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Check out the entries are added in file by showing last 10 lines</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">#tail -10&nbsp;</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 203px; overflow: hidden; width: 535px;"><img height="203" src="https://lh5.googleusercontent.com/AWD1sUq0RIDxAZEySvFNDm2VpMGVfj_5lWE_d-e0652ykOhnAJNDYxAikbIjYS6HnAiQcpC_xMSv-Yy9nO168_9isGfzE-6GQNa9-Jja8EliAQayRH3rZybW8CoDoij-JlUnOPpatNKlz7Lb_w" style="margin-left: 0px; margin-top: 0px;" width="535" /></span></span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">grub2-mkconfig will generate a new configuration.</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">#grub2-mkconfig -o /boot/grub2/grub. cfg</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 44px; overflow: hidden; width: 554px;"><img height="44" src="https://lh6.googleusercontent.com/GyhN8YktivogyMtebzkaoqQUQQ6Y0KKyK9cRhJkYZLDnPb1yfzJm7Kr8kug5U17wjwNQrFceiP0M321w2PxEYhS_cpIP2EbFysdDKcQ3M3dOe6QhTZ0Xu3E-t7uq_MJwlB4reJaOBX6wFmHiaw" style="margin-left: 0px; margin-top: 0px;" width="554" /></span></span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Now take reboot and we see windows bootloader is up.</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">The second and third entries are for recovery in case of any failure.</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 239px; overflow: hidden; width: 554px;"><img height="239" src="https://lh3.googleusercontent.com/QCZE_2ZxZ8BSvl8kgJbyOZErkLGhZvrKFSoUDjDrYVWOuJ1QItbhXo5En22sNe8ilz4uwLnuKuSDUaBorejm9WmT5yWB6Pb6nMBQd7XYKoGgYsBfDsXYq_Js3V58l2zFLowBSgj6Cf8ZveNuQQ" style="margin-left: 0px; margin-top: 0px;" width="554" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">After login to windows we see that there are only two drives.&nbsp;</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 398px; overflow: hidden; width: 553px;"><img height="398" src="https://lh3.googleusercontent.com/R2gehNfjPwCjqhplFjKWmCKVc2oLofIzyAVx9erG2iHdHB3WhhEJo43CFqnuiRdKgIEi-qKW5aUVU4JfNAaeq3YhrEqRHI_EowJrC8YwPtbJn9MmXdU4sWHlVk_GD1okgAVXPy1H5s66v_VyFg" style="margin-left: 0px; margin-top: 0px;" width="553" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">in Disk Management, the space given to linux are showing free space, dont format this drive or system wont boot.</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 246px; overflow: hidden; width: 553px;"><img height="246" src="https://lh6.googleusercontent.com/QROzJ1o6f6aV0uan54NSxlyu2YgQS0YjFjZUfrfKDzZW8-DKASsU6FVTNTK_d4PkGNSF44FDOx9Vmepm-iJ9rQsA49F5MRbAJZkVaIvQciieJ1zSctBefRLNOZuDhj8FtS2_pY6aDr79gZ7ZOg" style="margin-left: 0px; margin-top: 0px;" width="553" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">This drive is not accessible by windows while you can access windows boot drive in Linux.</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">In next post, cleaning usb drive as it is not accessible and not showing in windows</span></div>
+<div dir="ltr" style="line-height: 1.3800000000000001; margin-bottom: 10pt; margin-top: 0pt;">
+<span style="color: #00000a; font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&amp; testing linux to confirm all features are working as expected, supporting features etc</span></div>
+<br /></div>
+

@@ -1,0 +1,615 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<!--[if gte mso 9]><xml>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+
+<h1 style="line-height: 18.0pt; margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">NSLOOKUP</span></strong></h1>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid black .5pt; mso-border-themecolor: text1; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-yfti-tbllook: 1184;">
+ <tbody>
+<tr style="mso-yfti-firstrow: yes; mso-yfti-irow: 0; mso-yfti-lastrow: yes;">
+  <td style="border: solid black 1.0pt; mso-border-alt: solid black .5pt; mso-border-themecolor: text1; mso-border-themecolor: text1; padding: 0in 5.4pt 0in 5.4pt; width: 462.1pt;" valign="top" width="616">
+  <h1 style="line-height: 18.0pt; margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-outline-level: 1; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">Linux Nslookup Commands to Troubleshoot DNS
+  (Domain Name Server)</span></strong></h1>
+<div style="line-height: 19.2pt; margin-bottom: .0001pt; margin: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB">nslookup&nbsp;is a command-line
+  administrative tool for testing and troubleshooting&nbsp;DNS&nbsp;servers (Domain
+  Name Server). It is used to query specific&nbsp;DNS&nbsp;resource records (RR)
+  as well. Most operating systems comes with built-in nslookup feature.</span></strong></div>
+<div style="line-height: 19.2pt; margin-bottom: .0001pt; margin: 0in; vertical-align: baseline;">
+<br /></div>
+<div style="line-height: 19.2pt; margin-bottom: .0001pt; margin: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB">This article demonstrates widely used&nbsp;nslookup&nbsp;command
+  in detail. Nslookup can be run in two modes:&nbsp;Interactive&nbsp;and&nbsp;Non-Interactive.
+  The&nbsp;Interactive&nbsp;mode is used to query&nbsp;DNS-Server&nbsp;about
+  various domains and hosts.&nbsp;Non-Interactive&nbsp;mode is used to query
+  about information of a domain or host.</span></strong></div>
+<div style="line-height: 19.2pt; margin-bottom: .0001pt; margin: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB">You might also be interested in following
+  article :</span></strong></div>
+<div style="border-bottom: dashed #DDDDDD 1.0pt; border: none; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-element: para-border-div; padding: 0in 0in 0in 0in;">
+  <h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h4>
+<h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">1.
+  Find out â€œAâ€ record (IP address) of Domain</span></strong></h4>
+</div>
+<div style="border-left: solid #289FF4 3.0pt; border: solid #289FF4 1.0pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 14.0pt;">
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"># nslookup yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 72.30.38.140</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 98.139.183.24</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 209.191.122.70</span></strong></pre>
+</div>
+<div style="line-height: 19.2pt; margin-bottom: .0001pt; margin: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB">Above command query domain&nbsp;www.yahoo.com&nbsp;with&nbsp;4.2.2.2&nbsp;public
+  DNS server and below section shows&nbsp;Non-authoritative answer: displays&nbsp;A&nbsp;record
+  of&nbsp;www.yahoo.com</span></strong></div>
+<div style="border-bottom: dashed #DDDDDD 1.0pt; border: none; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-element: para-border-div; padding: 0in 0in 0in 0in;">
+  <h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">2.
+  Find out Reverse Domain Lookup</span></strong></h4>
+</div>
+<div style="border-left: solid #289FF4 3.0pt; border: solid #289FF4 1.0pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 14.0pt;">
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"># nslookup 209.191.122.70</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">70.122.191.209.in-addr.arpa<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp; </span>name = ir1.fp.vip.mud.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Authoritative answers can be found from:</span></strong></pre>
+</div>
+<div style="border-bottom: dashed #DDDDDD 1.0pt; border: none; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-element: para-border-div; padding: 0in 0in 0in 0in;">
+  <h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">3.
+  Find out specific Domain Lookup.</span></strong></h4>
+</div>
+<div style="border-left: solid #289FF4 3.0pt; border: solid #289FF4 1.0pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 14.0pt;">
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"># nslookup ir1.fp.vip.mud.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>ir1.fp.vip.mud.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 209.191.122.70</span></strong></pre>
+</div>
+<div style="border-bottom: dashed #DDDDDD 1.0pt; border: none; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-element: para-border-div; padding: 0in 0in 0in 0in;">
+  <h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">4.
+  To Query MX (Mail Exchange) record.</span></strong></h4>
+</div>
+<div style="border-left: solid #289FF4 3.0pt; border: solid #289FF4 1.0pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 14.0pt;">
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"># nslookup -query=mx www.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">www.yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>canonical name = fd-fp3.wg1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">fd-fp3.wg1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-fp3.wg1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">ds-fp3.wg1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-any-fp3-lfb.wa1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">ds-any-fp3-lfb.wa1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-any-fp3-real.wa1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Authoritative answers can be found from:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">wa1.b.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>origin = yf1.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mail addr = hostmaster.yahoo-inc.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>serial = 1344827307</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>refresh = 30</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>retry = 30</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>expire = 86400</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>minimum = 1800</span></strong></pre>
+</div>
+<div style="line-height: 19.2pt; margin-bottom: .0001pt; margin: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB">MX&nbsp;record is being used to map a
+  domain name to a list of mail exchange servers for that domain. So that it
+  tells that whatever mail received / sent to&nbsp;@yahoo.com&nbsp;will be
+  routed to mail server.</span></strong></div>
+<div style="border-bottom: dashed #DDDDDD 1.0pt; border: none; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-element: para-border-div; padding: 0in 0in 0in 0in;">
+  <h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">5.
+  To query NS(Name Server) record.</span></strong></h4>
+</div>
+<div style="border-left: solid #289FF4 3.0pt; border: solid #289FF4 1.0pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 14.0pt;">
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"># nslookup -query=ns www.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">www.yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>canonical name = fd-fp3.wg1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">fd-fp3.wg1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-fp3.wg1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">ds-fp3.wg1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-any-fp3-lfb.wa1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">ds-any-fp3-lfb.wa1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-any-fp3-real.wa1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Authoritative answers can be found from:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">wa1.b.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>origin = yf1.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mail addr = hostmaster.yahoo-inc.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>serial = 1344827782</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>refresh = 30</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>retry = 30</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>expire = 86400</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>minimum = 1800</span></strong></pre>
+</div>
+<div style="border-bottom: dashed #DDDDDD 1.0pt; border: none; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-element: para-border-div; padding: 0in 0in 0in 0in;">
+  <h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">6.
+  To query SOA (Start of Authority) record.</span></strong></h4>
+</div>
+<div style="border-left: solid #289FF4 3.0pt; border: solid #289FF4 1.0pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 14.0pt;">
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"># nslookup -type=soa www.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">www.yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>canonical name = fd-fp3.wg1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">fd-fp3.wg1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-fp3.wg1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">ds-fp3.wg1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-any-fp3-lfb.wa1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">ds-any-fp3-lfb.wa1.b.yahoo.com<span style="mso-spacerun: yes;">&nbsp; </span>canonical name = ds-any-fp3-real.wa1.b.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Authoritative answers can be found from:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">wa1.b.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>origin = yf1.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mail addr = hostmaster.yahoo-inc.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>serial = 1344827965</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>refresh = 30</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>retry = 30</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>expire = 86400</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>minimum = 1800</span></strong></pre>
+</div>
+<div style="border-bottom: dashed #DDDDDD 1.0pt; border: none; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-element: para-border-div; padding: 0in 0in 0in 0in;">
+  <h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">7.
+  To query all Available DNS records.</span></strong></h4>
+</div>
+<div style="border-left: solid #289FF4 3.0pt; border: solid #289FF4 1.0pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 14.0pt;">
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"># nslookup -query=any yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>origin = ns1.yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mail addr = hostmaster.yahoo-inc.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>serial = 2012081016</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>refresh = 3600</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>retry = 300</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>expire = 1814400</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>minimum = 600</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 98.139.183.24</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 209.191.122.70</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 72.30.38.140</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mail exchanger = 1 mta7.am0.yahoodns.net.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mail exchanger = 1 mta5.am0.yahoodns.net.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mail exchanger = 1 mta6.am0.yahoodns.net.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>nameserver = ns3.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>nameserver = ns4.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>nameserver = ns2.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>nameserver = ns8.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>nameserver = ns1.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>nameserver = ns6.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">yahoo.com<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>nameserver = ns5.yahoo.com.</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Authoritative answers can be found from:</span></strong></pre>
+</div>
+<div style="border-bottom: dashed #DDDDDD 1.0pt; border: none; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-element: para-border-div; padding: 0in 0in 0in 0in;">
+  <h4 style="border: none; line-height: 15.6pt; margin-bottom: 10.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; mso-border-bottom-alt: dashed #DDDDDD .75pt; mso-outline-level: 4; mso-padding-alt: 0in 0in 0in 0in; padding: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">8.
+  Enable Debug mode</span></strong></h4>
+</div>
+<div style="line-height: 19.2pt; margin-bottom: .0001pt; margin: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB">To enable&nbsp;Debug Mode&nbsp;â€˜set debugâ€™
+  will return you verbose information like&nbsp;TTL, hereâ€™s the output.</span></strong></div>
+<div style="border-left: solid #289FF4 3.0pt; border: solid #289FF4 1.0pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-element: para-border-div; padding: 8.0pt 8.0pt 8.0pt 14.0pt;">
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"># nslookup -debug yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&gt; set debug</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&gt; yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Server:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address:<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4.2.2.2#53</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">&nbsp;</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">------------</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>QUESTIONS:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>yahoo.com, type = A, class = IN</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>ANSWERS:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>-&gt;<span style="mso-spacerun: yes;">&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp; </span><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>internet address = 72.30.38.140</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ttl = 1523</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>-&gt;<span style="mso-spacerun: yes;">&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>internet address = 98.139.183.24</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ttl = 1523</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>-&gt;<span style="mso-spacerun: yes;">&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>internet address = 209.191.122.70</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ttl = 1523</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>AUTHORITY RECORDS:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>ADDITIONAL RECORDS:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">------------</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Non-authoritative answer:</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 72.30.38.140</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 98.139.183.24</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Name:<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span>yahoo.com</span></strong></pre>
+<pre style="border: none; line-height: 14.25pt; mso-border-alt: solid #289FF4 .75pt; mso-border-left-alt: solid #289FF4 3.0pt; mso-padding-alt: 8.0pt 8.0pt 8.0pt 14.0pt; padding: 0in; vertical-align: baseline;"><strong><span lang="EN-GB" style="font-family: &quot;Courier New&quot;;">Address: 209.191.122.70</span></strong></pre>
+</div>
+<div style="line-height: 19.2pt; margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; vertical-align: baseline;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in;">
+<br /></div>
+</td>
+ </tr>
+</tbody></table>
+<div class="MsoNormal">
+<br /></div>
+<h1 style="line-height: 18.0pt; margin-bottom: 7.5pt; margin-left: 0in; margin-right: 0in; margin-top: 0in; vertical-align: baseline;">
+<strong><span lang="EN-GB" style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;; mso-ascii-theme-font: major-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: major-bidi; mso-hansi-theme-font: major-latin;">&nbsp;</span></strong></h1>
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="--"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]--><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+ {mso-style-name:"Table Normal";
+ mso-tstyle-rowband-size:0;
+ mso-tstyle-colband-size:0;
+ mso-style-noshow:yes;
+ mso-style-priority:99;
+ mso-style-qformat:yes;
+ mso-style-parent:"";
+ mso-padding-alt:0in 5.4pt 0in 5.4pt;
+ mso-para-margin-top:0in;
+ mso-para-margin-right:0in;
+ mso-para-margin-bottom:8.0pt;
+ mso-para-margin-left:0in;
+ line-height:107%;
+ mso-pagination:widow-orphan;
+ font-size:11.0pt;
+ font-family:"Calibri","sans-serif";
+ mso-ascii-font-family:Calibri;
+ mso-ascii-theme-font:minor-latin;
+ mso-hansi-font-family:Calibri;
+ mso-hansi-theme-font:minor-latin;}
+table.MsoTableGrid
+ {mso-style-name:"Table Grid";
+ mso-tstyle-rowband-size:0;
+ mso-tstyle-colband-size:0;
+ mso-style-priority:39;
+ mso-style-unhide:no;
+ border:solid black 1.0pt;
+ mso-border-themecolor:text1;
+ mso-border-alt:solid black .5pt;
+ mso-border-themecolor:text1;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt;
+ mso-border-insideh:.5pt solid black;
+ mso-border-insideh-themecolor:text1;
+ mso-border-insidev:.5pt solid black;
+ mso-border-insidev-themecolor:text1;
+ mso-para-margin:0in;
+ mso-para-margin-bottom:.0001pt;
+ mso-pagination:widow-orphan;
+ font-size:11.0pt;
+ font-family:"Calibri","sans-serif";
+ mso-ascii-font-family:Calibri;
+ mso-ascii-theme-font:minor-latin;
+ mso-hansi-font-family:Calibri;
+ mso-hansi-theme-font:minor-latin;
+ mso-ansi-language:EN-GB;
+ mso-fareast-language:EN-GB;}
+</style>
+<![endif]--></div>
+

@@ -1,0 +1,127 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<h1 class="entry-title">
+Managing Files Using Command-Line Tool â€“ Basic Linux&nbsp;Command</h1>
+<div class="entry-meta">
+<span class="posted-on"><a href="https://nyashacharumbiratheitguy.wordpress.com/2017/02/24/managing-files-using-command-line-tool-basic-linux-command/" rel="bookmark"><time class="entry-date published" datetime="2017-02-24T12:57:42+00:00"></time></a></span><span class="byline"><span class="author vcard"><br /></span></span>  </div>
+<h3 class="post-title entry-title">
+Managing Files Using Command-Line tools â€“ Basic Linux Commands</h3>
+<div class="post-body entry-content" id="post-body-3164940362605999611">
+<div dir="ltr">
+<div>
+<h2>
+Objective</h2>
+</div>
+<div>
+<br />
+<br /></div>
+<ul>
+<li>Create Files, Directory and Sub-directory.</li>
+<li>Copy Files, Directory and Sub-directory.</li>
+<li>Link Files, Directory and Sub-directory.</li>
+<li>Move Files, Directory and Sub-directory.</li>
+<li>Remove Files, Directory and Sub-directory.</li>
+</ul>
+</div>
+</div>
+<div>
+<h2>
+Managing Files Using Command-Line Tool â€“ Basic Linux Command</h2>
+</div>
+<div>
+File management involve creating, deleting, copying and moving 
+files. Additionally, directories can be created, deleted, copied, and 
+moved to help organize file logically. When working at the command-line,
+ file management requires awareness of the current working directory to 
+choose either absolute or relative path syntax as most efficient for the
+ immediate task.</div>
+<div>
+<h3>
+Create Directory</h3>
+</div>
+<div>
+The <b>mkdir</b> command creates one or more directories and 
+sub-directories. This command will generating error if the file name 
+already exists or when attempting to create a directory in a parent 
+directory that doesnâ€™t exists. The <b>-p</b> (parent) option creates missing parent directory for the destination.</div>
+<div>
+~]$&nbsp; <b>mkdir Documents/imp</b></div>
+<div>
+mkdir: cannot create directory â€˜Documents/impâ€™: No such file or directory</div>
+<div>
+<br />
+The <b>mkdir</b> failed because Documents was misspelled and the directory <b>Documents</b> doesnâ€™t exists. If the user had user <b>mkdir -p</b>, there would be no error.</div>
+<div>
+~]$&nbsp; <b>mkdir -p Documents/imp</b></div>
+<div>
+~]$ <b>ls</b></div>
+<div>
+Desktop&nbsp; Document&nbsp; Documents&nbsp; Downloads&nbsp; Music&nbsp; Picture&nbsp; Public&nbsp; Templates&nbsp; Videos<b>&nbsp;</b></div>
+<div>
+</div>
+<div>
+<h3>
+Copy Files</h3>
+</div>
+<div>
+The <b>cp</b> command copies one or more file to become new, 
+independent files. The Syntax of Copy command allow copying an existing 
+file to a new file in the current or another directory, or copying 
+multiple files into another directory. In any destination, new file name
+ must be unique. If file name is not unique, the copy command will 
+automatically overwrite the existing file. And if you want to copy 
+non-empty directory, with contents, you must be use <b>-r</b> (recursive) option with this copy command.</div>
+<div>
+~]$ <b>cd Document</b></div>
+<div>
+Document]$ <b>cp imp1.txt&nbsp; imp3.txt</b></div>
+<div>
+Document]$ <b>ls</b></div>
+<div>
+imp imp1.txt imp3.txt</div>
+<div>
+Document]$<b>&nbsp;</b></div>
+<div>
+<h3>
+Move File</h3>
+</div>
+<div>
+The <b>mv</b> command renames file in the same directory, or 
+relocates files to a new directory. Files contents remain unchanged. 
+File moved to a different file system require creating a new file by 
+copying the source file, then deleting the source file. Although 
+normally, transparent to the user, large files may take noticeable 
+longer to move.</div>
+<div>
+~]$ <b>cd Documents</b></div>
+<div>
+~]$ <b>ls</b></div>
+<div>
+<span class="skimlinks-unlinked">abhi.txt</span><b>&nbsp;</b></div>
+<div>
+~]$ <b>mv Document/imp1.txt Documents</b></div>
+<div>
+~]$ <b>cd Documents</b></div>
+<div>
+~]$ <b>ls</b></div>
+<div>
+<span class="skimlinks-unlinked">abhi.txt</span>&nbsp; imp1.txt</div>
+<div>
+<h3>
+Rename files and Directory</h3>
+</div>
+The <b>rm</b> command deletes file, but not directories. If you want to delete a directory with contain sub-directory or file, you must use <b>-r</b> (recursive) option. If you want to delete empty directory, so you can use <b>rmdir</b> command to do that.
+<br />
+<div>
+~]$ <b>rm -r&nbsp; Documents/<span class="skimlinks-unlinked">abhi.txt</span></b></div>
+<div>
+Documents]$ <b>ls</b></div>
+<div>
+imp1.txt</div>
+<div>
+Document]$ <b>cd ..</b></div>
+<div>
+~]$ <b>rm -r Documents/imp1.txt</b></div>
+<div>
+~]$</div>
+</div>
+

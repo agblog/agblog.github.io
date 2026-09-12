@@ -1,0 +1,269 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+RAID stands for Redundant Array of Inexpensive (Independent) Disks.<br />
+On most situations you will be using one of the following four levels of RAIDs.<br />
+<ul>
+<li>RAID 0</li>
+<li>RAID 1</li>
+<li>RAID 5</li>
+<li>RAID 10 (also known as RAID 1+0)</li>
+</ul>
+This article explains the main difference between these raid levels along with an easy to understand diagram.<br />
+<span id="more-5335"></span><br />
+In all the diagrams mentioned below:<br />
+<ul>
+<li>A, B, C, D, E and F â€“ represents blocks</li>
+<li>p1, p2, and p3 â€“ represents parity</li>
+</ul>
+<h3>
+RAID LEVEL 0</h3>
+<img alt="" class="aligncenter size-full wp-image-5340" height="375" src="https://static.thegeekstuff.com/wp-content/uploads/2010/07/raid-0.png" title="Raid 0 Example" width="530" /><br />
+Following are the key points to remember for RAID level 0.<br />
+<ul>
+<li>Minimum 2 disks.</li>
+<li>Excellent performance ( as blocks are striped ).</li>
+<li>No redundancy ( no mirror, no parity ).</li>
+<li>Donâ€™t use this for any critical system.</li>
+</ul>
+<h3>
+RAID LEVEL 1</h3>
+<img alt="" class="aligncenter size-full wp-image-5343" height="383" src="https://static.thegeekstuff.com/wp-content/uploads/2010/07/raid-1.png" title="RAID 1 Example" width="555" />Following are the key points to remember for RAID level 1.<br />
+<ul>
+<li>Minimum 2 disks.</li>
+<li>Good performance ( no striping. no parity ).</li>
+<li>Excellent redundancy ( as blocks are mirrored ).</li>
+</ul>
+<h3>
+RAID LEVEL 5</h3>
+<img alt="" class="aligncenter size-full wp-image-5347" height="368" src="https://static.thegeekstuff.com/wp-content/uploads/2010/07/raid-5.png" title="RAID 5 Example" width="528" /><br />
+Following are the key points to remember for RAID level 5.<br />
+<ul>
+<li>Minimum 3 disks.</li>
+<li>Good performance ( as blocks are striped ).</li>
+<li>Good redundancy ( distributed parity ).</li>
+<li>Best cost effective option providing both performance and 
+redundancy. Use this for DB that is heavily read oriented. Write 
+operations will be slow.</li>
+</ul>
+<h3>
+RAID LEVEL 10</h3>
+<img alt="" class="aligncenter size-full wp-image-8735" height="283" src="https://static.thegeekstuff.com/wp-content/uploads/2010/08/raid10.png" title="RAID 10" width="590" />Following are the key points to remember for RAID level 10.<br />
+<center>
+      <div style="margin-bottom: 10px; margin-left: 2px; margin-top: 10px;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-8090601437064582" data-ad-slot="8643685131" data-adsbygoogle-status="done" style="display: inline-block; height: 250px; width: 300px;"><ins id="aswift_1_expand" style="background-color: transparent; border: none; display: inline-table; height: 250px; margin: 0; padding: 0; position: relative; visibility: visible; width: 300px;"><ins id="aswift_1_anchor" style="background-color: transparent; border: none; display: block; height: 250px; margin: 0; padding: 0; position: relative; visibility: visible; width: 300px;"></ins></ins></ins></div>
+</center>
+<ul>
+<li>Minimum 4 disks.</li>
+<li>This is also called as â€œstripe of mirrorsâ€</li>
+<li>Excellent redundancy ( as blocks are mirrored )</li>
+<li>Excellent performance ( as blocks are striped )</li>
+<li>If you can afford the dollar, this is the BEST option for any mission critical applications (especially databases).</li>
+</ul>
+<h3>
+Additional RAID Tutorials:</h3>
+<ul>
+<li><a href="https://www.thegeekstuff.com/2011/11/raid2-raid3-raid4-raid6/">RAID 2, RAID 3, RAID 4, RAID 6 Explained with Diagram</a></li>
+<li><a href="https://www.thegeekstuff.com/2011/10/raid10-vs-raid01/">RAID 10 Vs RAID 01 (RAID 1+0 Vs RAID 0+1)</a></li>
+</ul>
+<h1 class="post-title">
+&nbsp;</h1>
+<h1 class="post-title">
+&nbsp;</h1>
+<h1 class="post-title">
+&nbsp;</h1>
+<h1 class="post-title">
+&nbsp;</h1>
+<h1 class="post-title">
+&nbsp;</h1>
+<h1 class="post-title">
+Introduction to RAID, Concepts of RAID and RAID Levels â€“ Part 1</h1>
+<div class="post-byline">
+<br /></div>
+<div class="add-box">
+<ins class="adsbygoogle" data-ad-client="ca-pub-2601749019656699" data-ad-slot="1986283779" data-adsbygoogle-status="done" style="display: inline-block; height: 15px; width: 468px;"><ins id="aswift_1_expand" style="background-color: transparent; border: none; display: inline-table; height: 15px; margin: 0; padding: 0; position: relative; visibility: visible; width: 468px;"><ins id="aswift_1_anchor" style="background-color: transparent; border: none; display: block; height: 15px; margin: 0; padding: 0; position: relative; visibility: visible; width: 468px;"></ins></ins></ins></div>
+<div id="exam_announcement">
+<b></b><br /></div>
+<b>RAID</b> is a Redundant Array of Inexpensive disks, but nowadays 
+it is called Redundant Array of Independent drives. Earlier it is used 
+to be very costly to buy even a smaller size of disk, but nowadays we 
+can buy a large size of disk with the same amount like before. Raid is 
+just a collection of disks in a pool to become a logical volume.<br />
+<div class="wp-caption aligncenter" id="attachment_9223" style="max-width: 610px;">
+<a href="https://www.tecmint.com/wp-content/uploads/2014/10/RAID.jpg"><img alt="RAID in Linux" class="size-full wp-image-9223" data-lazy-loaded="true" height="400" src="https://www.tecmint.com/wp-content/uploads/2014/10/RAID.jpg" style="display: inline;" width="600" /></a><br />
+<div class="wp-caption-text">
+Understanding RAID Setups in Linux</div>
+</div>
+Raid contains groups or sets or Arrays. A combine of drivers make a 
+group of disks to form a RAID Array or RAID set. It can be a minimum of 2
+ number of disk connected to a raid controller and make a logical volume
+ or more drives can be in a group. Only one Raid level can be applied in
+ a group of disks. Raid are used when we need excellent performance. 
+According to our selected raid level, performance will differ. Saving 
+our data by fault tolerance &amp; high availability.<br />
+This series will be titled Preparation for the setting up RAID â€˜s through Parts 1-9 and covers the following topics.<br />
+<div id="exam_announcement">
+<b>Part 1</b>: <b>Introduction to RAID, Concepts of RAID and RAID Levels</b></div>
+<div id="exam_announcement">
+<b>Part 2</b>: <a href="https://www.tecmint.com/create-raid0-in-linux/" style="text-decoration: none;" target="_blank">How to setup RAID0 (Stripe) in Linux</a></div>
+<div id="exam_announcement">
+<b>Part 3</b>: <a href="https://www.tecmint.com/create-raid1-in-linux/" style="text-decoration: none;" target="_blank">How to setup RAID1 (Mirror) in Linux</a></div>
+<div id="exam_announcement">
+<b>Part 4</b>: <a href="https://www.tecmint.com/create-raid-5-in-linux/" style="text-decoration: none;" target="_blank">How to setup RAID5 (Striping with Distributed Parity) in Linux</a></div>
+<div id="exam_announcement">
+<b>Part 5</b>: <a href="https://www.tecmint.com/create-raid-6-in-linux/" style="text-decoration: none;" target="_blank">How to setup RAID6 (Striping with Double Distributed Parity) in Linux</a></div>
+<div id="exam_announcement">
+<b>Part 6</b>: <a href="https://www.tecmint.com/create-raid-10-in-linux/" style="text-decoration: none;" target="_blank">Setting Up RAID 10 or 1+0 (Nested) in Linux</a></div>
+<div id="exam_announcement">
+<b>Part 7</b>: <a href="https://www.tecmint.com/grow-raid-array-in-linux/" style="text-decoration: none;" target="_blank">Growing an Existing RAID Array and Removing Failed Disks in Raid</a></div>
+<div id="exam_announcement">
+<b>Part 8</b>: <a href="https://www.tecmint.com/recover-data-and-rebuild-failed-software-raid/" style="text-decoration: none;" target="_blank">How to Recover Data and Rebuild Failed Software RAIDâ€™s</a></div>
+<div id="exam_announcement">
+<b>Part 9</b>: <a href="https://www.tecmint.com/manage-software-raid-devices-in-linux-with-mdadm/" style="text-decoration: none;" target="_blank">How to Manage Software RAIDâ€™s in Linux with â€˜Mdadmâ€™ Tool</a></div>
+This is the Part 1 of a 9-tutorial series, here we will cover the 
+introduction of RAID, Concepts of RAID and RAID Levels that are required
+ for the setting up RAID in Linux.<br />
+<h3>
+Software RAID and Hardware RAID</h3>
+<center style="padding-bottom: 20px; padding-top: 10px;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-2601749019656699" data-ad-format="auto" data-ad-slot="5590002574" data-adsbygoogle-status="done" style="display: block; height: 60px;"><ins id="aswift_3_expand" style="background-color: transparent; border: none; display: inline-table; height: 60px; margin: 0; padding: 0; position: relative; visibility: visible; width: 655px;"><ins id="aswift_3_anchor" style="background-color: transparent; border: none; display: block; height: 60px; margin: 0; padding: 0; position: relative; visibility: visible; width: 655px;"></ins></ins></ins></center>
+<b>Software RAID</b>
+ have low performance, because of consuming resource from hosts. Raid 
+software need to load for read data from software raid volumes. Before 
+loading raid software, OS need to get boot to load the raid software. No
+ need of Physical hardware in software raids. Zero cost investment.<br />
+<b>Hardware RAID</b> have high performance. They are dedicated RAID 
+Controller which is Physically built using PCI express cards. It wonâ€™t 
+use the host resource. They have NVRAM for cache to read and write. 
+Stores cache while rebuild even if there is power-failure, it will store
+ the cache using battery power backups. Very costly investments needed 
+for a large scale.<br />
+Hardware RAID Card will look like below:<br />
+<div class="wp-caption aligncenter" id="attachment_9172" style="max-width: 510px;">
+<a href="https://www.tecmint.com/wp-content/uploads/2014/10/Hardware-RAID.jpg"><img alt="Hardware RAID" class="size-full wp-image-9172" data-lazy-loaded="true" height="329" src="https://www.tecmint.com/wp-content/uploads/2014/10/Hardware-RAID.jpg" style="display: inline;" width="500" /></a><br />
+<div class="wp-caption-text">
+Hardware RAID</div>
+</div>
+<h4>
+Featured Concepts of RAID</h4>
+<ol>
+<li><b>Parity</b> method in raid regenerate the lost content from parity saved informationâ€™s. RAID 5, RAID 6 Based on Parity.</li>
+<li><b>Stripe</b> is sharing data randomly to multiple disk. This wonâ€™t 
+have full data in a single disk. If we use 3 disks half of our data will
+ be in each disks.</li>
+<li><b>Mirroring</b> is used in RAID 1 and RAID 10. Mirroring is making a
+ copy of same data. In RAID 1 it will save the same content to the other
+ disk too.</li>
+<li><b>Hot spare</b> is just a spare drive in our server which can 
+automatically replace the failed drives. If any one of the drive failed 
+in our array this hot spare drive will be used and rebuild 
+automatically.</li>
+<li><b>Chunks</b> are just a size of data which can be minimum from 4KB and more. By defining chunk size we can increase the I/O performance.</li>
+</ol>
+RAIDâ€™s are in various Levels. Here we will see only the RAID Levels which is used mostly in real environment.<br />
+<ol>
+<li><b>RAID0</b> = Striping</li>
+<li><b>RAID1</b> = Mirroring</li>
+<li><b>RAID5</b> = Single Disk Distributed Parity</li>
+<li><b>RAID6</b> = Double Disk Distributed Parity</li>
+<li><b>RAID10</b> = Combine of Mirror &amp; Stripe. (Nested RAID)</li>
+</ol>
+RAID are managed using <b>mdadm</b> package in most of the Linux distributions. Let us get a Brief look into each RAID Levels.<br />
+<h4>
+RAID 0 (or) Striping</h4>
+Striping have a excellent performance. In Raid 0 (Striping) the data 
+will be written to disk using shared method. Half of the content will be
+ in one disk and another half will be written to other disk.<br />
+Let us assume we have 2 Disk drives, for example, if we write data â€œ<b>TECMINT</b>â€ to logical volume it will be saved as â€˜<b>T</b>â€˜ will be saved in first disk and â€˜<b>E</b>â€˜ will be saved in Second disk and â€˜<b>C</b>â€˜ will be saved in First disk and again â€˜<b>M</b>â€˜ will be saved in Second disk and it continues in round-robin process.<br />
+In this situation if any one of the drive fails we will loose our 
+data, because with half of data from one of the disk canâ€™t use to 
+rebuilt the raid. But while comparing to Write Speed and performance 
+RAID 0 is Excellent. We need at least minimum 2 disks to create a RAID 0
+ (Striping). If you need your valuable data donâ€™t use this RAID LEVEL.<br />
+<ol>
+<li>High Performance.</li>
+<li>There is Zero Capacity Loss in RAID 0</li>
+<li>Zero Fault Tolerance.</li>
+<li>Write and Reading will be good performance.</li>
+</ol>
+<h4>
+RAID 1 (or) Mirroring</h4>
+Mirroring have a good performance. Mirroring can make a copy of same 
+data what we have. Assuming we have two numbers of 2TB Hard drives, 
+total there we have 4TB, but in mirroring while the drives are behind 
+the RAID Controller to form a Logical drive Only we can see the 2TB of 
+logical drive.<br />
+While we save any data, it will write to both 2TB Drives. Minimum two
+ drives are needed to create a RAID 1 or Mirror. If a disk failure 
+occurred we can reproduce the raid set by replacing a new disk. If any 
+one of the disk fails in RAID 1, we can get the data from other one as 
+there was a copy of same content in the other disk. So there is zero 
+data loss.<br />
+<ol>
+<li>Good Performance.</li>
+<li>Here Half of the Space will be lost in total capacity.</li>
+<li>Full Fault Tolerance.</li>
+<li>Rebuilt will be faster.</li>
+<li>Writing Performance will be slow.</li>
+<li>Reading will be good.</li>
+<li>Can be used for operating systems and database for small scale.</li>
+</ol>
+<h4>
+RAID 5 (or) Distributed Parity</h4>
+RAID 5 is mostly used in enterprise levels. RAID 5 work by 
+distributed parity method. Parity info will be used to rebuild the data.
+ It rebuilds from the information left on the remaining good drives. 
+This will protect our data from drive failure.<br />
+Assume we have 4 drives, if one drive fails and while we replace the 
+failed drive we can rebuild the replaced drive from parity informations.
+ Parity informationâ€™s are Stored in all 4 drives, if we have 4 numbers 
+of 1TB hard-drive. The parity information will be stored in 256GB in 
+each drivers and other 768GB in each drives will be defined for Users. 
+RAID 5 can be survive from a single Drive failure, If drives fails more 
+than 1 will cause loss of dataâ€™s.<br />
+<ol>
+<li>Excellent Performance</li>
+<li>Reading will be extremely very good in speed.</li>
+<li>Writing will be Average, slow if we wonâ€™t use a Hardware RAID Controller.</li>
+<li>Rebuild from Parity information from all drives.</li>
+<li>Full Fault Tolerance.</li>
+<li>1 Disk Space will be under Parity.</li>
+<li>Can be used in file servers, web servers, very important backups.</li>
+</ol>
+<h4>
+RAID 6 Two Parity Distributed Disk</h4>
+RAID 6 is same as RAID 5 with two parity distributed system. Mostly 
+used in a large number of arrays. We need minimum 4 Drives, even if 
+there 2 Drive fails we can rebuild the data while replacing new drives.<br />
+Very slower than RAID 5, because it writes data to all 4 drivers at 
+same time. Will be average in speed while we using a Hardware RAID 
+Controller. If we have 6 numbers of 1TB hard-drives 4 drives will be 
+used for data and 2 drives will be used for Parity.<br />
+<ol>
+<li>Poor Performance.</li>
+<li>Read Performance will be good.</li>
+<li>Write Performance will be Poor if we not using a Hardware RAID Controller.</li>
+<li>Rebuild from 2 Parity Drives.</li>
+<li>Full Fault tolerance.</li>
+<li>2 Disks space will be under Parity.</li>
+<li>Can be Used in Large Arrays.</li>
+<li>Can be use in backup purpose, video streaming, used in large scale.</li>
+</ol>
+<h4>
+RAID 10 (or) Mirror &amp; Stripe</h4>
+RAID 10 can be called as 1+0 or 0+1. This will do both works of 
+Mirror &amp; Striping. Mirror will be first and stripe will be the 
+second in RAID 10. Stripe will be the first and mirror will be the 
+second in RAID 01. RAID 10 is better comparing to 01.<br />
+Assume, we have 4 Number of drives. While Iâ€™m writing some data to my
+ logical volume it will be saved under All 4 drives using mirror and 
+stripe methods.<br />
+If Iâ€™m writing a data â€œ<b>TECMINT</b>â€ in RAID 10 it will save the data as follow. First â€œ<b>T</b>â€ will write to both disks and second â€œ<b>E</b>â€ will write to both disk, this step will be used for all data write. It will make a copy of every data to other disk too.<br />
+Same time it will use the RAID 0 method and write data as follow â€œ<b>T</b>â€ will write to first disk and â€œ<b>E</b>â€ will write to second disk. Again â€œ<b>C</b>â€ will write to first Disk and â€œ<b>M</b>â€ to second disk.<br />
+<ol>
+<li>Good read and write performance.</li>
+<li>Here Half of the Space will be lost in total capacity.</li>
+<li>Fault Tolerance.</li>
+<li>Fast rebuild from copying data.</li>
+<li>Can be used in Database storage for high performance and availability.</li>
+</ol>
+</div>
+

@@ -1,0 +1,430 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;"><br /></span></span></div>
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">
+
+</span></span></div>
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoNormalTable" style="border-collapse: collapse; border: none; margin-left: .9pt; mso-border-alt: solid windowtext .5pt; mso-border-insideh: .5pt solid windowtext; mso-border-insidev: .5pt solid windowtext; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-table-layout-alt: fixed; width: 708px;">
+ <tbody>
+<tr style="height: 47.65pt; mso-yfti-firstrow: yes; mso-yfti-irow: 0; mso-yfti-lastrow: yes;">
+  <td style="border: solid white 1.0pt; height: 47.65pt; mso-border-alt: solid white .5pt; mso-border-themecolor: background1; mso-border-themecolor: background1; padding: 0in 5.4pt 0in 5.4pt; width: 531.0pt;" valign="top" width="708"><div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">Users and groups</span></b></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span>
+<span style="color: #fce5cd;"><br /></span>
+<span style="color: #fce5cd;"><br /></span>
+<h3>
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">Adding User Accounts</span></b></span></h3>
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<span style="color: #fce5cd;"><span lang="EN-GB" style="font-size: 10.0pt;">To add a new user account, you can run either of the following two
+commands as root.</span></span></div>
+<pre><span style="color: #fce5cd;"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-themecolor: accent4;"># adduser [new_account]</span></span></pre>
+<pre><span style="color: #fce5cd;"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-themecolor: accent4;"># useradd [new_account]</span></span></pre>
+<pre><span style="color: #fce5cd;"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-themecolor: accent4;">&nbsp;</span></span></pre>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<span style="color: #fce5cd;"><span lang="EN-GB" style="font-size: 10.0pt;">When a new user account is added to the system, the following
+operations are performed.</span></span></div>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<span style="color: #fce5cd;"><b><span lang="EN-GB" style="font-size: 10.0pt;">1.</span></b><span class="apple-converted-space"><span lang="EN-GB" style="font-size: 10.0pt;">&nbsp;</span></span><span lang="EN-GB" style="font-size: 10.0pt;">His/her
+home directory is created (<b>/home/username</b><span class="apple-converted-space">&nbsp;</span>by default).</span></span></div>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<span style="color: #fce5cd;"><b><span lang="EN-GB" style="font-size: 10.0pt;">2.</span></b><span class="apple-converted-space"><span lang="EN-GB" style="font-size: 10.0pt;">&nbsp;</span></span><span lang="EN-GB" style="font-size: 10.0pt;">The
+following hidden files are copied into the userâ€™s home directory, and will be
+used to provide environment variables for his/her user session.</span></span></div>
+<pre><span style="color: #fce5cd;"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-themecolor: accent4;">.bash_logout</span></span></pre>
+<pre><span style="color: #fce5cd;"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-themecolor: accent4;">.bash_profile</span></span></pre>
+<pre><span style="color: #fce5cd;"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-themecolor: accent4;">.bashrc</span></span></pre>
+<pre><span style="color: #fce5cd;"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-themecolor: accent4;">&nbsp;</span></span></pre>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<span style="color: #fce5cd;"><b><span lang="EN-GB" style="font-size: 10.0pt;">3.</span></b><span class="apple-converted-space"><span lang="EN-GB" style="font-size: 10.0pt;">&nbsp;</span></span><span lang="EN-GB" style="font-size: 10.0pt;">A mail
+spool is created for the user at /var/spool/mail/<b>username</b>.</span></span></div>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<span style="color: #fce5cd;"><b><span lang="EN-GB" style="font-size: 10.0pt;">4.</span></b><span class="apple-converted-space"><span lang="EN-GB" style="font-size: 10.0pt;">&nbsp;</span></span><span lang="EN-GB" style="font-size: 10.0pt;">A
+group is created and given the same name as the new user account.</span></span></div>
+<h5>
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">Understanding
+/etc/passwd</span></b></span></h5>
+<div class="MsoNormal">
+<span style="color: #fce5cd;"><br /></span></div>
+<div style="margin-bottom: 12.0pt; margin-left: 0in; margin-right: 0in; margin-top: 0in;">
+<span style="color: #fce5cd;"><span lang="EN-GB" style="font-size: 10.0pt;">The full account information is stored in the<span class="apple-converted-space">&nbsp;</span><b>/etc/passwd</b><span class="apple-converted-space">&nbsp;</span>file. This file contains a record per
+system user account and has the following format (fields are delimited by a
+colon).</span></span></div>
+<pre><span style="color: #fce5cd;"><span lang="EN-GB" style="color: #ffc000; font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-themecolor: accent4;">[username]:[x]:[UID]:[GID]:[Comment]:[Home directory]:[Default shell]</span></span></pre>
+<span style="color: #fce5cd;"><br /></span>
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#cat /etc/passwd</span></b></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: .5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">Store info about local users. Format follows seven colon
+  separated fields</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">username : password : UID : GID : GECOS : /home/dir :shell </span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoListParagraph" style="line-height: 106%; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.75in; margin-right: 0in; margin-top: 0in; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;"><span style="mso-list: Ignore;">1.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;">username is a
+  mapping of a UID to a name for the benefit of human users. </span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-tab-count: 3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>#<b style="mso-bidi-font-weight: normal;">id</b> </span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">command is used to show info about current logged in user.</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">Shows uid , gid groups</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#ps au<span style="mso-spacerun: yes;">&nbsp;&nbsp; </span></span></b></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">To view process info use ps command, a is all, u is user</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.5in; margin-right: 0in; margin-top: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">It shows user name pid</span></span></div>
+<div class="MsoListParagraphCxSpFirst" style="line-height: 106%; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.75in; margin-right: 0in; margin-top: 0in; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;"><span style="mso-list: Ignore;">2.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;">password<span style="mso-spacerun: yes;">&nbsp; </span>where passwords were kept in an encrypted
+  format. They are stored in a separate file called /etc/shadow. </span></span></div>
+<div class="MsoListParagraphCxSpLast" style="line-height: 106%; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.75in; margin-right: 0in; margin-top: 0in; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;"><span style="mso-list: Ignore;">3.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;">UID is a user lD, a
+  number that identifies the user at the most fundamental level. </span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.25in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">UID is secondary or supplementary group</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.25in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">Commands:</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#groupadd sysadmins (group creating with name sysadmins)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#useradd harry -G sysadmins (creating user to sysadmins
+  secondary group)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#usermod -modifies existing users </span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#usermod â€“help (display basic options)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#usermod -G<span style="mso-spacerun: yes;">&nbsp; </span>groupname
+  username<span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">This will add user in secondary group and remove from other
+  group</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#usermod â€“aG groupname username</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.5in; margin-right: 0in; margin-top: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">This will add user in secondary group and<span style="mso-spacerun: yes;">&nbsp; </span>keeps in other group ( a is append, G is
+  supplementary/secondary)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></div>
+<div class="MsoListParagraph" style="line-height: 106%; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.75in; margin-right: 0in; margin-top: 0in; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;"><span style="mso-list: Ignore;">4.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;">GID is the user's
+  primary group lD number.</span></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.25in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">Commands:</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#usermod â€“g groupname username<span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-tab-count: 4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>This
+  will add user in primary group and remove from other group</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><u><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">To remove user, change group name </span></u></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#groupmod (modifies existing groups)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#groupmod -n newnameoldname (to change name of group)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#groupmems -g grpname -d username (removes user from group)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoListParagraph" style="line-height: 106%; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.75in; margin-right: 0in; margin-top: 0in; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;"><span style="mso-list: Ignore;">5.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;">GECOS field is
+  arbitrary text or comments, which usually includes the user's<span style="mso-spacerun: yes;">&nbsp; </span>real name.</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-tab-count: 3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>#usermod
+  -c â€œlocaluserâ€ username (to add comment)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoListParagraph" style="line-height: 106%; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.75in; margin-right: 0in; margin-top: 0in; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;"><span style="mso-list: Ignore;">6.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;"><span style="mso-spacerun: yes;">&nbsp;</span>/home/dir Is the location of the userâ€˜s
+  personal data and configuration files. </span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.25in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#usermod -d /home/user2 user1 (to change home directory of
+  user1)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">To<span style="mso-spacerun: yes;">&nbsp; </span>add user with
+  uid4032 and<span style="mso-spacerun: yes;">&nbsp; </span>directory /India/Redhat</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#mkdir -P /India/Redhat</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#useradd -u 4032 username -b /India/Redhat</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoListParagraph" style="line-height: 106%; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.75in; margin-right: 0in; margin-top: 0in; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;"><span style="mso-list: Ignore;">7.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 106%;">shell Is a program
+  that runs as the user logs In. For a regular user, this is normally the
+  program that provides the user's command line prompt. </span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#echo $SHELL (to check current logged shell)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">To view all available shell</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#chsh -l</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#less /etc/shells (list available shell details)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">Alternative ways to change shells:</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#/bin/bash (to change shell temporarily)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#chsh -shell /bin/bash username (change shell permanently)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#usermod -s or -shell /bin/bash username (to change shell)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#usermod -s /sbin/nologin username (to change shell nologin)</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 2.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;">#vim /etc/passwd (change 7<sup>th</sup> field last field )<a href="https://www.blogger.com/null" name="_GoBack"></a></span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 115%;"><span style="mso-tab-count: 3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>DIFFERENCE BETWEEN
+  SHELLS:</span></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><b style="mso-bidi-font-weight: normal;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">OPTIONS TO USERMOD:</span></b></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: .5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">#usermod -L username </span></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">(to lock user account it will add ! mark precedded/ at
+  startline by password in /etc/shadow file)</span></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.0in; margin-right: 0in; margin-top: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.0in; margin-right: 0in; margin-top: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">#usermod
+  -U username </span></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.0in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">(to unlock user account it will<span style="mso-spacerun: yes;">&nbsp; </span>remove ! mark precedded/ at startline by
+  password in /etc/shadow file)</span></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: 1.0in; margin-right: 0in; margin-top: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: .5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">#userdel username (delete user but keep files)</span></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: .5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; margin-left: .5in; margin-right: 0in; margin-top: 0in; text-align: justify; text-indent: .5in;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">#userdel -r username (delete user with all files)</span></span><br />
+<span style="color: #fce5cd;"><br /></span>
+<span style="color: #fce5cd;"><br /></span>
+<span style="color: #fce5cd;"><br /></span>
+<span style="color: #fce5cd;"><br /></span>
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">
+
+</span></span><br />
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;"><b style="mso-bidi-font-weight: normal;"><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">Understanding /etc/shadow:</span></b></span></span></div>
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">
+
+</span></span><br />
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;"><br /></span></span></div>
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">
+</span></span>
+<br />
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;"><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">Managing User Passwords </span></span></span></div>
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">
+</span></span>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;"><br /></span></span></div>
+<span style="color: #fce5cd;"><span style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt;">
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">Shadow passwords and password policy </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">In the distant past, encrypted passwords
+were stored in the world-readable /etc/passwd file. This was thought to be
+reasonably secure until dictionary attacks on encrypted passwords became
+common. At that point, the encrypted passwords, or "password hashes,"
+were moved to the mere secure [etc/shadow file. This new file also allowed
+password aging and expiration features to be impiemented. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">#ls â€“l /etc/shadow</span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>r---
+--- --- (only read permission to root user)</span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">There are three pieces of information
+stored in a modern password hash: </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">$1$gCj La2/Z$6PueEKOAszj xijhoLOB/ </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">1: The hashing algorithm. The number 1 indicates
+an MD5 hash. The number 6 appears when a SHA-512 hash is used. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">2. gCj La2/Z: The salt used to encrypt
+the hash. This is originally chosen at random. The salt and the unencrypted
+password are combined and encrypted to create the encrypted password hash. The
+use of a salt prevents two users with the same password from having identical
+entries In the /etc/shadow file. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">3. 6Pu0EKeAszj xj v2hoLOB/: The encrypted
+hash. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">When a user tries to log in, the system
+looks up the entry for the user in /etc/ shadow, combines the salt for the user
+with the unencrypted password that was typed in, and encrypts them using the
+hashing algorithm specified. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">Red Hat Enterprise Linux 7 defaults to
+using SHA-512 encryption. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">/etc/shadow format The format of /etc/shadow
+follows (nine colon-separated fields): </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">name: password: lastchange: minage:
+maxage: warning: inactive: expire: b1ank </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoListParagraph" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">1.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The |login name. This must be a valid account name on
+the system. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoListParagraphCxSpFirst" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">2.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The encrypted password. A password field which starts with
+a exclamation mark means that the password is locked. </span></div>
+<div class="MsoListParagraphCxSpMiddle" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoListParagraphCxSpMiddle" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">3.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The date of the last password change, represented as
+the number of days since 1970.01.01 </span></div>
+<div class="MsoListParagraphCxSpMiddle" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoListParagraphCxSpMiddle" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">4.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The minimum number of days before a password may be changed,
+where 0 means "no minimum age requirementâ€. </span></div>
+<div class="MsoListParagraphCxSpMiddle" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">5.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The maximum number of days before a password must be
+changed. </span></div>
+<div class="MsoListParagraphCxSpMiddle" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">6.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The warning period that a password is about to expire.
+Represented in days, where 0 means "no warning given.â€œ </span></div>
+<div class="MsoListParagraphCxSpMiddle" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">7.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The number of days an account remains active after a
+password has expired. A user may still log into the system and change the
+password during this period. After the specified number of days, the account is
+locked, becoming inactive. </span></div>
+<div class="MsoListParagraphCxSpMiddle" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">8.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The account expiration date, represented as the number
+of days Since 1970.01.01. </span></div>
+<div class="MsoListParagraphCxSpLast" style="margin-left: 76.5pt; mso-add-space: auto; mso-list: l0 level1 lfo1; text-align: justify; text-indent: -.25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-list: Ignore;">9.<span style="font: 7.0pt &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">This blank field is reserved for future use. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-indent: .25in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">[root@serverx
+~]# chage -m 0 -M 90 -w 7 -I 14 username</span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-tab-count: 2;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>-m(mindays),
+M(maxdays), -w(warn day), -I(inactive day)</span></div>
+<div class="MsoNormal" style="text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">[root@serverx
+~]#chage -d 0 username </span></div>
+<div class="MsoNormal" style="margin-left: .5in; text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">will force a password update on next login. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">[root@serverx
+~]#chage -l username </span></div>
+<div class="MsoNormal" style="margin-left: .5in; text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">will list a username's current settings. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">[root@serverx
+~]#chage -E YYYY-MM-DD username </span></div>
+<div class="MsoNormal" style="margin-left: .5in; text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">will expire an account on a specific day. </span></div>
+<div class="MsoNormal" style="tab-stops: 78.7pt; text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">The
+date command can be used to calculate a date in the future. </span></div>
+<div class="MsoNormal" style="text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">[student@serverx
+~]$ date -d "+45 days â€œ</span></div>
+<div class="MsoNormal" style="margin-left: 1.0in; text-align: justify; text-indent: .5in; text-justify: inter-ideograph;">
+<span lang="EN-GB" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; font-size: 10.0pt; line-height: 107%;">Sat Mar 22 11:47:06 EDT 2014 </span></div>
+&nbsp;</span></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0in; text-align: justify;">
+<span style="color: #fce5cd;"><br /></span></div>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+
