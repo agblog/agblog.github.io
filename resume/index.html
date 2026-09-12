@@ -1,9 +1,307 @@
 <!DOCTYPE html>
-<html>
-<head><title>Resume</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anurag Pandurang Dobade - Senior Database Administrator</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --container-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #38bdf8;
+            --accent-secondary: #0ea5e9;
+            --border-color: #334155;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+        }
+        .resume-container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: var(--container-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+        }
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            color: var(--accent-primary);
+            margin: 0 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px 25px;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+        .contact-info a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .contact-info a:hover {
+            color: var(--accent-secondary);
+            text-decoration: underline;
+        }
+        h2 {
+            font-size: 20px;
+            color: var(--accent-primary);
+            border-left: 4px solid var(--accent-secondary);
+            padding-left: 12px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .summary-text {
+            color: #e2e8f0;
+            font-size: 15px;
+            text-align: justify;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .skills-category {
+            background: rgba(15, 23, 42, 0.4);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .skills-category strong {
+            color: var(--accent-primary);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .skills-category span {
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+        .job-block, .edu-block {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .job-header, .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .job-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .company-name {
+            font-size: 15px;
+            color: var(--accent-primary);
+            font-style: italic;
+        }
+        .job-date, .edu-date {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        ul {
+            margin: 5px 0 0 0;
+            padding-left: 20px;
+        }
+        li {
+            font-size: 14.5px;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            text-align: justify;
+        }
+        .cert-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 12px;
+        }
+        .cert-item {
+            background: rgba(15, 23, 42, 0.3);
+            padding: 10px 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-secondary);
+            font-size: 14px;
+            color: #e2e8f0;
+        }
+        @media (max-width: 768px) {
+            .job-header, .edu-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .resume-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
 <body>
-    <h1>My Resume</h1>
-    <p>Content coming soon...</p>
-    <a href="../">← Back to Homepage</a>
+
+    <div class="resume-container">
+        <header>
+            <h1>Anurag Pandurang Dobade</h1>
+            <div class="subtitle">Senior Database Administrator</div>
+            <div class="contact-info">
+                <span>📍 Pimprigaon, Maharashtra, India</span>
+                <span>📞 +91 7773981579 | +91 9922933861</span>
+                <span>✉️ <a href="mailto:anurag.dobade@gmail.com">anurag.dobade@gmail.com</a></span>
+                <span>🔗 <a href="https://linkedin.com" target="_blank">LinkedIn</a></span>
+                <span>🐙 <a href="https://github.com" target="_blank">GitHub</a></span>
+                <span>💬 Skype: live:anurag.dobade</span>
+            </div>
+        </header>
+
+        <h2>Executive Summary</h2>
+        <p class="summary-text">
+            Senior Database Administrator with over 8+ years of corporate experience engineering, securing, and maintaining enterprise, Terabyte-scale data infrastructure across hybrid cloud, containerised, and highly regulated banking environments (BFSI). Expert in managing complex database lifecycles across Production, DR, Pre-Prod, UAT, Staging, QA, and Development tracks, supervising over 800+ database servers and large production volumes exceeding 15TB. Proven expertise executing multi-cloud migrations across Azure, AWS, DETASAD, Huawei Cloud, Orange Cloud, and Raya Cloud zones. Certified Linux professional with an exceptional track record of leading high-availability transformations (Pacemaker, Clustered/Clusterless AlwaysOn) that cut annual platform licensing overhead by $115,655.54 while maintaining 99.99% uptime SLAs.
+        </p>
+
+        <h2>Technical Expertise</h2>
+        <div class="skills-grid">
+            <div class="skills-category">
+                <strong>Database Engines:</strong>
+                <span>SQL Server (2008 to 2022), MySQL (5.7, 8.0), PostgreSQL DB (v14, v16), Oracle 11g, NoSQL (MongoDB, Redis), Sybase.</span>
+            </div>
+            <div class="skills-category">
+                <strong>Cloud Ecosystems:</strong>
+                <span>Azure SQL/VM, Azure Data Factory, Azure Data Lake, Azure Active Directory, AWS RDS, AWS EC2, DETASAD Cloud, Huawei RDS, Orange Cloud, Raya Cloud, Azure Blob Storage.</span>
+            </div>
+            <div class="skills-category">
+                <strong>High Availability:</strong>
+                <span>AlwaysOn Availability Groups (Windows/Linux), Distributed AGs (DAG), Failover Cluster Instances (FCI/WSFC), Pacemaker & Corosync (CLUSTER_TYPE=EXTERNAL), Clusterless AGs (CLUSTER_TYPE=NONE), Log Shipping, Mirroring, Replication, MySQL InnoDB Clustering.</span>
+            </div>
+            <div class="skills-category">
+                <strong>Operating Systems:</strong>
+                <span>Windows Server (2008 to 2022), Linux Ubuntu (20.04 to 24.04), RHEL (7, 8), CentOS, UNIX CLI.</span>
+            </div>
+            <div class="skills-category">
+                <strong>Database Tools:</strong>
+                <span>SSMS, Azure Data Studio, Storage Explorer, T-SQL, MDW, SQL Profiler, Database Tuning Advisor, PSSDIAG, Database Migration Assistant, SQLCmd, mssql-conf, mssql-tools, curl, pcs, Putty, SFTP, aws-cli.</span>
+            </div>
+            <div class="skills-category">
+                <strong>Monitoring & Ops:</strong>
+                <span>Prometheus, Grafana, Solarwinds DPA, Idera, SCOM, PerfMon, SQLQueryStress, LOKI logs, RMAN, OEM, ITIL Frameworks (Incident, Problem, Capacity, Patch, Change Management).</span>
+            </div>
+        </div>
+        <h2>Professional Experience</h2>
+
+        <div class="job-block">
+            <div class="job-header">
+                <div>
+                    <div class="job-title">Senior Database Administrator</div>
+                    <div class="company-name">PayTabs Global — Dubai, UAE / Chennai, India (Remote Operations)</div>
+                </div>
+                <div class="job-date">Jan 2022 – Present</div>
+            </div>
+            <ul>
+                <li><strong>Global Fintech Operations:</strong> Administer, monitor, and optimize highly critical ATM, e-commerce, and mobile payment gateway SQL Server, MySQL, and PostgreSQL environments across high-security Production, DR, UAT, and Dev tracks.</li>
+                <li><strong>Cross-Platform Cloud Migrations:</strong> Orchestrated near-zero downtime IaaS-to-PaaS cloud transitions, migrating standalone database nodes from AWS EC2/Azure VMs to fully managed AWS RDS and Azure SQL architectures.</li>
+                <li><strong>Multi-Cloud Deployment:</strong> Successfully planned and executed enterprise infrastructure migrations from on-premises environments into Azure SQL, AWS RDS, DETASAD Cloud, Huawei RDS, Orange Cloud, and Raya Cloud landing zones.</li>
+                <li><strong>FinOps & Linux HA Architecture:</strong> Architected a strategic migration to Linux-based SQL Server platforms (Ubuntu/RHEL) to eliminate license dependencies; deployed clusterless Availability Groups alongside high-availability topologies managed via Pacemaker and Corosync, cutting annual overhead by $115,655.54.</li>
+                <li><strong>Multi-Region DR Topologies:</strong> Designed robust multi-region disaster recovery footprints using cross-region geo-replication and zone-redundant storage (ZRS) across UAE North and UAE Central data centers.</li>
+                <li><strong>Telemetry & Monitoring:</strong> Developed unified infrastructure diagnostics monitoring suites using Prometheus, Grafana, LOKI logs, and PSSDIAG to catch real-time locking patterns and performance degradations.</li>
+            </ul>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <div>
+                    <div class="job-title">SQL Server Database Administrator</div>
+                    <div class="company-name">Clover Infotech Ltd — Mumbai / Pune, India (Enterprise BFSI On-Site)</div>
+                </div>
+                <div class="job-date">Apr 2018 – Jan 2022</div>
+            </div>
+            <ul>
+                <li><strong>Terabyte-Scale Operations:</strong> Managed mission-critical infrastructure encompassing 800+ SQL Servers and over 15TB+ of active production transactional volumes across banking, gold loan, insurance, and mutual fund verticals.</li>
+                <li><strong>High Availability Engineering:</strong> Designed, patched, and optimized multi-node Windows Server Failover Clusters (WSFC) leveraging AlwaysOn Availability Groups, transactional replication pipelines, and log shipping strategies.</li>
+                <li><strong>Deep-Tier Performance Tuning:</strong> Diagnosed complex locking bottlenecks and query performance degradations using SQL Profiler, SolarWinds DPA, and MDW; engineered optimizations across T-SQL scripts, CTEs, and plan caches.</li>
+                <li><strong>Security & Compliance Hardening:</strong> Audited and tightened data security policies to pass enterprise-level PCI-DSS validation audits, applying strict least-privilege principles across schemas, database roles, and logins.</li>
+            </ul>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <div>
+                    <div class="job-title">Hardware & Networking Engineer</div>
+                    <div class="company-name">Sony Infosys — Nanded, India</div>
+                </div>
+                <div class="job-date">Feb 2010 – Mar 2015</div>
+            </div>
+            <ul>
+                <li>Administered local client-server network topologies, OS installations, and directory access controls.</li>
+                <li>Assembled customized workstations and performed lower-level data recovery on compromised storage components.</li>
+            </ul>
+        </div>
+
+        <h2>Technical Certifications</h2>
+        <div class="cert-list">
+            <div class="cert-item">🛡️ Microsoft Certified: Azure Database Administrator Associate (DP-300)</div>
+            <div class="cert-item">⚙️ Microsoft Certified: MCSA SQL 2016 Database Administration</div>
+            <div class="cert-item">🐧 Red Hat Certified System Administrator - RHCSA (EX200)</div>
+            <div class="cert-item">☁️ Microsoft Certified: Azure Fundamentals (AZ-900)</div>
+            <div class="cert-item">📜 Diploma in Computer Hardware & Networking Engineering</div>
+        </div>
+
+        <h2>Education</h2>
+        <div class="edu-block">
+            <div class="edu-header">
+                <div>
+                    <span class="job-title">Bachelor of Engineering (B.E.) in Computer Science & Engineering</span><br>
+                    <span class="company-name">Shri Shivaji Institute of Engineering and Management, Parbhani (SRTMU, Nanded)</span>
+                </div>
+                <div class="edu-date">2014 – 2017 | 69.73%</div>
+            </div>
+        </div>
+        <div class="edu-block">
+            <div class="edu-header">
+                <div>
+                    <span class="job-title">Diploma in Information Technology</span><br>
+                    <span class="company-name">Government Polytechnic College, Nanded (MSBTE, Mumbai)</span>
+                </div>
+                <div class="edu-date">2006 – 2013 | 63.60%</div>
+            </div>
+        </div>
+
+        <h2>Personal Profile</h2>
+        <p class="summary-text" style="font-size:14px; color:#cbd5e1;">
+            <strong>Languages:</strong> English, Hindi, Marathi &nbsp;|&nbsp; 
+            <strong>Passport:</strong> Valid / Available (Ready for international deployment) &nbsp;|&nbsp;
+            <strong>Interests:</strong> Technical blogging, Traveling, Yoga &nbsp;|&nbsp;
+            <strong>Permanent Address:</strong> Raviwar Peth, Basmath - 431512, Dist: Hingoli, Maharashtra, India
+        </p>
+    </div>
+
 </body>
 </html>
