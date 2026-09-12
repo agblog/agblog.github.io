@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Playlist</title>
+    <title>My Automated Playlist</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,6 +17,10 @@
         }
         h1 {
             color: #ff0000;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #aaaaaa;
             margin-bottom: 30px;
         }
         .playlist-grid {
@@ -32,25 +36,39 @@
             padding: 10px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
         }
-        .video-container iframe {
-            width: 100%;
-            height: 200px;
-            border: none;
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
             border-radius: 4px;
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         .video-title {
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 14px;
             font-weight: bold;
             text-align: center;
             color: #e0e0e0;
+            text-transform: capitalize;
         }
         .back-link {
             color: #aaaaaa;
             text-decoration: none;
             font-size: 16px;
             transition: color 0.3s;
+            margin-top: 20px;
         }
         .back-link:hover {
             color: #ffffff;
@@ -60,184 +78,51 @@
 <body>
 
     <h1>My Playlist</h1>
+    <p>Automatically mapped using keyword triggers</p>
 
-    <div class="playlist-grid">
-        <!-- 1. Atif Aslam - Tajdar e Haram -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Tajdar-e-Haram - Atif Aslam</div>
-        </div>
-
-        <!-- 2. Believer -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Believer - Imagine Dragons</div>
-        </div>
-
-        <!-- 3. Kun Faya Kun -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Kun Faya Kun - Rockstar</div>
-        </div>
-
-        <!-- 4. Faded -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Faded - Alan Walker</div>
-        </div>
-
-        <!-- 5. Ya Ali -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Ya Ali - Gangster</div>
-        </div>
-
-        <!-- 6. Bad Liar -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Bad Liar - Imagine Dragons</div>
-        </div>
-
-        <!-- 7. Koi Fariyad -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Koi Fariyad - Tum Bin</div>
-        </div>
-
-        <!-- 8. See You Again -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">See You Again - Wiz Khalifa ft. Charlie Puth</div>
-        </div>
-
-        <!-- 9. Uska Hi Bana -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Uska Hi Bana - 1920 Evil Returns</div>
-        </div>
-
-        <!-- 10. Aayat -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Aayat - Bajirao Mastani</div>
-        </div>
-
-        <!-- 11. Kamin Fireplace -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Kamin Fireplace ASMR</div>
-        </div>
-
-        <!-- 12. Phir Mohabbat -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Phir Mohabbat - Murder 2</div>
-        </div>
-
-        <!-- 13. Gehra Hua -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Gehra Hua - Shiddat</div>
-        </div>
-
-        <!-- 14. Despacito -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Despacito - Luis Fonsi ft. Daddy Yankee</div>
-        </div>
-
-        <!-- 15. Pasoori -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Pasoori - Coke Studio</div>
-        </div>
-
-        <!-- 16. Deewana Kar Raha Hai -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Deewana Kar Raha Hai - Raaz 3</div>
-        </div>
-
-        <!-- 17. Marshmello (Happier) -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Happier - Marshmello ft. Bastille</div>
-        </div>
-
-        <!-- 18. Ye Tune Kya Kiya -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Ye Tune Kya Kiya - Once Upon A Time In Mumbaai Dobaara</div>
-        </div>
-
-        <!-- 19. Numb -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Numb - Linkin Park</div>
-        </div>
-
-        <!-- 20. Let Her Go -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Let Her Go - Passenger</div>
-        </div>
-
-        <!-- 21. Guli Mata -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Guli Mata - Saad Lamjarred & Shreya Ghoshal</div>
-        </div>
-
-        <!-- 22. APT. -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">APT. - ROSÉ & Bruno Mars</div>
-        </div>
-
-        <!-- 23. Saad Lamjarred - LM3ALLEM -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">LM3ALLEM - Saad Lamjarred</div>
-        </div>
-
-        <!-- 24. Hymn For The Weekend -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Hymn For The Weekend - Coldplay</div>
-        </div>
-
-        <!-- 25. Let Me Down Slowly -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Let Me Down Slowly - Alec Benjamin</div>
-        </div>
-
-        <!-- 26. Hoke Ruposh -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Hoke Ruposh OST</div>
-        </div>
-
-        <!-- 27. Tera Mera Hai Pyar Amar -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Tera Mera Hai Pyar Amar</div>
-        </div>
-
-        <!-- 28. Ishq Ki Saazishein -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Ishq Ki Saazishein (Ye Tune Kya Kiya)</div>
-        </div>
-
-        <!-- 29. Shiv Kailasho Ke Wasi -->
-        <div class="video-container">
-            <iframe src="https://youtube.com" allowfullscreen></iframe>
-            <div class="video-title">Shiv Kailasho Ke Wasi - Jubin Nautiyal</div>
-        </div>
-    </div>
+    <div class="playlist-grid" id="playlistGrid"></div>
 
     <a href="../" class="back-link">← Back to Homepage</a>
 
+    <script>
+        // Define your keyword terms exactly as requested
+        const keywords = [
+            "atif aslam tajdar e haram", "believer imagine dragons", "Kun Faya kun rockstar", 
+            "faded alan walker", "ya ali gangster", "bad liar imagine dragons", 
+            "koi fariyad", "see you again", "uska hi bana", "aayat bajirao mastani", 
+            "kamin fireplace", "phir mohobbat", "gehra hua", "despacito", 
+            "pasoori", "deewana kar rha hai", "marshmello happier", "ye tune kya kiya", 
+            "numb linkin park", "let her go passenger", "guli mata", "apt rose bruno mars", 
+            "Saad Lamjarred - LM3ALLEM", "Hymn for the weekend", "let me down slowly", 
+            "Hoke ruposh", "tera mera hai pyar amar", "Ishq ki sajise", "Shiv kailasho ke wasi"
+        ];
+
+        const grid = document.getElementById('playlistGrid');
+
+        // Dynamically build and map clean players using content parameters
+        keywords.forEach((track, index) => {
+            const container = document.createElement('div');
+            container.className = 'video-container';
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'video-wrapper';
+
+            const iframe = document.createElement('iframe');
+            
+            // Leveraging YouTube search keyword handling inside the target embed framework safely
+            iframe.src = `https://youtube.com{encodeURIComponent(track)}&rel=0`;
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.setAttribute('allowfullscreen', 'true');
+
+            const title = document.createElement('div');
+            title.className = 'video-title';
+            title.innerText = `${index + 1}. ${track}`;
+
+            wrapper.appendChild(iframe);
+            container.appendChild(wrapper);
+            container.appendChild(title);
+            grid.appendChild(container);
+        });
+    </script>
 </body>
 </html>
