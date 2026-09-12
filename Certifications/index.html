@@ -1,9 +1,288 @@
 <!DOCTYPE html>
-<html>
-<head><title>My Certifications</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anurag Dobade | Professional Certifications</title>
+    <style>
+        :root {
+            --bg: #0b0f17;
+            --surface: #121824;
+            --border: #232d42;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #58a6ff;
+            --accent-green: #2ea44f;
+            --accent-gold: #e3b341;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 6px 0;
+        }
+
+        .title-meta {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .title-meta a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .title-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin: 0 0 20px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Certifications Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 4px solid var(--accent);
+        }
+
+        .cert-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .cert-details {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .cert-details div {
+            margin-bottom: 4px;
+        }
+
+        .status-pill {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-family: monospace;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            width: fit-content;
+            background: rgba(88, 166, 255, 0.15); 
+            color: var(--accent);
+        }
+
+        /* Exam List Styling */
+        .list-box {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .exam-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .exam-item:first-child { padding-top: 0; }
+        .exam-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .exam-code {
+            font-family: monospace;
+            font-weight: bold;
+            color: var(--accent-gold);
+            margin-right: 12px;
+        }
+
+        .exam-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
-    <h1>Certifications</h1>
-    <p>Content coming soon...</p>
-    <a href="../">← Back to Homepage</a>
+
+<div class="container">
+    <header>
+        <div class="header-title">
+            <h1>Anurag Dobade</h1>
+            <div class="title-meta">
+                Senior Database Administrator // 
+                <a href="https://microsoft.com" target="_blank">Verified Microsoft Learn Transcript (AnuragDobade-4953)</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: All Professional Certifications -->
+    <div class="section">
+        <h2>Professional Certifications</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <div>
+                    <div class="cert-name">Microsoft Certified: Azure Database Administrator Associate</div>
+                    <div class="cert-details">
+                        <div><strong>Certification Number:</strong> B34954-T15DDC</div>
+                        <div><strong>Earned on:</strong> Nov 6, 2021</div>
+                    </div>
+                </div>
+                <span class="status-pill">Verified Credential</span>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="cert-name">MCSA: SQL 2016 Database Administration</div>
+                    <div class="cert-details">
+                        <div><strong>Certification Number:</strong> 6AB4AB-DA2D60</div>
+                        <div><strong>Earned on:</strong> Jan 19, 2021</div>
+                    </div>
+                </div>
+                <span class="status-pill">Verified Credential</span>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="cert-name">Microsoft Certified: Azure Fundamentals</div>
+                    <div class="cert-details">
+                        <div><strong>Certification Number:</strong> 71CXF9-65DDD4</div>
+                        <div><strong>Earned on:</strong> Jun 3, 2020</div>
+                    </div>
+                </div>
+                <span class="status-pill">Verified Credential</span>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="cert-name">Red Hat Certified System Administrator (RHCSA)</div>
+                    <div class="cert-details">
+                        <div>Core Linux &amp; Infrastructure Administration Track</div>
+                    </div>
+                </div>
+                <span class="status-pill">Core Linux Track</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Section 2: Exams Passed -->
+    <div class="section">
+        <h2>Exams Passed</h2>
+        <div class="list-box">
+            
+            <div class="exam-item">
+                <div><span class="exam-code">DP-300</span> Administering Microsoft Azure SQL Solutions</div>
+                <span class="exam-date">Nov 6, 2021</span>
+            </div>
+
+            <div class="exam-item">
+                <div><span class="exam-code">Exam 765</span> Provisioning SQL Databases</div>
+                <span class="exam-date">Jan 19, 2021</span>
+            </div>
+
+            <div class="exam-item">
+                <div><span class="exam-code">Exam 764</span> Administering a SQL Database Infrastructure</div>
+                <span class="exam-date">May 28, 2020</span>
+            </div>
+
+            <div class="exam-item">
+                <div><span class="exam-code">AZ-900</span> Microsoft Azure Fundamentals</div>
+                <span class="exam-date">Jun 3, 2020</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Section 3: Technical Training, Qualifications & Recognition -->
+    <div class="section">
+        <h2>Technical Training, Education &amp; Awards</h2>
+        <div class="list-box">
+            
+            <div class="exam-item">
+                <div><strong>🏆 1st Place Award:</strong> Troubleshooting Windows Operating System (TechnoEvent, MGM Engg. College)</div>
+            </div>
+
+            <div class="exam-item">
+                <div>Diploma in Computer Networking</div>
+            </div>
+
+            <div class="exam-item">
+                <div>Oracle Database Foundations Training</div>
+            </div>
+
+            <div class="exam-item">
+                <div>Engineering Degree Certificate</div>
+            </div>
+
+            <div class="exam-item">
+                <div>Tally ERP 9 Certification</div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>Anurag Dobade • Professional Certifications Index • Hosted on GitHub Pages</p>
+    </footer>
+</div>
+
 </body>
 </html>
