@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anurag Dobade | Credentials & Documentation Directory</title>
+    <title>Anurag Dobade | Professional Credentials Portfolio</title>
     <style>
         :root {
             --bg: #0b0f17;
             --surface: #121824;
+            --surface-hover: #1c2436;
             --border: #232d42;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
@@ -25,7 +26,7 @@
         }
 
         .container {
-            max-width: 960px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 48px 24px;
         }
@@ -52,12 +53,8 @@
             text-decoration: none;
         }
 
-        .title-meta a:hover {
-            text-decoration: underline;
-        }
-
         .section {
-            margin-bottom: 40px;
+            margin-bottom: 44px;
         }
 
         h2 {
@@ -70,101 +67,121 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* Experience Box Layout */
-        .experience-box {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 20px;
+        /* Professional Grid Component */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-            border-bottom: 1px dashed var(--border);
-            padding-bottom: 12px;
-        }
-
-        .exp-role {
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .exp-company {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .exp-timeline {
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .bullet-list {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        .bullet-list li {
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-        }
-
-        /* List Rows for Certifications and Exams */
-        .list-box {
+        /* Interactive Human-Designed Certification Card */
+        .cert-card {
             background-color: var(--surface);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 20px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            border-left: 4px solid var(--accent);
+            transition: border-color 0.15s, background-color 0.15s, transform 0.15s;
         }
-        .list-item {
+
+        .cert-card:hover {
+            border-color: var(--accent-gold);
+            background-color: var(--surface-hover);
+            transform: translateY(-2px);
+        }
+
+        .cert-info {
+            flex: 1;
+        }
+
+        .cert-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .cert-meta-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Small Visual Certificate Thumbnail Icon */
+        .cert-thumb-container {
+            width: 50px;
+            height: 65px;
+            background: #1b2234;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .cert-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.15s;
+        }
+
+        .cert-card:hover .cert-thumb {
+            opacity: 1;
+        }
+        /* Single List Block Styling */
+        .list-box {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 20px;
+        }
+
+        .list-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border);
             padding: 14px 0;
-            font-size: 0.95rem;
-        }
-
-        .list-item:first-child { padding-top: 0; }
-        .list-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-        .item-link {
-            color: var(--text-main);
             text-decoration: none;
-            font-weight: 500;
+            color: inherit;
             transition: color 0.15s;
         }
 
-        .item-link:hover {
-            color: var(--accent);
-            text-decoration: underline;
+        .list-row:last-child {
+            border-bottom: none;
         }
 
-        .view-tag {
-            font-family: monospace;
-            font-size: 0.75rem;
+        .list-row:hover .row-text {
             color: var(--accent);
-            border: 1px solid rgba(88, 166, 255, 0.3);
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: rgba(88, 166, 255, 0.05);
-            margin-left: 12px;
+        }
+
+        .row-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .row-text {
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .item-code {
             font-family: monospace;
             font-weight: bold;
             color: var(--accent-gold);
-            margin-right: 12px;
+            margin-right: 8px;
         }
 
-        .item-date {
+        .row-date {
             color: var(--text-muted);
             font-size: 0.85rem;
             white-space: nowrap;
@@ -184,59 +201,72 @@
 
 <div class="container">
     <header>
-        <div class="header-title">
-            <h1>Anurag Dobade</h1>
-            <div class="title-meta">
-                Senior Database Administrator // 
-                <a href="https://microsoft.com" target="_blank">Verified Microsoft Transcript</a>
-            </div>
+        <h1>Anurag Dobade</h1>
+        <div class="title-meta">
+            Senior Database Administrator // 
+            <a href="https://microsoft.com" target="_blank">Verified Microsoft Transcript</a>
         </div>
     </header>
 
     <!-- Section 1: Professional Experience -->
     <div class="section">
         <h2>Professional Experience</h2>
-        <div class="experience-box">
-            <div class="exp-header">
-                <div>
-                    <span class="exp-role">Hardware &amp; Networking Engineer</span><br>
-                    <span class="exp-company">Sony Infosys, Nanded</span>
-                </div>
-                <div class="exp-timeline">10-Feb-2010 – 05-Mar-2015</div>
+        <a href="images/sony_infosys_experience.png" target="_blank" class="cert-card" style="border-left-color: var(--accent-gold);">
+            <div class="cert-info">
+                <div class="cert-title">Hardware &amp; Networking Engineer</div>
+                <div class="cert-meta-text">Sony Infosys, Nanded • 5-Year Full-Time Tenure (Feb 2010 – Mar 2015)</div>
             </div>
-            <ul class="bullet-list">
-                <li>Worked full-time to fund my college education and technical diploma, managing system support and off-site handovers during my engineering degree transition.</li>
-                <li>Administered local client-server setups, OS installations (Windows, Linux dual-boot), network routing topologies, and Active Directory access controls.</li>
-                <li>Assembled customized workstations, managed LAN driver deployments, and conducted data recovery on storage media.</li>
-                <li>
-                    <a href="images/sony_infosys_experience.png" target="_blank" class="item-link">
-                        View Official Experience Letter <span class="view-tag">View Image</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+            <div class="cert-thumb-container">
+                <img src="images/sony_infosys_experience.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+            </div>
+        </a>
     </div>
 
-    <!-- Section 2: Core Certifications -->
+    <!-- Section 2: IT & Infrastructure Certifications -->
     <div class="section">
         <h2>Professional Certifications</h2>
-        <div class="list-box">
-            <div class="list-item">
-                <a href="images/azure_dba_cert.png" target="_blank" class="item-link">Microsoft Certified: Azure Database Administrator Associate (B34954-T15DDC)</a>
-                <span class="item-date">Nov 2021</span>
-            </div>
-            <div class="list-item">
-                <a href="images/mcsa_2016_cert.png" target="_blank" class="item-link">MCSA: SQL 2016 Database Administration (6AB4AB-DA2D60)</a>
-                <span class="item-date">Jan 2021</span>
-            </div>
-            <div class="list-item">
-                <a href="images/azure_fundamentals_cert.png" target="_blank" class="item-link">Microsoft Certified: Azure Fundamentals (71CXF9-65DDD4)</a>
-                <span class="item-date">Jun 2020</span>
-            </div>
-            <div class="list-item">
-                <a href="images/rhcsa_cert.png" target="_blank" class="item-link">Red Hat Certified System Administrator (RHCSA)</a>
-                <span class="item-date">Linux Stack</span>
-            </div>
+        <div class="grid">
+            
+            <a href="images/azure_dba_cert.png" target="_blank" class="cert-card">
+                <div class="cert-info">
+                    <div class="cert-title">Azure Database Administrator Associate</div>
+                    <div class="cert-meta-text">ID: B34954-T15DDC • Nov 2021</div>
+                </div>
+                <div class="cert-thumb-container">
+                    <img src="images/azure_dba_cert.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                </div>
+            </a>
+
+            <a href="images/mcsa_2016_cert.png" target="_blank" class="cert-card">
+                <div class="cert-info">
+                    <div class="cert-title">MCSA: SQL 2016 Database Administration</div>
+                    <div class="cert-meta-text">ID: 6AB4AB-DA2D60 • Jan 2021</div>
+                </div>
+                <div class="cert-thumb-container">
+                    <img src="images/mcsa_2016_cert.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                </div>
+            </a>
+
+            <a href="images/azure_fundamentals_cert.png" target="_blank" class="cert-card">
+                <div class="cert-info">
+                    <div class="cert-title">Microsoft Certified: Azure Fundamentals</div>
+                    <div class="cert-meta-text">ID: 71CXF9-65DDD4 • Jun 2020</div>
+                </div>
+                <div class="cert-thumb-container">
+                    <img src="images/azure_fundamentals_cert.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                </div>
+            </a>
+
+            <a href="images/rhcsa_cert.png" target="_blank" class="cert-card">
+                <div class="cert-info">
+                    <div class="cert-title">Red Hat Certified System Administrator (RHCSA)</div>
+                    <div class="cert-meta-text">Core Linux Infrastructure Track</div>
+                </div>
+                <div class="cert-thumb-container">
+                    <img src="images/rhcsa_cert.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                </div>
+            </a>
+
         </div>
     </div>
 
@@ -244,76 +274,95 @@
     <div class="section">
         <h2>Exams Passed</h2>
         <div class="list-box">
-            <div class="list-item">
-                <div><span class="item-code">DP-300</span> <a href="images/dp300_exam.png" target="_blank" class="item-link">Administering Microsoft Azure SQL Solutions</a></div>
-                <span class="item-date">Nov 6, 2021</span>
-            </div>
-            <div class="list-item">
-                <div><span class="item-code">Exam 765</span> <a href="images/exam765_exam.png" target="_blank" class="item-link">Provisioning SQL Databases</a></div>
-                <span class="item-date">Jan 19, 2021</span>
-            </div>
-            <div class="list-item">
-                <div><span class="item-code">Exam 764</span> <a href="images/exam764_exam.png" target="_blank" class="item-link">Administering a SQL Database Infrastructure</a></div>
-                <span class="item-date">May 28, 2020</span>
-            </div>
-            <div class="list-item">
-                <div><span class="item-code">AZ-900</span> <a href="images/az900_exam.png" target="_blank" class="item-link">Microsoft Azure Fundamentals</a></div>
-                <span class="item-date">Jun 3, 2020</span>
-            </div>
+            
+            <a href="images/dp300_exam.png" target="_blank" class="list-row">
+                <div class="row-left">
+                    <div class="cert-thumb-container" style="width:35px; height:45px;">
+                        <img src="images/dp300_exam.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                    </div>
+                    <div class="row-text"><span class="item-code">DP-300</span> Administering Microsoft Azure SQL Solutions</div>
+                </div>
+                <span class="row-date">Nov 6, 2021</span>
+            </a>
+
+            <a href="images/exam765_exam.png" target="_blank" class="list-row">
+                <div class="row-left">
+                    <div class="cert-thumb-container" style="width:35px; height:45px;">
+                        <img src="images/exam765_exam.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                    </div>
+                    <div class="row-text"><span class="item-code">Exam 765</span> Provisioning SQL Databases</div>
+                </div>
+                <span class="row-date">Jan 19, 2021</span>
+            </a>
+
+            <a href="images/exam764_exam.png" target="_blank" class="list-row">
+                <div class="row-left">
+                    <div class="cert-thumb-container" style="width:35px; height:45px;">
+                        <img src="images/exam764_exam.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                    </div>
+                    <div class="row-text"><span class="item-code">Exam 764</span> Administering a SQL Database Infrastructure</div>
+                </div>
+                <span class="row-date">May 28, 2020</span>
+            </a>
+
         </div>
     </div>
 
-    <!-- Section 4: Technical Training & Practical Track -->
+    <!-- Section 4: Technical Training Track -->
     <div class="section">
         <h2>Technical Training &amp; Practical Track</h2>
         <div class="list-box">
-            <div class="list-item">
-                <a href="images/windows_troubleshooting_award.png" target="_blank" class="item-link"><strong>🏆 1st Place Award:</strong> Troubleshooting Windows Operating System (TechnoEvent, MGM Engg. College)</a>
-            </div>
-            <div class="list-item">
-                <a href="images/seed_infotech_redhat.png" target="_blank" class="item-link">SEED Infotech: Red Hat Enterprise Linux Administration (RHCSA Tracks I, II, &amp; III)</a>
-            </div>
-            <div class="list-item">
-                <a href="images/seed_infotech_sql_oracle.png" target="_blank" class="item-link">SEED Infotech: SQL &amp; Oracle Database Architecture (Tracks I &amp; II)</a>
-            </div>
-            <div class="list-item">
-                <a href="images/oracle_foundations.png" target="_blank" class="item-link">Oracle Database Foundations Training</a>
-            </div>
-            <div class="list-item">
-                <a href="images/tally_erp_cert.png" target="_blank" class="item-link">Tally ERP 9 Certification</a>
-            </div>
-            <div class="list-item">
-                <a href="images/android_participation.png" target="_blank" class="item-link">Android Development (Certificate of Participation)</a>
-            </div>
-            <div class="list-item">
-                <a href="images/networking_participation.png" target="_blank" class="item-link">Networking Essentials (Certificate of Participation)</a>
-            </div>
+            
+            <a href="images/windows_troubleshooting_award.png" target="_blank" class="list-row">
+                <div class="row-left">
+                    <div class="cert-thumb-container" style="width:35px; height:45px;">
+                        <img src="images/windows_troubleshooting_award.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                    </div>
+                    <div class="row-text"><strong>🏆 1st Place:</strong> Troubleshooting Windows Operating System (MGM Engg. College)</div>
+                </div>
+            </a>
+
+            <a href="images/seed_infotech_redhat.png" target="_blank" class="list-row">
+                <div class="row-left">
+                    <div class="cert-thumb-container" style="width:35px; height:45px;">
+                        <img src="images/seed_infotech_redhat.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                    </div>
+                    <div class="row-text">SEED Infotech: Red Hat Enterprise Linux Administration (Tracks I, II, &amp; III)</div>
+                </div>
+            </a>
+
+            <a href="images/seed_infotech_sql_oracle.png" target="_blank" class="list-row">
+                <div class="row-left">
+                    <div class="cert-thumb-container" style="width:35px; height:45px;">
+                        <img src="images/seed_infotech_sql_oracle.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                    </div>
+                    <div class="row-text">SEED Infotech: SQL &amp; Oracle Database Architecture (Tracks I &amp; II)</div>
+                </div>
+            </a>
+
+            <a href="images/oracle_foundations.png" target="_blank" class="list-row">
+                <div class="row-left">
+                    <div class="cert-thumb-container" style="width:35px; height:45px;">
+                        <img src="images/oracle_foundations.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                    </div>
+                    <div class="row-text">Oracle Database Foundations Training</div>
+                </div>
+            </a>
+
         </div>
     </div>
 
-    <!-- Section 5: Academic & Engineering Qualifications -->
+    <!-- Section 5: Academic Qualifications -->
     <div class="section">
         <h2>Academic &amp; Engineering Qualifications</h2>
         <div class="list-box">
-            <div class="list-item">
-                <a href="images/engineering_degree.png" target="_blank" class="item-link">Engineering Degree Certificate (with Mark Sheets)</a>
-            </div>
-            <div class="list-item">
-                <a href="images/nicotc_hardware_networking_diploma.png" target="_blank" class="item-link">Diploma in Computer Hardware &amp; Networking Engineering (NICOTC // Grade A)</a>
-            </div>
-            <div class="list-item">
-                <a href="images/diploma_certificate.png" target="_blank" class="item-link">Diploma Certificate</a>
-            </div>
-            <div class="list-item">
-                <a href="images/computer_networking_diploma.png" target="_blank" class="item-link">Diploma in Computer Networking</a>
-            </div>
-        </div>
-    </div>
+            
+            <a href="images/engineering_degree.png" target="_blank" class="list-row">
+                <div class="row-left">
+                    <div class="cert-thumb-container" style="width:35px; height:45px;">
+                        <img src="images/engineering_degree.png" alt="Thumb" class="cert-thumb" onerror="this.style.display='none';">
+                    </div>
+                    <div class="row-text">Engineering Degree Certificate (with Mark Sheets)</div>
+                </div>
+            </a>
 
-    <footer>
-        <p>Anurag Dobade • Profile Directory • Hosted on GitHub Pages</p>
-    </footer>
-</div>
-
-</body>
-</html>
