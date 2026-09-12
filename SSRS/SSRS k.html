@@ -1,0 +1,242 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" id="docs-internal-guid-84662a7e-7fff-f9b6-f384-9a9952f1d7c5">
+SSRS:</div>
+<div dir="ltr" id="docs-internal-guid-55cae93e-7fff-8ef4-3616-daa1432b8bac">
+<br></div>
+<div dir="ltr">
+select @@servername</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; create database sample_ssrs</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; use sample_ssrs</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; </div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; --drop table film</div>
+<div dir="ltr">
+&nbsp;-- &nbsp; drop table director</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; --drop table genre</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; create table film(FilmId int,Title varchar(20),ReleaseDate datetime,DirectorId int,StudioId int,Review varchar(20),CountryId int,LanguageId int,GenreId int, Genre varchar(20))</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; create table Director(DirectorId int,FirstName varchar(20))</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; create table Genre(GenreId int,Genre varchar(20))</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; --adding primry key to film table</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER TABLE film&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER column filmid int NOT NULL;</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER TABLE film&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER column Directorid int NOT NULL;</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER TABLE film&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER column genreid int NOT NULL;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; </div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALter table film&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ADD constraint pk_filmId primary key (filmid,DirectorId,GenreId)</div>
+<div dir="ltr">
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<img border="0" height="320" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg7eRp6wKMtH7Ffo5eWgYmNOrSfCUHpBTaLOAxsZnfHV_DpCysJ5xEAY_Dy7URQmdt3TQpZHAH0i7t67jOd8Ko6B3S4P_eCuisjMB_QvhA0LaGCDG_QuSFPaNyy1AvrZf4YZBdKaPZ2HAPh/s320/1577548187644912-0.png" width="180">
+  
+</div>
+<br>
+<div dir="ltr">
+<div style="text-align: center;">
+<a href="https://lh5.googleusercontent.com/mF8r-HIbrnWh7ECuxCnp2MPwr6a8I6O1fObtmCiH-gNqdXrpqPv7di5wQx7gDYIfN7x4clBEXWzH3RTC1iqlUNTsTTgdJ4ulUtVOBbj0F32qAceZ0R6kL7VA8hqvpjvGqBgEK6la-BeccV_s3Q" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" height="180" src="https://lh5.googleusercontent.com/mF8r-HIbrnWh7ECuxCnp2MPwr6a8I6O1fObtmCiH-gNqdXrpqPv7di5wQx7gDYIfN7x4clBEXWzH3RTC1iqlUNTsTTgdJ4ulUtVOBbj0F32qAceZ0R6kL7VA8hqvpjvGqBgEK6la-BeccV_s3Q" width="320"></a></div>
+</div>
+<div dir="ltr">
+--adding primry key &amp; foreign key assigning to director table&nbsp;&nbsp;&nbsp; </div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER TABLE director&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER column Directorid int NOT NULL;</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; alter table director</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; add constraint pk_diretor_directorid primary key(directorid)</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER TABLE film</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ADD CONSTRAINT FK_film_DirectorId FOREIGN KEY (DirectorId)</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; REFERENCES Director(DirectorId);</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </div>
+<div dir="ltr">
+----adding primry key &amp; foreign key assigning to genre table&nbsp;&nbsp;&nbsp; </div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER TABLE genre</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER column genreid int NOT NULL;</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; alter table genre</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; add constraint pk_genre_genreid primary key(genreid)</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; </div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ALTER TABLE genre</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; ADD CONSTRAINT FK_genre_GenreId FOREIGN KEY (GenreId)</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; REFERENCES Genre(GenreId);</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+-- adding records</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; insert into director values(1,'Charley')</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; insert into Genre values(1,'Action')</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; insert into film values(1,'Batman','1/2/2018 12:20:1',1,1,'Best',1,1,1,'Action')</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; insert into director values(4,'Charley')</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; insert into Genre values(4,'Action,drama')</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; insert into film values(4,'IronFist','1/2/2018 12:20:1',4,4,'Best',4,4,4,'Action')</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; select * from film</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; select * from director</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; select * from genre</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<a href="https://lh4.googleusercontent.com/tb1UidpT04ElltLXQRTEoApjzpmA-HjQ_HNMuIrYEkALayaTSN-GURCuaofn8wjmvEw0PgCRuVUAJ63Mw_H5d-xBJyPwuP0XuE1x4MF6EHhVWY_XU1fUe21tP3-J_Z8SXv3S5ZWst08_RvjdLQ" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" height="180" src="https://lh4.googleusercontent.com/tb1UidpT04ElltLXQRTEoApjzpmA-HjQ_HNMuIrYEkALayaTSN-GURCuaofn8wjmvEw0PgCRuVUAJ63Mw_H5d-xBJyPwuP0XuE1x4MF6EHhVWY_XU1fUe21tP3-J_Z8SXv3S5ZWst08_RvjdLQ" width="320"></a>
+
+
+<img height="311" src="https://lh4.googleusercontent.com/tb1UidpT04ElltLXQRTEoApjzpmA-HjQ_HNMuIrYEkALayaTSN-GURCuaofn8wjmvEw0PgCRuVUAJ63Mw_H5d-xBJyPwuP0XuE1x4MF6EHhVWY_XU1fUe21tP3-J_Z8SXv3S5ZWst08_RvjdLQ" width="553"></div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+-- New SSRS Project</div>
+<div dir="ltr">
+<a href="https://lh4.googleusercontent.com/XTIQEMPF39yJ7QILDirOjaK-MWzh2tF-sWvJ-cV8LY8QmNfAXizaLtARoAp5kZMraVnXnWopeJmE3A3N5qpAiMEBSiLN0qCSMsDfW6RyI7KGj8FPxfbyYDeYnsMLPjCWIT1HdDFqVtxteZpaSA" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" height="180" src="https://lh4.googleusercontent.com/XTIQEMPF39yJ7QILDirOjaK-MWzh2tF-sWvJ-cV8LY8QmNfAXizaLtARoAp5kZMraVnXnWopeJmE3A3N5qpAiMEBSiLN0qCSMsDfW6RyI7KGj8FPxfbyYDeYnsMLPjCWIT1HdDFqVtxteZpaSA" width="320"></a>
+
+
+<img height="311" src="https://lh4.googleusercontent.com/XTIQEMPF39yJ7QILDirOjaK-MWzh2tF-sWvJ-cV8LY8QmNfAXizaLtARoAp5kZMraVnXnWopeJmE3A3N5qpAiMEBSiLN0qCSMsDfW6RyI7KGj8FPxfbyYDeYnsMLPjCWIT1HdDFqVtxteZpaSA" width="553"></div>
+<div dir="ltr">
+--IN RHS open Solution explorer Add new item in Reports (.rdl extention file)</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; --View--open ToolBox and add TextBox and design color add name it</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<img height="311" src="https://lh4.googleusercontent.com/DhTYBagJmYeLjfhVHZ8YVx_yUO5PbTvDM5WQZxQnuIZ0Qw3ifqQa7lLnvgbCoa_Zid2vfrlKF6kFIvktioGNAl9OfsWf5AIFnJTPJTShdIQ3NYc5dMl66I6Rl3r2_wrcqiUJ68PtCWd_c5l43w" width="553"></div>
+<div dir="ltr">
+--connecting to data source</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; --View--Open Report data or press ctrl+alt+d</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  In data sources --add data source --connect to server instance and database &amp; test connectionâ€¦</div>
+<div dir="ltr">
+<img height="311" src="https://lh4.googleusercontent.com/nUJg433jOecNGAkdFU19XLOuds63I1EnhkjDcI607nuXCmqGHhkwIPqFAm59WTkokmEfzAy8A5v1IovpQ0SS61RzytascN1EvRrPlpmHleyOkfJR-_B2pHiVszcnypRlv2FgwafqAERYJxqfvg" width="553"></div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+In data set&nbsp;&nbsp;&nbsp; --add data set --In Query, use a database embedded in my report--choose data source--choose database name and query&nbsp; type text--query designer--right click and add table..select particular column names to add in report</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<img height="311" src="https://lh5.googleusercontent.com/icE-EAC41j9aYKD4FlT_GNMUy7eUzI3zij2M0Y6TIuXg_jFWE0UzPVAhVVZsrlwV4PPBBdhY0MvfAI7uF1qn04RemVuBPbOFTXU2-C3N_xQhJZKq7mUY5dHbZo1uOFVV6QJHsJeNXGLFkvH-lA" width="553"></div>
+<div dir="ltr">
+<img height="311" src="https://lh6.googleusercontent.com/lmrRdhR1U6K3Uim_HgYJbYZLFLoA2t2bxGmOc3X1j2_yYk2pokvMMJdPLuSWfBZZu07d4T3sHMW6QnhIcUYaFVORSLZ78JqRS9YR6NU6KjqBY8f8mjfr5TxuGebw6cSzUDSFinQq9YJxnNDBDw" width="553"></div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+--in data set selected columns are displayed&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<img height="311" src="https://lh4.googleusercontent.com/WA9xdmTcNpMrijV8zN0t-gtOkmlJDsMXmDu68xgyuw_qAOWH637ZsOmWA7TDub7EIUw2dl-Z8S-hpr9vw8csTm1OXfwj3gbpJ37BNkXvM-XTiyDZlcWx8DOVpc98rban4OiPtuZJlyFzrZ3q1g" width="553">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </div>
+<div dir="ltr">
+In view --ToolBox--Report items add table -- in table click data and add selected columns--insert column right left as required</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</div>
+<div dir="ltr">
+<img height="311" src="https://lh5.googleusercontent.com/YCmem5IVaBcJPDplMeOnPxER-ACeq87eT1xLunMIrSeI5ltgFoLkaJhnsPWv8KoX8V0hr_By79fpKhl8NT5NEWPttRiBb4XSkFz3lC8X80-A5TmJyOTfiqL0qi07p6uwd39r05S118uH1l8dsg" width="553"></div>
+<div dir="ltr">
+In Preview--see result</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<img height="311" src="https://lh6.googleusercontent.com/LRGdH2jGcXh5AE4pbz9vYckRnbvgZ5OOaqo6k0HOawFmoGOEBtXmYrcwrvnXQ5dhQ3pCUFnP6XPBcR850H113iMvl5DjiA6fe8z9LqxKjuGcSYN9LBIseSk59KTxRcRUGt5AMsxsgGp85o7leA" width="553"></div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+Press start and If ssrs configured it will deployed on website url as per configuration..</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<img height="311" src="https://lh4.googleusercontent.com/Xd_a4OtwFW61nAzKjqF6jYqhA2dEYNd5u4eS_PWPg3yoFSkh63HClig6QfSIYa7TcZDZ1XDmlHZ33rpuuyMtlZYe3dMYp9LuRtaj4UQqXt5scpfZX0a3wyGaXyt7DdnOBcZbzQ__6rcQsw2itw" width="553"></div>
+<div dir="ltr">
+<br>
+<br></div>
+<div dir="ltr">
+<img height="311" src="https://lh4.googleusercontent.com/tuJAQ8Ab5r-u7HKYLTdU8zaopg1SVpke0HRNCBfMdgdXIlNeYBjwWgwNhikBKJrDNbpNhgfq_7v8A2oH0ecKq5oG0hdQbFgkHx70aZ59q7igFdy_H-DcVHSoAPAuPFu0UPlnoncvl0hZG-UttQ" width="553"></div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+Reference:</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+https://www.red-gate.com/simple-talk/sql/reporting-services/sql-server-reporting-services-basics-building-ssrs-reports/</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+https://www.codeproject.com/Articles/798553/Create-First-SSRS-Report-with-SQL-Server-Analysis</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+https://www.red-gate.com/simple-talk/sql/reporting-services/ten-common-sql-server-reporting-services-challenges-and-solutions/</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+https://www.red-gate.com/simple-talk/sql/reporting-services/sql-server-reporting-services-basics-customizing-ssrs-reports/</div>
+</div>
+

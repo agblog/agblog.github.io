@@ -1,1 +1,282 @@
-ssrs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Docs // SQL Server Reporting Services (SSRS)</title>
+    <style>
+        /* Warm, custom slate palette - avoids the generic "AI dark mode" look */
+        :root {
+            --bg: #16161a;
+            --surface: #1f2023;
+            --surface-hover: #27292d;
+            --border: #2e3035;
+            --text: #fffffe;
+            --text-muted: #94a1b2;
+            --accent: #7289da;
+            --accent-warm: #ff8e3c;
+            --code-bg: #0d0e11;
+        }
+
+        /* Clean custom scrollbar for that hand-polished feel */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Asymmetric Header Layout */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 28px;
+            margin-bottom: 44px;
+        }
+
+        .brand h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin: 0 0 6px 0;
+        }
+
+        .brand p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .meta-badge {
+            font-family: monospace;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .meta-badge span { color: var(--accent-warm); }
+
+        /* Asymmetric Sidebar + Main Content Layout */
+        .layout {
+            display: flex;
+            gap: 48px;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 260px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .layout { flex-direction: column; gap: 32px; }
+            .sidebar { width: 100%; }
+            header { flex-direction: column; gap: 16px; }
+        }
+
+        h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin: 0 0 20px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Human-styled documentation index lists */
+        .doc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .doc-item {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.15s ease;
+        }
+
+        .doc-item:hover {
+            background: var(--surface-hover);
+            border-color: var(--text-muted);
+            transform: translateX(4px);
+        }
+
+        .doc-title {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .doc-item:hover .doc-title {
+            color: var(--accent);
+        }
+
+        .doc-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Sidebar internal utility widgets */
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .panel p {
+            font-size: 0.85rem;
+            margin: 0 0 12px 0;
+            color: var(--text-muted);
+        }
+
+        .code-tag {
+            font-family: monospace;
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--accent-warm);
+        }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer a { color: inherit; text-decoration: none; }
+        footer a:hover { color: var(--text); text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <div class="brand">
+            <h1>ssrs-docs</h1>
+            <p>Personal engineering notes, cluster validation scripts, and implementation playbooks.</p>
+        </div>
+        <div class="meta-badge">
+            status: <span>online</span> // v1.0.4
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- Main Directory Column -->
+        <main class="main-content">
+            
+            <h2>Guides &amp; Architecture Runs</h2>
+            <div class="doc-list">
+                <a href="Getting Started SSRS.html" class="doc-item">
+                    <span class="doc-title">Getting Started Setup Guide</span>
+                    <span class="doc-meta">Initial configurations, dependency mappings, and environment provisioning basics.</span>
+                </a>
+                
+                <a href="Introduction of SSRS.html" class="doc-item">
+                    <span class="doc-title">Core Component Introduction</span>
+                    <span class="doc-meta">Deep-dive structural look into service layers, engines, and basic definitions.</span>
+                </a>
+
+                <a href="Simple Demo of SSRSS.html" class="doc-item">
+                    <span class="doc-title">End-to-End Deployment Demo</span>
+                    <span class="doc-meta">A test run documenting standard workspace dataset queries and rendering loops.</span>
+                </a>
+                
+                <a href="SSRS Configuration on Standalone Server.html" class="doc-item">
+                    <span class="doc-title">Standalone Server Deployments</span>
+                    <span class="doc-meta">Step-by-step checklist for native-mode setups without shared scale-out tiers.</span>
+                </a>
+
+                <a href="Automation of SSRS Report for Multiple Server.html" class="doc-item">
+                    <span class="doc-title">Multi-Server Automation Workflows</span>
+                    <span class="doc-meta">Scheduling paradigms, distribution rules, and multi-node batch delivery routines.</span>
+                </a>
+            </div>
+
+            <h2>High Availability &amp; Clustering</h2>
+            <div class="doc-list">
+                <a href="Scale Out SSRS in Azure VM.html" class="doc-item">
+                    <span class="doc-title">Scale-Out in Azure Virtual Environments</span>
+                    <span class="doc-meta">Architecting dual-node load balanced clouds using Shared Catalog infrastructures.</span>
+                </a>
+
+                <a href="Scaling out SSRS on SQL Server Standard EditionÂ.html" class="doc-item">
+                    <span class="doc-title">Standard Edition Scale-Out Workarounds</span>
+                    <span class="doc-meta">Bypassing platform license limits using unique staging and network parameters.</span>
+                </a>
+
+                <a href="SSRS Configuration in a Cluster Original.html" class="doc-item">
+                    <span class="doc-title">Active Cluster Configuration Map</span>
+                    <span class="doc-meta">Original reference logic mapping shared parameters, validation nodes, and security.</span>
+                </a>
+
+                <a href="ssrs configuration on cluster scale out test nodes.html" class="doc-item">
+                    <span class="doc-title">Cluster Verification Test Nodes</span>
+                    <span class="doc-meta">Staging tier configuration validation parameters and multi-node connectivity health metrics.</span>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Asymmetric Hand-Designed Sidebar Context -->
+        <aside class="sidebar">
+            <h2>Internal Utilities</h2>
+            <div class="panel">
+                <p><strong>Telemetry Tracking</strong></p>
+                <p>Live health logs are actively pulled into the custom <a href="Creating SSRS Dashboard for Database Monitoring.html" style="color: var(--accent); text-decoration: none; font-weight: 500;">Monitoring Dashboard</a> node.</p>
+            </div>
+
+            <h2>Quick Reference</h2>
+            <div class="panel" style="font-family: monospace; font-size: 0.85rem;">
+                <div style="margin-bottom: 8px;">• Main Catalog: <span class="code-tag">msdb</span></div>
+                <div style="margin-bottom: 8px;">• Raw Snippets: <a href="SSRS k.html" style="color: var(--text-muted);">SSRS_k.html</a></div>
+                <div>• Type: <span style="color: var(--accent);">Native Mode</span></div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div>Managed by team dev log // static generation</div>
+        <div><a href="https://github.com" target="_blank">Repository View</a></div>
+    </footer>
+</div>
+
+</body>
+</html>
