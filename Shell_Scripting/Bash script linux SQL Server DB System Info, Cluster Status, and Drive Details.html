@@ -1,0 +1,363 @@
+<!-- Introduction Banner Section Only -->
+<div style="background-color: #1e1e1e; color: #ffffff; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; border-radius: 8px;">
+  <div style="background-color: #252526; border-left: 4px solid #0078d4; padding: 15px; border-radius: 0 6px 6px 0; border: 1px solid #2d2d2d;">
+    <h3 style="color: #ffffff; margin: 0 0 6px 0; font-size: 14px; font-weight: 600;">👋 Hi Team,</h3>
+    <p style="margin: 0; color: #cccccc; font-size: 13px; line-height: 1.5;">
+      This is an automated health check for SQL Server on Linux environment. 
+      The metrics below were gathered directly from the server using a daily Bash script and emailed out automatically via crontab. Please take a look at the status updates below.
+    </p>
+  </div>
+</div>
+
+
+<div style="background-color: #1e1e1e; color: #ffffff; padding: 25px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; border-radius: 8px 8px 0 0;">
+
+  <!-- Header -->
+  <div style="border-bottom: 1px solid #3d3d3d; padding-bottom: 12px; margin-bottom: 20px;">
+    <h2 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+      📊 SYSTEM STATUS REPORT (PART 1)
+    </h2>
+    <p style="margin: 6px 0 0 0; color: #aaaaaa; font-size: 13px;">
+      <strong>Report for host:</strong> anurag_db1
+    </p>
+  </div>
+
+  <!-- Server Uptime -->
+  <div style="margin-bottom: 20px;">
+    <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 8px 0; border-left: 3px solid #0078d4; padding-left: 8px;">⏱️ Server Uptime</h3>
+    <ul style="margin: 0; padding-left: 20px; color: #dddddd;">
+      <li><strong>Status:</strong> 11:30:01 up 137 days, 5:56, 2 users</li>
+      <li><strong>Load Average:</strong> 0.08, 0.12, 0.09</li>
+    </ul>
+  </div>
+
+  <!-- Cluster Status -->
+  <div style="margin-bottom: 20px;">
+    <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 8px 0; border-left: 3px solid #0078d4; padding-left: 8px;">🔄 Cluster Status</h3>
+    <ul style="margin: 0; padding-left: 20px; color: #dddddd;">
+      <li><strong>Stack:</strong> corosync</li>
+      <li><strong>Current DC:</strong> db3 (version 2.0.3-4b1f869f0f) – partition with quorum</li>
+      <li><strong>Last Updated:</strong> Fri Jan 30 11:30:01 2026</li>
+      <li><strong>Last Change:</strong> Mon Sep 15 05:31:44 2025 by root via crm_resource on db1</li>
+      <li><strong>Nodes Configured:</strong> 3 nodes</li>
+      <li><strong>Resource Instances:</strong> 4 resource instances</li>
+    </ul>
+  </div>
+
+  <!-- Node & Resource Allocation -->
+  <div style="margin-bottom: 20px;">
+    <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 8px 0; border-left: 3px solid #0078d4; padding-left: 8px;">🖥️ Node & Resource Allocation</h3>
+    <ul style="margin: 0; padding-left: 20px; color: #dddddd;">
+      <li><strong>Online Nodes:</strong> <code style="background-color: #2d2d2d; color: #4fc1ff; padding: 2px 6px; border-radius: 4px; font-family: monospace;">[ db1 db2 db3 ]</code></li>
+      <li><strong>Cluster Resources:</strong> Clone Set: <code style="background-color: #2d2d2d; color: #4fc1ff; padding: 2px 6px; border-radius: 4px; font-family: monospace;">ms-ag1 [mssqldbcluster]</code> (promotable)
+        <ul style="margin: 4px 0 0 0; padding-left: 20px; color: #bbbbbb;">
+          <li><strong>Masters:</strong> <code style="background-color: #2d2d2d; color: #4fc1ff; padding: 1px 4px; border-radius: 4px; font-family: monospace;">[ db2 ]</code></li>
+          <li><strong>Slaves:</strong> <code style="background-color: #2d2d2d; color: #4fc1ff; padding: 1px 4px; border-radius: 4px; font-family: monospace;">[ db1 db3 ]</code></li>
+        </ul>
+      </li>
+      <li><strong>Virtual IP:</strong> <code style="background-color: #2d2d2d; color: #4fc1ff; padding: 2px 6px; border-radius: 4px; font-family: monospace;">virtualip (ocf::heartbeat:IPaddr2)</code> ➔ <span style="color: #4fc1ff; font-weight: bold;">Started db2</span></li>
+    </ul>
+  </div>
+
+  <!-- DB Drive Space Details -->
+  <div style="margin-bottom: 20px;">
+    <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 10px 0; border-left: 3px solid #0078d4; padding-left: 8px;">💾 DB Drive Space Details</h3>
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; text-align: left; color: #ffffff; font-size: 13px;">
+        <thead>
+          <tr style="border-bottom: 2px solid #3d3d3d; background-color: #252526;">
+            <th style="padding: 8px; color: #aaaaaa;">Filesystem</th>
+            <th style="padding: 8px; color: #aaaaaa;">Size</th>
+            <th style="padding: 8px; color: #aaaaaa;">Used</th>
+            <th style="padding: 8px; color: #aaaaaa;">Avail</th>
+            <th style="padding: 8px; color: #aaaaaa;">Use%</th>
+            <th style="padding: 8px; color: #aaaaaa;">Mounted on</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">/dev/mapper/ubuntu-sqltlog</td>
+            <td style="padding: 8px;">200G</td>
+            <td style="padding: 8px;">90G</td>
+            <td style="padding: 8px;">111G</td>
+            <td style="padding: 8px;">45%</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">/sqltlog</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">/dev/mapper/ubuntu-sqltempdb</td>
+            <td style="padding: 8px;">150G</td>
+            <td style="padding: 8px;">14G</td>
+            <td style="padding: 8px;">137G</td>
+            <td style="padding: 8px;">9%</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">/sqltempdb</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2d2d2d; background-color: rgba(255, 77, 77, 0.05);">
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">/dev/mapper/ubuntu-sqldata</td>
+            <td style="padding: 8px;">700G</td>
+            <td style="padding: 8px;">580G</td>
+            <td style="padding: 8px;">120G</td>
+            <td style="padding: 8px; color: #ff6b6b; font-weight: bold;">83%</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">/sqldata</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">DB_backup_Server:/DB_Backup</td>
+            <td style="padding: 8px;">496G</td>
+            <td style="padding: 8px;">344G</td>
+            <td style="padding: 8px;">131G</td>
+            <td style="padding: 8px;">73%</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">/nfsserv/DBBackup</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SQL Server Service Status -->
+  <div style="margin-bottom: 10px;">
+    <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 8px 0; border-left: 3px solid #0078d4; padding-left: 8px;">🛢️ SQL Server Service</h3>
+    <ul style="margin: 0; padding-left: 20px; color: #dddddd;">
+      <li><strong>Service:</strong> <code style="background-color: #2d2d2d; color: #4fc1ff; padding: 2px 6px; border-radius: 4px; font-family: monospace;">mssql-server.service</code></li>
+      <li><strong>Execution:</strong> Active: <span style="color: #4ec9b0; font-weight: bold;">active (running)</span> since Mon 2025-09-15 05:33:22 UTC; 4 months 15 days ago</li>
+    </ul>
+  </div>
+</div>
+<div style="background-color: #1e1e1e; color: #ffffff; padding: 25px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; border-radius: 0 0 8px 8px; border-top: 1px dashed #3d3d3d;">
+
+  <!-- CPU Usage -->
+  <div style="margin-bottom: 25px;">
+    <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 10px 0; border-left: 3px solid #0078d4; padding-left: 8px;">⚡ CPU Usage History</h3>
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; text-align: left; color: #ffffff; font-size: 13px;">
+        <thead>
+          <tr style="border-bottom: 2px solid #3d3d3d; background-color: #252526;">
+            <th style="padding: 8px; color: #aaaaaa;">SQL Server CPU %</th>
+            <th style="padding: 8px; color: #aaaaaa;">System Idle %</th>
+            <th style="padding: 8px; color: #aaaaaa;">Other Process CPU %</th>
+            <th style="padding: 8px; color: #aaaaaa;">Event Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">100</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">2026-01-30 11:29:46.853</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">100</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">2026-01-30 11:28:46.850</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">100</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">2026-01-30 11:27:46.847</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">100</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">2026-01-30 11:26:46.847</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">0</td>
+            <td style="padding: 8px;">100</td>
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">2026-01-30 11:25:46.843</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Side-by-Side Metrics Grid -->
+  <div style="margin-bottom: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+    <!-- Page Life Expectancy -->
+    <div style="background-color: #252526; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d;">
+      <h4 style="color: #ffffff; margin: 0 0 8px 0; font-size: 14px; display: flex; align-items: center; gap: 6px;">📈 Page Life Expectancy</h4>
+      <p style="margin: 2px 0; font-size: 11px; color: #aaaaaa;">SQLServer:Buffer Manager</p>
+      <div style="font-size: 20px; font-weight: bold; color: #4ec9b0; margin-top: 5px;">4,266,895 <span style="font-size: 12px; color: #aaaaaa; font-weight: normal;">sec</span></div>
+    </div>
+
+    <!-- AlwaysOn Status -->
+    <div style="background-color: #252526; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d;">
+      <h4 style="color: #ffffff; margin: 0 0 8px 0; font-size: 14px; display: flex; align-items: center; gap: 6px;">🤝 AlwaysOn Status</h4>
+      <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+        <tr>
+          <td style="padding: 2px 0; color: #aaaaaa;">Replica / DB:</td>
+          <td style="padding: 2px 0; text-align: right; font-family: monospace; color: #ffffff;">db1 / anurag_test_db</td>
+        </tr>
+        <tr>
+          <td style="padding: 2px 0; color: #aaaaaa;">AG Name:</td>
+          <td style="padding: 2px 0; text-align: right; font-family: monospace; color: #ffffff;">agblog</td>
+        </tr>
+        <tr>
+          <td style="padding: 4px 0 2px 0; color: #aaaaaa;">Health State:</td>
+          <td style="padding: 4px 0 2px 0; text-align: right;">
+            <span style="background-color: rgba(78, 201, 176, 0.15); color: #4ec9b0; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px;">HEALTHY</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Active Connections -->
+  <div style="margin-bottom: 25px;">
+    <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 10px 0; border-left: 3px solid #0078d4; padding-left: 8px;">🔌 Active Connections</h3>
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; text-align: left; color: #ffffff; font-size: 13px;">
+        <thead>
+          <tr style="border-bottom: 2px solid #3d3d3d; background-color: #252526;">
+            <th style="padding: 8px; color: #aaaaaa;">Command / Text</th>
+            <th style="padding: 8px; color: #aaaaaa;">Database</th>
+            <th style="padding: 8px; color: #aaaaaa;">Session ID</th>
+            <th style="padding: 8px; color: #aaaaaa;">Status</th>
+            <th style="padding: 8px; color: #aaaaaa;">Wait Type</th>
+            <th style="padding: 8px; color: #aaaaaa;">Program Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #2d2d2d;">
+            <td style="padding: 8px; font-family: monospace; color: #cccccc;">sp_server_diagnostics</td>
+            <td style="padding: 8px;">master</td>
+            <td style="padding: 8px; font-family: monospace;">78</td>
+            <td style="padding: 8px;"><span style="color: #dcdcaa;">suspended</span></td>
+            <td style="padding: 8px; font-family: monospace; color: #aaaaaa;">SLEEP_TASK</td>
+            <td style="padding: 8px; font-size: 12px; color: #bbbbbb;">monitor-mssqldbcluster-monitor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Job Failures -->
+  <div>
+    <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 10px 0; border-left: 3px solid #0078d4; padding-left: 8px;">❌ SQL Agent Job Failures (Last 1 Hour)</h3>
+    <div style="background-color: rgba(78, 201, 176, 0.1); border: 1px solid rgba(78, 201, 176, 0.2); padding: 12px; border-radius: 6px; color: #4ec9b0; font-weight: 500;">
+      ✓ No job execution failures detected in the last hour.
+    </div>
+  </div>
+
+</div>
+
+<div style="background-color: #1e1e1e; color: #ffffff; padding: 25px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; border-radius: 8px 8px 0 0;">
+
+  <!-- Header -->
+  <div style="border-bottom: 1px solid #3d3d3d; padding-bottom: 12px; margin-bottom: 20px;">
+    <h2 style="color: #ffffff; margin: 0; font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+      ⚙️ CRONTAB AUTOMATION SCHEDULE
+    </h2>
+    <p style="margin: 4px 0 0 0; color: #9cdcfe; font-family: monospace; font-size: 13px;">
+      root@db1:/home/anurag# crontab -l
+    </p>
+  </div>
+
+  <!-- Crontab File Viewer -->
+  <div style="background-color: #252526; border: 1px solid #3d3d3d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin-bottom: 25px; overflow-x: auto;">
+    <span style="color: #6a9955;"># For example, you can run a backup of all your user accounts at 5 a.m every week with:</span><br>
+    <span style="color: #6a9955;"># 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/</span><br>
+    <span style="color: #6a9955;"># m h  dom mon dow   command</span><br><br>
+    
+    <span style="color: #b5cea8;">@reboot</span> /etc/notify-reboot.sh<br><br>
+    
+    <span style="color: #6a9955;"># Antivirus Scan Schedule</span><br>
+    <span style="color: #b5cea8;">10 1 * * *</span> /var/av/scan.sh<br><br>
+    
+    <span style="color: #6a9955;"># DB Scripts</span><br>
+    <span style="color: #b5cea8;">*/15 * * * *</span> /var/opt/mssql/backup/monitoring/dbcheck.sh<br>
+    <span style="color: #b5cea8;">0 6 * * *</span> /var/opt/mssql/backup/monitoring/dbhealthcheck.sh
+  </div>
+
+  <!-- Script 1 Header -->
+  <div style="border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; margin-bottom: 15px;">
+    <h3 style="color: #ffffff; margin: 0; font-size: 15px; font-weight: 600; border-left: 3px solid #0078d4; padding-left: 8px;">
+      📜 Script 1: 15-Minute Monitoring Block (<span style="color: #ce9178;">dbcheck.sh</span>)
+    </h3>
+  </div>
+
+  <!-- dbcheck.sh Code Box -->
+  <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; line-height: 1.5; color: #d4d4d4; overflow-x: auto;">
+    <span style="color: #569cd6; font-weight: bold;">#!/bin/bash</span><br>
+    <span style="color: #6a9955;"># File name : dbcheck.sh</span><br><br>
+    
+    REPORT=<span style="color: #ce9178;">/var/opt/mssql/backup/monitoring/reportstemp/dbcheck.$$</span><br>
+    SERVER=<span style="color: #9cdcfe;">`hostname`</span><br><br>
+    
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">-n 'Report for host : '</span> &gt; $REPORT<br>
+    <span style="color: #569cd6;">echo</span> $SERVER &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Gather System Metrics</span><br>
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">'Server Uptime'</span> &gt;&gt; $REPORT; uptime &gt;&gt; $REPORT<br>
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">'Cluster Status'</span> &gt;&gt; $REPORT; /usr/sbin/crm status &gt;&gt; $REPORT<br>
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">'DB Drive Space Details'</span> &gt;&gt; $REPORT; df -h &gt;&gt; $REPORT<br>
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">'SQL Server Status'</span> &gt;&gt; $REPORT; systemctl status mssql-server -q | head -5 &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Query Live SQL Performance Metrics</span><br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..cpuutilization"</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..CheckPLE"</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..activesessions2"</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..agmonitor1"</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..last1hrjobstatus"</span> &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Filter Errors Last 15 Min</span><br>
+    awk -v d1=<span style="color: #ce9178;">"$(date --date="15 minutes ago" "+%Y-%m-%d %H:%M")"</span> -v d2=<span style="color: #ce9178;">"$(date "+%Y-%m-%d %H:%M")"</span> <span style="color: #ce9178;">'$0 &gt; d1 && $0 &lt; d2 || $0 ~ d2'</span> /var/opt/mssql/log/errorlog &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Dispatch automated email via mailutils</span><br>
+    cat $REPORT | mail -s <span style="color: #ce9178;">"AnuragTest_$SERVER"</span> anurag.dobade@gmail.com<br>
+    rm $REPORT
+  </div>
+</div>
+
+
+
+
+<div style="background-color: #1e1e1e; color: #ffffff; padding: 25px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; border-radius: 0 0 8px 8px; border-top: 1px dashed #3d3d3d;">
+
+  <!-- Script 2 Header -->
+  <div style="border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; margin-bottom: 15px;">
+    <h3 style="color: #ffffff; margin: 0; font-size: 15px; font-weight: 600; border-left: 3px solid #4ec9b0; padding-left: 8px;">
+      📜 Script 2: Daily Maintenance Profile (<span style="color: #ce9178;">dbhealthcheck.sh</span>)
+    </h3>
+  </div>
+
+  <!-- dbhealthcheck.sh Code Box -->
+  <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; line-height: 1.5; color: #d4d4d4; overflow-x: auto;">
+    <span style="color: #569cd6; font-weight: bold;">#!/bin/bash</span><br>
+    <span style="color: #6a9955;"># File name : dbhealthcheck.sh</span><br><br>
+    
+    REPORT=<span style="color: #ce9178;">/var/opt/mssql/backup/monitoring/reportstemp/dbhealthcheck.$$</span><br>
+    SERVER=<span style="color: #9cdcfe;">`hostname`</span><br><br>
+    
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">-n 'Report for host : '</span> &gt; $REPORT<br>
+    <span style="color: #569cd6;">echo</span> $SERVER &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Core OS Status Info Extraction</span><br>
+    uptime &gt;&gt; $REPORT<br>
+    /usr/sbin/crm status &gt;&gt; $REPORT<br>
+    df -h &gt;&gt; $REPORT<br>
+    systemctl status mssql-server -q | head -5 &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Live Engine Performance Validation</span><br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P zGPxEBz0aGL@ -Q <span style="color: #ce9178;">"exec querytool..cpuutilization"</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..activesessions2"</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..agmonitor1"</span> &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Verify Database Backup Strategy Chains</span><br>
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">'Last Full DB Backup:'</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..lastfullbkp"</span> &gt;&gt; $REPORT<br>
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">'Last Differential Backup:'</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..lastdiffbkp"</span> &gt;&gt; $REPORT<br>
+    <span style="color: #569cd6;">echo</span> <span style="color: #ce9178;">'Last log Backup:'</span> &gt;&gt; $REPORT<br>
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U anurag_dba -P password@ -Q <span style="color: #ce9178;">"exec querytool..lastlogbkp"</span> &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Full 24 Hour Log Event Filtering</span><br>
+    awk -v d1=<span style="color: #ce9178;">"$(date --date="-24 hour" "+%Y-%m-%d %H:%M")"</span> -v d2=<span style="color: #ce9178;">"$(date "+%Y-%m-%d %H:%M")"</span> <span style="color: #ce9178;">'$0 &gt; d1 && $0 &lt; d2 || $0 ~ d2'</span> /var/opt/mssql/log/errorlog &gt;&gt; $REPORT<br><br>
+    
+    <span style="color: #6a9955;"># Email out complete report payload</span><br>
+    cat $REPORT | mail -s <span style="color: #ce9178;">"Daily_DB_Health_Report_AnuragTest_$SERVER"</span> anurag.dobade@gmail.com<br>
+    rm $REPORT
+  </div>
+</div>
+
