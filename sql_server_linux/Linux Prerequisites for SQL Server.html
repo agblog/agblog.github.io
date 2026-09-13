@@ -1,1 +1,138 @@
-﻿<div dir="ltr" trbidi="on"><br></div><div dir="ltr" trbidi="on"><b>Pre-requesites</b>:</div><div dir="ltr" trbidi="on"><br></div><div dir="ltr" trbidi="on">1.	A machine (VM, physical, etc) with Linux&nbsp;</div><div dir="ltr" trbidi="on">-Red Hat Enterprise Linux (7.3 or 7.4)</div><div dir="ltr" trbidi="on">-SUSE Linux Enterprise Server (v12 SP2)</div><div dir="ltr" trbidi="on">-Ubuntu (16.04)</div><div dir="ltr" trbidi="on">-Docker (1.8+)</div><div dir="ltr" trbidi="on"><br></div><div dir="ltr" trbidi="on">2.	The latest version of SQL Server 2017 downloaded you can get it here and copied onto your Linux machine.</div><div dir="ltr" trbidi="on"><br></div><div dir="ltr" trbidi="on">3.	A user to run the install (different than root)</div><div dir="ltr" trbidi="on"><br></div><div dir="ltr" trbidi="on"><div dir="ltr" trbidi="on"><h2 dir="ltr">System requirements</h2><p dir="ltr">SQL Server 2017 has the following system requirements for Linux:</p><div dir="ltr" align="left"><table><colgroup><col width="78"><col width="482"></colgroup><tbody><tr><td><br></td><td><br></td></tr><tr><td><p dir="ltr">Memory</p></td><td><p dir="ltr">2 GB</p></td></tr><tr><td><p dir="ltr">File System</p></td><td><p dir="ltr">XFS or EXT4 (other file systems, such as BTRFS, are unsupported)</p></td></tr><tr><td><p dir="ltr">Disk space</p></td><td><p dir="ltr">6 GB</p></td></tr><tr><td><p dir="ltr">Processor speed</p></td><td><p dir="ltr">2 GHz</p></td></tr><tr><td><p dir="ltr">Processor cores</p></td><td><p dir="ltr">2 cores</p></td></tr><tr><td><p dir="ltr">Processor type</p></td><td><p dir="ltr">x64-compatible only</p></td></tr></tbody></table></div><br><br><h2 dir="ltr">Ref for detailed on LINUX SQL Server:</h2><br><p dir="ltr"><a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup?view=sql-server-2017#system">https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup?view=sql-server-2017#system</a></p><br><p dir="ltr"><a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-2017">https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-2017</a></p><br><h2 dir="ltr">Installation of LINUX</h2><p dir="ltr"><a href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-2017">https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-2017</a></p><br><h2 dir="ltr">Packages:</h2><p dir="ltr">Download latest packages:</p><p dir="ltr"><a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-14.0.3048.4-1.x86_64.rpm">mssql-server-14</a>.XXXXX</p><p dir="ltr"><a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-agent-14.0.1000.169-2.x86_64.rpm">mssql-server-agent-14</a>.XX</p><p dir="ltr"><a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-fts-14.0.1000.169-2.x86_64.rpm">mssql-server-fts</a>.xx</p><p dir="ltr"><a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-ha-14.0.1000.169-2.x86_64.rpm">mssql-server-ha</a>.xx</p><p dir="ltr"><a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-is-14.0.1000.169-1.x86_64.rpm">mssql-server-is</a>.xx</p><br><p dir="ltr">Link:</p><p dir="ltr"><a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/">https://packages.microsoft.com/rhel/7/mssql-server-2017/</a></p><br><p dir="ltr"><img src="https://lh5.googleusercontent.com/VtVtZ258QqlrcVibkoGzrrqkdYlTW6WW1N0U2B03_NwpynFIii6lEH4gIv6spN40oPe6oW8lcp84JZAJNcAjSeZd3olASPKThv_w5bCNQTro34X7n7Z8BN-oNzixTewI_R7655aTuf3mO6_oVA" width="553" height="342"></p><h2 dir="ltr">CUs for SQL Server 2017 on LINUX</h2><p dir="ltr">Details on CU fixes and updates:</p><p dir="ltr"><a href="https://support.microsoft.com/en-us/help/4466404/cumulative-update-13-for-sql-server-2017">https://support.microsoft.com/en-us/help/4466404/cumulative-update-13-for-sql-server-2017</a></p><p dir="ltr">Only Most recent CU (Which contains all fixes from previous CU ie. No need to install all CUs) that was released for SQL Server 2017 for LINUX is available at the Download Center At&nbsp;<a href="https://packages.microsoft.com/">https://packages.microsoft.com/</a>.</p><br><p dir="ltr"><img src="https://lh6.googleusercontent.com/mKyXtaRdsfzJFrkHJeyeYJsewk7WVAlYek3hMIAtmUxun0SG74IWRLxeQqN3456XYeejJlgoUzXZaxZUm4yaL9nL_c0DKPwP5CBml1KMQmTsjJKVJg2t7C8cfw8BiBMnyMRYNdxqvhpYAdUhVw" width="200" height="338"></p><p dir="ltr">Click on rhel :</p><p dir="ltr"><img src="https://lh4.googleusercontent.com/4VvYiywxJxt-_3NGtxCDOm7yn4_tu3DKdGKucZMuU0sbPyFKuKN_k1hK5bdLY4ZkA9YT-LRSOhpTOQJTcsbdAdQqFG07tY5knDuUrtaVEoFixeCdKvqAk2fyywyCff1LBPgVpBZGcEuNlFqyKg" width="553" height="324"></p><br></div></div>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1: Linux Prerequisites for SQL Server</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; line-height: 1.6; font-size: 14px; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; font-size: 20px; }
+    h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; margin-bottom: 10px; border-left: 3px solid #0078d4; padding-left: 8px; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; text-align: left; margin: 15px 0; font-size: 13px; }
+    th { padding: 10px; color: #aaaaaa; background-color: #1a1a1a; border-bottom: 2px solid #3d3d3d; font-weight: 600; }
+    td { padding: 10px; border-bottom: 1px solid #2d2d2d; color: #ffffff; }
+    .link-card { background: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; margin: 8px 0; }
+    .link-card a { color: #4fc1ff; text-decoration: none; }
+    .link-card a:hover { text-decoration: underline; }
+    .notice-box { background-color: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 15px; border-radius: 0 6px 6px 0; margin-bottom: 20px; font-size: 13.5px; color: #cccccc; }
+    .alert-box { background-color: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 15px; border-radius: 0 6px 6px 0; margin: 15px 0; font-size: 13.5px; color: #ff8888; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
+    .comment { color: #6a9955; font-style: italic; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Master Hub</a>
+
+  <div class="container">
+    <h2>📋 Linux Prerequisites for SQL Server</h2>
+    <p>This reference guide outlines the vital step-by-step prerequisite roadmap required to properly prepare your hardware, install the base operating system, register your software license entitlements, and avoid common package blockages during a SQL Server installation on Linux.</p>
+
+    <!-- CRITICAL INITIAL DEPLOYMENT CHECKPOINT -->
+    <div class="notice-box">
+      🚀 <strong>FIRST STEP: Host OS Provisioning & Disk Layout</strong><br>
+      Before you can begin any database engine setup, you must have a clean, stable Linux host running on your machine or VM container. If your base virtual server is not yet deployed, stop here and execute the initial setup playbook to map out your core OS partitions cleanly:
+      <div class="link-card" style="margin-top: 10px; background-color: #252526;">
+        👉 <a href="./1 Installing CentOS7 or RHEL7.3 First On new 500GB Disk.html">Go to Step 1: Downloading & Installing Red Hat Linux / CentOS on VMware</a>
+      </div>
+    </div>
+
+    <!-- RECLAIMING SPACE AND DISK GEOMETRY -->
+    <h3>📐 Virtual Drive Configuration & Partition Requirements</h3>
+    <p>When partitioning a new drive (such as a standard 500 GB storage block), observe these strict layout best practices during the Linux installation wizard phase:</p>
+    <ul>
+      <li><strong>Disk Partition Style:</strong> Ensure your storage layouts are configured using the <strong>Standard Partition</strong> model rather than dynamic styles.</li>
+      <li><strong>Reclaiming Clean Storage:</strong> If you are working on a disk with lingering data blocks, make sure to back up vital items, select the **Reclaim Space** wizard function, and wipe old partitions entirely to ensure a clean install environment.</li>
+      <li><strong>The 185 GB Architecture Splitting Strategy:</strong> For structured multi-boot configurations or modular testing, assign a clean total footprint of approximately **185 GB** to handle your system directories. Carve out standard independent partition tracks for the following core filesystems:
+        <ul style="margin-top: 5px; color: #cccccc;">
+          <li><code>/boot</code> (Kernel bootstrap files)</li>
+          <li><code>swap</code> (System virtual memory paging partition)</li>
+          <li><code>/home</code> (User account profiles directory tree)</li>
+          <li><code>/</code> (The Root system directory block)</li>
+        </ul>
+      </li>
+      <li><strong>Leftover Capacity Insulation:</strong> Following this mapping framework leaves the remaining space (approximately 281 GB out of a 500 GB disk) unallocated, keeping it safely available as isolated buffer space for dual-boot configurations or additional database expansion drives.</li>
+    </ul>
+
+    <!-- MINIMUM SYSTEM HARDWARE REQUIREMENTS -->
+    <h3>🖥️ Baseline Engine Hardware Requirements</h3>
+    <p>Your prepared virtual server node must meet or exceed these physical limits to load and sustain the database engine process daemon:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Resource Constraint</th>
+          <th>Minimum Threshold</th>
+          <th>Operational Performance Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>System Memory (RAM)</strong></td>
+          <td><strong>2 GB Minimum</strong></td>
+          <td>Required to start the service engine and handle internal memory threads. Always account for this baseline when tracking resource limits.</td>
+        </tr>
+        <tr>
+          <td><strong>File System Compatibility</strong></td>
+          <td><strong>XFS or EXT4 Only</strong></td>
+          <td>SQL Server is fully optimized for these formats. Unvalidated file structures (like BTRFS) are entirely unsupported.</td>
+        </tr>
+        <tr>
+          <td><strong>Available Disk Space</strong></td>
+          <td><strong>6 GB Free Space</strong></td>
+          <td>Ensures sufficient space for the core database binaries and application files under the <code>/opt/mssql</code> tree.</td>
+        </tr>
+        <tr>
+          <td><strong>Processor Speed</strong></td>
+          <td><strong>2 GHz Clock Speed</strong></td>
+          <td>Guarantees reliable transaction throughput and calculation processing speeds.</td>
+        </tr>
+        <tr>
+          <td><strong>Processor Cores</strong></td>
+          <td><strong>2 Physical Cores</strong></td>
+          <td>Required to manage concurrent database processes and multi-threaded tracking loops.</td>
+        </tr>
+        <tr>
+          <td><strong>CPU Type</strong></td>
+          <td><strong>x64-Compatible Architecture</strong></td>
+          <td>Optimized for 64-bit AMD and Intel processor sets. Emulation tools are not supported for production.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- RED HAT SUBSCRIPTION HARDENING -->
+    <h3>🔑 Registration with Red Hat Subscription Manager</h3>
+    <div class="alert-box">
+      ❌ <strong>Critical Package Dependency Error:</strong> If your RHEL environment is not actively linked to your customer account entitlements, executing standard terminal installation utilities will trigger immediate breakage alerts such as: <em>"Dependencies Error: As Subscription is necessary to install packages on RHEL."</em>
+    </div>
+    
+    <p>To avoid repository lockouts, log into the newly deployed server as the **root user** and complete these registration steps before installing database tools:</p>
+    
+    <p><span class="seq-num">1.</span> Run the registration flag inside the console and provide your Red Hat customer portal access credentials:</p>
+    <div class="code-box">
+      <span class="comment"># Activate your server using your personal Red Hat account credentials</span><br>
+      sudo subscription-manager register --username your_username --password your_password
+    </div>
+
+    <p><span class="seq-num">2.</span> Check the subscription tool status overview logs to guarantee your entitlements show as attached and active:</p>
+    <div class="code-box">
+      sudo subscription-manager status
+    </div>
+
+    <!-- REPOSITORY MANAGEMENT & SOFTWARE PACKAGES -->
+    <h3>📦 System Component Package Matrix</h3>
+    <p>Once you are online and registered, the official Microsoft software repositories break features into modular packages to keep your database environment clean and lightweight:</p>
+    <ul>
+      <li><strong>mssql-server:</strong> The foundational database engine container binaries and system schemas package.</li>
+      <li><strong>mssql-server-agent:</strong> Unlocks automation features, execution alerting properties, and background maintenance scheduling.</li>
+      <li><strong>mssql-server-fts:</strong> Adds linguistically-aware indexing and text pattern queries via Full-Text Search.</li>
+      <li><strong>mssql-server-ha:</strong> Provides high availability clustering integration hooks and Always On data transport loops.</li>
+      <li><strong>mssql-server-is:</strong> Enables execution of Integration Services (SSIS) data migration and ETL pipelines.</li>
+    </ul>
+
+    <!-- SECURITY BEST PRACTICES -->
+    <h3>🛡️ Operational Best Practices & Account Security</h3>
+    <ul>
+      <li><strong>Non-Root Hardening:</strong> Never run regular queries or script execution utilities under the absolute <code>root</code> administrative profile. Always provision an independent systems administrator group login to handle daily database tasks.</li>
