@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter 1: Linux Prerequisites for SQL Server</title>
   <style>
-    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; line-height: 1.6; font-size: 14px; }
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 950px; margin: 0 auto; line-height: 1.6; font-size: 14px; }
     .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
     h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; font-size: 20px; }
     h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; margin-bottom: 10px; border-left: 3px solid #0078d4; padding-left: 8px; }
@@ -21,6 +21,9 @@
     .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
     .comment { color: #6a9955; font-style: italic; }
     .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+    .image-tag { display: inline-block; background-color: #333333; color: #85c46c; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-family: monospace; margin-top: 5px; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; transition: 0.2s; }
+    .home-btn:hover { background-color: #0078d4; }
   </style>
 </head>
 <body>
@@ -29,42 +32,30 @@
 
   <div class="container">
     <h2>📋 Linux Prerequisites for SQL Server</h2>
-    <p>This reference guide outlines the vital step-by-step prerequisite roadmap required to properly prepare your hardware, install the base operating system, register your software license entitlements, and avoid common package blockages during a SQL Server installation on Linux.</p>
+    <p>This reference blueprint outlines the system hardware requirements, core environment parameters, package repositories, and licensing structures needed before running a database server deployment on Linux platforms.</p>
 
-    <!-- CRITICAL INITIAL DEPLOYMENT CHECKPOINT -->
+    <!-- OS INSTALLATION ROADMAP CHECKS -->
     <div class="notice-box">
-      🚀 <strong>FIRST STEP: Host OS Provisioning & Disk Layout</strong><br>
-      Before you can begin any database engine setup, you must have a clean, stable Linux host running on your machine or VM container. If your base virtual server is not yet deployed, stop here and execute the initial setup playbook to map out your core OS partitions cleanly:
+      🚀 <strong>FIRST STEP: Deploy Your Linux Host and Core Storage Disks</strong><br>
+      Before configuring database properties, you must establish a stable Linux server operating environment. If you are building a virtual system or setting up dual-boot partition boundaries, leverage our direct local repository guides first:
+      
       <div class="link-card" style="margin-top: 10px; background-color: #252526;">
-        👉 <a href="./1 Installing CentOS7 or RHEL7.3 First On new 500GB Disk.html">Go to Step 1: Downloading & Installing Red Hat Linux / CentOS on VMware</a>
+        👉 <a href="./1 Installing CentOS7 or RHEL7.3 First On new 500GB Disk.html">Playbook 1: Download & Install Red Hat Linux 7.3/7.4 on VMware Workstation Pro</a>
+      </div>
+      
+      <div class="link-card" style="margin-top: 6px; background-color: #252526;">
+        👉 <a href="./3 After Windows 2019 Installation dual boot configuration.html">Playbook 2: Multi-Boot Space Partitioning, GRUB & EasyBCD Configurations</a>
       </div>
     </div>
 
-    <!-- RECLAIMING SPACE AND DISK GEOMETRY -->
-    <h3>📐 Virtual Drive Configuration & Partition Requirements</h3>
-    <p>When partitioning a new drive (such as a standard 500 GB storage block), observe these strict layout best practices during the Linux installation wizard phase:</p>
-    <ul>
-      <li><strong>Disk Partition Style:</strong> Ensure your storage layouts are configured using the <strong>Standard Partition</strong> model rather than dynamic styles.</li>
-      <li><strong>Reclaiming Clean Storage:</strong> If you are working on a disk with lingering data blocks, make sure to back up vital items, select the **Reclaim Space** wizard function, and wipe old partitions entirely to ensure a clean install environment.</li>
-      <li><strong>The 185 GB Architecture Splitting Strategy:</strong> For structured multi-boot configurations or modular testing, assign a clean total footprint of approximately **185 GB** to handle your system directories. Carve out standard independent partition tracks for the following core filesystems:
-        <ul style="margin-top: 5px; color: #cccccc;">
-          <li><code>/boot</code> (Kernel bootstrap files)</li>
-          <li><code>swap</code> (System virtual memory paging partition)</li>
-          <li><code>/home</code> (User account profiles directory tree)</li>
-          <li><code>/</code> (The Root system directory block)</li>
-        </ul>
-      </li>
-      <li><strong>Leftover Capacity Insulation:</strong> Following this mapping framework leaves the remaining space (approximately 281 GB out of a 500 GB disk) unallocated, keeping it safely available as isolated buffer space for dual-boot configurations or additional database expansion drives.</li>
-    </ul>
-
-    <!-- MINIMUM SYSTEM HARDWARE REQUIREMENTS -->
-    <h3>🖥️ Baseline Engine Hardware Requirements</h3>
-    <p>Your prepared virtual server node must meet or exceed these physical limits to load and sustain the database engine process daemon:</p>
+    <!-- HARDWARE RESOURCE REQUIREMENTS -->
+    <h3>📐 Baseline System Hardware Requirements</h3>
+    <p>Your physical node or virtual machine container must meet or exceed these physical resource limits to successfully launch the core engine process:</p>
     <table>
       <thead>
         <tr>
           <th>Resource Constraint</th>
-          <th>Minimum Threshold</th>
+          <th>Minimum Threshold Specification</th>
           <th>Operational Performance Notes</th>
         </tr>
       </thead>
@@ -72,67 +63,76 @@
         <tr>
           <td><strong>System Memory (RAM)</strong></td>
           <td><strong>2 GB Minimum</strong></td>
-          <td>Required to start the service engine and handle internal memory threads. Always account for this baseline when tracking resource limits.</td>
+          <td>Required to safely execute base internal system threads and process memory managers. Always verify this capacity before adjusting server constraints.</td>
         </tr>
         <tr>
-          <td><strong>File System Compatibility</strong></td>
-          <td><strong>XFS or EXT4 Only</strong></td>
-          <td>SQL Server is fully optimized for these formats. Unvalidated file structures (like BTRFS) are entirely unsupported.</td>
+          <td><strong>File System Type</strong></td>
+          <td><strong>XFS or EXT4 Format</strong></td>
+          <td>Engine filesystems must use these formats. Dynamic formatting models like BTRFS are entirely unsupported.</td>
         </tr>
         <tr>
           <td><strong>Available Disk Space</strong></td>
           <td><strong>6 GB Free Space</strong></td>
-          <td>Ensures sufficient space for the core database binaries and application files under the <code>/opt/mssql</code> tree.</td>
+          <td>Ensures room for base product libraries and system files under the primary installation paths.</td>
         </tr>
         <tr>
           <td><strong>Processor Speed</strong></td>
           <td><strong>2 GHz Clock Speed</strong></td>
-          <td>Guarantees reliable transaction throughput and calculation processing speeds.</td>
+          <td>Maintains steady computational speeds and query transaction execution.</td>
         </tr>
         <tr>
           <td><strong>Processor Cores</strong></td>
           <td><strong>2 Physical Cores</strong></td>
-          <td>Required to manage concurrent database processes and multi-threaded tracking loops.</td>
+          <td>Required to manage basic multi-threaded transaction logs and synchronization loops.</td>
         </tr>
         <tr>
-          <td><strong>CPU Type</strong></td>
-          <td><strong>x64-Compatible Architecture</strong></td>
-          <td>Optimized for 64-bit AMD and Intel processor sets. Emulation tools are not supported for production.</td>
+          <td><strong>CPU Architecture</strong></td>
+          <td><strong>x64-Compatible Only</strong></td>
+          <td>Optimized for 64-bit Intel and AMD processor configurations. Emulation frameworks are not supported.</td>
         </tr>
       </tbody>
     </table>
 
-    <!-- RED HAT SUBSCRIPTION HARDENING -->
-    <h3>🔑 Registration with Red Hat Subscription Manager</h3>
-    <div class="alert-box">
-      ❌ <strong>Critical Package Dependency Error:</strong> If your RHEL environment is not actively linked to your customer account entitlements, executing standard terminal installation utilities will trigger immediate breakage alerts such as: <em>"Dependencies Error: As Subscription is necessary to install packages on RHEL."</em>
-    </div>
-    
-    <p>To avoid repository lockouts, log into the newly deployed server as the **root user** and complete these registration steps before installing database tools:</p>
-    
-    <p><span class="seq-num">1.</span> Run the registration flag inside the console and provide your Red Hat customer portal access credentials:</p>
-    <div class="code-box">
-      <span class="comment"># Activate your server using your personal Red Hat account credentials</span><br>
-      sudo subscription-manager register --username your_username --password your_password
-    </div>
-
-    <p><span class="seq-num">2.</span> Check the subscription tool status overview logs to guarantee your entitlements show as attached and active:</p>
-    <div class="code-box">
-      sudo subscription-manager status
-    </div>
-
-    <!-- REPOSITORY MANAGEMENT & SOFTWARE PACKAGES -->
-    <h3>📦 System Component Package Matrix</h3>
-    <p>Once you are online and registered, the official Microsoft software repositories break features into modular packages to keep your database environment clean and lightweight:</p>
+    <!-- DISK ALLOCATION BEST PRACTICES -->
+    <h3>📐 Virtual Drive & Space Reclaiming Strategies</h3>
+    <p>When provisioning your operating system drives (such as on a new 500 GB layout), adhere to these layout rules:</p>
     <ul>
-      <li><strong>mssql-server:</strong> The foundational database engine container binaries and system schemas package.</li>
-      <li><strong>mssql-server-agent:</strong> Unlocks automation features, execution alerting properties, and background maintenance scheduling.</li>
-      <li><strong>mssql-server-fts:</strong> Adds linguistically-aware indexing and text pattern queries via Full-Text Search.</li>
-      <li><strong>mssql-server-ha:</strong> Provides high availability clustering integration hooks and Always On data transport loops.</li>
-      <li><strong>mssql-server-is:</strong> Enables execution of Integration Services (SSIS) data migration and ETL pipelines.</li>
+      <li><strong>Device Type Mapping:</strong> Always designate the disk layout formatting structures to utilize a **Standard Partition** type profile.</li>
+      <li><strong>Reclaim Space Allocation:</strong> If you are installing across an old disk, run the **Reclaim Space** command option inside the setup wizard to purge historic volumes and guarantee clean storage tracks.</li>
+      <li><strong>The 185 GB Directory Allocation Matrix:</strong> Divide a custom 185 GB chunk from your drive array to isolate the core operating system files. Build separate storage volumes for:
+        <ul style="margin-top: 5px; color: #cccccc; list-style-type: square; padding-left: 20px;">
+          <li><code>/boot</code> (For kernel boot manager files)</li>
+          <li><code>swap</code> (The system virtual memory paging track)</li>
+          <li><code>/home</code> (Isolates local user profiles data folders)</li>
+          <li><code>/</code> (The Root primary system operations volume directory)</li>
+        </ul>
+      </li>
+      <li><strong>Expansion Insulation:</strong> This layout keeps the remaining 281 GB of your physical drive space unallocated (showing as pink in the setup summary charts), making it perfectly available for side-by-side Windows setups or dedicated secondary database storage groups.</li>
     </ul>
 
-    <!-- SECURITY BEST PRACTICES -->
-    <h3>🛡️ Operational Best Practices & Account Security</h3>
+    <!-- RED HAT ENTITLEMENT REGISTRATION -->
+    <h3>🔑 Red Hat Entitlement Server Registration</h3>
+    <div class="alert-box">
+      ❌ <strong>Critical Repository Lockout Error:</strong> If your Red Hat machine is not authenticated with an active account subscription, attempting to run online package queries will trigger immediate failure alerts such as: <em>"Dependencies Error: As Subscription is necessary to install packages on RHEL."</em>
+    </div>
+    <p>To authorize package streams, connect to your server console as the **root user** and run these registration lines:</p>
+    <div class="code-box">
+      <span class="comment"># Update your credentials immediately to attach to the official product channels</span><br>
+      subscription-manager register --username your_username --password your_password
+    </div>
+    <span class="image-tag">📷 Image Indicator: subscription-manager console activation logs check</span>
+
+    <!-- PLATFORM & VERSION COVERAGE MATRIX -->
+    <h3>🌐 Supported Operating System Platforms</h3>
+    <p>The core transaction properties are tested, supported, and validated across these system distributions:</p>
     <ul>
-      <li><strong>Non-Root Hardening:</strong> Never run regular queries or script execution utilities under the absolute <code>root</code> administrative profile. Always provision an independent systems administrator group login to handle daily database tasks.</li>
+      <li><strong>Red Hat Enterprise Linux (RHEL):</strong> Supported on bare metal or virtual containers on versions 7.3, 7.4, 8.x, 9.x, and 10.x.</li>
+      <li><strong>Ubuntu Server:</strong> Fully compatible across LTS releases (including versions 16.04, 18.04, 20.04, 22.04, and 24.04).</li>
+      <li><strong>SUSE Linux Enterprise Server (SLES):</strong> Supported on version 12 (SP2 to SP5) and version 15 systems. *(Note: Starting in SQL Server 2025, SLES is no longer supported).*</li>
+      <li><strong>Docker Engine:</strong> Supported on version 1.8 or higher platforms on x86-64 processors.</li>
+    </ul>
+
+    <!-- PACKAGE REPOSITORY FILES INDEX -->
+    <h3>📦 Component Package Inventory Paths</h3>
+    <p>When downloading system components or pulling down offline dependencies, look under the official Microsoft package distribution channel routes:</p>
+    <div class="link-card">📂 <strong>Microsoft Packages Portal:</strong> <a href="https://packages.microsoft.com/" target="_blank">https://packages.microsoft.com/</a></div>
