@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Server 2025 Always On Deployment Center</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 850px; margin: 0 auto; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h1 { font-size: 24px; color: #ffffff; margin-top: 0; margin-bottom: 5px; }
+    .subtitle { color: #4ec9b0; font-size: 14px; margin-bottom: 25px; font-weight: 500; }
+    .runbook-menu { list-style: none; padding: 0; margin: 20px 0; }
+    .runbook-menu li { background: #1a1a1a; margin-bottom: 12px; border: 1px solid #2d2d2d; border-radius: 6px; transition: 0.2s; }
+    .runbook-menu li:hover { border-color: #0078d4; background-color: rgba(255,255,255,0.02); }
+    .runbook-menu a { display: block; padding: 18px; color: #ffffff; text-decoration: none; font-weight: 500; font-size: 15px; }
+    .step-num { color: #4fc1ff; font-family: monospace; font-weight: bold; margin-right: 10px; }
+    .intro-banner { background-color: rgba(0, 120, 212, 0.1); border-left: 4px solid #0078d4; padding: 15px; border-radius: 0 6px 6px 0; margin-bottom: 25px; font-size: 13.5px; color: #cccccc; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📑 Clusterless Always On Deployment Center</h1>
+    <div class="subtitle">Production Blueprint for 2-Node Synchronous Read-Scale Availability Groups on RHEL 9.8</div>
+    
+    <div class="intro-banner">
+      👋 <strong>Hi Team!</strong> This documentation center is split into independent step-by-step modules to keep things simple and easy to track. This cluster topography runs directly at the database engine tier (<code>CLUSTER_TYPE = NONE</code>), removing the need for heavy Linux clustering software (like Pacemaker) to drastically lower backend system overhead.
+    </div>
+
+    <p style="color: #dddddd; margin-bottom: 20px;">Select an implementation chapter below to begin your deployment tasks:</p>
+
+    <ul class="runbook-menu">
+      <li><a href="./01_env_spec.html"><span class="step-num">Chapter 1.</span> 🎛️ Hardware Capacity & Host Profile Matrix</a></li>
+      <li><a href="./02_network_firewall.html"><span class="step-num">Chapter 2.</span> 🛠️ Hostname Mappings & OS Firewall Openings</a></li>
+      <li><a href="./03_storage_prep.html"><span class="step-num">Chapter 3.</span> 🗄️ Folder Allocations & SELinux Security Tuning</a></li>
+      <li><a href="./04_engine_install.html"><span class="step-num">Chapter 4.</span> 📦 SQL Server 2025 Engine Installation Steps</a></li>
+      <li><a href="./05_hadr_provisioning.html"><span class="step-num">Chapter 5.</span> 🚀 Always On Certificate Creation & Data Sync</a></li>
+      <li><a href="./06_logs_and_queries.html"><span class="step-num">Chapter 6.</span> 🔍 CLI Troubleshooting Logs & Health Queries</a></li>
+    </ul>
+  </div>
+
+</body>
+</html>

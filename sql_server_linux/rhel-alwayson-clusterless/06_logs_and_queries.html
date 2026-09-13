@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 6: Logs & Verification Queries</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, sans-serif; padding: 40px 20px; max-width: 950px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; }
+    h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #d4d4d4; margin: 10px 0; overflow-x: auto; }
+    .sql-kw { color: #569cd6; font-weight: bold; }
+    .comment { color: #6a9955; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; }
+    .home-btn:hover { background-color: #0078d4; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
+
+  <div class="container">
+    <h2>🔍 Chapter 6: Troubleshooting Logs & Health Checking Queries</h2>
+    <p>This chapter provides the tools to monitor your database clusterless sync health and review background service operations.</p>
+
+    <h3>Step 6.1: Run Command Line Diagnostic Scripts</h3>
+    <p>Run these log commands directly from your server console to trace connectivity anomalies or runtime errors:</p>
+    <div class="code-box">
+      <span class="comment"># View the last 100 entries inside the native SQL log file</span><br>
+      tail -n 100 /var/opt/mssql/log/errorlog<br><br>
+      
+      <span class="comment"># Search the log file to show only replication and mirroring details</span><br>
+      sudo grep -E "Database mirroring|Availability Groups" /var/opt/mssql/log/errorlog<br><br>
+      
+      <span class="comment"># Pull background system service manager notifications for the database daemon</span><br>
+      sudo journalctl -u mssql-server -n 50 --no-pager
+    </div>
+
+    <h3>Step 6.2: Check Replica Synchronization States</h3>
+    <p>Run this query block inside a database client window to confirm active data protection states across your host replicas:</p>
+    <div class="code-box">
+      <span class="sql-kw">SELECT</span> <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;ar.replica_server_name, <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;adc.database_name, <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;drs.synchronization_state_desc, <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;drs.synchronization_health_desc,<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;drs.is_local<br>
+      <span class="sql-kw">FROM</span> sys.dm_hadr_database_replica_states drs<br>
+      <span class="sql-kw">JOIN</span> sys.availability_replicas ar <span class="sql-kw">ON</span> drs.replica_id = ar.replica_id<br>
+      <span class="sql-kw">JOIN</span> sys.availability_databases_cluster adc <span class="sql-kw">ON</span> drs.group_database_id = adc.group_database_id;<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <h3>Step 6.3: Monitor Automatic Seeding Progress</h3>
+    <p>Run this database metadata check to verify automatic replication file copy jobs:</p>
+    <div class="code-box">
+      <span class="sql-kw">SELECT</span> <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;start_time, <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;completion_time, <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;current_state, <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;performed_seeding, <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;failure_state_desc<br>
+      <span class="sql-kw">FROM</span> sys.dm_hadr_automatic_seeding;<br>
+      <span class="sql-kw">GO</span>
+    </div>
+  </div>
+
+</body>
+</html>

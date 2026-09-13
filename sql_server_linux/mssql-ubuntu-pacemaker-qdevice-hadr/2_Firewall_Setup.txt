@@ -1,0 +1,22 @@
+# Reset rules tables to baseline parameters
+sudo ufw disable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Establish multi-subnet trusted address spaces boundaries
+sudo ufw allow from 172.20.1.0/24 comment 'Primary DC Subnet Range'
+sudo ufw allow from 172.30.1.0/24 comment 'Disaster Recovery Subnet Range'
+sudo ufw allow from 10.10.10.0/24 comment 'External Witness Net Voter Segment'
+
+# Allow core cluster infrastructure services
+sudo ufw allow 22/tcp comment 'SSH Secure Console Protocol'
+sudo ufw allow 1433/tcp comment 'Microsoft SQL Engine Traffic Port'
+sudo ufw allow 5022/tcp comment 'AlwaysOn HADR Mirroring Endpoint Connection'
+sudo ufw allow 2224/tcp comment 'Pacemaker PCSD Automation Control Channel'
+sudo ufw allow 3121/tcp comment 'Corosync Executive Communication Core'
+sudo ufw allow 5403/tcp comment 'Corosync Net QDevice Verification Stream'
+sudo ufw allow 5405/udp comment 'Corosync Totem Ring Multicast Channel'
+
+# Commit firewall changes
+sudo ufw enable
+sudo ufw status verbose

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Server 2025 Always On Deployment Plan</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .container {
+      background-color: #252526;
+      border: 1px solid #3d3d3d;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    h1 {
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .subtitle {
+      color: #4ec9b0;
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+    .meta-box {
+      background-color: #1a1a1a;
+      border-left: 4px solid #0078d4;
+      padding: 15px;
+      margin-bottom: 30px;
+      border-radius: 0 6px 6px 0;
+      border-top: 1px solid #2d2d2d;
+      border-right: 1px solid #2d2d2d;
+      border-bottom: 1px solid #2d2d2d;
+    }
+    .meta-box ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #cccccc;
+    }
+    .meta-box li {
+      margin-bottom: 5px;
+    }
+    .meta-box li:last-child {
+      margin-bottom: 0;
+    }
+    h2 {
+      color: #ffffff;
+      font-size: 18px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #3d3d3d;
+      padding-bottom: 8px;
+    }
+    p {
+      color: #dddddd;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      margin-top: 15px;
+      margin-bottom: 25px;
+      font-size: 13px;
+    }
+    th {
+      padding: 10px;
+      color: #aaaaaa;
+      background-color: #1a1a1a;
+      border-bottom: 2px solid #3d3d3d;
+      font-weight: 600;
+    }
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #2d2d2d;
+      color: #ffffff;
+    }
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+    code {
+      background-color: #1a1a1a;
+      color: #4fc1ff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+    }
+    .image-placeholder {
+      background-color: #1a1a1a;
+      border: 1px dashed #3d3d3d;
+      padding: 40px;
+      text-align: center;
+      border-radius: 6px;
+      color: #aaaaaa;
+      margin-top: 20px;
+    }
+    .image-placeholder img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Main Title -->
+    <h1>📑 Implementation Plan & Operational Runbook</h1>
+    <div class="subtitle">🚀 Production Blueprint for 2-Node Synchronous Read-Scale Availability Groups on RHEL 9.8</div>
+
+    <!-- Metadata Section -->
+    <div class="meta-box">
+      <ul>
+        <li><strong>Project:</strong> Clusterless SQL Server 2025 Always On Deployment</li>
+        <li><strong>Target OS:</strong> Red Hat Enterprise Linux 9.8 (Plow Kernel)</li>
+        <li><strong>Database Edition:</strong> SQL Server 2025 Enterprise Developer Edition</li>
+      </ul>
+    </div>
+
+    <!-- Architecture Overview -->
+    <h2>🗺️ Architecture Overview: Read-Scale (Clusterless) Availability Group</h2>
+    <p>
+      This database setup handles high availability directly inside the SQL Server engine by setting <code>CLUSTER_TYPE = NONE</code>. By doing this, we completely remove the need for standard Linux clustering software (like Pacemaker). This cuts down on complex system overhead and significantly reduces backend operational costs.
+    </p>
+
+    <!-- Node Configuration Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Hostname</th>
+          <th>IP Address</th>
+          <th>Role</th>
+          <th>SQL Server Edition</th>
+          <th>OS Version</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>rhel-node1</strong></td>
+          <td>192.168.20.11</td>
+          <td>Primary Node</td>
+          <td>Enterprise Developer 2025</td>
+          <td>RHEL 9.8</td>
+        </tr>
+        <tr>
+          <td><strong>rhel-node2</strong></td>
+          <td>192.168.20.12</td>
+          <td>Secondary Node</td>
+          <td>Enterprise Developer 2025</td>
+          <td>RHEL 9.8</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Diagram Asset Wrapper -->
+    <div class="image-placeholder">
+      <img src="./assets/architecture_overview.png" alt="Read-Scale Availability Group Architecture Topology">
+      <p style="margin: 10px 0 0 0; font-size: 12px; color: #6a9955;">Read-Scale Availability Group Architecture Topology Diagram</p>
+    </div>
+  </div>
+
+</body>
+</html>
+    <!-- 1. Environment Details & System Resource Matrix -->
+    <h2>🎛️ 1. Environment Details & System Resource Matrix</h2>
+    <p>
+      The table below provides a high-level look at the hardware allocations and resource capacities configured for both active database hosts in our lab environment:
+    </p>
+
+    <!-- Specs Summary Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Server Name</th>
+          <th>OS Version</th>
+          <th>CPU Cores</th>
+          <th>Memory RAM</th>
+          <th>Total Storage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>rhel-node1</strong></td>
+          <td>Red Hat Enterprise Linux 9.8</td>
+          <td>4 Cores</td>
+          <td>15 GiB</td>
+          <td>88.4 GB</td>
+        </tr>
+        <tr>
+          <td><strong>rhel-node2</strong></td>
+          <td>Red Hat Enterprise Linux 9.8</td>
+          <td>2 Cores</td>
+          <td>7.4 GiB</td>
+          <td>67.4 GB</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Side-by-Side Resource Profiles Layout -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; margin-top: 25px;">
+      
+      <!-- Primary Node Card -->
+      <div style="background-color: #1a1a1a; padding: 20px; border-radius: 6px; border: 1px solid #3d3d3d;">
+        <h3 style="color: #ffffff; margin: 0 0 15px 0; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #2d2d2d; padding-bottom: 8px;">
+          🖥️ PRIMARY HOST: rhel-node1 (192.168.20.11)
+        </h3>
+        
+        <p style="margin: 0 0 5px 0; font-size: 13px; color: #4fc1ff; font-weight: bold;">💾 Compute Setup</p>
+        <ul style="margin: 0 0 15px 0; padding-left: 20px; color: #cccccc; font-size: 13px;">
+          <li>Processor Count: <strong>4 Cores</strong> (x86_64 topology)</li>
+          <li>RAM Footprint: <strong>15 GiB total</strong> (1.8 GiB Used | 7.0 GiB Free | 13 GiB Available)</li>
+          <li>Swap Space: <strong>0 B</strong> (Disabled)</li>
+        </ul>
+
+        <p style="margin: 0 0 5px 0; font-size: 13px; color: #4fc1ff; font-weight: bold;">🗄️ Storage Allocation (df -h)</p>
+        <table style="width: 100%; margin: 0; font-size: 12px;">
+          <thead>
+            <tr style="background-color: #252526;">
+              <th style="padding: 4px 8px;">Mount</th>
+              <th style="padding: 4px 8px;">Size</th>
+              <th style="padding: 4px 8px;">Used</th>
+              <th style="padding: 4px 8px;">Use%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>/</code> (Root)</td><td>12G</td><td>1.6G</td><td>14%</td></tr>
+            <tr><td><code>/var</code> (SQL Data)</td><td>15G</td><td>844M</td><td>6%</td></tr>
+            <tr><td><code>/usr</code> (Binaries)</td><td>15G</td><td>4.7G</td><td>32%</td></tr>
+            <tr><td><code>/home</code></td><td>11G</td><td>114M</td><td>2%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Secondary Node Card -->
+      <div style="background-color: #1a1a1a; padding: 20px; border-radius: 6px; border: 1px solid #3d3d3d;">
+        <h3 style="color: #ffffff; margin: 0 0 15px 0; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #2d2d2d; padding-bottom: 8px;">
+          🖥️ SECONDARY HOST: rhel-node2 (192.168.20.12)
+        </h3>
+        
+        <p style="margin: 0 0 5px 0; font-size: 13px; color: #4fc1ff; font-weight: bold;">💾 Compute Setup</p>
+        <ul style="margin: 0 0 15px 0; padding-left: 20px; color: #cccccc; font-size: 13px;">
+          <li>Processor Count: <strong>2 Cores</strong> (Intel Xeon Platinum 8370C @ 2.80GHz)</li>
+          <li>RAM Footprint: <strong>7.4 GiB total</strong> (1.4 GiB Used | 4.0 GiB Free | 6.1 GiB Available)</li>
+          <li>Swap Space: <strong>0 B</strong> (Disabled)</li>
+        </ul>
+
+        <p style="margin: 0 0 5px 0; font-size: 13px; color: #4fc1ff; font-weight: bold;">🗄️ Storage Allocation (df -h)</p>
+        <table style="width: 100%; margin: 0; font-size: 12px;">
+          <thead>
+            <tr style="background-color: #252526;">
+              <th style="padding: 4px 8px;">Mount</th>
+              <th style="padding: 4px 8px;">Size</th>
+              <th style="padding: 4px 8px;">Used</th>
+              <th style="padding: 4px 8px;">Use%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>/</code> (Root)</td><td>12G</td><td>1.6G</td><td>14%</td></tr>
+            <tr><td><code>/var</code> (SQL Data)</td><td>15G</td><td>818M</td><td>6%</td></tr>
+            <tr><td><code>/usr</code> (Binaries)</td><td>15G</td><td>2.2G</td><td>15%</td></tr>
+            <tr style="color: #6a9955;"><td colspan="4" style="text-align: center; padding: 5px 0;">-- No Custom /home Mount --</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+        <!-- 2. Hostname Allocation & OS Firewall Setup -->
+    <h2>🛠️ 2. Hostname Allocation & OS Firewall Setup</h2>
+    <p>
+      In this section, we configure the basic operating system identity, network names, and system firewalls to make sure both servers can talk to each other safely.
+    </p>
+
+    <!-- Step 2.1 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 2.1: Name Your Server Nodes</h3>
+      <p style="margin-bottom: 8px;">Run these commands on the respective servers to permanently set their identity names:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #6a9955;"># Run this on Server 1</span><br>
+        sudo hostnamectl set-hostname rhel-node1<br><br>
+        <span style="color: #6a9955;"># Run this on Server 2</span><br>
+        sudo hostnamectl set-hostname rhel-node2
+      </div>
+    </div>
+
+    <!-- Step 2.2 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 2.2: Map Local Network Names</h3>
+      <p style="margin-bottom: 8px;">Open the network hosts file on <strong>both servers</strong> using a text editor:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin-bottom: 8px;">
+        sudo vi /etc/hosts
+      </div>
+      <p style="margin-bottom: 8px;">Add these lines at the bottom of the file so the servers know where to find each other:</p>
+      <div style="background-color: #252526; border: 1px solid #3d3d3d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #9cdcfe;">
+        192.168.20.11   rhel-node1<br>
+        192.168.20.12   rhel-node2
+      </div>
+    </div>
+
+    <!-- Step 2.3 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 2.3: Open Firewall Ports</h3>
+      <div style="background-color: rgba(0, 120, 212, 0.1); border-left: 4px solid #0078d4; padding: 12px; border-radius: 0 6px 6px 0; margin-bottom: 12px; font-size: 13px; color: #cccccc;">
+        💡 <strong>Note on Clusterless setups:</strong> Since this is a clusterless setup, we only open the core SQL engine ports. We deliberately ignore standard cluster daemon ports (like 2224 or 5405) because the SQL Server engine handles all database mirroring natively.
+      </div>
+      <p style="margin-bottom: 8px;">Run these firewall rules on <strong>both nodes</strong> to allow network traffic through:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #6a9955;"># Open port 1433 for regular database connection traffic</span><br>
+        sudo firewall-cmd --permanent --add-port=1433/tcp<br><br>
+        <span style="color: #6a9955;"># Open port 5022 for the Always On replication endpoint data stream</span><br>
+        sudo firewall-cmd --permanent --add-port=5022/tcp<br><br>
+        <span style="color: #6a9955;"># Save and reload the active firewall configuration</span><br>
+        sudo firewall-cmd --reload<br><br>
+        <span style="color: #6a9955;"># Install handy tools to test network pipes later</span><br>
+        sudo dnf install -y telnet nc
+      </div>
+    </div>
+
+    <!-- Step 2.4 -->
+    <div style="margin-bottom: 10px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 2.4: Test Your Network Connections</h3>
+      <p style="margin-bottom: 8px;">Run these tests to verify that the firewalls are open and that the two servers can talk smoothly:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #6a9955;"># 1. Ping Test (Test lines from either node)</span><br>
+        ping -c 3 192.168.20.11<br>
+        ping -c 3 192.168.20.12<br><br>
+        
+        <span style="color: #6a9955;"># 2. Port Test (Run from Server 2 targeting Server 1)</span><br>
+        telnet 192.168.20.11 1433<br>
+        telnet 192.168.20.11 5022<br><br>
+        
+        <span style="color: #6a9955;"># 3. Port Test (Run from Server 1 targeting Server 2)</span><br>
+        telnet 192.168.20.12 1433<br>
+        telnet 192.168.20.12 5022
+      </div>
+    </div>
+
+        <!-- 3. Storage Allocation & Disk Preparation -->
+    <h2>🗄️ 3. Storage Allocation & Disk Preparation</h2>
+    <p>
+      In this step, we create separate folders for database files, transaction logs, and temporary databases. Keeping these files apart helps improve system performance and isolates data read operations from logging activities.
+    </p>
+
+    <!-- Step 3.1 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 3.1: Create Folders and Secure Access Permissions</h3>
+      <p style="margin-bottom: 8px;">Run these commands on <strong>both servers</strong> to set up directories and lock them down securely:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #6a9955;"># Create separate folders for your data, logs, tempdb, and certificate backups</span><br>
+        sudo mkdir -p /var/opt/mssql/sql-data<br>
+        sudo mkdir -p /var/opt/mssql/sql-tlog<br>
+        sudo mkdir -p /var/opt/mssql/sql-tempdb<br>
+        sudo mkdir -p /var/opt/mssql/backup/agcerts<br><br>
+        
+        <span style="color: #6a9955;"># Hand over full folder ownership to the standard mssql system user accounts</span><br>
+        sudo chown -R mssql:mssql /var/opt/mssql/sql-data<br>
+        sudo chown -R mssql:mssql /var/opt/mssql/sql-tlog<br>
+        sudo chown -R mssql:mssql /var/opt/mssql/sql-tempdb<br>
+        sudo chown -R mssql:mssql /var/opt/mssql/backup<br><br>
+        
+        <span style="color: #6a9955;"># Hardening: Restrict directory permissions so only the mssql user can read/write them</span><br>
+        sudo chmod -R 700 /var/opt/mssql/sql-data<br>
+        sudo chmod -R 700 /var/opt/mssql/sql-tlog<br>
+        sudo chmod -R 700 /var/opt/mssql/sql-tempdb<br>
+        sudo chmod -R 700 /var/opt/mssql/backup
+      </div>
+    </div>
+
+    <!-- Step 3.2 -->
+    <div style="margin-bottom: 10px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 3.2: Configure SELinux Security Rules</h3>
+      <p style="margin-bottom: 8px;">Since RHEL uses strict SELinux rules, you must label these folders correctly so SQL Server isn't blocked by the kernel:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #6a9955;"># Register the new paths into the system's database security policies</span><br>
+        sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/sql-data(/.*)?"<br>
+        sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/sql-tlog(/.*)?"<br>
+        sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/sql-tempdb(/.*)?"<br>
+        sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/backup(/.*)?"<br><br>
+        
+        <span style="color: #6a9955;"># Apply the security labels immediately across all folders</span><br>
+        sudo restorecon -R -v /var/opt/mssql/sql-data<br>
+        sudo restorecon -R -v /var/opt/mssql/sql-tlog<br>
+        sudo restorecon -R -v /var/opt/mssql/sql-tempdb<br>
+        sudo restorecon -R -v /var/opt/mssql/backup
+      </div>
+    </div>
+
+        <!-- 4. SQL Server 2025 Installation -->
+    <h2>📦 4. SQL Server 2025 Installation</h2>
+    <p>
+      In this section, we register the official Microsoft package distribution channels, install the core SQL Server 2025 engine along with its native SELinux security module, and complete the initial setup prompts.
+    </p>
+
+    <!-- Step 4.1 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 4.1: Update Operating System Libraries</h3>
+      <div style="background-color: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 12px; border-radius: 0 6px 6px 0; margin-bottom: 12px; font-size: 13px; color: #cccccc;">
+        ⚠️ <strong>Important Version Requirement:</strong> The SQL Server 2025 SELinux security module requires specific system libraries found in RHEL 9.7 or 9.8. Running older RHEL versions (like 9.4) will cause installation errors due to missing package dependencies.
+      </div>
+      <p style="margin-bottom: 8px;">Run these commands on <strong>both servers</strong> to pull the latest system updates:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin-bottom: 12px;">
+        <span style="color: #6a9955;"># Clear old package cache and run a full system update</span><br>
+        sudo dnf clean all<br>
+        sudo dnf update -y
+      </div>
+      <p style="margin-bottom: 8px;">Confirm that your version matches your design specification by running:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #d4d4d4; margin-bottom: 12px;">
+        cat /etc/redhat-release
+      </div>
+      <div class="image-placeholder" style="padding: 20px; margin-top: 10px;">
+        <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Asset: Terminal screenshot showing redhat-release validation]</p>
+      </div>
+    </div>
+
+    <!-- Step 4.2 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 4.2: Verify Storage Space</h3>
+      <p style="margin-bottom: 8px;">The installation files will be placed inside the <code>/opt/mssql</code> folder. Make sure your root (<code>/</code>) folder partition has at least 10 GB of free space before proceeding:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #d4d4d4; margin-bottom: 12px;">
+        df -h /opt
+      </div>
+      <div class="image-placeholder" style="padding: 20px; margin-top: 10px;">
+        <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Asset: Disk free storage verification display]</p>
+      </div>
+    </div>
+
+    <!-- Step 4.3 & 4.4 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 4.3 & 4.4: Register Repositories and Install SQL Server</h3>
+      <p style="margin-bottom: 8px;">Add the official Microsoft package distribution channels to your system repository list on <strong>both servers</strong>:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin-bottom: 12px;">
+        <span style="color: #6a9955;"># Download the repository configuration files</span><br>
+        sudo curl -o /etc/yum.repos.d/mssql-server.repo https://microsoft.com<br>
+        sudo curl -o /etc/yum.repos.d/mssql-release.repo https://microsoft.com
+      </div>
+      <p style="margin-bottom: 8px;">Install the SQL database server engine and its dedicated SELinux package context modules:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #d4d4d4;">
+        sudo dnf install -y mssql-server mssql-server-selinux
+      </div>
+    </div>
+
+    <!-- Step 4.5 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 4.5: Initialize the Database Instance</h3>
+      <p style="margin-bottom: 8px;">Run the configuration setup script to choose your edition and set your administrative password:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #d4d4d4; margin-bottom: 12px;">
+        sudo /opt/mssql/bin/mssql-conf setup
+      </div>
+      <ul style="margin: 0 0 12px 0; padding-left: 20px; color: #cccccc; font-size: 13px;">
+        <li><strong>Edition Selection:</strong> Choose option <code>2</code> (Enterprise Developer edition - free for development environments).</li>
+        <li><strong>Admin Account:</strong> Create a strong, complex password for your main system <code>sa</code> (System Administrator) user.</li>
+      </ul>
+      <div class="image-placeholder" style="padding: 20px; margin-top: 10px;">
+        <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Asset: Interactive console menu setup wizard prompt]</p>
+      </div>
+    </div>
+
+    <!-- Step 4.6 -->
+    <div style="margin-bottom: 10px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 4.6: Enable SQL Agent Automation and Start Services</h3>
+      <p style="margin-bottom: 8px;">Turn on the background automation engine and add the command tools to your terminal profile path:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin-bottom: 12px;">
+        <span style="color: #6a9955;"># Enable the built-in SQL Agent feature</span><br>
+        sudo /opt/mssql/bin/mssql-conf set sqlagent.enabled true<br><br>
+        
+        <span style="color: #6a9955;"># Add command utilities to your terminal settings path profile</span><br>
+        echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc<br>
+        source ~/.bashrc<br><br>
+        
+        <span style="color: #6a9955;"># Set the SQL Server service daemon to start automatically when booting</span><br>
+        sudo systemctl enable mssql-server<br>
+        sudo systemctl restart mssql-server
+      </div>
+      <p style="margin-bottom: 8px;">Run a quick command test to verify local server endpoint connectivity:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #d4d4d4; margin-bottom: 12px;">
+        sqlcmd -S localhost -U sa -C -Q "SELECT @@SERVERNAME;"
+      </div>
+      <div class="image-placeholder" style="padding: 20px; margin-top: 10px;">
+        <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Asset: Terminal output displaying the successful local server name check]</p>
+      </div>
+    </div>
+
+
+        <!-- 5. Always On Feature Activation, AG Provisioning & DB Sync -->
+    <h2>🚀 5. Always On Feature Activation, AG Provisioning & DB Sync</h2>
+    <p>
+      In this step, we turn on the high availability settings, build our database security certificates, and open a communication link between the servers.
+    </p>
+
+    <!-- Step 5.1 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 5.1: Enable the High Availability Module</h3>
+      <p style="margin-bottom: 8px;">Run these commands on <strong>both servers</strong> to activate the Always On engine features and restart the SQL service:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin-bottom: 12px;">
+        sudo /opt/mssql/bin/mssql-conf set hadr.hadrenabled 1<br>
+        sudo systemctl restart mssql-server
+      </div>
+      <p style="margin-bottom: 8px;">Verify that the change saved correctly in your server settings file:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #d4d4d4;">
+        cat /var/opt/mssql/mssql.conf
+      </div>
+    </div>
+
+    <!-- Step 5.2 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 5.2: Create Keys and Connection Endpoints</h3>
+      <p style="margin-bottom: 8px;">Connect to the <strong>Primary Server (rhel-node1)</strong> using a database client and run this script to set up database master keys and the data listener endpoint:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #569cd6;">USE</span> master;<br>
+        <span style="color: #569cd6;">GO</span><br>
+        <span style="color: #569cd6;">CREATE MASTER KEY ENCRYPTION BY PASSWORD</span> = <span style="color: #ce9178;">'YourStrongKeyPassword99!'</span>;<br>
+        <span style="color: #569cd6;">GO</span><br><br>
+        
+        <span style="color: #6a9955;">-- Create a security certificate for network authentication</span><br>
+        <span style="color: #569cd6;">CREATE CERTIFICATE</span> AG_Transport_Cert<br>
+        <span style="color: #569cd6;">WITH SUBJECT</span> = <span style="color: #ce9178;">'Availability Group Replica Transport Authentication'</span>,<br>
+        START_DATE = <span style="color: #ce9178;">'2026-01-01'</span>, EXPIRY_DATE = <span style="color: #ce9178;">'2035-01-01'</span>;<br>
+        <span style="color: #569cd6;">GO</span><br><br>
+        
+        <span style="color: #6a9955;">-- Set up the database mirroring connection endpoint on network port 5022</span><br>
+        <span style="color: #569cd6;">CREATE ENDPOINT</span> [Hadr_endpoint]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">STATE</span> = STARTED<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">AS TCP</span> (LISTENER_PORT = 5022)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">FOR DATABASE_MIRRORING</span> (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROLE = ALL,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTHENTICATION = <span style="color: #569cd6;">CERTIFICATE</span> AG_Transport_Cert,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENCRYPTION = REQUIRED ALGORITHM AES<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        <span style="color: #569cd6;">GO</span>
+      </div>
+    </div>
+
+        <!-- Step 5.3 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 5.3: Export the Primary Security Certificate</h3>
+      <p style="margin-bottom: 8px;">Run this on the <strong>Primary Server (rhel-node1)</strong> to back up the authentication key so the secondary server can trust it:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #569cd6;">BACKUP CERTIFICATE</span> AG_Transport_Cert<br>
+        <span style="color: #569cd6;">TO FILE</span> = <span style="color: #ce9178;">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.cer'</span><br>
+        <span style="color: #569cd6;">WITH PRIVATE KEY</span> (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">FILE</span> = <span style="color: #ce9178;">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.key'</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">ENCRYPTION BY PASSWORD</span> = <span style="color: #ce9178;">'YourStrongKeyPassword99!'</span><br>
+        );<br>
+        <span style="color: #569cd6;">GO</span>
+      </div>
+    </div>
+
+    <!-- Step 5.4 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 5.4: Transfer Certificate Files Across the Network</h3>
+      <p style="margin-bottom: 8px;">Copy the certificate keys from <strong>rhel-node1</strong> over to <strong>rhel-node2</strong> using a network file transfer:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #d4d4d4; margin-bottom: 12px;">
+        sudo scp /var/opt/mssql/backup/agcerts/AG_Transport_Cert.* root@192.168.20.12:/var/opt/mssql/backup/agcerts/
+      </div>
+      <p style="margin-bottom: 8px;">Switch to the <strong>Secondary Server (rhel-node2)</strong> console and update the file permissions so the SQL service can read them:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        sudo chown -R mssql:mssql /var/opt/mssql/backup/agcerts/<br>
+        sudo chmod 600 /var/opt/mssql/backup/agcerts/AG_Transport_Cert.*
+      </div>
+    </div>
+
+    <!-- Step 5.5 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 5.5: Import Security Keys on the Secondary Host</h3>
+      <p style="margin-bottom: 8px;">Connect to the <strong>Secondary Server (rhel-node2)</strong> and run this database script to import the keys and initialize the matching network endpoint:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #569cd6;">USE</span> master;<br>
+        <span style="color: #569cd6;">GO</span><br><br>
+        <span style="color: #569cd6;">CREATE MASTER KEY ENCRYPTION BY PASSWORD</span> = <span style="color: #ce9178;">'YourStrongKeyPassword99!'</span>;<br>
+        <span style="color: #569cd6;">GO</span><br><br>
+        <span style="color: #569cd6;">CREATE CERTIFICATE</span> AG_Transport_Cert<br>
+        <span style="color: #569cd6;">FROM FILE</span> = <span style="color: #ce9178;">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.cer'</span><br>
+        <span style="color: #569cd6;">WITH PRIVATE KEY</span> (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">FILE</span> = <span style="color: #ce9178;">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.key'</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">DECRYPTION BY PASSWORD</span> = <span style="color: #ce9178;">'YourStrongKeyPassword99!'</span><br>
+        );<br>
+        <span style="color: #569cd6;">GO</span><br><br>
+        <span style="color: #569cd6;">CREATE ENDPOINT</span> [Hadr_endpoint]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">STATE</span> = STARTED<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">AS TCP</span> (LISTENER_PORT = 5022)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">FOR DATABASE_MIRRORING</span> (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROLE = ALL,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTHENTICATION = <span style="color: #569cd6;">CERTIFICATE</span> AG_Transport_Cert,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENCRYPTION = REQUIRED ALGORITHM AES<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        <span style="color: #569cd6;">GO</span>
+      </div>
+    </div>
+    <!-- Step 5.6 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 5.6: Initialize the Clusterless Availability Group Object</h3>
+      <p style="margin-bottom: 8px;">Connect to the <strong>Primary Server (rhel-node1)</strong> to provision the logical group structure. Note that we set the cluster type to none to remove daemon overhead:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #569cd6;">CREATE AVAILABILITY GROUP</span> [ptag]<br>
+        <span style="color: #569cd6;">WITH</span> (CLUSTER_TYPE = <span style="color: #569cd6;">NONE</span>) <span style="color: #6a9955;">-- Removes high-overhead Linux clustering requirements</span><br>
+        <span style="color: #569cd6;">FOR REPLICA ON</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;N<span style="color: #ce9178;">'rhel-node1'</span> <span style="color: #569cd6;">WITH</span> (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDPOINT_URL = N<span style="color: #ce9178;">'TCP://192.168.20.11:5022'</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVAILABILITY_MODE = <span style="color: #569cd6;">SYNCHRONOUS_COMMIT</span>, <span style="color: #6a9955;">-- Guarantees zero data loss</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAILOVER_MODE = <span style="color: #569cd6;">MANUAL</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEEDING_MODE = <span style="color: #569cd6;">AUTOMATIC</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECONDARY_ROLE(ALLOW_CONNECTIONS = <span style="color: #569cd6;">ALL</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;N<span style="color: #ce9178;">'rhel-node2'</span> <span style="color: #569cd6;">WITH</span> (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDPOINT_URL = N<span style="color: #ce9178;">'TCP://192.168.20.12:5022'</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVAILABILITY_MODE = <span style="color: #569cd6;">SYNCHRONOUS_COMMIT</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAILOVER_MODE = <span style="color: #569cd6;">MANUAL</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEEDING_MODE = <span style="color: #569cd6;">AUTOMATIC</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECONDARY_ROLE(ALLOW_CONNECTIONS = <span style="color: #569cd6;">ALL</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        <span style="color: #569cd6;">GO</span>
+      </div>
+    </div>
+
+    <!-- Step 5.7 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 5.7: Connect the Secondary Server to the Replication Pipeline</h3>
+      <p style="margin-bottom: 8px;">Run this command on the <strong>Secondary Server (rhel-node2)</strong> to join the active data stream and allow automatic data seeding:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #569cd6;">ALTER AVAILABILITY GROUP</span> [ptag] <span style="color: #569cd6;">JOIN WITH</span> (CLUSTER_TYPE = <span style="color: #569cd6;">NONE</span>);<br>
+        <span style="color: #569cd6;">GO</span><br><br>
+        <span style="color: #6a9955;">-- Authorize the group to automatically build replicated database containers locally</span><br>
+        <span style="color: #569cd6;">ALTER AVAILABILITY GROUP</span> [ptag] <span style="color: #569cd6;">GRANT CREATE ANY DATABASE</span>;<br>
+        <span style="color: #569cd6;">GO</span>
+      </div>
+    </div>
+
+    <!-- Step 5.8 -->
+    <div style="margin-bottom: 10px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 5.8: Add the Production Database to the Live Group</h3>
+      <p style="margin-bottom: 8px;">On the <strong>Primary Server (rhel-node1)</strong>, build your database instance, set its recovery type, take a baseline backup file, and connect it to the sync loop:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #569cd6;">CREATE DATABASE</span> EnterpriseAppDB;<br>
+        <span style="color: #569cd6;">GO</span><br>
+        <span style="color: #569cd6;">ALTER DATABASE</span> EnterpriseAppDB <span style="color: #569cd6;">SET RECOVERY FULL</span>; <span style="color: #6a9955;">-- Full transaction tracking model is mandatory</span><br>
+        <span style="color: #569cd6;">GO</span><br><br>
+        <span style="color: #6a9955;">-- Take initial backups to initialize the transactional tracking chain links</span><br>
+        <span style="color: #569cd6;">BACKUP DATABASE</span> EnterpriseAppDB <span style="color: #569cd6;">TO DISK</span> = <span style="color: #ce9178;">'/var/opt/mssql/backup/EnterpriseAppDB.bak'</span> <span style="color: #569cd6;">WITH COMPRESSION</span>, STATS = 30;<br>
+        <span style="color: #569cd6;">BACKUP LOG</span> EnterpriseAppDB <span style="color: #569cd6;">TO DISK</span> = <span style="color: #ce9178;">'/var/opt/mssql/backup/EnterpriseAppDB.trn'</span> <span style="color: #569cd6;">WITH COMPRESSION</span>, STATS = 30;<br>
+        <span style="color: #569cd6;">GO</span><br><br>
+        <span style="color: #6a9955;">-- Link the database container into your live Always On synchronization channel</span><br>
+        <span style="color: #569cd6;">ALTER AVAILABILITY GROUP</span> [ptag] <span style="color: #569cd6;">ADD DATABASE</span> [EnterpriseAppDB];<br>
+        <span style="color: #569cd6;">GO</span>
+      </div>
+    </div>
+
+        <!-- 6. Operational Tracking & Monitoring Logs -->
+    <h2>📈 6. Operational Tracking & Monitoring Logs</h2>
+    <p>
+      In this section, we review the terminal commands used to track the health of your database mirroring setup and debug issues directly from the Linux command line.
+    </p>
+
+    <div style="margin-bottom: 10px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 6.1: Run Command Line Diagnostics</h3>
+      <p style="margin-bottom: 8px;">Run these diagnostic tools from your server console to check error logs and review system events:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #6a9955;"># View the last 100 entries inside the native SQL database log file</span><br>
+        tail -n 100 /var/opt/mssql/log/errorlog<br><br>
+        
+        <span style="color: #6a9955;"># Filter the log file to show only mirroring and Availability Group event entries</span><br>
+        sudo grep -E "Database mirroring|Availability Groups" /var/opt/mssql/log/errorlog<br><br>
+        
+        <span style="color: #6a9955;"># Pull the last 50 background system manager messages for the SQL Server process daemon</span><br>
+        sudo journalctl -u mssql-server -n 50 --no-pager
+      </div>
+    </div>
+    <!-- 7. Post-Deployment Validation Queries -->
+    <h2>🔍 7. Post-Deployment Validation Queries</h2>
+    <p>
+      In this final section, we review the T-SQL system queries used to check replication statuses and track background file synchronization directly inside the database engine.
+    </p>
+
+    <!-- AG Replica Synchronization States -->
+    <div style="margin-bottom: 25px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 7.1: Verify Availability Group Replication Health States</h3>
+      <p style="margin-bottom: 8px;">Run this metadata query in a SQL window to confirm that your databases are fully synchronized across both replica nodes:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin-bottom: 12px;">
+        <span style="color: #569cd6;">SELECT</span> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;ar.replica_server_name, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;adc.database_name, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;drs.synchronization_state_desc, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;drs.synchronization_health_desc,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;drs.is_local<br>
+        <span style="color: #569cd6;">FROM</span> sys.dm_hadr_database_replica_states drs<br>
+        <span style="color: #569cd6;">JOIN</span> sys.availability_replicas ar <span style="color: #569cd6;">ON</span> drs.replica_id = ar.replica_id<br>
+        <span style="color: #569cd6;">JOIN</span> sys.availability_databases_cluster adc <span style="color: #569cd6;">ON</span> drs.group_database_id = adc.group_database_id;<br>
+        <span style="color: #569cd6;">GO</span>
+      </div>
+      <div class="image-placeholder" style="padding: 20px; margin-top: 10px;">
+        <img src="./assets/validation_query_proof.png" alt="Validation query results matrix tracking replica synchronization states">
+        <p style="margin: 10px 0 0 0; font-size: 12px; color: #6a9955;">Data view tracking active clusterless synchronization health descriptions</p>
+      </div>
+    </div>
+
+    <!-- Automatic Seeding Status -->
+    <div style="margin-bottom: 10px;">
+      <h3 style="color: #ffffff; font-size: 14px; margin: 0 0 10px 0; color: #4ec9b0;">Step 7.2: Monitor Background Database Auto-Seeding Progress</h3>
+      <p style="margin-bottom: 8px;">Run this system catalog check to trace background replication jobs, review timestamps, or catch automated data copy errors:</p>
+      <div style="background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4;">
+        <span style="color: #569cd6;">SELECT</span> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;start_time, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;completion_time, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;current_state, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;performed_seeding, <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;failure_state_desc<br>
+        <span style="color: #569cd6;">FROM</span> sys.dm_hadr_automatic_seeding;<br>
+        <span style="color: #569cd6;">GO</span>
+      </div>
+    </div>

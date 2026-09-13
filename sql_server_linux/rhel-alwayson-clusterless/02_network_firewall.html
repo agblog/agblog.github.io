@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 2: Hostname & Firewall Configurations</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; }
+    h3 { color: #4ec9b0; font-size: 15px; margin-top: 20px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #d4d4d4; margin: 10px 0; overflow-x: auto; }
+    .comment { color: #6a9955; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; }
+    .home-btn:hover { background-color: #0078d4; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
+
+  <div class="container">
+    <h2>🛠️ Chapter 2: Hostname Allocation & OS Firewall Setup</h2>
+    <p>Run these initial setup commands to configure server names, map system networks, and open the network firewalls.</p>
+
+    <h3>Step 2.1: Lock in Server Names</h3>
+    <p>Run this command on your respective servers to set their network identification tags permanently:</p>
+    <div class="code-box">
+      <span class="comment"># Run on Node 1</span><br>
+      sudo hostnamectl set-hostname rhel-node1<br><br>
+      <span class="comment"># Run on Node 2</span><br>
+      sudo hostnamectl set-hostname rhel-node2
+    </div>
+
+    <h3>Step 2.2: Add Local Server Mappings</h3>
+    <p>Open the network mapping file on <strong>both servers</strong> using your text editor:</p>
+    <div class="code-box">sudo vi /etc/hosts</div>
+    <p>Add these lines at the bottom of the text block so the servers know where to find each other:</p>
+    <div class="code-box" style="color: #9cdcfe;">
+      192.168.20.11   rhel-node1<br>
+      192.168.20.12   rhel-node2
+    </div>
+
+    <h3>Step 2.3: Open Networking Firewall Ports</h3>
+    <div style="background-color: rgba(0, 120, 212, 0.1); border-left: 4px solid #0078d4; padding: 12px; border-radius: 0 6px 6px 0; font-size: 13px; color: #cccccc; margin-bottom: 10px;">
+      💡 <strong>Note:</strong> Since this layout handles replication directly inside the SQL database engine (clusterless), standard cluster manager background daemon ports are omitted by design here.
+    </div>
+    <p>Execute these commands on <strong>both servers</strong> to open the listener paths:</p>
+    <div class="code-box">
+      <span class="comment"># Open standard port 1433 for database user connections</span><br>
+      sudo firewall-cmd --permanent --add-port=1433/tcp<br><br>
+      <span class="comment"># Open mirroring port 5022 for Availability Group replication traffic</span><br>
+      sudo firewall-cmd --permanent --add-port=5022/tcp<br><br>
+      <span class="comment"># Reload firewall policies to save changes immediately</span><br>
+      sudo firewall-cmd --reload<br><br>
+      <span class="comment"># Install connection validation tools</span><br>
+      sudo dnf install -y telnet nc
+    </div>
+
+    <h3>Step 2.4: Test Your Network Connections</h3>
+    <p>Run these verification commands across hosts to guarantee network lines are open and clean:</p>
+    <div class="code-box">
+      <span class="comment"># 1. Verification Ping checks</span><br>
+      ping -c 3 192.168.20.11<br>
+      ping -c 3 192.168.20.12<br><br>
+      <span class="comment"># 2. Port Validation (Run from Server 2 targeting Server 1)</span><br>
+      telnet 192.168.20.11 1433<br>
+      telnet 192.168.20.11 5022<br><br>
+      <span class="comment"># 3. Port Validation (Run from Server 1 targeting Server 2)</span><br>
+      telnet 192.168.20.12 1433<br>
+      telnet 192.168.20.12 5022
+    </div>
+  </div>
+
+</body>
+</html>

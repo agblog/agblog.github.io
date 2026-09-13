@@ -1,0 +1,12 @@
+# Inject GPG public keys for signed package verification validation
+wget -qO- https://microsoft.com | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
+
+# Register the tracking repository reference manifest sheet for SQL Server 2022
+wget -qO- https://microsoft.com | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list
+
+# Download binaries and execute core system initialization routines
+sudo apt-get update -y
+sudo apt-get install -y mssql-server
+
+# Accept terms and licensing parameters (Evaluation Edition, Strong SA Credentials)
+sudo mssql-conf setup

@@ -1,0 +1,10 @@
+# Add Microsoft production tools repositories keys to apt maps
+wget -qO- https://microsoft.com | sudo tee /etc/apt/sources.list.d/prod.list
+sudo apt-get update -y
+
+# Install command line tools interface package
+sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev
+
+# Write global environment variable exports path aliases
+echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
+source ~/.bashrc

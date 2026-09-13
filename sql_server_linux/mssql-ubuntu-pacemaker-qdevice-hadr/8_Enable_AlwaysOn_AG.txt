@@ -1,0 +1,8 @@
+# Configure the SQL Server internal engine instance state flags
+sudo /opt/mssql/bin/mssql-conf set hadr.hadrenabled 1
+
+# Bounce the engine task to allow parameters to reload cleanly
+sudo systemctl restart mssql-server
+
+# Assert that changes map correctly into systemic database layouts
+cat /var/opt/mssql/mssql.conf

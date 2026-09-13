@@ -1,0 +1,24 @@
+
+========================================================================
+PRODUCTION SETUP MANIFEST: CLUSTERLESS ALWAYS ON DEPLOYMENT
+========================================================================
+Target OS: Red Hat Enterprise Linux release 9.8 (Plow)
+Kernel Architecture: Linux rh-staging2 5.14.0-687.10.1.el9_8.x86_64
+Database Engine: Microsoft SQL Server 2025 Enterprise Developer Edition
+Availability Group Cluster Type: NONE (Decoupled Platform Architecture)
+# Verify system level matches requirements
+cat /etc/redhat-release  
+ 
+ 
+
+
+Infrastructure Node Pool Matrix:
+------------------------------------------------------------------------
+- Node 1 Name: rhel-node1  | IP Allocation: 192.168.20.11
+- Node 2 Name: rhel-node2  | IP Allocation: 192.168.20.12
+
+Deployment Requirements:
+- Full root or administrative sudo execution privileges across all endpoints.
+- Unrestricted cross-node internal networking topology.
+- Manual application connection failover targeting active database primary nodes.
+- Synchronous Data Commit protocols enforced with zero data loss target tolerances.

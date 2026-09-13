@@ -1,0 +1,10 @@
+# Execute on Node 2 (Secondary) to push security signatures across filesystems:
+sudo scp /var/opt/mssql/backup/agcerts/db2.cer anurag@192.168.20.11:/home/anurag/
+
+# Execute on Node 1 (Primary) to push security signatures across filesystems:
+sudo scp /var/opt/mssql/backup/agcerts/db1.cer anurag@192.168.20.12:/home/anurag/
+
+# Align folder path structures and service user ownership matrices on BOTH endpoints:
+sudo cp /home/anurag/db*.cer /var/opt/mssql/backup/agcerts/
+sudo chown -R mssql:mssql /var/opt/mssql/backup/agcerts/
+sudo chmod 770 /var/opt/mssql/backup/agcerts/db*.cer

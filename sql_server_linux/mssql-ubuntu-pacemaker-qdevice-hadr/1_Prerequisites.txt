@@ -1,0 +1,24 @@
+# Enforce production language and system locale variables
+sudo locale-gen en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Install and configure network time protocol via chrony
+sudo apt-get update -y
+sudo apt-get install -y chrony
+sudo systemctl enable --now chrony
+sudo systemctl restart chrony
+sudo chronyc tracking
+
+# Append host routing maps to local network translation tables
+cat << 'EOF' | sudo tee -a /etc/hosts
+
+# SQL Server AlwaysOn Cluster Engine Nodes Map
+192.168.1.1    DB1
+192.168.1.2    DB2
+172.30.1.1     DR-DB1
+20.20.20.178    QDevice-Server
+192.168.1.3     DB-Cluster
+172.30.1.10    Listenerdr
+192.168.1.20   Listenerdc
+EOF

@@ -1,0 +1,10 @@
+# Synchronize repositories and install Pacemaker clustering engine
+sudo apt-get update -y
+sudo apt-get install -y pacemaker pcs fence-agents resource-agents crmsh dbus resource-agents-extra
+
+# Force daemons to activate cleanly on system initialize boundaries
+sudo systemctl enable pcsd pacemaker corosync
+sudo systemctl start pcsd
+
+# Assign uniform password to cluster coordinator administrator user profile
+echo "hacluster:HaClusC0mpleXpa$$" | sudo chpasswd

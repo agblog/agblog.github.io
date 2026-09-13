@@ -1,9 +1,240 @@
 <!DOCTYPE html>
-<html>
-<head><title>Fitness</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Routine</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #262626;
+            --accent-color: #5cb85c;
+            --text-color: #f5f5f5;
+            --text-muted: #aaaaaa;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 24px;
+            line-height: 1.6;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        .tagline {
+            color: var(--text-muted);
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        .daily-habit {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .daily-habit h2 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .habit-row {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .habit-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-stamp {
+            background: #333;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .schedule-title {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-left: 5px;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .day-box {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .day-box.rest-day {
+            border-left-color: #f0ad4e;
+        }
+
+        .day-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .day-focus {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .plan-details {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 1.05rem;
+        }
+
+        .plan-details li {
+            margin-bottom: 8px;
+        }
+
+        .plan-details li:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
 <body>
-    <h1>Fitness</h1>
-    <p>Content coming soon...</p>
-    <a href="../">← Back to Homepage</a>
+
+    <div class="wrapper">
+        <header>
+            <h1>My Daily Fitness Routine</h1>
+            <div class="tagline">What I do every single day to stay on track.</div>
+        </header>
+
+        <!-- Every Day Habits -->
+        <section class="daily-habit">
+            <h2>Morning Essentials (Every Day)</h2>
+            <div class="habit-row">
+                <span class="time-stamp">5:30 AM</span> 
+                Wake up and make a fresh banana protein shake with milk. If I want a change, I can mix it up with almonds, oats, pistachios, or any other clean alternative.
+            </div>
+            <div class="habit-row">
+                <span class="time-stamp">6:00 AM</span> 
+                Head out for a morning jog. Keep a steady pace for 30 minutes until 6:30 AM to get the heart rate up.
+            </div>
+        </section>
+
+        <!-- Weekly Plan -->
+        <h2 class="schedule-title">What happens at 6:30 AM through the week:</h2>
+        
+        <div class="timeline">
+            
+            <!-- Mon -->
+            <div class="day-box">
+                <div class="day-name">Monday</div>
+                <div class="day-focus">Focusing entirely on Chest today</div>
+                <ul class="plan-details">
+                    <li>Start off strong with 3 sets of classic pushups.</li>
+                    <li>Move on to 3 sets of chest presses using the dumbbells.</li>
+                    <li>Finish up the chest work with 3 sets using the straight rod/barbell press.</li>
+                </ul>
+            </div>
+
+            <!-- Tue -->
+            <div class="day-box">
+                <div class="day-name">Tuesday</div>
+                <div class="day-focus">Time to work on the arms after jogging and protein</div>
+                <ul class="plan-details">
+                    <li>Begin with a few solid sets of bicep curls using dumbbells.</li>
+                    <li>Switch over to the straight rod to do heavier bicep sets.</li>
+                    <li>Wrap up the session with tricep sets to balance it all out.</li>
+                </ul>
+            </div>
+
+            <!-- Wed -->
+            <div class="day-box">
+                <div class="day-name">Wednesday</div>
+                <div class="day-focus">Hitting shoulders right after the morning shake</div>
+                <ul class="plan-details">
+                    <li>Run through standard shoulder workout sets with the dumbbells.</li>
+                    <li>Follow that up with overhead shoulder press sets using the rod.</li>
+                </ul>
+            </div>
+
+            <!-- Thu -->
+            <div class="day-box">
+                <div class="day-name">Thursday</div>
+                <div class="day-focus">Working on the back muscles today</div>
+                <ul class="plan-details">
+                    <li>Get right into back exercise sets using the dumbbells.</li>
+                    <li>Finish the workout with solid back sets using the rods.</li>
+                </ul>
+            </div>
+
+            <!-- Fri -->
+            <div class="day-box">
+                <div class="day-name">Friday</div>
+                <div class="day-focus">Leg day to finish out the heavy lifting week</div>
+                <ul class="plan-details">
+                    <li>Get into the leg movements using dumbbells for weight.</li>
+                    <li>Transition over to the rod to complete the remaining leg sets.</li>
+                </ul>
+            </div>
+
+            <!-- Sat -->
+            <div class="day-box">
+                <div class="day-name">Saturday</div>
+                <div class="day-focus">Slowing things down after the jog and protein intake</div>
+                <ul class="plan-details">
+                    <li>Spend the session doing yoga movements.</li>
+                    <li>Deeply stretch out all the muscles used during the week to recover.</li>
+                </ul>
+            </div>
+
+            <!-- Sun -->
+            <div class="day-box rest-day">
+                <div class="day-name">Sunday</div>
+                <div class="day-focus">Rest and Recovery</div>
+                <ul class="plan-details" style="list-style-type: none; padding-left: 0;">
+                    <li>Completely off today. No alarms, no pressure—just letting the body heal up for next week.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
