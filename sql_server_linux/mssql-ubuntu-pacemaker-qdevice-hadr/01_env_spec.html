@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 1: Network Maps & Cluster Sizing Matrix</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    table { width: 100%; border-collapse: collapse; text-align: left; margin: 20px 0; font-size: 13px; }
+    th { padding: 10px; color: #aaaaaa; background-color: #1a1a1a; border-bottom: 2px solid #3d3d3d; font-weight: 600; }
+    td { padding: 10px; border-bottom: 1px solid #2d2d2d; color: #ffffff; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; transition: 0.2s; }
+    .home-btn:hover { background-color: #0078d4; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
+
+  <div class="container">
+    <h2>🎛️ Chapter 1: Network Mappings & Cluster Sizing Matrix</h2>
+    <p>Our multi-site clustering framework links database servers across three isolated network subnets. This keeps production data mirrored synchronously in the primary data center while maintaining an asynchronous disaster recovery replica off-site:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Hostname / Target</th>
+          <th>IP Address</th>
+          <th>Network Subnet Area</th>
+          <th>Cluster Role & Replication Commit Mode</th>
+          <th>Engine Target Version</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DB1</strong></td>
+          <td><code>192.168.1.1</code></td>
+          <td>Subnet 1 (Primary Datacenter Site)</td>
+          <td>Primary Replica / Synchronous Commit</td>
+          <td>Ubuntu 22.04 / SQL Server 2022</td>
+        </tr>
+        <tr>
+          <td><strong>DB2</strong></td>
+          <td><code>192.168.1.2</code></td>
+          <td>Subnet 1 (Primary Datacenter Site)</td>
+          <td>Secondary Replica / Synchronous Commit</td>
+          <td>Ubuntu 22.04 / SQL Server 2022</td>
+        </tr>
+        <tr>
+          <td><strong>DR-DB1</strong></td>
+          <td><code>172.30.1.1</code></td>
+          <td>Subnet 2 (Disaster Recovery Site)</td>
+          <td>DR Replica / Asynchronous Commit Mode</td>
+          <td>Ubuntu 22.04 / SQL Server 2022</td>
+        </tr>
+        <tr>
+          <td><strong>QDEVICE-SERVER</strong></td>
+          <td><code>20.20.20.178</code></td>
+          <td>Subnet 3 (Neutral Network Zone)</td>
+          <td>Corosync QNetd Daemon / Dynamic Vote Provider</td>
+          <td>Ubuntu 22.04 (No SQL Engine)</td>
+        </tr>
+        <tr style="background-color: rgba(255, 255, 255, 0.01);">
+          <td><em>DBCluster Listener</em></td>
+          <td><code>192.168.1.3</code></td>
+          <td>Subnet 1 Core Routing Loop</td>
+          <td>Core Pacemaker Management Layer Daemon</td>
+          <td>Corosync/Pacemaker Orchestrator</td>
+        </tr>
+        <tr>
+          <td><strong>VIP: Listenerdc</strong></td>
+          <td><code>192.168.1.20</code></td>
+          <td>Subnet 1 Virtual Float Route</td>
+          <td>Floating Local DC Virtual IP Endpoint Listener</td>
+          <td>App Traffic Connection Point</td>
+        </tr>
+        <tr>
+          <td><strong>VIP: Listenerdr</strong></td>
+          <td><code>172.30.1.10</code></td>
+          <td>Subnet 2 Virtual Float Route</td>
+          <td>Floating Disaster Recovery VIP Listener</td>
+          <td>DR Traffic Connection Point</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div style="background-color: #1a1a1a; padding: 15px; border-radius: 6px; border: 1px solid #3d3d3d; margin-top: 20px; font-size: 13.5px; color: #cccccc;">
+      📌 <strong>Runbook Link Note:</strong> The configuration parameters set up in this matrix are used in the system scripts throughout the next chapters. Make sure your actual server network interfaces match these targets before executing installation packages.
+    </div>
+  </div>
+
+</body>
+</html>

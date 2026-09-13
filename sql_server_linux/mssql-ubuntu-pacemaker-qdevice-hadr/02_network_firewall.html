@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 2: Prerequisite Setup & Network Firewalls</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    h3 { color: #4ec9b0; font-size: 16px; margin-top: 25px; margin-bottom: 10px; border-left: 3px solid #0078d4; padding-left: 8px; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
+    .comment { color: #6a9955; font-style: italic; }
+    .script-ref { background-color: rgba(79, 193, 255, 0.1); border: 1px solid #4fc1ff; color: #4fc1ff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; transition: 0.2s; }
+    .home-btn:hover { background-color: #0078d4; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
+
+  <div class="container">
+    <h2>🛠️ Chapter 2: OS Environment Setup & Security Firewall Rules</h2>
+    <p>This chapter guides you through standardizing system locales, aligning network time logs across subnets, and configuring secure firewall openings.</p>
+
+    <!-- SECTION: SEQUENCE 1 TO 100 -->
+    <h2>📋 Sequence 1 to 100: Host Base Alignment & Mappings</h2>
+    <p>Perform these steps to prepare the local operating system environments across all three database host endpoints.</p>
+
+    <span class="script-ref">📁 Reference Source File: 1_Prerequisites.txt</span>
+    
+    <p><span class="seq-num">001.</span> Log into your server terminals and run these commands on <strong>all cluster members</strong> (<code>DB1</code>, <code>DB2</code>, and <code>DR-DB1</code>) to synchronize time tracking and environment variables:</p>
+    <div class="code-box">
+      <span class="comment"># Update package mappings and pull system time syncing utilities</span><br>
+      sudo apt-get update<br>
+      sudo apt-get install -y chrony locales<br><br>
+      
+      <span class="comment"># Standardize system locale settings to avoid translation runtime breaks</span><br>
+      sudo locale-gen en_US.UTF-8<br>
+      sudo update-locale LANG=en_US.UTF-8
+    </div>
+
+    <p><span class="seq-num">002.</span> Open your local static network routing files using a text editor on <strong>every node</strong>:</p>
+    <div class="code-box">sudo vi /etc/hosts</div>
+
+    <p><span class="seq-num">003.</span> Add these static mapping records to ensure host lookup paths remain clear even during local DNS drops:</p>
+    <div class="code-box" style="color: #9cdcfe;">
+      192.168.1.1     DB1<br>
+      192.168.1.2     DB2<br>
+      172.30.1.1      DR-DB1<br>
+      20.20.20.178    QDEVICE-SERVER
+    </div>
+
+    <!-- SECTION: SEQUENCE 101 TO 200 -->
+    <h2>📋 Sequence 101 to 200: Firewall Rules & Multi-Subnet Security</h2>
+    <p>Configure network security boundaries to protect cluster state changes and database mirroring pipelines.</p>
+
+    <span class="script-ref">📁 Reference Source File: 2_Firewall_Setup.txt</span>
+
+    <p><span class="seq-num">101.</span> Run these UFW firewall commands on your main datacenter nodes (<code>DB1</code> and <code>DB2</code>) to allow trusted multi-subnet inter-cluster data streams:</p>
+    <div class="code-box">
+      <span class="comment"># Allow standard database application traffic on port 1433</span><br>
+      sudo ufw allow proto tcp from 192.168.1.0/24 to any port 1433<br>
+      sudo ufw allow proto tcp from 172.30.1.0/24 to any port 1433<br><br>
+      
+      <span class="comment"># Open port 5022 for the database engine Always On mirroring endpoint data stream</span><br>
+      sudo ufw allow proto tcp from 192.168.1.0/24 to any port 5022<br>
+      sudo ufw allow proto tcp from 172.30.1.0/24 to any port 5022
+    </div>
+
+    <p><span class="seq-num">102.</span> Open clustering ports on <strong>all cluster members</strong> so Pacemaker and Corosync can exchange token messages and connect to the external QDevice Net Voter:</p>
+    <div class="code-box">
+      <span class="comment"># Open port 2224 for PCS cluster management communication</span><br>
+      sudo ufw allow proto tcp to any port 2224<br><br>
+      
+      <span class="comment"># Open port 5405 over UDP for Corosync multicast cluster tokens</span><br>
+      sudo ufw allow proto udp to any port 5405<br><br>
+      
+      <span class="comment"># Open port 5403 for the external dynamic QDevice Net Voter daemon</span><br>
+      sudo ufw allow proto tcp to any port 5403
+    </div>
+
+    <p><span class="seq-num">103.</span> Enable the security policies immediately to reload the active kernel tracking lists:</p>
+    <div class="code-box">
+      sudo ufw reload<br>
+      sudo ufw status verbose
+    </div>
+  </div>
+
+</body>
+</html>

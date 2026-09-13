@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Server HA/DR Deployment Center - Ubuntu Pacemaker</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 950px; margin: 0 auto; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h1 { font-size: 24px; color: #ffffff; margin-top: 0; margin-bottom: 5px; }
+    .subtitle { color: #4ec9b0; font-size: 14px; margin-bottom: 25px; font-weight: 500; }
+    .intro-banner { background-color: rgba(0, 120, 212, 0.1); border-left: 4px solid #0078d4; padding: 15px; border-radius: 0 6px 6px 0; margin-bottom: 25px; font-size: 13.5px; color: #cccccc; }
+    h2 { font-size: 18px; color: #ffffff; border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; margin-top: 30px; }
+    table { width: 100%; border-collapse: collapse; text-align: left; margin: 15px 0; font-size: 13px; }
+    th { padding: 10px; color: #aaaaaa; background-color: #1a1a1a; border-bottom: 2px solid #3d3d3d; font-weight: 600; }
+    td { padding: 10px; border-bottom: 1px solid #2d2d2d; color: #dddddd; }
+    .badge-green { background-color: rgba(78, 201, 176, 0.2); color: #4ec9b0; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px; }
+    .badge-red { background-color: rgba(255, 77, 77, 0.15); color: #ff6b6b; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px; }
+    .runbook-menu { list-style: none; padding: 0; margin: 25px 0; }
+    .runbook-menu li { background: #1a1a1a; margin-bottom: 12px; border: 1px solid #2d2d2d; border-radius: 6px; transition: 0.2s; }
+    .runbook-menu li:hover { border-color: #0078d4; background-color: rgba(255,255,255,0.02); }
+    .runbook-menu a { display: block; padding: 18px; color: #ffffff; text-decoration: none; font-weight: 500; font-size: 15px; }
+    .step-num { color: #4fc1ff; font-family: monospace; font-weight: bold; margin-right: 10px; }
+    .image-placeholder { background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 30px; text-align: center; border-radius: 6px; color: #aaaaaa; margin: 20px 0; }
+    .image-placeholder img { max-width: 100%; height: auto; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📑 Multi-Site SQL Server Always On with Ubuntu Pacemaker & QDevice</h1>
+    <div class="subtitle">🚀 Enterprise Infrastructure Runbook for Cross-Subnet HA/DR Orchestration & Automated Failover Testing</div>
+    
+    <div class="intro-banner">
+      👋 <strong>Welcome to the Deployment Hub!</strong> This technical suite contains production blueprints for configuring an automated cross-subnet SQL Server Always On Availability Group on **Ubuntu 22.04 LTS** using **Corosync, Pacemaker**, and a neutral network segment **QDevice Net Voter**.
+    </div>
+
+    <!-- Architecture Overview Diagram -->
+    <h2>🗺️ Architecture Topology Map</h2>
+    <p>This layout uses a 5-vote topology with two synchronous nodes in the main datacenter, an asynchronous disaster recovery node in a separate subnet, and an external Net Voter providing the dynamic tie-breaking quorum vote:</p>
+    <div class="image-placeholder">
+      <img src="./assets/mssql-ubuntu-pacemaker-qdevice-hadr_architecture.png" alt="Multi-Site Orchestrated Ubuntu Pacemaker QDevice Topology">
+      <p style="margin: 10px 0 0 0; font-size: 12px; color: #6a9955;">Figure 1: Cross-Subnet High Availability Network Topology Map</p>
+    </div>
+
+    <!-- Test Cases Baseline Matrix -->
+    <h2>🧪 Core System Observations (Without QDevice vs. With QDevice)</h2>
+    <p>Below are the verified outcomes extracted from testing active crash scenarios under both cluster baselines:</p>
+    
+    <h3>📊 Baseline Topology: High-Availability Failover Summary (Without QDevice)</h3>
+    <p style="font-size: 13px; color: #aaaaaa; margin-top: -10px;">Tracks a 4-vote setup running without an external net witness server.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario / Setup</th>
+          <th>Local DC Nodes</th>
+          <th>DR-DB1 State</th>
+          <th>Quorum State</th>
+          <th>Actual Impact & Management Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Initial Base State</strong></td>
+          <td>🟢 DB1 Primary / 🟢 DB2 Secondary</td>
+          <td>SYNCHRONIZED</td>
+          <td><span class="badge-green">Healthy (4/4 Votes)</span></td>
+          <td>Production baseline. Application traffic routes normally via Listenerdc IP.</td>
+        </tr>
+        <tr>
+          <td><strong>DC Single Node Failure</strong></td>
+          <td>🟢 DB1 Primary / 🔴 DB2 Offline</td>
+          <td>SYNCHRONIZED</td>
+          <td><span class="badge-green">Healthy (3/4 Votes)</span></td>
+          <td>Functional. Zero service disruption. Datacenter operations continue smoothly.</td>
+        </tr>
+        <tr>
+          <td><strong>DC Local Dual Node Failure</strong></td>
+          <td>🔴 DB1 Crashed / 🔴 DB2 Crashed</td>
+          <td>SYNCHRONIZED</td>
+          <td><span class="badge-red">QUORUM LOSS (2/4)</span></td>
+          <td>💥 <strong>TOTAL SITE CRASH.</strong> Pacemaker loses quorum, freezes resources, and blocks DR-DB1.</td>
+        </tr>
+        <tr>
+          <td><strong>Total Cluster Stack Failure</strong></td>
+          <td>🟢 DB1 Engine Up / 🟢 DB2 Engine Up</td>
+          <td>SYNCHRONIZED</td>
+          <td><span class="badge-red">CLUSTER DEAD</span></td>
+          <td>🛑 <strong>AUTOMATION BREAKDOWN.</strong> SQL Server locks instances to prevent split-brain data drift.</td>
+        </tr>
+        <tr>
+          <td><strong>Automated DR Failover (Passive)</strong></td>
+          <td>🔴 DB1 Crashed / 🟢 DB2 Promoted</td>
+          <td>ASYNCHRONOUS</td>
+          <td><span class="badge-green">Healthy (3/4 Votes)</span></td>
+          <td>🟢 <strong>SUCCESSFUL LOCAL FAILOVER.</strong> Asynchronous DR drops out of safety logic. Failover works.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>📊 Advanced Architecture: High-Availability Failover Summary (With QDevice)</h3>
+    <p style="font-size: 13px; color: #aaaaaa; margin-top: -10px;">Tracks our expanded 5-vote setup using an external QDevice Net Voter on a neutral subnet.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario / Setup</th>
+          <th>Local DC Nodes</th>
+          <th>DR-DB1 State</th>
+          <th>QDevice / Quorum</th>
+          <th>Actual Impact & Operational Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Initial Base State</strong></td>
+          <td>🟢 DB1 Primary / 🟢 DB2 Secondary</td>
+          <td>🟢 Secondary (Sync)</td>
+          <td><span class="badge-green">Healthy (5/5 Votes)</span></td>
+          <td>Production baseline. All nodes healthy, replicas synchronized perfectly.</td>
+        </tr>
+        <tr>
+          <td><strong>DC Single Node Failure</strong></td>
+          <td>🟢 DB1 Primary / 🔴 DB2 Offline</td>
+          <td>🟢 Secondary (Sync)</td>
+          <td><span class="badge-green">Healthy (4/5 Votes)</span></td>
+          <td>Functional. Automated processes keep traffic flowing smoothly on DB1.</td>
+        </tr>
+        <tr>
+          <td><strong>DC Local Dual Node Failure</strong></td>
+          <td>🔴 DB1 Crashed / 🔴 DB2 Crashed</td>
+          <td>🟢 Unpromoted</td>
+          <td><span class="badge-green">Healthy (3/5 Votes)</span></td>
+          <td>⚠️ <strong>CRITICAL ENGINE BLOCK.</strong> Cluster has quorum via QDevice, but SQL blocks auto-promotion to protect data.</td>
+        </tr>
+        <tr>
+          <td><strong>Automated Local DC Failover</strong></td>
+          <td>🔴 DB1 Crashed / 🟢 DB2 Promoted</td>
+          <td>🟢 Restricted Passive</td>
+          <td><span class="badge-green">Healthy (4/5 Votes)</span></td>
+          <td>🟢 <strong>SUCCESSFUL AUTOMATIC FAILOVER.</strong> Local failover works instantly without getting blocked by DR node.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Navigation Chapters Menu -->
+    <h2>🚀 Step-by-Step Configuration Pipeline Modules</h2>
+    <p style="color: #cccccc;">Select an implementation chapter below to start configuring the nodes, storage disks, networking layers, or T-SQL endpoints:</p>
+
+    <ul class="runbook-menu">
+      <li><a href="./01_env_spec.html"><span class="step-num">Chapter 1.</span> 🎛️ Network Mappings & Cluster Sizing Matrix</a></li>
+      <li><a href="./02_network_firewall.html"><span class="step-num">Chapter 2.</span> 🛠️ OS Environment Setup & Security Firewall Rules</a></li>
+      <li><a href="./03_storage_prep.html"><span class="step-num">Chapter 3.</span> 🗄️ LVM Storage Volume Setup & Partition Mounting</a></li>
+      <li><a href="./04_cluster_install.html"><span class="step-num">Chapter 4.</span> 📦 Pacemaker Cluster Tools & QDevice Corosync Sync</a></li>
+      <li><a href="./05_engine_hadr.html"><span class="step-num">Chapter 5.</span> 🚀 SQL Server Engine Installation & Always On Setup</a></li>
+      <li><a href="./06_validation_recovery.html"><span class="step-num">Chapter 6.</span> 🔍 Post-Deployment Health Queries & Disaster Recovery SOP</a></li>
+    </ul>
+  </div>
+
+</body>
+</html>

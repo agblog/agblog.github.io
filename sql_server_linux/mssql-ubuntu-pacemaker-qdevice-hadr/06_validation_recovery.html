@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 6: Post-Deployment Checkups & Disaster Recovery SOP</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 950px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; margin-bottom: 10px; border-left: 3px solid #ff6b6b; padding-left: 8px; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
+    .sql-kw { color: #569cd6; font-weight: bold; }
+    .comment { color: #6a9955; font-style: italic; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; }
+    .home-btn:hover { background-color: #0078d4; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+    .image-placeholder { background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 25px; text-align: center; border-radius: 6px; color: #aaaaaa; margin: 15px 0; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
+
+  <div class="container">
+    <h2>🔍 Chapter 6: Post-Deployment Health Verification & Disaster Recovery SOP</h2>
+    <p>This chapter provides the tools to monitor your active synchronization states and the recovery runbook steps needed to manage data center failures manually.</p>
+
+    <!-- SECTION: SEQUENCE 1 TO 100 -->
+    <h2>📋 Sequence 1 to 100: Run Database Engine Health Diagnostics</h2>
+    <p>Execute these system validation scripts inside your query window to trace data replication status logs.</p>
+
+    <p><span class="seq-num">001.</span> Run this query to check the active synchronization status descriptions across your database replicas:</p>
+    <div class="code-box">
+      <span class="sql-kw">SELECT</span> ar.replica_server_name, adc.database_name, drs.synchronization_state_desc, drs.synchronization_health_desc<br>
+      <span class="sql-kw">FROM</span> sys.dm_hadr_database_replica_states drs<br>
+      <span class="sql-kw">JOIN</span> sys.availability_replicas ar <span class="sql-kw">ON</span> drs.replica_id = ar.replica_id<br>
+      <span class="sql-kw">JOIN</span> sys.availability_databases_cluster adc <span class="sql-kw">ON</span> drs.group_database_id = adc.group_database_id;<br>
+      <span class="sql-kw">GO</span>
+    </div>
+    
+    <div class="image-placeholder">
+      <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Asset Check: Database output results display confirming active synchronized health mapping tables]</p>
+    </div>
+
+    <p><span class="seq-num">002.</span> Truncate line events and monitor automated file copy background operations by checking this system view:</p>
+    <div class="code-box">
+      <span class="sql-kw">SELECT</span> start_time, completion_time, current_state, failure_state_desc <span class="sql-kw">FROM</span> sys.dm_hadr_automatic_seeding;<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <!-- SECTION: SEQUENCE 101 TO 200 -->
+    <h2>📋 Sequence 101 to 200: Disaster Recovery Manual Override</h2>
+    <p>Follow these manual steps if a catastrophic data center failure drops your main nodes and you need to bring your off-site disaster recovery node online.</p>
+
+    <div style="background-color: rgba(239, 68, 68, 0.15); border-left: 4px solid #ef4444; padding: 15px; border-radius: 0 6px 6px 0; margin: 15px 0; font-size: 13.5px; color: #ff8888;">
+      🛑 <strong>Failsafe Override Protocol Notice:</strong> When both primary nodes crash, the database engine drops into a protected <code>Resolving</code> loop to prevent split-brain issues. Automated cross-subnet failovers are blocked by design. Follow this phase checklist to force data availability manually.
+    </div>
+
+    <p><span class="seq-num">101.</span> Log into the terminal on your surviving off-site server (<code>DR-DB1</code>) and run these tools to clear resource locks and reset lingering failure counters:</p>
+    <div class="code-box">
+      <span class="comment"># Clear old node test block constraints and resource tracking logs</span><br>
+      sudo pcs resource clear sqlcluster-clone --force<br>
+      sudo pcs resource cleanup sqlcluster-clone
+    </div>
+    
+    <div class="image-placeholder">
+      <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Asset Check: Terminal console entries log verifying pcs resource locks removal]</p>
+    </div>
+
+    <p><span class="seq-num">102.</span> Open an interactive SQL query window on the off-site server (<code>DR-DB1</code>) and force the Availability Group online, even with data loss risks:</p>
+    <div class="code-box">
+      <span class="comment">-- Force failover directly inside the database management query terminal</span><br>
+      <span class="sql-kw">ALTER AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">FORCE_FAILOVER_ALLOW_DATA_LOSS</span>;<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <p><span class="seq-num">103.</span> Run this database update to resume regular transaction log tracking and bring your application processing workloads back online:</p>
+    <div class="code-box">
+      <span class="sql-kw">ALTER DATABASE</span> [EnterpriseAppDB] <span class="sql-kw">SET HADR RESUME</span>;<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <p><span class="seq-num">104.</span> Run this final command on your console to confirm that the cluster has stabilized and that <code>DR-DB1</code> has successfully assumed the primary role:</p>
+    <div class="code-box">sudo pcs status</div>
+  </div>
+
+</body>
+</html>

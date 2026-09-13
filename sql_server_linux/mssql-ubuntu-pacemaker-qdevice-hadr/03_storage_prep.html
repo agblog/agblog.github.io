@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 3: Storage Preparation & Volume Mounting</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
+    .comment { color: #6a9955; font-style: italic; }
+    .script-ref { background-color: rgba(79, 193, 255, 0.1); border: 1px solid #4fc1ff; color: #4fc1ff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; transition: 0.2s; }
+    .home-btn:hover { background-color: #0078d4; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
+
+  <div class="container">
+    <h2>🗄️ Chapter 3: LVM Storage Volume Setup & Partition Mounting</h2>
+    <p>This chapter walks you through isolating database directory trees to separate random data disk reads from sequential database logging activities.</p>
+
+    <!-- SECTION: SEQUENCE 1 TO 100 -->
+    <h2>📋 Sequence 1 to 100: Physical Volume Provisioning</h2>
+    <p>Perform these baseline commands to format raw unpartitioned space into flexible LVM logical storage tracks.</p>
+
+    <span class="script-ref">📁 Reference Source File: 3_Disk_Preparations.sh</span>
+    
+    <p><span class="seq-num">001.</span> Run these commands on <strong>all database nodes</strong> to identify your raw disks and build the LVM physical baseline storage pools:</p>
+    <div class="code-box">
+      <span class="comment"># Scan the host to discover newly attached physical storage disks</span><br>
+      sudo lsblk<br><br>
+      
+      <span class="comment"># Initialize the raw disk (e.g., /dev/sdb) as an LVM Physical Volume</span><br>
+      sudo pvcreate /dev/sdb<br><br>
+      
+      <span class="comment"># Create a primary Volume Group named vg_mssql to hold your database structures</span><br>
+      sudo vgcreate vg_mssql /dev/sdb
+    </div>
+
+    <!-- SECTION: SEQUENCE 101 TO 200 -->
+    <h2>📋 Sequence 101 to 200: Logical Volume Separation & File Mounts</h2>
+    <p>Carve out isolated logical tracks, format them with XFS filesystems, and apply secure directory paths.</p>
+
+    <p><span class="seq-num">101.</span> Allocate explicit logical disks out of your volume group to isolate data, transaction logs, and temporary work drives:</p>
+    <div class="code-box">
+      <span class="comment"># Carve out folders for database data files, transaction logs, and tempdb tracking</span><br>
+      sudo lvcreate -L 40G -n lv_sqldata vg_mssql<br>
+      sudo lvcreate -L 20G -n lv_sqllog vg_mssql<br>
+      sudo lvcreate -L 10G -n lv_sqltemp vg_mssql
+    </div>
+
+    <p><span class="seq-num">102.</span> Format the partitions using high-throughput XFS filesystems and create matching system destination mount directories:</p>
+    <div class="code-box">
+      <span class="comment"># Form new block groups across layouts</span><br>
+      sudo mkfs.xfs /dev/vg_mssql/lv_sqldata<br>
+      sudo mkfs.xfs /dev/vg_mssql/lv_sqllog<br>
+      sudo mkfs.xfs /dev/vg_mssql/lv_sqltemp<br><br>
+      
+      <span class="comment"># Build segregated system directory trees</span><br>
+      sudo mkdir -p /var/opt/mssql/data<br>
+      sudo mkdir -p /var/opt/mssql/log<br>
+      sudo mkdir -p /var/opt/mssql/tempdb<br>
+      sudo mkdir -p /var/opt/mssql/backup/agcerts
+    </div>
+
+    <p><span class="seq-num">103.</span> Mount the logical drives immediately to connect your persistent volumes to the running operating system file tree:</p>
+    <div class="code-box">
+      sudo mount /dev/vg_mssql/lv_sqldata /var/opt/mssql/data<br>
+      sudo mount /dev/vg_mssql/lv_sqllog /var/opt/mssql/log<br>
+      sudo mount /dev/vg_mssql/lv_sqltemp /var/opt/mssql/tempdb
+    </div>
+  </div>
+
+</body>
+</html>

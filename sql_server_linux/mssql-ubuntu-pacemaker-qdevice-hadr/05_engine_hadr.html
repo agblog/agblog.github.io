@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 5: SQL Engine Installation & Always On Provisioning</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 950px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; margin-bottom: 10px; border-left: 3px solid #0078d4; padding-left: 8px; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
+    .sql-kw { color: #569cd6; font-weight: bold; }
+    .sql-str { color: #ce9178; }
+    .comment { color: #6a9955; font-style: italic; }
+    .script-ref { background-color: rgba(79, 193, 255, 0.1); border: 1px solid #4fc1ff; color: #4fc1ff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; transition: 0.2s; }
+    .home-btn:hover { background-color: #0078d4; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+    .image-placeholder { background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 25px; text-align: center; border-radius: 6px; color: #aaaaaa; margin: 15px 0; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
+
+  <div class="container">
+    <h2>🚀 Chapter 5: SQL Server Engine Installation & Always On Setup</h2>
+    <p>This chapter guides you through installing the database binaries, initializing instance security keys, and connecting replicas to the data mirroring pipeline.</p>
+
+    <!-- SECTION: SEQUENCE 1 TO 100 -->
+    <h2>📋 Sequence 1 to 100: Install SQL Engine & Activate HADR Extensions</h2>
+    <p>Register the package repositories, download the base database systems, and enable high availability extensions inside the core configurations file.</p>
+
+    <span class="script-ref">📁 Reference Source Files: 6_Install_SQL_Server.txt | 7_Install_SQLCMD_Tools.txt | 8_Enable_AlwaysOn_AG.txt</span>
+    
+    <p><span class="seq-num">001.</span> Run these installation lines on <strong>all cluster hosts</strong> to register the Microsoft package repositories and pull the database server binaries:</p>
+    <div class="code-box">
+      <span class="comment"># Add the official Microsoft package distribution keys</span><br>
+      sudo curl -sSL https://microsoft.com | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg<br>
+      sudo curl -sSL https://microsoft.com | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list<br><br>
+      
+      <span class="comment"># Update tracking definitions and install the SQL Server core database engine</span><br>
+      sudo apt-get update && sudo apt-get install -y mssql-server
+    </div>
+
+    <p><span class="seq-num">002.</span> Run the interactive setup script on <strong>each host</strong> to choose your license profile, configure an administrative password, and enable the high availability modules:</p>
+    <div class="code-box">
+      <span class="comment"># Launch the instance setup prompts</span><br>
+      sudo /opt/mssql/bin/mssql-conf setup<br><br>
+      
+      <span class="comment"># Turn on the internal Always On high availability settings extension</span><br>
+      sudo /opt/mssql/bin/mssql-conf set hadr.hadrenabled 1<br>
+      sudo systemctl restart mssql-server
+    </div>
+
+    <!-- SECTION: SEQUENCE 101 TO 200 -->
+    <h2>📋 Sequence 101 to 200: Generate Mirroring Endpoints & Build Availability Group</h2>
+    <p>Execute cryptographic certificate scripts, copy security keys across server subnets, and link databases to the synchronization pipeline.</p>
+
+    <span class="script-ref">📁 Reference Source Files: 9_Create_Cert_Endpoint_Primary.sql | 10_Create_Cert_Endpoint_Secondary.sql | 11_Associate_Certs.sql | 12_Create_AG.sql | 13_Add_DB_to_AG.sql</span>
+
+    <p><span class="seq-num">101.</span> Run this script block on the <strong>Primary Server (DB1)</strong> to provision your network authentication certificate and database mirroring endpoint:</p>
+    <div class="code-box">
+      <span class="sql-kw">USE</span> master;<br>
+      <span class="sql-kw">GO</span><br>
+      <span class="sql-kw">CREATE MASTER KEY ENCRYPTION BY PASSWORD</span> = <span class="sql-str">'SecureKeyPassword88!'</span>;<br>
+      <span class="sql-kw">CREATE CERTIFICATE</span> AG_Transport_Cert <span class="sql-kw">WITH SUBJECT</span> = <span class="sql-str">'AG Authentication'</span>;<br><br>
+      
+      <span class="sql-kw">CREATE ENDPOINT</span> [Hadr_endpoint] <span class="sql-kw">STATE</span> = STARTED <span class="sql-kw">AS TCP</span> (LISTENER_PORT = 5022)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">FOR DATABASE_MIRRORING</span> (ROLE = ALL, AUTHENTICATION = <span class="sql-kw">CERTIFICATE</span> AG_Transport_Cert, ENCRYPTION = REQUIRED ALGORITHM AES);<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <p><span class="seq-num">102.</span> After copying the exported certificate keys securely to your replicas via network copy utilities, connect to <strong>DB2</strong> and <strong>DR-DB1</strong> to import the profiles and initialize matching database endpoints:</p>
+    <div class="code-box">
+      <span class="sql-kw">USE</span> master;<br>
+      <span class="sql-kw">CREATE CERTIFICATE</span> AG_Transport_Cert <span class="sql-kw">FROM FILE</span> = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.cer'</span><br>
+      <span class="sql-kw">WITH PRIVATE KEY</span> (FILE = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.key'</span>, DECRYPTION BY PASSWORD = <span class="sql-str">'SecureKeyPassword88!'</span>);<br><br>
+      
+      <span class="sql-kw">CREATE ENDPOINT</span> [Hadr_endpoint] <span class="sql-kw">STATE</span> = STARTED <span class="sql-kw">AS TCP</span> (LISTENER_PORT = 5022)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">FOR DATABASE_MIRRORING</span> (ROLE = ALL, AUTHENTICATION = <span class="sql-kw">CERTIFICATE</span> AG_Transport_Cert, ENCRYPTION = REQUIRED ALGORITHM AES);<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <p><span class="seq-num">103.</span> Create the Availability Group on the <strong>Primary Node (DB1)</strong>, setting local configurations to synchronous commit and the remote disaster recovery node to asynchronous mode:</p>
+    <div class="code-box">
+      <span class="sql-kw">CREATE AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">WITH</span> (CLUSTER_TYPE = EXTERNAL)<br>
+      <span class="sql-kw">FOR REPLICA ON</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;N<span class="sql-str">'DB1'</span> <span class="sql-kw">WITH</span> (ENDPOINT_URL = N<span class="sql-str">'TCP://192.168.1.1:5022'</span>, AVAILABILITY_MODE = SYNCHRONOUS_COMMIT, FAILOVER_MODE = EXTERNAL, SEEDING_MODE = AUTOMATIC),<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;N<span class="sql-str">'DB2'</span> <span class="sql-kw">WITH</span> (ENDPOINT_URL = N<span class="sql-str">'TCP://192.168.1.2:5022'</span>, AVAILABILITY_MODE = SYNCHRONOUS_COMMIT, FAILOVER_MODE = EXTERNAL, SEEDING_MODE = AUTOMATIC),<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;N<span class="sql-str">'DR-DB1'</span> <span class="sql-kw">WITH</span> (ENDPOINT_URL = N<span class="sql-str">'TCP://172.30.1.1:5022'</span>, AVAILABILITY_MODE = ASYNCHRONOUS_COMMIT, FAILOVER_MODE = EXTERNAL, SEEDING_MODE = AUTOMATIC);<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <p><span class="seq-num">104.</span> Connect to the replicas and run these database updates to join the running group and authorize automatic database file creation:</p>
+    <div class="code-box">
+      <span class="sql-kw">ALTER AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">JOIN WITH</span> (CLUSTER_TYPE = EXTERNAL);<br>
+      <span class="sql-kw">ALTER AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">GRANT CREATE ANY DATABASE</span>;<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <p><span class="seq-num">105.</span> Add your target user workload databases to the availability cluster by running this on the <strong>Primary Node (DB1)</strong>:</p>
+    <div class="code-box">
+      <span class="sql-kw">ALTER DATABASE</span> [EnterpriseAppDB] <span class="sql-kw">SET RECOVERY FULL</span>;<br>
+      <span class="sql-kw">BACKUP DATABASE</span> [EnterpriseAppDB] <span class="sql-kw">TO DISK</span> = <span class="sql-str">'/var/opt/mssql/backup/EnterpriseAppDB.bak'</span>;<br>
+      <span class="sql-kw">ALTER AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">ADD DATABASE</span> [EnterpriseAppDB];<br>
+      <span class="sql-kw">GO</span>
+    </div>
+    
+    <div class="image-placeholder">
+      <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Asset Check: Database Management Studio dashboard display showing healthy synchronization logs mapping]</p>
+    </div>
+  </div>
+
+</body>
+</html>

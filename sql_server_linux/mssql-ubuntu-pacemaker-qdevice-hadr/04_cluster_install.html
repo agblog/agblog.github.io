@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 4: High-Availability Cluster Configuration</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    h3 { color: #4ec9b0; font-size: 15px; margin-top: 20px; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
+    .comment { color: #6a9955; font-style: italic; }
+    .script-ref { background-color: rgba(79, 193, 255, 0.1); border: 1px solid #4fc1ff; color: #4fc1ff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; transition: 0.2s; }
+    .home-btn:hover { background-color: #0078d4; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+    .image-placeholder { background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 25px; text-align: center; border-radius: 6px; color: #aaaaaa; margin: 15px 0; }
+  </style>
+</head>
+<body>
+
+  <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
+
+  <div class="container">
+    <h2>📦 Chapter 4: Pacemaker Cluster Tools & QDevice Corosync Sync</h2>
+    <p>This chapter covers setting up your administrative cluster profiles, linking token exchange nodes, and integrating the dynamic voter.</p>
+
+    <!-- SECTION: SEQUENCE 1 TO 100 -->
+    <h2>📋 Sequence 1 to 100: Install Cluster Daemons & Align Access</h2>
+    <p>Install the foundational high-availability packages and synchronize administrative engine identities across hosts.</p>
+
+    <span class="script-ref">📁 Reference Source File: 4_Install_Cluster_Tools.txt</span>
+    
+    <p><span class="seq-num">001.</span> Run this installation script block on <strong>all database nodes</strong> to download the core system clustering tools:</p>
+    <div class="code-box">
+      <span class="comment"># Download the cluster stack software suites</span><br>
+      sudo apt-get install -y pacemaker pcs corosync corosync-qdevice
+    </div>
+
+    <p><span class="seq-num">002.</span> Run this on <strong>every host</strong> to configure matching administrative passwords for the default backend cluster profile:</p>
+    <div class="code-box">
+      <span class="comment"># Sync administrative cluster credentials across system perimeters</span><br>
+      echo "hacluster:SecureClusterPass77!" | sudo chpass --stdin hacluster<br>
+      sudo systemctl enable --now pcsd
+    </div>
+
+    <!-- SECTION: SEQUENCE 101 TO 200 -->
+    <h2>📋 Sequence 101 to 200: Initialize Cluster Mesh & Bind QDevice Voter</h2>
+    <p>Link the cluster network nodes together from the master terminal panel and integrate the dynamic network witness.</p>
+
+    <span class="script-ref">📁 Reference Source File: 5_QDevice_Corosync_Setup.sh</span>
+
+    <p><span class="seq-num">101.</span> Execute this handshake sequence exclusively from the <strong>Primary Node (DB1)</strong> to authenticate the endpoints and build the operational node mesh:</p>
+    <div class="code-box">
+      <span class="comment"># Authenticate the cluster members via the pcs interface tool</span><br>
+      sudo pcs cluster auth DB1 DB2 DR-DB1 -u hacluster -p SecureClusterPass77!<br><br>
+      
+      <span class="comment"># Form the cluster network mesh and give it a group identifier name</span><br>
+      sudo pcs cluster setup sqlcluster DB1 DB2 DR-DB1 --force<br><br>
+      
+      <span class="comment"># Launch the cluster service processes across all network environments</span><br>
+      sudo pcs cluster start --all<br>
+      sudo pcs cluster enable --all
+    </div>
+
+    <p><span class="seq-num">102.</span> Connect your cluster to the neutral witness server by mapping the external QDevice network connection over port 5403:</p>
+    <div class="code-box">
+      <span class="comment"># Hardening: Disable hardware node fencing restrictions for virtualization setups</span><br>
+      sudo pcs property set stonith-enabled=false<br><br>
+      
+      <span class="comment"># Add the neutral voter to the cluster topology using the Linear Minimum Split (LMS) rule</span><br>
+      sudo pcs cluster qdevice add net --peer-ids=20.20.20.178 --algo=lms
+    </div>
+
+    <p><span class="seq-num">103.</span> Run a check on the active configuration tracking layouts to make sure tokens are passing smoothly:</p>
+    <div class="code-box">
+      sudo pcs status<br>
+      corosync-cmapctl | grep qdevice
+    </div>
+    
+    <div class="image-placeholder">
+      <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Asset Check: Terminal validation dashboard displaying corosync_status loops parameters]</p>
+    </div>
+  </div>
+
+</body>
+</html>
