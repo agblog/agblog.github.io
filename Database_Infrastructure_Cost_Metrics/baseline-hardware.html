@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baseline Cloud Infrastructure Sizing</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header Navigation Frame -->
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span class="text-xl font-bold tracking-tight text-white">SQL-FinOps Portal</span>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="index.html" class="hover:text-emerald-400 transition">Overview</a>
+                <a href="baseline-hardware.html" class="text-emerald-400 border-b-2 border-emerald-400 pb-1">Baseline HW</a>
+                <a href="sql-upfront-capex.html" class="hover:text-emerald-400 transition">CapEx Model</a>
+                <a href="sql-windows-payg.html" class="hover:text-emerald-400 transition">PAYG Model</a>
+                <a href="sql-opex-subscription.html" class="hover:text-emerald-400 transition">OpEx Model</a>
+                <a href="comparison-savings.html" class="hover:text-emerald-400 transition">TCO Matrix</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Data Presentation Frame -->
+    <main class="max-w-7xl mx-auto px-6 py-12 flex-grow w-full">
+        <div class="mb-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-white mb-2">Fixed Infrastructure Baseline</h1>
+            <p class="text-slate-400">Analysis of immutable core hardware layer configurations independent of platform operating system choice.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Raw Hardware Metrics Data Grid -->
+            <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+                <div class="p-5 border-b border-slate-800 bg-slate-900/60">
+                    <h2 class="text-md font-bold text-slate-200">Compute Hardware Sizing & Run-Rates</h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-slate-950 text-slate-400 font-mono text-xs border-b border-slate-800">
+                                <th class="p-4">Component Host</th>
+                                <th class="p-4">System Specs</th>
+                                <th class="p-4 text-right">Monthly Compute</th>
+                                <th class="p-4 text-right">Annual Compute</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-slate-300">
+                            <tr>
+                                <td class="p-4"><span class="font-bold text-white block">db1</span><span class="text-xs text-slate-400">Primary Node</span></td>
+                                <td class="p-4 font-mono text-xs text-slate-400">8 vCPU / 64 GB RAM<br>32GB OS / 1000GB Data</td>
+                                <td class="p-4 text-right font-mono text-white">$472.92</td>
+                                <td class="p-4 text-right font-mono text-slate-500">$5,675.04</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4"><span class="font-bold text-white block">db2</span><span class="text-xs text-slate-400">Active Readable Replica</span></td>
+                                <td class="p-4 font-mono text-xs text-slate-400">8 vCPU / 64 GB RAM<br>32GB OS / 1000GB Data</td>
+                                <td class="p-4 text-right font-mono text-white">$472.92</td>
+                                <td class="p-4 text-right font-mono text-slate-500">$5,675.04</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4"><span class="font-bold text-white block">db-cluster</span><span class="text-xs text-slate-400">Quorum Witness</span></td>
+                                <td class="p-4 font-mono text-xs text-slate-400">2 vCPU / 8 GB RAM<br>32GB OS / 128GB Data</td>
+                                <td class="p-4 text-right font-mono text-white">$89.28</td>
+                                <td class="p-4 text-right font-mono text-slate-500">$1,071.36</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4"><span class="font-bold text-white block">Backup Server</span><span class="text-xs text-slate-400">Storage Target</span></td>
+                                <td class="p-4 font-mono text-xs text-slate-400">2 vCPU / 8 GB RAM<br>32GB OS / 500GB Data</td>
+                                <td class="p-4 text-right font-mono text-white">$124.28</td>
+                                <td class="p-4 text-right font-mono text-slate-500">$1,491.36</td>
+                            </tr>
+                            <tr class="bg-slate-950 font-semibold text-white border-t-2 border-slate-800">
+                                <td class="p-4">TOTAL BASELINE</td>
+                                <td class="p-4 font-mono text-xs text-slate-400">18 vCPU / 136 GB RAM<br>2,128 GB Storage Pool</td>
+                                <td class="p-4 text-right font-mono text-emerald-400">$1,159.40 / mo</td>
+                                <td class="p-4 text-right font-mono text-emerald-400">$13,912.80 / yr</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Contextual Sidebar Elements -->
+            <div class="space-y-6">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-3">Architectural Takeaways</h3>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 font-bold">✓</span>
+                            <span><strong>OS Neutrality:</strong> These hardware run-rates are fixed costs. They do not change whether you choose Windows or Linux.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 font-bold">✓</span>
+                            <span><strong>NVMe Layout:</strong> Engineered with localized high-speed NVMe flash allocations to reliably handle high-throughput primary write cycles.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Storage Allocation Map</h3>
+                    <p class="text-xs text-slate-400 mb-4">Total continuous data pool capacity mapped across the network infrastructure layers:</p>
+                    <div class="space-y-2 text-xs font-mono">
+                        <div class="flex justify-between border-b border-slate-800 pb-1">
+                            <span class="text-slate-500">Database Data Tier:</span>
+                            <span class="text-slate-300 font-bold">2,000 GB</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-800 pb-1">
+                            <span class="text-slate-500">Quorum Device Allocation:</span>
+                            <span class="text-slate-300 font-bold">128 GB</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-800 pb-1">
+                            <span class="text-slate-500">Active Backup Space:</span>
+                            <span class="text-slate-300 font-bold">500 GB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-slate-500 font-mono">
+            FinOps Financial Architecture Document Suite • Generated for Repository Deployment
+        </div>
+    </footer>
+
+</body>
+</html>

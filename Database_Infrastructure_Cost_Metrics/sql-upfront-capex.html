@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Server Upfront CapEx Licensing Model</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span class="text-xl font-bold tracking-tight text-white">SQL-FinOps Portal</span>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="index.html" class="hover:text-emerald-400 transition">Overview</a>
+                <a href="baseline-hardware.html" class="hover:text-emerald-400 transition">Baseline HW</a>
+                <a href="sql-upfront-capex.html" class="text-emerald-400 border-b-2 border-emerald-400 pb-1">CapEx Model</a>
+                <a href="sql-windows-payg.html" class="hover:text-emerald-400 transition">PAYG Model</a>
+                <a href="sql-opex-subscription.html" class="hover:text-emerald-400 transition">OpEx Model</a>
+                <a href="comparison-savings.html" class="hover:text-emerald-400 transition">TCO Matrix</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 flex-grow w-full">
+        <div class="mb-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-white mb-2">Perpetual Upfront Licensing (CapEx)</h1>
+            <p class="text-slate-400">Analysis of capital expenditure requirements for perpetual deployment profiles paired with Software Assurance protection layers.</p>
+        </div>
+
+        <!-- Perpetual Purchasing Structure Layout Data Sheet -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg mb-8">
+            <div class="p-5 border-b border-slate-800 bg-slate-900/60">
+                <h2 class="text-md font-bold text-slate-200">Model 1: Perpetual License Allocation Run Rates</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-950 text-slate-400 font-mono text-xs border-b border-slate-800">
+                            <th class="p-4">Replica Core Profile</th>
+                            <th class="p-4">Core Sizing</th>
+                            <th class="p-4">Year 1 Capital Software Cost</th>
+                            <th class="p-4">Year 2+ Software Assurance (SA) Maintenance</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="p-4"><span class="font-bold text-white block">db1</span><span class="text-xs text-slate-400">Active Primary Engine</span></td>
+                            <td class="p-4 font-mono text-xs">8 vCPUs</td>
+                            <td class="p-4 font-mono text-white">$60,492.00</td>
+                            <td class="p-4 font-mono text-amber-400">$15,123.00 / yr</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4"><span class="font-bold text-white block">db2</span><span class="text-xs text-slate-400">Active Readable Secondary (Reporting)</span></td>
+                            <td class="p-4 font-mono text-xs">8 vCPUs</td>
+                            <td class="p-4 font-mono text-white">$60,492.00</td>
+                            <td class="p-4 font-mono text-amber-400">$15,123.00 / yr</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">db-cluster <span class="text-xs text-slate-600 block">Quorum Device</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-600">2 vCPUs</td>
+                            <td class="p-4 font-mono text-emerald-400">$0.00 <span class="text-[10px] text-slate-500">(No Engine Active)</span></td>
+                            <td class="p-4 font-mono text-emerald-400">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">Backup Server <span class="text-xs text-slate-600 block">Archive Storage Target</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-600">2 vCPUs</td>
+                            <td class="p-4 font-mono text-emerald-400">$0.00 <span class="text-[10px] text-slate-500">(No Engine Active)</span></td>
+                            <td class="p-4 font-mono text-emerald-400">$0.00</td>
+                        </tr>
+                        <tr class="bg-slate-950 font-semibold text-white border-t-2 border-slate-800">
+                            <td class="p-4" colspan="2">TOTAL CAPEX ENGINE PLATFORM CORE</td>
+                            <td class="p-4 font-mono text-cyan-400">$120,984.00</td>
+                            <td class="p-4 font-mono text-amber-400">$30,246.00 / yr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Compliance / Passive-Active Warning Box -->
+        <div class="bg-amber-950/20 border border-amber-500/20 rounded-xl p-5 shadow-sm">
+            <h3 class="text-sm font-bold text-amber-400 mb-1 flex items-center gap-1.5">
+                ⚠️ Critical Licensing Compliance Constraint
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+                Under official Microsoft volume licensing guidelines, secondary database nodes are only granted complimentary status when remaining completely <strong>passive</strong>. Because this architecture explicitly leverages <strong>db2</strong> as an active, readable secondary instance to process heavy reporting workloads, <strong>both engine replicas must be licensed for core software layers</strong>.
+            </p>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-slate-500 font-mono">
+            FinOps Financial Architecture Document Suite • Generated for Repository Deployment
+        </div>
+    </footer>
+
+</body>
+</html>

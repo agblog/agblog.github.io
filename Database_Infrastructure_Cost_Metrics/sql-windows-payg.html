@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL & Windows Server PAYG Model Breakdown</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span class="text-xl font-bold tracking-tight text-white">SQL-FinOps Portal</span>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="index.html" class="hover:text-emerald-400 transition">Overview</a>
+                <a href="baseline-hardware.html" class="hover:text-emerald-400 transition">Baseline HW</a>
+                <a href="sql-upfront-capex.html" class="hover:text-emerald-400 transition">CapEx Model</a>
+                <a href="sql-windows-payg.html" class="text-emerald-400 border-b-2 border-emerald-400 pb-1">PAYG Model</a>
+                <a href="sql-opex-subscription.html" class="hover:text-emerald-400 transition">OpEx Model</a>
+                <a href="comparison-savings.html" class="hover:text-emerald-400 transition">TCO Matrix</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 flex-grow w-full">
+        <div class="mb-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-white mb-2">Pay-As-You-Go (PAYG) Consumption</h1>
+            <p class="text-slate-400">Analysis of dynamic operational runtime metrics leveraging Azure Arc-enabled per-core billing paths.</p>
+        </div>
+
+        <!-- PAYG Dynamic Core Run Rate Tracking Layer -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg mb-8">
+            <div class="p-5 border-b border-slate-800 bg-slate-900/60">
+                <h2 class="text-md font-bold text-slate-200">Model 2: Operational Run-Rate Billing Realities</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-950 text-slate-400 font-mono text-xs border-b border-slate-800">
+                            <th class="p-4">Component Target Node</th>
+                            <th class="p-4">Core Mapping</th>
+                            <th class="p-4 text-right">Monthly SQL PAYG Add-On</th>
+                            <th class="p-4 text-right">Annual Continuous Core Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="p-4 font-bold text-white">db1 <span class="block text-xs font-normal text-slate-400">Primary Database Engine Instance</span></td>
+                            <td class="p-4 font-mono text-xs">8 vCPUs</td>
+                            <td class="p-4 text-right font-mono text-white">$2,190.00</td>
+                            <td class="p-4 text-right font-mono text-slate-500">$26,280.00</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold text-white">db2 <span class="block text-xs font-normal text-slate-400">Active Readable Reporting Target</span></td>
+                            <td class="p-4 font-mono text-xs">8 vCPUs</td>
+                            <td class="p-4 text-right font-mono text-white">$2,190.00</td>
+                            <td class="p-4 text-right font-mono text-slate-500">$26,280.00</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">db-cluster <span class="text-xs text-slate-600 block">Quorum Cluster Host</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-600">2 vCPUs</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">Backup Server <span class="text-xs text-slate-600 block">Dedicated Archive Point</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-600">2 vCPUs</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00</td>
+                        </tr>
+                        <tr class="bg-slate-950 font-semibold text-white border-t-2 border-slate-800">
+                            <td class="p-4" colspan="2">TOTAL PAYG DATABASE ENGINE BILLING</td>
+                            <td class="p-4 text-right font-mono text-cyan-400">$4,380.00 / mo</td>
+                            <td class="p-4 text-right font-mono text-cyan-400">$52,560.00 / yr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Strategic Implementation Scenarios -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-cyan-400 mb-2">When PAYG Makes Sense</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    PAYG strategies work incredibly well for development environments, short-term staging platforms, or pilot programs where servers can be shut down during off-hours to avoid ongoing software runtime costs.
+                </p>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">The Production Premium</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Running business-critical database environments on non-stop 24/7/365 production lifecycles under unreserved PAYG profiles generates higher long-term costs compared to structured subscription structures.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-slate-500 font-mono">
+            FinOps Financial Architecture Document Suite • Generated for Repository Deployment
+        </div>
+    </footer>
+
+</body>
+</html>

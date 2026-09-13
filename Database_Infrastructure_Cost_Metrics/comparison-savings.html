@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Sizing, Platform, & Database Matrix</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span class="text-xl font-bold tracking-tight text-white">SQL-FinOps Portal</span>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="index.html" class="hover:text-emerald-400 transition">Overview</a>
+                <a href="baseline-hardware.html" class="hover:text-emerald-400 transition">Baseline HW</a>
+                <a href="sql-upfront-capex.html" class="hover:text-emerald-400 transition">CapEx Model</a>
+                <a href="sql-windows-payg.html" class="hover:text-emerald-400 transition">PAYG Model</a>
+                <a href="sql-opex-subscription.html" class="hover:text-emerald-400 transition">OpEx Model</a>
+                <a href="comparison-savings.html" class="text-emerald-400 border-b-2 border-emerald-400 pb-1">TCO Matrix</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 flex-grow w-full">
+        <div class="mb-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-white mb-2">Master TCO Comparison & Savings Matrix</h1>
+            <p class="text-slate-400">The definitive cost evaluation cross-referencing Active Readable and Passive DR cluster strategies against official vendor pricing models.</p>
+        </div>
+
+        <!-- Scenario A Matrix Sheet Allocation Layer -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg mb-12">
+            <div class="p-5 border-b border-slate-800 bg-slate-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h2 class="text-md font-bold text-white">Scenario A: Active Readable Secondary Deployment</h2>
+                    <p class="text-xs text-slate-400">Both nodes are active. Both SQL Server core engines must be fully licensed.</p>
+                </div>
+                <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[11px] font-bold px-2.5 py-0.5 rounded-full self-start sm:self-auto">Full Engine Core Licenses Required</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-950 text-slate-400 font-mono text-xs border-b border-slate-800">
+                            <th class="p-4">Node Name</th>
+                            <th class="p-4 text-right">HW Compute</th>
+                            <th class="p-4 text-right text-rose-400">Windows OS Fee</th>
+                            <th class="p-4 text-right text-emerald-400">Linux OS Fee</th>
+                            <th class="p-4">Model 1: Upfront CapEx</th>
+                            <th class="p-4">Model 2: Arc PAYG</th>
+                            <th class="p-4">Model 3: Annual OpEx</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="p-4 font-bold text-white">db1 <span class="text-xs font-normal text-slate-400 block">Primary</span></td>
+                            <td class="p-4 text-right font-mono">$472.92</td>
+                            <td class="p-4 text-right font-mono text-rose-400">$268.64</td>
+                            <td class="p-4 text-right font-mono text-emerald-400 font-bold">$0.00</td>
+                            <td class="p-4 font-mono text-xs">Y1: $60,492<br>Y2+: $15,123/yr</td>
+                            <td class="p-4 font-mono">$2,190.00 / mo</td>
+                            <td class="p-4 font-mono">$21,736.00 / yr</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold text-white">db2 <span class="text-xs font-normal text-slate-400 block">Active Secondary</span></td>
+                            <td class="p-4 text-right font-mono">$472.92</td>
+                            <td class="p-4 text-right font-mono text-rose-400">$268.64</td>
+                            <td class="p-4 text-right font-mono text-emerald-400 font-bold">$0.00</td>
+                            <td class="p-4 font-mono text-xs">Y1: $60,492<br>Y2+: $15,123/yr</td>
+                            <td class="p-4 font-mono">$2,190.00 / mo</td>
+                            <td class="p-4 font-mono">$21,736.00 / yr</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">db-cluster</td>
+                            <td class="p-4 text-right font-mono text-slate-500">$89.28</td>
+                            <td class="p-4 text-right font-mono text-rose-500">$67.16</td>
+                            <td class="p-4 text-right font-mono text-emerald-500 font-bold">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">Backup Node</td>
+                            <td class="p-4 text-right font-mono text-slate-500">$124.28</td>
+                            <td class="p-4 text-right font-mono text-rose-500">$67.16</td>
+                            <td class="p-4 text-right font-mono text-emerald-500 font-bold">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                        </tr>
+                        <tr class="bg-slate-950 font-bold text-white border-t border-slate-700">
+                            <td class="p-4">TOTALS</td>
+                            <td class="p-4 text-right font-mono text-slate-400">$1,159.40/mo</td>
+                            <td class="p-4 text-right font-mono text-rose-400">$671.60/mo</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00/mo</td>
+                            <td class="p-4 font-mono text-xs text-cyan-400">Y1: $120,984<br>Y2+: $30,246/yr</td>
+                            <td class="p-4 font-mono text-cyan-400">$4,380.00 / mo</td>
+                            <td class="p-4 font-mono text-cyan-400">$43,472.00 / yr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Scenario B Model Setup Data Frame -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg mb-12">
+            <div class="p-5 border-b border-slate-800 bg-slate-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h2 class="text-md font-bold text-white">Scenario B: Passive Standby Disaster Recovery Deployment (SA Benefit)</h2>
+                    <p class="text-xs text-slate-400">Secondary engine acts strictly as an offline failover destination. Free SQL core license applies via Software Assurance.</p>
+                </div>
+                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] font-bold px-2.5 py-0.5 rounded-full self-start sm:self-auto">SQL SA DR Benefit Active</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-950 text-slate-400 font-mono text-xs border-b border-slate-800">
+                            <th class="p-4">Node Name</th>
+                            <th class="p-4 text-right">HW Compute</th>
+                            <th class="p-4 text-right text-rose-400">Windows OS Fee</th>
+                            <th class="p-4 text-right text-emerald-400">Linux OS Fee</th>
+                            <th class="p-4">Model 1: Upfront CapEx</th>
+                            <th class="p-4">Model 2: Arc PAYG</th>
+                            <th class="p-4">Model 3: Annual OpEx</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="p-4 font-bold text-white">db1 <span class="text-xs font-normal text-slate-400 block">Primary</span></td>
+                            <td class="p-4 text-right font-mono">$472.92</td>
+                            <td class="p-4 text-right font-mono text-rose-400">$268.64</td>
+                            <td class="p-4 text-right font-mono text-emerald-400 font-bold">$0.00</td>
+                            <td class="p-4 font-mono text-xs">Y1: $60,492<br>Y2+: $15,123/yr</td>
+                            <td class="p-4 font-mono">$2,190.00 / mo</td>
+                            <td class="p-4 font-mono">$21,736.00 / yr</td>
+                        </tr>
+                        <tr class="bg-emerald-950/10">
+                            <td class="p-4 font-bold text-emerald-400">db2 <span class="text-xs font-normal text-slate-500 block">Passive Standby</span></td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$472.92</td>
+                            <td class="p-4 text-right font-mono text-rose-400">$268.64</td>
+                            <td class="p-4 text-right font-mono text-emerald-400 font-bold">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-400 font-bold">$0.00 <span class="text-[10px] text-slate-500 block">(SA Benefit)</span></td>
+                            <td class="p-4 font-mono text-emerald-400 font-bold">$0.00 <span class="text-[10px] text-slate-500 block">(Arc Benefit)</span></td>
+                            <td class="p-4 font-mono text-emerald-400 font-bold">$0.00 <span class="text-[10px] text-slate-500 block">(Sub Benefit)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">db-cluster</td>
+                            <td class="p-4 text-right font-mono text-slate-500">$89.28</td>
+                            <td class="p-4 text-right font-mono text-rose-500">$67.16</td>
+                            <td class="p-4 text-right font-mono text-emerald-500 font-bold">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">Backup Node</td>
+                            <td class="p-4 text-right font-mono text-slate-500">$124.28</td>
+                            <td class="p-4 text-right font-mono text-rose-500">$67.16</td>
+                            <td class="p-4 text-right font-mono text-emerald-500 font-bold">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                            <td class="p-4 font-mono text-emerald-500">$0.00</td>
+                        </tr>
+                        <tr class="bg-slate-950 font-bold text-white border-t border-slate-700">
+                            <td class="p-4">TOTALS</td>
+                            <td class="p-4 text-right font-mono text-slate-400">$1,159.40/mo</td>
+                            <td class="p-4 text-right font-mono text-rose-400">$671.60/mo</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00/mo</td>
+                            <td class="p-4 font-mono text-xs text-cyan-400">Y1: $60,492<br>Y2+: $15,123/yr</td>
+                            <td class="p-4 font-mono text-cyan-400">$2,190.00 / mo</td>
+                            <td class="p-4 font-mono text-cyan-400">$21,736.00 / yr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Net Financial Return Optimization Metrics Panel -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-8">
+            <h3 class="text-lg font-bold text-white mb-2">The Linux Platform Migration Dividend</h3>
+            <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+                By completely removing the Windows Server Datacenter OS virtualization layer from this cluster architecture, your organization drops platform operating fees down to absolute zero.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-sm border-t border-slate-800 pt-6">
+                <div>
+                    <span class="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Monthly Cost Savings</span>
+                    <span class="text-2xl font-extrabold text-emerald-400">$671.60 / mo</span>
+                </div>
+                <div>
+                    <span class="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Annual Recurring Savings</span>
+                    <span class="text-2xl font-extrabold text-emerald-400">$8,059.20 / yr</span>
+                </div>
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <span class="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">3-Year Accumulated Capital Saved</span>
+                    <span class="text-2xl font-extrabold text-emerald-400">$24,177.60</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vendor Auditing Framework References -->
+        <div class="mt-8 border border-slate-800/80 rounded-xl p-5 bg-slate-950/20 text-xs text-slate-500">
+            <h4 class="font-bold text-slate-400 uppercase tracking-widest font-mono mb-2">Verified Upstream Reference Controls</h4>
+            <p class="mb-2">All primary metric layouts strictly trace back to historical vendor retail reference numbers:</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono">
+                <li>Azure Architecture Baseline Frameworks: $33.58 / Core / Month (Standard Runtime parameters).</li>
+                <li>SQL Server 2022 Volume Licensing Matrix: $15,123 / Enterprise 2-Core Pack Base MSRP.</li>
+                <li>Annual Volume Subscription Enterprise Equivalent: $5,434 / Year per 2-Core Pack Allocation.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-slate-500 font-mono">
+            FinOps Financial Architecture Document Suite • Generated for Repository Deployment
+        </div>
+    </footer>
+
+</body>
+</html>

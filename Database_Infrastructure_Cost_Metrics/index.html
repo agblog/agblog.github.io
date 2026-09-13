@@ -1,9 +1,181 @@
 <!DOCTYPE html>
-<html>
-<head><title>Database_Infrastructure_Cost_Metrics</title></head>
-<body>
-    <h1>Database_Infrastructure_Cost_Metrics</h1>
-    <p>Content coming soon...</p>
-    <a href="../">← Back to Homepage</a>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Server Architecture TCO Hub</title>
+    <!-- Tailwind CSS Engine -->
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        body { 
+            background-color: #0f172a; 
+            color: #f8fafc; 
+            font-family: system-ui, -apple-system, sans-serif; 
+        }
+        .nav-link:hover { 
+            color: #34d399; 
+            border-bottom-color: #34d399; 
+        }
+        .dashboard-card { 
+            transition: all 0.2s ease-in-out; 
+        }
+        .dashboard-card:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); 
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Global Navigation Header Layer -->
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+                    SQL-FinOps Portal
+                </span>
+                <span class="text-xs px-2.5 py-0.5 rounded-full font-mono bg-slate-800 text-slate-400 border border-slate-700">Internal Deployment</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="index.html" class="text-emerald-400 border-b-2 border-emerald-400 pb-1">Overview</a>
+                <a href="baseline-hardware.html" class="nav-link border-b-2 border-transparent pb-1 transition-all">Baseline HW</a>
+                <a href="sql-upfront-capex.html" class="nav-link border-b-2 border-transparent pb-1 transition-all">CapEx Model</a>
+                <a href="sql-windows-payg.html" class="nav-link border-b-2 border-transparent pb-1 transition-all">PAYG Model</a>
+                <a href="sql-opex-subscription.html" class="nav-link border-b-2 border-transparent pb-1 transition-all">OpEx Model</a>
+                <a href="comparison-savings.html" class="nav-link border-b-2 border-transparent pb-1 transition-all">TCO Matrix</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Base Content Context Wrapper -->
+    <main class="max-w-7xl mx-auto px-6 py-12 flex-grow w-full">
+        <div class="max-w-3xl mb-12">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white mb-4">
+                SQL Server High Availability & Disaster Recovery (HADR)
+            </h1>
+            <p class="text-lg text-slate-400 leading-relaxed">
+                Welcome to the central financial analysis workspace. This repository contains the documented infrastructure sizing, deployment architectures, and deep licensing financial structures comparing Windows Server against open-source Linux kernel configurations.
+            </p>
+        </div>
+
+        <!-- High-Level Financial Metrics Banner -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-slate-800/40 border border-slate-700/60 rounded-xl p-6">
+                <span class="block text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1">Total Target Footprint</span>
+                <span class="text-3xl font-bold text-white">18 vCPUs</span>
+                <span class="block text-xs text-slate-400 mt-1">Sized across 4 multi-site infrastructure nodes</span>
+            </div>
+            <div class="bg-slate-800/40 border border-slate-700/60 rounded-xl p-6">
+                <span class="block text-xs font-semibold uppercase tracking-wider text-teal-400 mb-1">Potential OS Savings</span>
+                <span class="text-3xl font-bold text-white">$8,059.20<span class="text-sm font-normal text-slate-400"> / yr</span></span>
+                <span class="block text-xs text-slate-400 mt-1">By dropping the Windows Server license tax completely</span>
+            </div>
+            <div class="bg-slate-800/40 border border-slate-700/60 rounded-xl p-6">
+                <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">Database Mode Status</span>
+                <span class="text-3xl font-bold text-white">Active-Active</span>
+                <span class="block text-xs text-slate-400 mt-1">Secondary node handles heavy reporting tasks</span>
+            </div>
+        </div>
+
+        <hr class="border-slate-800 mb-12">
+
+        <!-- Nav Index Cards Container -->
+        <h2 class="text-xl font-bold text-white mb-6">Structured Portfolio Navigation Index</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Module 1 Card -->
+            <div class="dashboard-card bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-slate-500">Module 01</span>
+                        <span class="bg-slate-800 text-slate-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Core Spec</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-200 mb-2">Cloud Baseline Hardware</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        An itemized look at the raw physical assets, including compute cores, system memory pools, and high-performance NVMe storage layout configurations.
+                    </p>
+                </div>
+                <a href="baseline-hardware.html" class="text-sm text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1 group">
+                    View Baseline Specs <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+
+            <!-- Module 2 Card -->
+            <div class="dashboard-card bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-slate-500">Module 02</span>
+                        <span class="bg-slate-800 text-slate-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Financial</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-200 mb-2">Upfront CapEx Purchasing</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        Audits high-impact perpetual software licensing models. Analyzes heavy Year 1 hardware investments alongside ongoing Software Assurance (SA) costs.
+                    </p>
+                </div>
+                <a href="sql-upfront-capex.html" class="text-sm text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1 group">
+                    View CapEx Structure <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+
+            <!-- Module 3 Card -->
+            <div class="dashboard-card bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-slate-500">Module 03</span>
+                        <span class="bg-slate-800 text-slate-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Billing</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-200 mb-2">Pay-As-You-Go Run Rates</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        A detailed breakdown of flexible hourly runtime options using Azure Arc core billing mechanisms—ideal for variable environments.
+                    </p>
+                </div>
+                <a href="sql-windows-payg.html" class="text-sm text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1 group">
+                    View PAYG Costs <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+
+            <!-- Module 4 Card -->
+            <div class="dashboard-card bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-slate-500">Module 04</span>
+                        <span class="bg-slate-800 text-slate-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Operational</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-200 mb-2">OpEx Volume Subscription</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        Analyzes standardized annual volume software subscription routes tailored to level corporate financial forecasting while protecting production availability.
+                    </p>
+                </div>
+                <a href="sql-opex-subscription.html" class="text-sm text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1 group">
+                    View OpEx Setup <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+
+            <!-- Module 5 Card -->
+            <div class="dashboard-card bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-slate-500">Module 05</span>
+                        <span class="bg-teal-950 text-teal-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Master TCO</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-200 mb-2">Comparative Savings Analysis</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        The ultimate side-by-side comparison screen displaying calculated financial benefits, system limitations, and direct vendor price guidelines.
+                    </p>
+                </div>
+                <a href="comparison-savings.html" class="text-sm text-teal-400 hover:text-teal-300 font-semibold inline-flex items-center gap-1 group">
+                    Launch Master Matrix <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-slate-500 font-mono">
+            FinOps Financial Architecture Document Suite • Generated for Repository Deployment
+        </div>
+    </footer>
+
 </body>
 </html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Server OpEx Subscription Model</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span class="text-xl font-bold tracking-tight text-white">SQL-FinOps Portal</span>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="index.html" class="hover:text-emerald-400 transition">Overview</a>
+                <a href="baseline-hardware.html" class="hover:text-emerald-400 transition">Baseline HW</a>
+                <a href="sql-upfront-capex.html" class="hover:text-emerald-400 transition">CapEx Model</a>
+                <a href="sql-windows-payg.html" class="hover:text-emerald-400 transition">PAYG Model</a>
+                <a href="sql-opex-subscription.html" class="text-emerald-400 border-b-2 border-emerald-400 pb-1">OpEx Model</a>
+                <a href="comparison-savings.html" class="hover:text-emerald-400 transition">TCO Matrix</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 flex-grow w-full">
+        <div class="mb-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-white mb-2">Annual Volume Subscription (OpEx)</h1>
+            <p class="text-slate-400">Analysis of standardized annual volume software subscription routes tailored to level corporate financial forecasting while protecting production availability.</p>
+        </div>
+
+        <!-- OpEx Core Subscription Mapping Data Sheet Matrix -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg mb-8">
+            <div class="p-5 border-b border-slate-800 bg-slate-900/60">
+                <h2 class="text-md font-bold text-slate-200">Model 3: Annualized OpEx Software Subscription Run Rates</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-950 text-slate-400 font-mono text-xs border-b border-slate-800">
+                            <th class="p-4">Component Target Node</th>
+                            <th class="p-4">vCPU Count</th>
+                            <th class="p-4 text-right">Equivalent Monthly Burndown</th>
+                            <th class="p-4 text-right">Annual Subscription Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="p-4 font-bold text-white">db1 <span class="block text-xs font-normal text-slate-400">Primary Database Host Engine</span></td>
+                            <td class="p-4 font-mono text-xs">8 vCPUs</td>
+                            <td class="p-4 text-right font-mono text-slate-400">$1,811.33</td>
+                            <td class="p-4 text-right font-mono text-white">$21,736.00 / yr</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold text-white">db2 <span class="block text-xs font-normal text-slate-400">Active Readable Secondary Target</span></td>
+                            <td class="p-4 font-mono text-xs">8 vCPUs</td>
+                            <td class="p-4 text-right font-mono text-slate-400">$1,811.33</td>
+                            <td class="p-4 text-right font-mono text-white">$21,736.00 / yr</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">db-cluster <span class="text-xs text-slate-600 block">Quorum Node Witness Target</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-600">2 vCPUs</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-slate-500">Backup Server <span class="text-xs text-slate-600 block">Standalone Target Node</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-600">2 vCPUs</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00</td>
+                            <td class="p-4 text-right font-mono text-emerald-400">$0.00</td>
+                        </tr>
+                        <tr class="bg-slate-950 font-semibold text-white border-t-2 border-slate-800">
+                            <td class="p-4" colspan="2">TOTAL ANNUAL VOLUME ENGINE RUN SUBSCRIPTION</td>
+                            <td class="p-4 text-right font-mono text-cyan-400">$3,622.66 / mo</td>
+                            <td class="p-4 text-right font-mono text-cyan-400">$43,472.00 / yr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 text-sm text-slate-400 leading-relaxed">
+            <h3 class="font-bold text-slate-200 mb-2">Strategic Architectural Realities</h3>
+            While corporate annualized subscription pathways bundle standard Software Assurance rights to protect multi-node environments, <strong>they do not eliminate or offset the underlying Windows OS license obligations</strong> needed to keep host cluster platforms running. This limitation highlights the value of moving to an open-source Linux architecture to minimize infrastructure overhead.
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-slate-500 font-mono">
+            FinOps Financial Architecture Document Suite • Generated for Repository Deployment
+        </div>
+    </footer>
+
+</body>
+</html>
