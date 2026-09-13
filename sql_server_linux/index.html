@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Linux SQL Server Documentation Center</title>
+  <style>
+    body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px 20px; max-width: 950px; margin: 0 auto; line-height: 1.6; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h1 { font-size: 26px; color: #ffffff; margin-top: 0; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+    .subtitle { color: #4ec9b0; font-size: 14px; margin-bottom: 30px; font-weight: 500; }
+    
+    .master-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .architecture-card { background: #1a1a1a; border: 1px solid #3d3d3d; border-radius: 8px; padding: 20px; }
+    .architecture-card h2 { color: #4fc1ff; font-size: 16px; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid #2d2d2d; padding-bottom: 8px; }
+    
+    .guide-section { background: #1a1a1a; border: 1px solid #3d3d3d; border-radius: 8px; padding: 20px; margin-top: 20px; }
+    .guide-section h2 { color: #dcdcaa; font-size: 16px; margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid #2d2d2d; padding-bottom: 8px; }
+    
+    .doc-list { list-style: none; padding: 0; margin: 0; }
+    .doc-list li { margin-bottom: 8px; display: flex; align-items: center; }
+    .doc-list li:last-child { margin-bottom: 0; }
+    .doc-list a { color: #ffffff; text-decoration: none; font-size: 14px; transition: 0.2s; display: flex; align-items: center; gap: 8px; width: 100%; padding: 6px 10px; border-radius: 4px; background: #252526; border: 1px solid #2d2d2d; }
+    .doc-list a:hover { border-color: #0078d4; background-color: rgba(255,255,255,0.02); color: #4fc1ff; }
+    
+    .folder-tag { color: #85c46c; font-family: monospace; font-size: 11px; background: rgba(133, 196, 108, 0.1); padding: 1px 5px; border-radius: 3px; margin-left: auto; }
+    .file-tag { color: #ce9178; font-family: monospace; font-size: 11px; background: rgba(206, 145, 120, 0.1); padding: 1px 5px; border-radius: 3px; margin-left: auto; }
+    
+    .intro-banner { background-color: rgba(0, 120, 212, 0.1); border-left: 4px solid #0078d4; padding: 15px; border-radius: 0 6px 6px 0; margin-bottom: 25px; font-size: 13.5px; color: #cccccc; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🗂️ Linux SQL Server Documentation Hub</h1>
+    <div class="subtitle">Master Enterprise Deployment Center & Operations Runbook Suites</div>
+    
+    <div class="intro-banner">
+      👋 <strong>Welcome Team!</strong> This is our centralized reference center for managing Microsoft SQL Server environments across Linux configurations. Use the direct folder maps below to track cluster architectures or review standalone operational playbooks.
+    </div>
+
+    <!-- Top Tier Grid: Architecture Specific Modules -->
+    <div class="master-grid">
+      
+      <!-- Ubuntu Pacemaker Section -->
+      <div class="architecture-card">
+        <h2>🌐 Ubuntu Clustered Architecture</h2>
+        <p style="font-size: 12.5px; color: #aaaaaa; margin-top: -5px; margin-bottom: 15px;">
+          Multi-site configuration managed via Pacemaker, Corosync, and an external QDevice Net Voter witness over cross-subnet frameworks.
+        </p>
+        <ul class="doc-list">
+          <li>
+            <a href="./mssql-ubuntu-pacemaker-qdevice-hadr/index.html">
+              🚀 Open Ubuntu Clustered Runbook Suite
+              <span class="folder-tag">/mssql-ubuntu-pacemaker...</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RHEL Clusterless Section -->
+      <div class="architecture-card">
+        <h2>⚡ Red Hat Clusterless Architecture</h2>
+        <p style="font-size: 12.5px; color: #aaaaaa; margin-top: -5px; margin-bottom: 15px;">
+          High-performance, read-scale layout running directly at the SQL engine tier (<code>CLUSTER_TYPE = NONE</code>) without Pacemaker daemon overhead.
+        </p>
+        <ul class="doc-list">
+          <li>
+            <a href="./rhel-alwayson-clusterless/index.html">
+              🚀 Open RHEL Clusterless Runbook Suite
+              <span class="folder-tag">/rhel-alwayson-clusterless...</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Tier List: Standalone Operational Playbooks -->
+    <div class="guide-section">
+      <h2>📜 General Operational Guides & Infrastructure Tasks</h2>
+      <p style="font-size: 13px; color: #cccccc; margin-bottom: 15px;">Select a standalone topic guide sheet below to manage core system engine maintenance tasks:</p>
+      
+      <ul class="doc-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <li>
+          <a href="./Linux Prerequisites for SQL Server.html">
+            📋 1. Linux Environment Prerequisites
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+        <li>
+          <a href="./Linux directory location SQL Server.html">
+            🗄️ 2. Linux Directory Tree Locations
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+        <li>
+          <a href="./Linux SQL Server Online Package Installation.html">
+            🌐 3. Online Package Installation Steps
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+        <li>
+          <a href="./Linux SQL Server Offline Package Installation.html">
+            🔌 4. Offline Package Installation Protocol
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+        <li>
+          <a href="./Installing MSSQL Server Database on Redhat Linux.html">
+            📦 5. Core RHEL Engine Installation Guide
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+        <li>
+          <a href="./Linux SQL Server DB Migrations Permissions.html">
+            🔑 6. Migration Files Permissions & Access Controls
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+        <li>
+          <a href="./Linux SQL Server SQLCMD Connecting to Database.html">
+            🔌 7. Connecting Local Sessions via SQLCMD
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+        <li>
+          <a href="./Querying using SQLCMD.html">
+            💻 8. Querying Data Objects using SQLCMD
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+        <li>
+          <a href="./SQL Server Linux Always On Clustering, Failover, SQL Server Upgrade.html">
+            🔄 9. Advanced Rolling Upgrades & Maintenance
+            <span class="file-tag">HTML File</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
