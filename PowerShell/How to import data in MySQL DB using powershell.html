@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Import Script & Description</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 30px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2, h3 {
+            color: #0056b3;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        strong {
+            color: #111;
+        }
+        pre {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Script Overview</h2>
+    <h3>This PowerShell script will:</h3>
+    <ul>
+        <li><strong>Connect securely</strong> to your remote MySQL server.</li>
+        <li><strong>Import all the data and commands</strong> from your SQL file directly into your <strong>agblog</strong> database.</li>
+        <li><strong>Keep running automatically</strong>, even if it hits a minor error or roadblock, until the entire file is imported.</li>
+        <li><strong>Track every single action</strong>, success, and error that happens during the import process.</li>
+        <li><strong>Generate a clean, organized spreadsheet report (CSV)</strong> that you can open in Excel to see exactly what was imported.</li>
+    </ul>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <h3>PowerShell Script Source Code</h3>
+    <img src="assets/images/monitoring_sql_server_powershell.png" alt="Monitoring SQL Server PowerShell Dashboard" width="100%">
+
+    <pre>
+# Define file paths
+$input_file = "D:\anurag_dba\mysql\scripts_new.sql"
+$output_file = "D:\anurag_dba\mysql\import_log_ps.csv"
+$log_path = "D:\anurag_dba\mysql\raw_log_ps.txt"
+
+# 1. Run the MySQL command using Get-Content (PowerShell input method)
+# The output will be tab-separated because of -B (Batch mode)
+Get-Content "$input_file" | ./mysql -u anurag_dba -h 192.168.1.10 -P 3306 -p --force -v -v -B agblog *>&1 > "$log_path"
+
+# 2. Read the raw log, add headers, and convert tabs to commas
+"'#', 'Time', 'Action', 'Message', 'Duration / Fetch'" | Out-File -FilePath $output_file -Encoding UTF8
+
+Get-Content $log_path | ForEach-Object {
+    $line = $_ -replace "`t", ","
+    $line = "'$line'"
+    Add-Content -Path $output_file -Value $line -Encoding UTF8
+}
+
+# 3. Clean up the temporary raw log file
+Remove-Item $log_path
+Write-Host "CSV log file created successfully at $output_file"
+
+exit
+    </pre>
+</div>
+
+</body>
+</html>

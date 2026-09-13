@@ -1,0 +1,520 @@
+﻿<pre class="a-b-r-La" style="margin-bottom: 0px; margin-top: 0px; overflow-wrap: break-word; user-select: text;"><span style="font-family: Courier New, Courier, monospace, arial, sans-serif;"><span style="font-size: 14px; text-wrap-mode: wrap;">\\for checking which package installed\\
+
+rpm -qa | grep packagename
+
+\\for install package\\
+
+yum list | grep packagename
+
+yum install packagename
+
+\\for checking disk space\\
+ df -h
+
+\\how to increase database size\\
+disk resize name='master', size='50m'
+
+\\how to check schedule file\\
+
+[anurag@localhost ~]$ cat load.txt 
+Backup Server session id is: 25. Use this value when executing the
+'sp_volchanged' system stored procedure after fulfilling any volume change
+request from the Backup Server.
+Backup Server: 4.41.1.1: Creating new disk file /home/anurag/nandu.dump.
+Backup Server: 6.28.1.1: Dumpfile name 'nandu191330DC52  ' section number 1
+mounted on disk file '/home/anurag/nandu.dump'
+Backup Server: 4.188.1.1: Database nandu: 752 kilobytes (45%) DUMPED.
+Backup Server: 4.188.1.1: Database nandu: 938 kilobytes (100%) DUMPED.
+Backup Server: 3.43.1.1: Dump phase number 1 completed.
+Backup Server: 3.43.1.1: Dump phase number 2 completed.
+Backup Server: 3.43.1.1: Dump phase number 3 completed.
+Backup Server: 4.188.1.1: Database nandu: 948 kilobytes (100%) DUMPED.
+Backup Server: 3.42.1.1: DUMP is complete (database nandu).
+[anurag@localhost ~]$ 
+
+\\ how to check servername\\
+select * from sysservers
+
+\\how to check logins\\
+select * from syslogins
+
+\\how to check long running querries\\
+select * from syslogshold
+
+\\how to check cpu and memory utilization\\
+top
+
+[anurag@localhost bin]$ top
+
+top - 10:03:42 up  1:40,  2 users,  load average: 0.34, 0.20, 0.48
+Tasks: 405 total,   2 running, 403 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 22.6 us,  3.1 sy,  0.0 ni, 74.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem:   1870764 total,  1201468 used,   669296 free,      748 buffers
+KiB Swap:  2097148 total,        0 used,  2097148 free.   465904 cached Mem
+
+   PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND                                                                           
+  2667 anurag    20   0 1597132 258084  38888 S 17.9 13.8   3:46.90 gnome-shell                                                                       
+   892 root      20   0  194064  40416   7740 S  6.3  2.2   1:06.57 Xorg                                                                              
+  3004 anurag    20   0  626120  21192  12272 S  1.3  1.1   0:10.01 gnome-terminal-                                                                   
+  2801 anurag    20   0  447992  13856   9356 S  0.3  0.7   0:00.10 abrt-applet                                                                       
+  4824 root      20   0       0      0      0 S  0.3  0.0   0:00.15 kworker/0:0                                                                       
+  4964 anurag    20   0  123984   1916   1188 R  0.3  0.1   0:00.76 top                                                                               
+     1 root      20   0   53772   7548   2548 S  0.0  0.4   0:02.48 systemd                                                                           
+     2 root      20   0       0      0      0 S  0.0  0.0   0:00.02 kthreadd                                                                          
+     3 root      20   0       0      0      0 S  0.0  0.0   0:00.02 ksoftirqd/0                                                                       
+     5 root       0 -20       0      0      0 S  0.0  0.0   0:00.00 kworker/0:0H                                                                      
+     6 root      20   0       0      0      0 S  0.0  0.0   0:00.16 kworker/u256:0                                                                    
+     7 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 migration/0                                                                       
+     8 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_bh                                                                            
+     9 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/0                                                                           
+    10 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/1                                                                           
+    11 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/2                                                                           
+    12 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/3                                                                           
+    13 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/4                                                                           
+    14 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/5                                                                           
+    15 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/6                                                                           
+    16 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/7                                                                           
+    17 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/8                                                                           
+    18 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/9                                                                           
+    19 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/10                                                                          
+    20 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/11                                                                          
+    21 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/12                                                                          
+    22 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/13                                                                          
+    23 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/14                                                                          
+
+\\how to exit top command\\
+q
+
+\\how to start and stop sybase services\\
+start service= isql -Usa -SLOCALHOST
+
+\\after start services , directly you can type shutdown for stop services \\
+shutdown 
+go
+
+[anurag@localhost bin]$ isql -Usa -SLOCALHOST
+Password: 
+1&gt; shutdown
+2&gt; go
+Server SHUTDOWN by request.
+ASE is terminating this process.
+CT-LIBRARY error:
+	ct_results(): network packet layer: internal net library error: Net-Library operation terminated due to disconnect
+[anurag@localhost bin]$ showserver
+F S UID         PID   PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
+[anurag@localhost bin]$ 
+
+\\ how to check tables \\
+sp_help
+
+\\ how to check which database you are using\\
+select db_name()
+
+\\ how to check number of user working in database\\
+
+1&gt; select * from sysusers
+2&gt; go
+ suid        uid         gid        
+	 name                                                        
+	 environ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+ ----------- ----------- -----------
+	 ------------------------------------------------------------
+	 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+           1           1           0
+	 dbo                                                         
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2           0           0
+	 public                                                      
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16384       16384
+	 sa_role                                                     
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16385       16385
+	 sso_role                                                    
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16386       16386
+	 oper_role                                                   
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16387       16387
+	 sybase_ts_role                                              
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16388       16388
+	 navigator_role                                              
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16389       16389
+	 replication_role                                            
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16390       16390
+	 dtm_tm_role                                                 
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16391       16391
+	 ha_role                                                     
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16392       16392
+	 mon_role                                                    
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16393       16393
+	 js_admin_role                                               
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16394       16394
+	 messaging_role                                              
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16395       16395
+	 js_client_role                                              
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16396       16396
+	 js_user_role                                                
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16397       16397
+	 webservices_role                                            
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16398       16398
+	 keycustodian_role                                           
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+(17 rows affected)
+
+\\ how to check database role in sybase \\
+
+Displays all roles granted to another role, login or login profile
+
+1&gt; sp_displayroles
+2&gt; go
+ Role Name                                                    
+ ------------------------------------------------------------ 
+ sa_role                                                      
+ sso_role                                                     
+ oper_role                                                    
+ sybase_ts_role                                               
+
+(4 rows affected)
+(return status = 0)
+
+\\  how to check privilleges of specific database role in sybase\\
+
+1&gt; sp_helprotect 
+2&gt; go
+ grantor        grantee          type       action      
+	 object                           column                  
+	 grantable          
+ -------------- ---------------- ---------- ------------
+	 -------------------------------- ------------------------
+	 ------------------ 
+ dbo            public           Grant      Select      
+	 sysalternates                    All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysattributes                    All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 syscolumns                       All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 syscomments                      All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysconstraints                   All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysdepends                       All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysindexes                       All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysjars                          All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 syskeys                          All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 syslogs                          All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       cache                   
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       ckfirst                 
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       crdate                  
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       deltrig                 
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       erlchgts                
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       expdate                 
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       id                      
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       identburnmax            
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       indexdel                
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       instrig                 
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       lobcomp_lvl             
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       loginame                
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       name                    
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       objspare                
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       schemacnt               
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       seltrig                 
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       spacestate              
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       sysstat                 
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       sysstat2                
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       sysstat3                
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       type                    
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       uid                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       updtrig                 
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       userstat                
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysobjects                       versionts               
+	 FALSE              
+ dbo            public           Grant      Select      
+	 syspartitionkeys                 All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 syspartitions                    All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysprocedures                    All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysprotects                      All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysqueryplans                    All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysreferences                    All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysroles                         All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 syssegments                      All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysslices                        All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysstatistics                    All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 systabstats                      All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 systhresholds                    All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 systypes                         All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysusermessages                  All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysusers                         All                     
+	 FALSE              
+ dbo            public           Grant      Select      
+	 sysxtypes                        All                     
+	 FALSE              
+ dbo            sso_role         Grant      Select      
+	 sysencryptkeys                   All                     
+	 FALSE              
+ dbo            sso_role         Grant      Select      
+	 sysobjects                       All                     
+	 FALSE              
+
+(1 row affected)
+(return status = 0)
+
+\\ how to check each and every role \\
+
+1&gt; sp_helprotect sa_role
+2&gt; go
+ grantor        grantee        type     action       object       column      
+	 grantable          
+ -------------- -------------- -------- ------------ ------------ ------------
+	 ------------------ 
+
+(1 row affected)
+(return status = 0)
+1&gt; sp_helprotect sso_role
+2&gt; go
+ grantor        grantee          type       action      
+	 object                       column       grantable          
+ -------------- ---------------- ---------- ------------
+	 ---------------------------- ------------ ------------------ 
+ dbo            sso_role         Grant      Select      
+	 sysencryptkeys               All          FALSE              
+ dbo            sso_role         Grant      Select      
+	 sysobjects                   All          FALSE              
+
+(1 row affected)
+(return status = 0)
+1&gt; 
+
+\\ how to check which user currently login \\
+
+1&gt; sp_helpuser
+2&gt; go
+ Users_name           ID_in_db         Group_name          
+	 Login_name           
+ -------------------- ---------------- --------------------
+	 -------------------- 
+ dbo                         1         public              
+	 sa                   
+
+(1 row affected)
+(return status = 0)
+
+\\ how to add login with password for specific database(if not select database , default master)\\
+
+1&gt; sp_addlogin ayush,ayush123,abc \\(ayush=login_name, ayush123=password, abc=database_name)\\
+2&gt; go
+Password correctly set.
+Account unlocked.
+New login created.
+(return status = 0)
+
+\\ how to add user for specific database(if not select database , default master)\\
+
+1&gt; use abc
+2&gt; go
+1&gt; sp_adduser ayush,ayush123
+2&gt; go
+New user added.
+(return status = 0)
+
+\\ how to check user added or not\\
+
+1&gt; select * from sysusers
+2&gt; go
+ suid        uid         gid        
+	 name                                                        
+	 environ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+ ----------- ----------- -----------
+	 ------------------------------------------------------------
+	 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+           1           1           0
+	 dbo                                                         
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2           0           0
+	 public                                                      
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16384       16384
+	 sa_role                                                     
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16385       16385
+	 sso_role                                                    
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16386       16386
+	 oper_role                                                   
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16387       16387
+	 sybase_ts_role                                              
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16388       16388
+	 navigator_role                                              
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16389       16389
+	 replication_role                                            
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16390       16390
+	 dtm_tm_role                                                 
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16391       16391
+	 ha_role                                                     
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16392       16392
+	 mon_role                                                    
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16393       16393
+	 js_admin_role                                               
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16394       16394
+	 messaging_role                                              
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16395       16395
+	 js_client_role                                              
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16396       16396
+	 js_user_role                                                
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16397       16397
+	 webservices_role                                            
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          -2       16398       16398
+	 keycustodian_role                                           
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+           4           3           0
+	 ayush123                                                    
+	 NULL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+(18 rows affected)
+1&gt; exit
+
+\\ check how to check connection with specific user , which you added (instead of sa)\\
+
+[anurag@localhost install]$ isql -Uayush -SLOCALHOST
+Password: 
+1&gt; select db_name() 
+2&gt; go
+                                                              
+ ------------------------------------------------------------ 
+ abc                                                          
+
+(1 row affected)
+
+\\ how to alter user \\
+
+ALTER USER  user-name  [ IDENTIFIED BY password ]  [ LOGIN POLICY policy-name ]  [ FORCE PASSWORD CHANGE { ON | OFF } ]
+
+\\ if you want to create 0 kb file in linux \\
+touch filename
+
+\\how to check version of sybase \\
+1&gt; select @@VERSION
+2&gt; go
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+ Adaptive Server Enterprise/15.7.0/EBF 19805 SMP ESD#01 /P/x86_64/Enterprise Lin
+	 ux/aseasap/2918/64-bit/FBO/Wed Feb  8 07:50:28 2012                                                                                                                                                                                                                                                                                                                                                                                             
+
+(1 row affected)
+1&gt; </span></span></pre>

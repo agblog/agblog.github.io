@@ -1,0 +1,118 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"></a></div>
+<h2 style="text-align: left;">
+<span lang="EN-US" style="mso-fareast-font-family: &quot;Times New Roman&quot;;">Unique
+key constraint</span></h2>
+<h1>
+</h1>
+<div class="MsoNormal">
+<br />
+<br /></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">We use UNIQUE
+constraint to enforce uniqueness of a column i.e the column shouldn't allow any
+duplicate values. We can add a Unique constraint thru the designer or using a
+query.<br />
+<b>To add a unique constraint using SQL server management studio designer:</b><br />
+1. Right-click on the table and select Design<br />
+2. Right-click on the column, and select Indexes/Keys...<br />
+3. Click Add<br />
+4. For Columns, select the column name you want to be unique.<br />
+5. For Type, choose Unique Key.<br />
+6. Click Close, Save the table.<br />
+<br />
+<b>To create the unique key using a query:</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Alter Table</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;Table_Name<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Add Constraint</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;Constraint_Name&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Unique</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(Column_Name)<br />
+<br />
+<b>Both primary key and unique key are used to enforce, the uniqueness of a
+column. So, when do you choose one over the other?</b><br />
+A table can have, only one primary key. If you want to enforce uniqueness on 2
+or more columns, then we use unique key constraint.<br />
+<br />
+<b>What is the difference between Primary key constraint and Unique key
+constraint? This question is asked very frequently in interviews.</b><br />
+<b>1.</b>&nbsp;A table can have only one primary key, but more than one unique
+key<br />
+<b>2.</b>&nbsp;Primary key does not allow nulls, where as unique key allows one
+null<br />
+<br />
+<b>To drop the constraint</b><br />
+<b>1.</b>&nbsp;Right click the constraint and delete.<br />
+Or<br />
+<b>2.</b>&nbsp;Using a query<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Alter Table</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Drop Constraint</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;UQ_tblPerson_Email<o:p></o:p></span></div>
+<h2 style="text-align: left;">
+<span lang="EN-US">SQL Composite Key</span></h2>
+<h1>
+<a href="https://www.blogger.com/null" name="_SQL_Composite_Key"></a></h1>
+<div style="background: white; text-align: justify;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">A
+composite key is a combination of two or more columns in a table that can be
+used to uniquely identify each row in the table when the columns are combined
+uniqueness is guaranteed, but when it taken individually it does not guarantee
+uniqueness.<o:p></o:p></span></div>
+<div style="background: white; text-align: justify;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"></a><span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">Sometimes
+more than one attributes are needed to uniquely identify an entity. A primary
+key that is made by the combination of more than one attribute is known as a
+composite key.<o:p></o:p></span></div>
+<div style="background: white; text-align: justify;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">In
+other words we can say that:<o:p></o:p></span></div>
+<div style="background: white; text-align: justify;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">Composite
+key is a key which is the combination of more than one field or column of a
+given table. It may be a candidate key or primary key.<o:p></o:p></span></div>
+<div style="background: white; text-align: justify;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">Columns
+that make up the composite key can be of different data types.<o:p></o:p></span></div>
+<div style="background: white; line-height: 17.25pt; text-align: justify;">
+<b><span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">SQL Syntax to specify composite key:</span></b><span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">CREATE
+TABLE TABLE_NAME<span style="mso-spacerun: yes;">&nbsp; </span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">(COLUMN_1,
+DATA_TYPE_1,<span style="mso-spacerun: yes;">&nbsp; </span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">COLUMN_2,
+DATA_TYPE_2,<span style="mso-spacerun: yes;">&nbsp; </span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">???<span style="mso-spacerun: yes;">&nbsp; </span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<span lang="EN-US" style="color: black; font-family: &quot;verdana&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;">PRIMARY
+KEY (COLUMN_1, COLUMN_2, ...));<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<br /></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<br /></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+</div>
+<h3 style="text-align: left;">
+<span class="Heading1Char"><span lang="EN-US" style="font-size: 14.0pt;">Candidate Key</span></span></h3>
+<span lang="EN-US" style="color: #444444; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 10.5pt;">
+<span style="background: #FAFAFA;">Candidate keys are those keys which is
+candidate for primary key of a table. In simple words we can understand that
+such type of keys which full fill all the requirements of primary key which is
+not null and have unique records is a candidate for primary key. So thus type
+of key is known as candidate key.&nbsp;Every table must have at least one
+candidate key but at the same time can have several.</span></span><span class="Heading1Char"><span lang="EN-US" style="font-size: 14.0pt;"><o:p></o:p></span></span><br />
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<br /></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+</div>
+<h3 style="text-align: left;">
+<span class="Heading1Char"><span lang="EN-US" style="font-size: 14.0pt;">Alternate Key</span></span></h3>
+<span lang="EN-US" style="color: #444444; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 10.5pt;">
+<span style="background: #FAFAFA;">If any table have more than one candidate key,
+then after choosing primary key from those candidate key, rest of candidate
+keys are known as an alternate key of &nbsp;that table. Like here we can take a
+very simple example to understand the concept of alternate key. Suppose we have
+a table named Employee which has two columns EmpID and EmpMail, both have not
+null attributes and unique value. So both columns are treated as candidate key.
+Now we make EmpID as a primary key to that table then EmpMail is known as
+alternate key.<o:p></o:p></span></span></div>
+

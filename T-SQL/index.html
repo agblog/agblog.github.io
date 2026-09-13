@@ -1,117 +1,249 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anurag's Database & Data Engineering Blog</title>
-    <link rel="stylesheet" href="style.css">
+    <title>T-SQL Development & Database Design Reference</title>
+    <style>
+        :root {
+            --bg: #0b0f17;
+            --surface: #121824;
+            --surface-hover: #1c2436;
+            --border: #232d42;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #58a6ff;
+            --accent-gold: #e3b341;
+            --accent-green: #2ea44f;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 6px 0;
+        }
+
+        .title-meta {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background-color: var(--surface);
+            transition: background-color 0.15s;
+        }
+
+        .btn-back:hover {
+            background-color: var(--surface-hover);
+        }
+
+        .section {
+            margin-bottom: 44px;
+        }
+
+        h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin: 0 0 20px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Structured List Block */
+        .list-box {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+        }
+
+        .list-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.15s;
+        }
+
+        .list-row:last-child {
+            border-bottom: none;
+        }
+
+        .list-row:hover .row-text {
+            color: var(--accent);
+        }
+
+        .row-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .row-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .item-icon {
+            font-size: 1.1rem;
+            display: inline-block;
+            width: 24px;
+            text-align: center;
+        }
+
+        .row-type {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
+<div class="container">
     <header>
-        <h1>Anurag's Database & Data Engineering Blog</h1>
-        <p class="subtitle">Enterprise Database Administration, Cloud Platforms & Data Infrastructure Architecture</p>
+        <div class="header-title">
+            <h1>Transact-SQL Reference Logs</h1>
+            <div class="title-meta">Anurag Dobade // Senior DBA Core Query &amp; Database Design Files</div>
+        </div>
+        <!-- Point back to the main master root page -->
+        <a href="../index.html" class="btn-back">← Master Index</a>
     </header>
 
-    <main class="grid-container">
-        
-        <!-- Card 1: Microsoft SQL Server Core Modules -->
-        <section class="card">
-            <h2>📊 Relational Databases (RDBMS) — Microsoft SQL Server</h2>
-            <p class="card-desc">Comprehensive step-by-step T-SQL engineering guides and implementation scripts.</p>
-            <ul class="syllabus-list">
-                <li><a href="01_introduction_and_setup.md">01. Introduction & Studio Connection Architecture</a></li>
-                <li><a href="02_sql_commands_and_databases.md">02. Structural DDL/DML System Subsets</a></li>
-                <li><a href="03_database_backups_and_restore.md">03. Full, Differential, & Log Recovery Operations</a></li>
-                <li><a href="04_tables_constraints_identity.md">04. Integrity Constraints & Identity Values</a></li>
-                <li><a href="05_database_normalization.md">05. Normalization Architecture (1NF, 2NF, 3NF Principles)</a></li>
-                <li><a href="06_queries_and_joins.md">06. Aggregation Layouts & Relational Table Joins</a></li>
-                <li><a href="07_stored_procedures.md">07. Pre-compiled Stored Procedures & Parameters</a></li>
-                <li><a href="08_built_in_functions.md">08. String, Mathematical, & Temporal Operations</a></li>
-                <li><a href="09_user_defined_functions.md">09. Scalar & Table-Valued Custom Functions</a></li>
-                <li><a href="10_temporary_tables_and_indexes.md">10. Temporary Storage Modes & Index Internals</a></li>
-                <li><a href="11_views_and_triggers.md">11. View Virtualization & Operational DML Triggers</a></li>
-                <li><a href="12_ctes_and_window_functions.md">12. Common Table Expressions, Window Ranking, & ACID Transactions</a></li>
-            </ul>
-        </section>
+    <!-- Section 1: Core Query Fundamentals -->
+    <div class="section">
+        <h2>1. Query Execution &amp; Basics</h2>
+        <div class="list-box">
+            
+            <a href="TSQL SQL Languages.html" class="list-row">
+                <div class="row-left">
+                    <span class="item-icon">⚙️</span>
+                    <div class="row-text">SQL Language Subsets: DDL, DML, DCL, and TCL Overview</div>
+                </div>
+                <span class="row-type">Basics</span>
+            </a>
 
-        <!-- Card 2: Other RDBMS (Placeholder for future content) -->
-        <section class="card">
-            <h2>🗄️ Alternative Relational Engines</h2>
-            <ul>
-                <li><a href="#">MySQL Administration & Optimization</a></li>
-                <li><a href="#">PostgreSQL Advanced Core Concepts</a></li>
-                <li><a href="#">Oracle Database Architecture & PL/SQL</a></li>
-                <li><a href="#">SAP Sybase ASE Legacy Maintenance</a></li>
-            </ul>
-        </section>
+            <a href="TSQL The SELECT Statement.html" class="list-row">
+                <div class="row-left">
+                    <span class="item-icon">🔍</span>
+                    <div class="row-text">The SELECT Statement: Writing data retrieval queries cleanly</div>
+                </div>
+                <span class="row-type">Queries</span>
+            </a>
 
-        <!-- Card 3: NoSQL Platforms -->
-        <section class="card">
-            <h2>🏢 NoSQL Platforms & Data Warehouses</h2>
-            <ul>
-                <li><a href="#">MongoDB Document-Store Indexing Configurations</a></li>
-                <li><a href="#">Snowflake Cloud Analytics Warehousing Layouts</a></li>
-                <li><a href="#">Parallel Data Warehouse (PDW) Massively Parallel Processing</a></li>
-                <li><a href="#">General Schema-Less Architectural Blueprints</a></li>
-            </ul>
-        </section>
+            <a href="TSQL Aggregate Functions.html" class="list-row">
+                <div class="row-left">
+                    <span class="item-icon">📊</span>
+                    <div class="row-text">Aggregate Functions: Working with SUM, AVG, COUNT, and GROUP BY conditions</div>
+                </div>
+                <span class="row-type">Data Math</span>
+            </a>
 
-        <!-- Card 4: Languages and Scripting -->
-        <section class="card">
-            <h2>📜 Database Development & Dev Languages</h2>
-            <ul>
-                <li><a href="#">Advanced Transact-SQL Core Development Patterns</a></li>
-                <li><a href="#">Procedural Language/SQL (PL/SQL) Programming</a></li>
-                <li><a href="#">Python Core Engine for Modern Data Engineering Pipelines</a></li>
-            </ul>
-        </section>
+            <a href="TSQL Joins.html" class="list-row">
+                <div class="row-left">
+                    <span class="item-icon">🔗</span>
+                    <div class="row-text">Relational Data Mappings: Inner, Left, Right, and Full Outer Joins</div>
+                </div>
+                <span class="row-type">Joins</span>
+            </a>
 
-        <!-- Card 5: Automation Hub -->
-        <section class="card">
-            <h2>💻 DBA Automation & Infrastructure</h2>
-            <ul>
-                <li><a href="#">PowerShell Automation Ecosystem (dbatools Management)</a></li>
-                <li><a href="#">Shell Scripting Core Patterns (Linux Bash Automation)</a></li>
-                <li><a href="#">Enterprise Linux System Optimization Frameworks</a></li>
-                <li><a href="#">On-Premises Hardware Sizing & Network Routing Foundations</a></li>
-            </ul>
-        </section>
+        </div>
+    </div>
 
-        <!-- Card 6: Infrastructure Environments -->
-        <section class="card">
-            <h2>☁️ Cloud Infrastructure Platforms</h2>
-            <ul>
-                <li><a href="#">Microsoft Azure IaaS/PaaS Architecture Implementation</a></li>
-                <li><a href="#">Amazon Web Services (AWS) Storage & Compute Fabrics</a></li>
-                <li><a href="#">Google Cloud Platform (GCP) Large Scale Frameworks</a></li>
-            </ul>
-        </section>
+    <!-- Section 2: Integrity Controls & Table Mechanics -->
+    <div class="section">
+        <h2>2. Database Integrity &amp; Schema Design</h2>
+        <div class="list-box">
+            
+            <a href="TSQL Keys.html" class="list-row">
+                <div class="row-left">
+                    <span class="item-icon">🔑</span>
+                    <div class="row-text">Primary and Foreign Keys: Setting up relational linkages safely</div>
+                </div>
+                <span class="row-type">Schema</span>
+            </a>
 
-        <!-- Card 7: BI & Data Warehousing -->
-        <section class="card">
-            <h2>⚡ Data Integration & Analytics (BI)</h2>
-            <ul>
-                <li><a href="#">Azure SQL Elastic Database Sharding Solutions</a></li>
-                <li><a href="#">Azure Data Factory (ADF) Orchestration Pipelines</a></li>
-                <li><a href="#">Azure Databricks Large Scale Apache Spark Processing</a></li>
-                <li><a href="#">Enterprise ETL Engine Design & SSIS Script Packages</a></li>
-                <li><a href="#">SSAS Multi-Dimensional & Tabular Analysis Cubes</a></li>
-                <li><a href="#">SSRS Production Operational Reporting Systems</a></li>
-            </ul>
-        </section>
+            <a href="TSQL Constraints.html" class="list-row">
+                <div class="row-left">
+                    <span class="item-icon">🛡️</span>
+                    <div class="row-text">Table Constraints: Implementing Unique, Check, Default, and Not Null logic</div>
+                </div>
+                <span class="row-type">Integrity</span>
+            </a>
 
-        <!-- Card 8: Portfolio Section -->
-        <section class="card">
-            <h2>💼 Portfolio & Personal Profiles</h2>
-            <ul>
-                <li><a href="#">Enterprise Database Migration Case Studies</a></li>
-                <li><a href="#">Cloud Migration Strategy Technical Architecture Playbooks</a></li>
-                <li><a href="https://github.com">Connect on GitHub Engineering Profile</a></li>
-            </ul>
-        </section>
-    </main>
+            
+                <div class="row-left">
+                    <span class="item-icon">🆔</span>
+                    <div class="row-text">Identity Columns: Automating unique row indexing and seed controls</div>
+                </div>
+                <span class="row-type">Auto ID</span>
+            </a>
+
+            <a href="TSQL Normalization.html" class="list-row">
+                <div class="row-left">
+                    <span class="item-icon">📐</span>
+                    <div class="row-text">Database Normalization: Structuring tables across 1NF, 2NF, and 3NF architectures</div>
+                </div>
+                <span class="row-type">Design</span>
+            </a>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>Anurag Dobade • T-SQL Documentation Tier • Hosted on GitHub Pages</p>
+    </footer>
+</div>
 
 </body>
 </html>

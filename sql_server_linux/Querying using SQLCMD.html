@@ -1,0 +1,132 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" id="docs-internal-guid-0b5ec6c6-7fff-15d1-ae1b-94d548191102">
+<b>sqlcmd Utility</b></div>
+<br />
+This utility
+ lets you enter Transact-SQL statements, system procedures, and script 
+files at the command prompt, in&nbsp;Query Editor&nbsp;in SQLCMD mode, in a 
+Windows script file or in an operating system (Cmd.exe) job step of a 
+SQL Server Agent job. This utility uses ODBC to execute Transact-SQL 
+batches.<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioLyg35BvmLPwQhfOXOCSytf8uSSReABB-vzss_NzxxsljYwEXWUX6722dpPEBYwf-GBcwSH_VbyU81kpF07LNNcU-jmMBOhRCVtuoxRZnhjetPmJvDO0bc_eNN440IQmQpNv7bBZvUNVG/s1600/1578334469919022-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioLyg35BvmLPwQhfOXOCSytf8uSSReABB-vzss_NzxxsljYwEXWUX6722dpPEBYwf-GBcwSH_VbyU81kpF07LNNcU-jmMBOhRCVtuoxRZnhjetPmJvDO0bc_eNN440IQmQpNv7bBZvUNVG/s1600/1578334469919022-0.png" width="400" /></a></div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+<hr />
+<h2>
+<b>sqlcmd parameters list:</b></h2>
+</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-a packet_size&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-A (dedicated administrator connection)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-b (terminate batch job if there is an error)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-c batch_terminator&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-C (trust the server certificate)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-d db_name&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-e (echo input)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-E (use trusted connection)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-f codepage | i:codepage[,o:codepage] | o:codepage[,i:codepage]&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-g (enable column encryption)&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-G (use Azure Active Directory for authentication)</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-h rows_per_header&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-H workstation_name&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-i input_file&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-I (enable quoted identifiers)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-j (Print raw error messages)</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-k[1 | 2] (remove or replace control characters)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-K application_intent&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-l login_timeout&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-L[c] (list servers, optional clean output)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-m error_level&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-M multisubnet_failover&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-N (encrypt connection)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-o output_file&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-p[1] (print statistics, optional colon format)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-P password&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-q "cmdline query"&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-Q "cmdline query" (and exit)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-r[0 | 1] (msgs to stderr)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-R (use client regional settings)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-s col_separator&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-S [protocol:]server[instance_name][,port]&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-t query_timeout&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-u (unicode output file)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-U login_id&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-v var = "value"&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-V error_severity_level&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-w column_width&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-W (remove trailing spaces)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-x (disable variable substitution)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-X[1] (disable commands, startup script, environment variables, optional exit)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-y variable_length_type_display_width&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-Y fixed_length_type_display_width&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-z new_password&nbsp;&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-Z new_password (and exit)&nbsp;&nbsp;</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp;-? (usage)</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<hr />
+<h2>
+Querying Using SQLCMD:&nbsp;</h2>
+</div>
+<div dir="ltr">
+The following picture shows how to create table in master database.</div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4bQWN-pxJIVSgVt4mA_WcrmzRWbLjy3wQ_ILW8NQv_wd5usmSZIGfcGRI8Q4NuiaUWHxJg4zQM-2A3X52XTqsFrj16cKurzzzyW5GBUqBv154G2nVOZ-W25P-u-g_o0HnN4SDD2SIDWTU/s1600/1578334465413480-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4bQWN-pxJIVSgVt4mA_WcrmzRWbLjy3wQ_ILW8NQv_wd5usmSZIGfcGRI8Q4NuiaUWHxJg4zQM-2A3X52XTqsFrj16cKurzzzyW5GBUqBv154G2nVOZ-W25P-u-g_o0HnN4SDD2SIDWTU/s1600/1578334465413480-1.png" width="400" /></a></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>
+The following picture shows how to query table in master database.<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwTp2RW7UDfd1z4fAI9NGCxLo8qvlGOIbc_oYC_sDuMKObimF9L5ATAMzQjcMT53DeqDJNz4DwwlzdXP_m1Fkzv5_9dE7ukqL1yT7mMPdGLWH60jgc63jt-55kLa8OVqU0mzONvc4PI7cH/s1600/1578334459842200-2.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwTp2RW7UDfd1z4fAI9NGCxLo8qvlGOIbc_oYC_sDuMKObimF9L5ATAMzQjcMT53DeqDJNz4DwwlzdXP_m1Fkzv5_9dE7ukqL1yT7mMPdGLWH60jgc63jt-55kLa8OVqU0mzONvc4PI7cH/s1600/1578334459842200-2.png" width="400" /></a></div>
+<hr />
+<h2>
+<br /></h2>
+<br />
+<div dir="ltr">
+<br /></div>
+</div>
+

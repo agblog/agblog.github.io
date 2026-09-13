@@ -1,0 +1,177 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div id="docs-internal-guid-db990494-7fff-87d4-48e5-459e762e51ce" style="text-align: left;"><br></div><div id="docs-internal-guid-db990494-7fff-87d4-48e5-459e762e51ce" style="text-align: left;">
+Following are some ways to connect to sql server on linux from windows and linux:</div>
+<h2 dir="ltr" id="docs-internal-guid-db990494-7fff-87d4-48e5-459e762e51ce">
+Ways Of Connecting To Sql Server On Linux, Putty, Ssms, Or Sqlcmd Tool</h2>
+<h3 style="text-align: left;">
+Prerequisites:</h3>
+<div dir="ltr">
+--ipaddress of linux system</div>
+<div dir="ltr">
+--active sql server services</div>
+<div dir="ltr">
+Modes of connection:</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; --Existing linux machine with sqlcmd tools</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; --using putty from windows machine</div>
+<div dir="ltr">
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; --using SSMS from windows</div>
+<br>
+<div dir="ltr">
+Check SQL server services:</div>
+<br>
+<div dir="ltr">
+#systemctl status mssql-server</div>
+<br>
+<div dir="ltr">
+<img height="288" src="https://lh4.googleusercontent.com/-p8BmO31v9QZQk2Kn1PU5Eio3erKbSClioQpiu4HjH56YElHMaldXmLf-AHPgW7jrswBTG47_92_ywKD7RutD8QE_yjP-WVAPlT-x40zZ9996L4-S35cxbhg7N8mgrNEYC01XSscfei_bPr6Sg" width="553"></div>
+<br>
+<br>
+<div dir="ltr">
+#get ip address&nbsp;</div>
+<div dir="ltr">
+#ifconfig</div>
+<br>
+<div dir="ltr">
+<img height="147" src="https://lh5.googleusercontent.com/sW_DY7QcLZhq1VpIcF2MlsFtyjRXJ-Jw52uboSBpLnWoLh3RUb1t-3l_N1hDKK-MvLJjnMtNYwZ2tZRfOPzPDlS3pwSFF3aBM9OtuYx-T7Le29ORzBuWDZViyyh1KOIPYEfDzo32-9i5FJvW9g" width="425"></div>
+<br>
+<br>
+<br>
+<h2 dir="ltr">
+Install sqlcmd SQL Server command-line tools on Linux</h2>
+<br>
+<div dir="ltr">
+To know more about SQLCMD tool, here you <a href="https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-2017">go</a> and <a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-2017">here</a>:</div>
+<br>
+<br>
+<br>
+<br>
+<div dir="ltr">
+To use sqlcmd tool you need to install package:</div>
+<div dir="ltr">
+Use this <a href="https://packages.microsoft.com/rhel/7.3/prod/">link </a>to get the required package, choose the latest version.</div>
+<br>
+<br>
+<div dir="ltr">
+<img height="166" src="https://lh5.googleusercontent.com/M3FBkwGEIVsFMqSXEtrRUQtuIvjoeUPvBk4mhRoiq7YJv_WEH_wvP3-3PhHLT2m-dwUXE6Ez3aSpkDPhWQxRAqKVpN-mfpuzB0imgfDSqfZA5EE-qTAH7L67YKOoPaIAJnmci6VKCVe2or_LbQ" width="554"></div>
+<br>
+<div dir="ltr">
+Open the terminal and locate to downloads directory:</div>
+<br>
+<div dir="ltr">
+<img height="176" src="https://lh3.googleusercontent.com/QzdNt1k0JPeqEHF__Mh7OGb8Z1aU3-h58rHGMshX4Dw0FvpHM7CSTznsYAGEtWEfgKEaz3vK3A_X6GmM6CC_wcTrreURFp7uWO8rZKAJQ5ioXG1JcpcNiGaDWPFFJA2WSXC-sqOoTNYWH0KCQw" width="554"></div>
+<br>
+<br>
+<div dir="ltr">
+Install the package:</div>
+<div dir="ltr">
+#rpm-ivh mssqltools</div>
+<br>
+<div dir="ltr">
+<img height="201" src="https://lh6.googleusercontent.com/KW6jwZzFtH_0cP2oF-_Agt1B-HegmBWgclQnb8VrB9Qo6Okyk0jh0Rzdil31N2gS7ZgK41l5a3QhHTXk08UX_R4KTmbZW1gx_3BAiSW_HdqBjBdQ7_hGq_u4Y4Nx9zvBHUBSbN23TGSnCxVzlw" width="553"></div>
+<div dir="ltr">
+If you get any dependencies error when installing package go here</div>
+<br>
+<div dir="ltr">
+After installationAdd&nbsp;/opt/mssql-tools/bin/&nbsp;to your&nbsp;PATH&nbsp;environment variable in a bash shell.</div>
+<br>
+<div dir="ltr">
+echo 'export PATH="$PATH:/opt/mssql-tools/bin"' &gt;&gt; ~/.bash_profile echo 'export PATH="$PATH:/opt/mssql-tools/bin"' &gt;&gt; ~/.bashrc source ~/.bashrc</div>
+<br>
+<br>
+<div dir="ltr">
+<img height="219" src="https://lh3.googleusercontent.com/IxeslIXvwFfKeMPSZZ9uGqAobIbaA9XbPBPyyAdT5LoMsbGyq1PXJ-fPGT8ELAktUl3_Q4GXFEf5tDAX1CIGfIDAiBwrnxHBCugxrR0e90Gs1HahnILq7Qh1RpJ5Ico5YxJOTizl4t1RUbGXkA" width="553"></div>
+<div dir="ltr">
+Check if SQLCMD is installed or not:</div>
+<br>
+<div dir="ltr">
+<img height="298" src="https://lh6.googleusercontent.com/bBmuEpBqKNToNL7ddfW3juSwa1zwvmqwoZQqMw3BT21fz9Bd1BFQ0BvHPy6bjevMmeU4ysCmOT4v-wEJEAgoATymNJD8f-Z0YbY6hDhwCY6Dfs_ILxPh26CnRII7rfX99iu5TjeqbrkAQpJXZQ" width="554"></div>
+<br>
+<div dir="ltr">
+Run&nbsp;sqlcmd&nbsp;with parameters for your SQL Server name (-S), the user name (-U), and the password (-P). In this tutorial, you are connecting locally, so the server name is&nbsp;localhost. The user name is&nbsp;SA&nbsp;and the password is the one you provided for the SA account during setup.</div>
+<br>
+<div dir="ltr">
+<img height="250" src="https://lh6.googleusercontent.com/LOJgtDjd7FlHgndD5oCX4ot1_eIyDLTOHwmAYoTjZzVrjBCVGZ1TPWxosxSv5VAvUX-aM0dgAtMDdyaReP3Dem4QJ5D0DrIdJSWb0wNiOYpAwy5zqW0CHfBcWzKQAR8hHHO_sEmiPf7QLFBtrg" width="547"></div>
+<br>
+<br>
+<br>
+<h2 dir="ltr">
+Using Putty tools on Windows to connect to SQL Server on Linux</h2>
+<br>
+<div dir="ltr">
+PuTTY is open source software that is available.</div>
+<br>
+<div dir="ltr">
+Download putty:</div>
+<div dir="ltr">
+<a href="https://www.putty.org/">Here</a></div>
+<br>
+<div dir="ltr">
+Get ip address of linux where sql server is instlled</div>
+<div dir="ltr">
+#ifconfig</div>
+<br>
+<div dir="ltr">
+<img height="147" src="https://lh5.googleusercontent.com/sW_DY7QcLZhq1VpIcF2MlsFtyjRXJ-Jw52uboSBpLnWoLh3RUb1t-3l_N1hDKK-MvLJjnMtNYwZ2tZRfOPzPDlS3pwSFF3aBM9OtuYx-T7Le29ORzBuWDZViyyh1KOIPYEfDzo32-9i5FJvW9g" width="425"></div>
+<br>
+<div dir="ltr">
+Configure putty:</div>
+<div dir="ltr">
+Port 22 is for SSH&nbsp;which is typically&nbsp;used&nbsp;to log into a remote machine and execute commands</div>
+<br>
+<div dir="ltr">
+<img height="324" src="https://lh6.googleusercontent.com/xG1JcUtiTbgWgX0tPvwr-Bzv-zBy4pI-fjY8JwdWAiao9BOumpoWNdzBtLWGAvjZrUnon-vuzSCAUH6W0_zbmTRRNEpD8gGEADikj-wZ_MgQdqU-SMUfL581H2av4tAY6JFwVNSHeoHkiJrIOA" width="553"></div>
+<br>
+<br>
+<div dir="ltr">
+Press Yes to security alert:</div>
+<br>
+<div dir="ltr">
+<img height="291" src="https://lh5.googleusercontent.com/7R3rgTfCUdg8CXOPfJgdsIOJHHs6RwsAT0hcvC00EMQVKIATh8T1ssqKvD613AX3soG41eWWyxREteELPB35BGRoj0pgrkDa4677W4fk3JrbOwJALbsFpbBKk_gPxBPLFZhaQVZI6FwsNbA7xg" width="425"></div>
+<br>
+<div dir="ltr">
+Give your credentials that used to login your linux system:</div>
+<br>
+<div dir="ltr">
+<img height="100" src="https://lh5.googleusercontent.com/imxGJs9795QuMIMdWO3HEiEjuI1SsHvnI-I4FH1ZPjV3pJKl5ibA8TuQp6WemqYBdZqOSfhX6ixmj098w2tbG-bFUDkcgO8NRNR-Ie6-mW7WWDV3CuJTKsWp-OMLpfMEuB8yDm2MiMGipEsM3g" width="309"></div>
+<h1 dir="ltr">
+Check the sql server services</h1>
+<div dir="ltr">
+#systemctl status mssql-server.service</div>
+<br>
+<div dir="ltr">
+<img height="317" src="https://lh5.googleusercontent.com/XlG27R972PLgLuhLgza9i6vdcMAI-pdpGttvTF15xTqEUHEUc6dFURE1oS3bwaA12aV72VD2nnUEFDPzJgTPKsqTnKjK5pJTRdy9x0UncZXrvOgbA8RxBkgOA3JyJuZEEg6eQ6jxNnfNLeVIIw" width="554"></div>
+<br>
+<div dir="ltr">
+Connect to sql server&nbsp;</div>
+<div dir="ltr">
+#sqlcmd -S localhost -U SA -P â€˜passwordâ€™</div>
+<br>
+<div dir="ltr">
+<img height="317" src="https://lh6.googleusercontent.com/U6qUzRlQt_U24IJVvt4m184YENEYdE61xx9-fdM5y8ruoT5IEcSmChvr6huoJwnyOg40_aj5q5bn_xL_ukO8a1_s1Aj_PaI-0i_CR_ArY4XFxqdJ4qZenh6fw4gJlL046rXKibRRKockjQDRpQ" width="496"></div>
+<br>
+<br>
+<h2 dir="ltr">
+Using SSMS on Windows to Connect SQL Server on Linux</h2>
+<div dir="ltr">
+Through SSMS:</div>
+<div dir="ltr">
+Get ip address and Connect using SA or another login account and password:</div>
+<br>
+<div dir="ltr">
+<img height="206" src="https://lh6.googleusercontent.com/QvpJHVYEHgAB9Jt77Je2DJnoQSA2qvqSf3V2Nv67ALVg8HxopGI6J8PQ1OaVDBRbEpvRrZZ0dTaSO4Nzih68GDqylbmHdu55N2nyQDpBcT2Z1k7L4Y1Ry4XNM4KTgI5ce2Grha8q6xDaHbU3fg" width="382"></div>
+<br>
+<div dir="ltr">
+Check Server Properties:</div>
+<br>
+<div dir="ltr">
+<img height="345" src="https://lh5.googleusercontent.com/RIV0j8VCtBNbbaaWX7rsPajkbJLfaTrK6MAKinX0fOYmz14jGavj83RjKlyZ8baN168J0TIZZvJ3gqMVnjLm5CdgfoEprpZ4GQb0Gboldrryuahk01FxyH1CZAmzoZy2UoxoQnpZNregDpes3Q" width="553"></div>
+<br>
+<div dir="ltr">
+Querying and checking version, locations of database files:</div>
+<br>
+<div dir="ltr">
+<img height="157" src="https://lh5.googleusercontent.com/h85y6MZGNjMVWfjAnEewCMUeua8xZ8eWlSO2LFU2uZWL7kdLXt2qLwwsO-qGe34veRRGZ107uk7oLAgFfNCh7T8_jBZExSq8uJvcERQgIOxIp2oPfEepWS9kc_9Wa4UB3HD8qQQUHWqlLn1knQ" width="553"></div>
+<br></div>
+

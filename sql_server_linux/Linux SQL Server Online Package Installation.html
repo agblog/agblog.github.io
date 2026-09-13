@@ -1,0 +1,135 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" id="docs-internal-guid-d245bb2c-7fff-ad00-50a9-fecf877c60c0"><span><br></span></div><div dir="ltr" id="docs-internal-guid-d245bb2c-7fff-ad00-50a9-fecf877c60c0">
+<span id="docs-internal-guid-3edbd548-7fff-44ff-0730-9a88891c2099">Online installation of SQL Server package on LINUX:</span><br>
+<br>
+<br>
+<br>
+<br>
+<br></div>
+<div dir="ltr" id="docs-internal-guid-d245bb2c-7fff-ad00-50a9-fecf877c60c0">
+<br></div>
+<h2 id="docs-internal-guid-d245bb2c-7fff-ad00-50a9-fecf877c60c0" style="text-align: left;">
+Prerequisites:</h2>
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+A machine (VM, physical, etc) with Linux&nbsp;installed</div>
+</li>
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Red Hat Enterprise Linux (7.3 or 7.4)</div>
+</li>
+</ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The Working internet to install package of SQL Server 2017 onto your Linux machine.</div>
+</li>
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Repo file creation</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Installing package</div>
+</li>
+</ol>
+</ol>
+<br>
+<h2 dir="ltr">
+Start Vm and Login to linux</h2>
+<div dir="ltr">
+Here im using root user:</div>
+<div dir="ltr">
+<img height="479" src="https://lh5.googleusercontent.com/ybSiGJkyqi6QhM2FY-1qHbtRJlxkD9A4e8dxRJyTaa2Zsly94WozEnLTb8PqJ7TYxQuRkzra-i1WeDupZluE5OYSbmDJYP_RzR1jS57xbLghp2Q9IOor1FBSr_uii7zzg9gSM4vxSTyjAfP6fA" width="553"></div>
+<h2 dir="ltr">
+Creating Repository File:</h2>
+<div dir="ltr">
+Here are <a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-change-repo?view=sql-server-2017&amp;pivots=ld2-rhel">link </a>&nbsp;from microsoft to get the detail on repo file</div>
+<br>
+<div dir="ltr">
+sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/7/mssql-server-2017.repo</div>
+<br>
+<div dir="ltr">
+<img height="32" src="https://lh6.googleusercontent.com/Xn1DxGILHU-TSZ6m9Z8u7rrLPNFMT2goReuYvT3bOnBtIdYlu3pHdtYWzfYlWiq9cT7zQFmdlBsWIj5i8KeG4OMKw0QjrQbzinxQKQEUIvancb_oSaRcYrpZbtDqo0N2Sxp3g6QLte64VQNBpg" width="554"></div>
+<br>
+<div dir="ltr">
+--To check repo file&nbsp;</div>
+<div dir="ltr">
+#cat /etc/yum.repos.d/mssql-server.repo&nbsp;</div>
+<br>
+<div dir="ltr">
+--To cleans up any cached packages in any enabled repository cache directory</div>
+<div dir="ltr">
+#yum clean all</div>
+<br>
+<div dir="ltr">
+--update to the latest current version of package.It takes some time to update</div>
+<div dir="ltr">
+#yum update</div>
+<br>
+<div dir="ltr">
+<img height="53" src="https://lh3.googleusercontent.com/2oGiOt1ukr70RdI_HXdch3_K6mH-_hV5JSph_tCXO_w6OYgAt4PBjz9Dme2g1KDp6R3Onh7zlo8NkPzQTHALR_2x-4WDpi8HD_o8dv4YvflrHtU2ibzK7hdibM9wgun5PXIwnpANVq0U_QRWGw" width="553"></div>
+<br>
+<div dir="ltr">
+<img height="207" src="https://lh6.googleusercontent.com/dinOv23A5jzfI7sxZiN4xLzaozckWYhZEo-At-vZ3X9AiM5jVbrJ06OfKHc81wQsNNv-3vapkTSKg3pS1kv1XFtTE77THcjnn5CGU1HuEAdjmIFUQgGlrgu7B3TpskCJt0qFwjDPNhVTWbHsoQ" width="553"></div>
+<br>
+<h2 style="text-align: left;">
+Install package online</h2>
+<div dir="ltr">
+#sudo yum install -y mssql-server</div>
+<br>
+<div dir="ltr">
+<img height="138" src="https://lh3.googleusercontent.com/iOT_sTwe79yqDrqo62Vuqj0h_U3FAswu_ppzPYyAUQ-woRLr8BOjzl6p3Y9QMzot1YwK-kwKBjv84BYQqYpRqcYLMJBPaN570qhDexa3UEtvd9XqpWGDJ9rBI9Pa7tU5Vuj2hNbGtM8gUoCR8w" width="553"></div>
+<br>
+<div dir="ltr">
+After installation completion following screen apprears:</div>
+<br>
+<div dir="ltr">
+<img height="233" src="https://lh5.googleusercontent.com/QhWD1QJu0Llg2967xIYyleAwmm-sMZTXMZjHgrR_39czxAZ34HTKy19r0B9uUE5lIpk5MoyFifpeBktFK8m-6aVQWHaeRwlKLIn5psIyMvmWnBntzSfqlfe7X1s_VaG4XxsH_5XLz6pHqb62Pg" width="507"></div>
+<br>
+<div dir="ltr">
+At this time setup files are loaded successfully. You have to copy the line from above command output shown in dotted line.&nbsp;</div>
+<div dir="ltr">
+<br></div>
+<h2 style="text-align: left;">
+Configure installation of sql server:</h2>
+<br>
+<div dir="ltr">
+#sudo /opt/mssql/bin/mssql-conf setup</div>
+<br>
+<div dir="ltr">
+Choose edition based on requirement, as I am testing I choose Evaluation edition</div>
+<div dir="ltr">
+Enter password for SA user.</div>
+<div dir="ltr">
+<img height="401" src="https://lh5.googleusercontent.com/vQW8DiHtBuwcjTR42uChmF5iQfVgpIY187AO72FQq0tHDRQ_QfG6eZgdEeffOfudLJWcKJl2xpsF2ePcZ2lRPJZqnGqS523VEG1Fugta_Wb0QtL_3_hseQkTfvgpEKSTrVIIP4Vr6HauOm_B4A" width="553"></div>
+<br>
+<br>
+<div dir="ltr">
+Now check the status of services</div>
+<div dir="ltr">
+#systemctl status mssql-server.service</div>
+<br>
+<div dir="ltr">
+<img height="114" src="https://lh3.googleusercontent.com/yygW0QOWcj8BcaUsFGa7rRgdRG0GPArfGzIzSWK2V3prng2akV0Y6BqOLkR8pCdt4PE4J5p87pOH-XQEksT5Bg1MNdjiUNsjW1vGiYoPBIY1FVK_OJKse7eZ-hX02scrJbYEaXvbFEuxCqtttA" width="554"></div>
+<br>
+<div dir="ltr">
+So installation is completed successfully</div>
+<br>
+<div dir="ltr">
+We can check by connecting, first we need ip address</div>
+<br>
+<div dir="ltr">
+#ifconfig&nbsp;</div>
+<br>
+<div dir="ltr">
+<img height="112" src="https://lh3.googleusercontent.com/Cys6lzXgHgEMECYzRQzNGpyg5GkEldaYGdhIYClnkqWGXHEH85Zc-2707KzZVblONgCEnhLlqjj7u8LmNh6zoF98BNsYggqIFYPu_EXJAFWkNBg6ZBWAXId5A9n2GF1K6X2NBYVjo8p1ZaDAKg" width="503"></div>
+<br>
+<h2 style="text-align: left;">
+Connect using SSMS:</h2>
+<br>
+<div dir="ltr">
+Use ip address from above command output and username as SA with your given password.</div>
+<br>
+<div dir="ltr">
+<img height="353" src="https://lh3.googleusercontent.com/UOzo1iSzXdaKbAoz4Y_IFEJGUQ3iX5OUeqw4D-k0b_K5Z5iaEvMpKNII0uvyb81meyNvcbD97Pg_a7rVxvTILlN3J9LkijcO-QynH_bALV82qpd70PgeysrXQEccarNNdVcnMH8fGD1s-_Zn_A" width="520"></div>
+<br>
+<br></div>
+

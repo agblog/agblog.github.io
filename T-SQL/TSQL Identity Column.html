@@ -1,0 +1,180 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"></a></div>
+<h2 style="text-align: left;">
+<span lang="EN-US">Identity column in SQL Server</span></h2>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br /></span>
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">If a column is marked
+as an identity column, then the values for this column are automatically
+generated, when you insert a new row into the table. The following, create
+table statement marks PersonId as an identity column with seed = 1 and Identity
+Increment = 1. Seed and Increment values are optional. If you don't specify the
+identity and seed they both default to 1.<br />
+<br />
+<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Create Table</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson<br />
+(<br />
+PersonId&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">int Identity</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(1,1)&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Primary Key</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">,<br />
+Name&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">nvarchar</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(20)<br />
+)<br />
+<br />
+<b>In the following 2 insert statements, we only supply values for Name column
+and not for PersonId column.&nbsp;</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Insert into</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">values&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(</span><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'Sam'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">)<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Insert into</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">values&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(</span><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'Sara'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">)<br />
+<br />
+If you select all the rows from tblPerson table, you will see that, 'Sam' and
+'Sara' rows have got 1 and 2 as PersonId.<br />
+<br />
+Now, if I try to execute the following query, I get an error stating -&nbsp;</span><span lang="EN-US" style="color: red; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">An explicit value for the identity column in table
+'tblPerson' can only be specified when a column list is used and
+IDENTITY_INSERT is ON.&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Insert into</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">values&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(1,</span><span lang="EN-US" style="color: red; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'Todd'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">)<br />
+<br />
+So if you mark a column as an Identity column, you dont have to explicitly
+supply a value for that column when you insert a new row. The value is
+automatically calculated and provided by SQL server. So, to insert a row into
+tblPerson table, just provide value for Name column.<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Insert into</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">values&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(</span><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'Todd'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">)<br />
+<br />
+Delete the row, that you have just inserted and insert another row. You see
+that the value for PersonId is 2. Now if you insert another row, PersonId is 3.
+A record with PersonId = 1, does not exist, and I want to fill this gap. To do
+this, we should be able to explicitly supply the value for identity column. To
+explicitly supply a value for identity column<br />
+1.&nbsp;First turn on identity insert -&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">SET Identity_Insert&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">tblPerson&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ON</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+2. In the insert query specify the column list<br />
+&nbsp; &nbsp;&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Insert into tblPerson</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(PersonId, Name)&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">values</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(2,&nbsp;</span><span lang="EN-US" style="color: red; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'John'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">)<br />
+<br />
+As long as the Identity_Insert is turned on for a table, you need to explicitly
+provide the value for that column. If you don't provide the value, you get an
+error -&nbsp;</span><span lang="EN-US" style="color: red; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Explicit value must be
+specified for identity column in table 'tblPerson1' either when IDENTITY_INSERT
+is set to ON or when a replication user is inserting into a NOT FOR REPLICATION
+identity column.</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+<br />
+After, you have the gaps in the identity column filled, and if you wish SQL
+server to calculate the value, turn off Identity_Insert.<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">SET Identity_Insert</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">OFF</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+<br />
+If you have deleted all the rows in a table, and you want to reset the identity
+column value, use DBCC CHECKIDENT command. This command will reset PersonId
+identity column.<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">DBCC&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">CHECKIDENT(tblPerson, RESEED, 0)<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"></a><br /></div>
+<h2 style="text-align: left;">
+<span lang="EN-US">How to get the last generated
+identity column value in SQL Server</span></h2>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"></a><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">There are several ways in sql server, to retrieve the
+last&nbsp;identity value that is generated. The most common way is to use
+SCOPE_IDENTITY() built in function.<br />
+<br />
+Apart, from using SCOPE_IDENTITY(), you also have&nbsp;@@IDENTITY and
+IDENT_CURRENT('TableName') function.</span><span lang="EN-US" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+<br />
+</span><br />
+<h2 style="text-align: left;">
+<span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-weight: normal;">Example queries for getting the last generated identity
+value</span></h2>
+<span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Select SCOPE_IDENTITY()</span><span lang="EN-US" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Select @@IDENTITY</span><span lang="EN-US" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Select IDENT_CURRENT('tblPerson')</span><span lang="EN-US" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+Let's now understand the difference between, these 3 approaches.<o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span> <span style="color: teal;">table1</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">identity</span><span style="color: grey;">(</span>1<span style="color: grey;">,</span>1<span style="color: grey;">)</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">)</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span> <span style="color: teal;">table2</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">identity</span><span style="color: grey;">(</span>1<span style="color: grey;">,</span>1<span style="color: grey;">)</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">)</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">insert</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">into</span> <span style="color: teal;">table1</span> <span style="color: blue;">values</span><span style="color: grey;">(</span><span style="color: red;">'a'</span><span style="color: grey;">)</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: green; font-family: &quot;consolas&quot;; font-size: 9.5pt;">--insert into table2 values('a')</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">exec</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: teal;">USP_Test</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">procedure</span>
+<span style="color: teal;">USP_Test</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">AS</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"></a><span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Begin</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">insert</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">into</span> <span style="color: teal;">table2</span> <span style="color: blue;">values</span><span style="color: grey;">(</span><span style="color: red;">'a'</span><span style="color: grey;">)</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">END</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">select</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: magenta;">SCOPE_IDENTITY</span><span style="color: grey;">()</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">select</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: magenta;">@@IDENTITY</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">select</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: magenta;">IDENT_CURRENT</span><span style="color: grey;">(</span><span style="color: red;">'table1'</span><span style="color: grey;">)</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">select</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: magenta;">IDENT_CURRENT</span><span style="color: grey;">(</span><span style="color: red;">'table2'</span><span style="color: grey;">)<o:p></o:p></span></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"></a><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span></div>
+<h2 style="text-align: left;">
+<span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">
+SCOPE_IDENTITY()&nbsp;</span></h2>
+<br />
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">-returns the last identity value that is created in the same
+session (Connection) and in the same scope (in the same Stored&nbsp;procedure,
+function, trigger). Let's say, I have 2 tables table1 and table2, and I have a Stored
+Procedure for table2 table, which will insert a&nbsp;record into table2 table.
+Now, when you insert a record into table1 table, &nbsp;SCOPE_IDENTITY() returns
+the identity value that is generated&nbsp;in table1 table, where as @@IDENTITY
+returns, the value that is generated in table2 table. So, @@IDENTITY returns
+the last identity value&nbsp;that is created in the same session without any
+consideration to the scope. IDENT_CURRENT('table1') returns the last identity
+value created for a&nbsp;specific table across any session and any scope.</span><span lang="EN-US" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+<b>In brief:</b></span><span lang="EN-US" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span><b><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">SCOPE_IDENTITY()</span></b><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;-
+returns the last identity value that is created in the same session and in the
+same scope.</span><span lang="EN-US" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span><b><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">@@IDENTITY</span></b><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;- returns
+the last identity value that is created in the same session and across any
+scope.</span><span lang="EN-US" style="font-family: &quot;times new roman&quot; , &quot;serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+</span><b><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">IDENT_CURRENT('TableName')</span></b><span lang="EN-US" style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;-
+returns the last identity value that is created for a specific table across any
+session and any scope.</span><span lang="EN-US" style="color: #999999; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;"> <o:p></o:p></span></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+<br /></div>
+</div>
+

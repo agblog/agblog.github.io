@@ -1,0 +1,138 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div id="docs-internal-guid-c89ed3d4-7fff-3831-1c2c-992579fc69db" style="text-align: left;"><br></div><div id="docs-internal-guid-c89ed3d4-7fff-3831-1c2c-992579fc69db" style="text-align: left;">
+<b>Following are the steps for offline installation sql server package on linux:</b><br>
+</div>
+<h2 style="text-align: left;">
+Prerequisites:</h2>
+<div id="docs-internal-guid-c89ed3d4-7fff-3831-1c2c-992579fc69db" style="text-align: left;">
+<br>
+A machine (VM, physical, etc) with Red Hat Enterprise Linux (7.3 or above 7.4) installed<br>
+Download &amp; transfer package of SQL Server 2017 onto your Linux machine using WinSCP<br>
+<br>
+<!--/data/user/0/com.samsung.android.app.notes/files/share/clipdata_200105_194339_810.sdoc--></div>
+<div style="text-align: left;">
+Download link for Packages:</div>
+<div dir="ltr">
+Download latest packages From This Link:</div>
+<div dir="ltr">
+<a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/">https://packages.microsoft.com/rhel/7/mssql-server-2017/</a></div>
+<br>
+<div dir="ltr">
+<img alt="IMG_256" height="448" src="https://lh4.googleusercontent.com/KP8cNWJXS7fqMVS7kwn98_7biclpt_zj0EX1m2qtgc7YUW-VBdZGGh00Ju8LZoo0sLb4r6G6fLr0FlBRWS9dzdErFnQu3ZZirkTEKCnW9PO7PvBFi5oNcz0N0JQRlXrfOhT3Mrekr0501TUZZw" width="724"></div>
+<div dir="ltr">
+Some Important Packages:</div>
+<div dir="ltr">
+<a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-14.0.3048.4-1.x86_64.rpm">mssql-server-14</a>.XXXXX</div>
+<div dir="ltr">
+The actual sql server engine package.</div>
+<div dir="ltr">
+<a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-agent-14.0.1000.169-2.x86_64.rpm">mssql-server-agent-14</a>.XX</div>
+<div dir="ltr">
+The&nbsp;<a href="https://docs.microsoft.com/sql/ssms/agent/sql-server-agent">SQL Server Agent</a>&nbsp;runs scheduled SQL Server jobs. Starting with SQL Server 2017 CU4, SQL Server Agent is included with the&nbsp;mssql-server&nbsp;package and is disabled by default.&nbsp;</div>
+<div dir="ltr">
+For detail check <a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-sql-agent?view=sql-server-2017">microsoft </a>link</div>
+<div dir="ltr">
+<a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-fts-14.0.1000.169-2.x86_64.rpm">mssql-server-fts</a>.xx</div>
+<div dir="ltr">
+Full-Text Search enables you to run full-text queries against character-based data in SQL Server tables.</div>
+<div dir="ltr">
+For more info <a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-full-text-search?view=sql-server-2017">microsoft</a></div>
+<br>
+<div dir="ltr">
+<a href="https://packages.microsoft.com/rhel/7/mssql-server-2017/mssql-server-ha-14.0.1000.169-2.x86_64.rpm">mssql-server-ha</a>.xx</div>
+<div dir="ltr">
+For highly available SQL Server instances under Linux, two packages should be installed with SQL Server: SQL Server Agent (mssql-server-agent) and the high availability (HA) package (mssql-server-ha). While SQL Server Agent is technically optional, it is SQL Server's scheduler for jobs and is required by log shipping, so installation is recommended.</div>
+<div dir="ltr">
+For detail info use this link <a href="https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-ha-basics?view=sql-server-2017">microsoft</a></div>
+<h2 dir="ltr">
+Connect to linux using PUTTY:</h2>
+<div dir="ltr">
+Get ip address of linux where sql server is instlled</div>
+<div dir="ltr">
+#ifconfig</div>
+<br>
+<div dir="ltr">
+<img height="147" src="https://lh3.googleusercontent.com/hH9EqMgY9yxHU5RMJ0-0tTBMGbdjxaYSYBnuep2n9CkcDZUCOMTQOGUE0bJHRFmj9biID4kyW8cRwpZn5bIVD1fY-UW568k1eatwBVj8Jt6lY6jXbdamQs1X89_Qwo9xOZgBZ6FMl4kDEGpMyA" width="425"></div>
+<br>
+<div dir="ltr">
+Configure putty:</div>
+<div dir="ltr">
+Port 22 is for SSH&nbsp;which is typically&nbsp;used&nbsp;to log into a remote machine and execute commands</div>
+<br>
+<div dir="ltr">
+<img height="324" src="https://lh3.googleusercontent.com/yCbEdtp_808k0ftdIrFCvp2V3IOoyB4-KSQWx9-gmYCzf342_qmf0kjm3n2bsPRxFd3S7Ah1UX3ykFq_dQ39T-tWSdpY5RumKyw-By4VhNaINhXwO3pQfTM3vYATR3GYyg-dEK0tw1g_oKzelA" width="553"></div>
+<br>
+<br>
+<div dir="ltr">
+Press Yes to security alert:</div>
+<br>
+<div dir="ltr">
+<img height="291" src="https://lh4.googleusercontent.com/aKllf3_xxJci0WtB3wrC0tJUiXws1bVEtBX3NEHg_ntnV3cf5zvLyLqjmNb3HGQ3uYEKVn-EnkC05mVKqG_E-NOkYqE69SVSRFV2O0zdhhrgoF5ThW5TDRqmZKcNNS97GI41xU6OvlQ3WkclrQ" width="425"></div>
+<br>
+<div dir="ltr">
+Give your credentials that used to login your linux system:</div>
+<br>
+<div dir="ltr">
+<img height="100" src="https://lh6.googleusercontent.com/WTOQjxHW9Q3ERRVOd1S8r4wO6Cd4Ds550S5YvdmEVwdVihzZi52KJUQH6Jz7hfM3t2FwBKiNpGjBjK6kSeGwDh86AIdg2EBx0vSg-0rc_wqca38-hAG8xKexDjOo8W1k96OeFrSx0HiIErFjpg" width="309"></div>
+<br>
+<br>
+<h2 dir="ltr">
+Transfer files using WinSCP:</h2>
+<br>
+<div dir="ltr">
+Download and install WinSCP from <a href="https://winscp.net/eng/download.php">link</a></div>
+<br>
+<div dir="ltr">
+<img height="380" src="https://lh5.googleusercontent.com/qRng3hWZl-HumELJA-KVUDVZSPjY7pKKZh-tX4_8Pk8zELzCR_y2uYYn92G7JPCoNKXn7C6PVyH7xUGmoZRvo-k1IkpVUNKUlvmDdSlP0ZG1iqpHieE5ccI9ZbnjTAdmkT2R0cGbjqeARJ2T3w" width="497"></div>
+<br>
+<div dir="ltr">
+Connect to Linux System using ip address:</div>
+<div dir="ltr">
+#ifconfig</div>
+<br>
+<div dir="ltr">
+<img height="373" src="https://lh5.googleusercontent.com/a4wErlEiYDEeyF1jZ7jTokRaDCzhSvC93BwmSKGHsAhoNOlkRZnpsJnKp46LnnBwOcbVdzIctq9B2WB_tRjYP_PRLVBMfIJehRnaKLOiSLK8SvHsB-T_EaI67sHmShytoPcHH-i_YpwsHbxpNw" width="553"></div>
+<br>
+<div dir="ltr">
+Change or create new directory for files on Linux:</div>
+<br>
+<div dir="ltr">
+<img height="149" src="https://lh3.googleusercontent.com/fV3fttIYBn_WpkzQidn2nWTv4GgG0hS4tTTMWUKTQBc2wHCqOQ1eE_2q7QyKJTwX8P0NSLnq0CTK0_EgBxVv1b009paok3BYEJ4Sl0kLGIgn4WY-D_nMsrod3XWZtKhJxJ3BQ5xXQY-gaxMo9g" width="553"></div>
+<br>
+<div dir="ltr">
+Upload files:</div>
+<br>
+<div dir="ltr">
+<img height="435" src="https://lh6.googleusercontent.com/Iy_TI8mhOY7cnd_14nnE4axRlMXsARpG_z0Ui352UzwAu8dfYx5yLCMeyY4IM4wr1SKPN30qW0C4DfTel39X7bWQjQ_QGiu1EwB0T0JxYxlZ1eoXaCDxt3g9R-2NdGla6A0SbLv3q35MvJ77aQ" width="509"></div>
+<br>
+<div dir="ltr">
+Upload into linux:</div>
+<br>
+<div dir="ltr">
+<img height="346" src="https://lh3.googleusercontent.com/01A1sKUil6ruLG9UrmEuEiLZTWsvKfxejRgGSm2mJyHXmwetbzuUdz6idTI0cwqNkBt2iqXcFzWATmTwqUgSTapxL2b495kWcuaszTQjNDZnYoLVyOxqsvHYkGYCvIra8FFRNK4nL3JKmsNFUw" width="553"></div>
+<br>
+<h2 dir="ltr">
+Install package:</h2>
+<div dir="ltr">
+Check files and install:</div>
+<div dir="ltr">
+#ll</div>
+<div dir="ltr">
+#rpm -ivh mssql-server</div>
+<br>
+<div dir="ltr">
+<img height="312" src="https://lh3.googleusercontent.com/wwRvtILNqfqoWBB3TEKkrWT6tVFl6YLoW-uhNIhB28DjZjMl33y4FdR4te9LKY7GbbdkJSSbPRnroSyiDl_fZjTPSee60YVsEge6_ygRud2bzfwQ5iFi8DMtya8v2YMIWAOOCrDfwxdxHAp1AA" width="553"></div>
+<br>
+<div dir="ltr">
+Configure SQL Server on linux:</div>
+<br>
+<div dir="ltr">
+<img height="405" src="https://lh4.googleusercontent.com/0K_5rKtnyunSUtHpoU3HSUzq3o0oreiqXbAplxX3LMcqztOkyPc6TmZpdsxwQrhoN7uUHI7R6VuwOa6a0HZzWR4wSWIBswU2tUUlwaTX7w5ZngtBvdFEIKZ0ZqAEt8PrIagGsvEDLGjx12NUhg" width="553"></div>
+<br>
+<div dir="ltr">
+Connect and check using SA login:</div>
+<br>
+<div dir="ltr">
+<img height="265" src="https://lh5.googleusercontent.com/TUubAs9nFo1KKKjHpWNVnlNvLiKhB6iQ5DQSn7ikG1nTKpYNstK8dnGuxIIP6av4_XOFUhVeIZf2g32Z7sNA3T9vcnf753bQW64Wq8SC-6D7CGaP4mzbJaGIa-CuP7KyrHiI3DRjpgBFCWUygg" width="554"></div>
+<br></div>
+

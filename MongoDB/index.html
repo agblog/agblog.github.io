@@ -1,9 +1,219 @@
 <!DOCTYPE html>
-<html>
-<head><title>MongoDB Server Notes</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My MongoDB Notes & DBA Guide</title>
+    <style>
+        :root {
+            --primary: #102a43;
+            --accent: #00ed64;
+            --text: #334e68;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --border: #d9e2ec;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 0.5rem 0 0 0;
+            color: #bcccdc;
+            font-size: 1.1rem;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-heading {
+            font-size: 1.3rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.4rem;
+            margin-top: 2.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border-color: #627d98;
+        }
+
+        .card h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+            font-size: 1.15rem;
+        }
+
+        .card p {
+            margin: 0 0 1.5rem 0;
+            font-size: 0.95rem;
+            color: #486581;
+        }
+
+        .link-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .link-btn:hover {
+            background-color: #243b53;
+        }
+
+        .draft-card {
+            background: #f8fafc;
+            border-style: dashed;
+            border-color: #cbd5e1;
+        }
+
+        .draft-card h3, .draft-card p {
+            color: #64748b;
+        }
+
+        .status-tag {
+            background-color: #f1f5f9;
+            color: #64748b;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 5rem;
+            font-size: 0.85rem;
+            color: #627d98;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
 <body>
-    <h1>MongoDB Server Tutorials</h1>
-    <p>Content coming soon...</p>
-    <a href="../">← Back to Homepage</a>
+
+    <header>
+        <h1>My MongoDB Notes</h1>
+        <p>A personal collection of setup guides, real errors I ran into, and DBA walk-throughs.</p>
+    </header>
+
+    <main>
+        <!-- Part 1 -->
+        <h2 class="section-heading">The Basics</h2>
+        <div class="grid">
+            
+            <!-- Card 1 -->
+            <div class="card">
+                <div>
+                    <h3>Overview & Installation</h3>
+                    <p>What MongoDB actually is, some core limitations to remember, and how to get it installed on Windows step by step.</p>
+                </div>
+                <a href="MongoDB overview and installation.html" class="link-btn">Read More &rarr;</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div>
+                    <h3>Starting Up the Database</h3>
+                    <p>How to fix common environment path errors, setting up your data directories, and picking the right storage engines.</p>
+                </div>
+                <a href="Starting MongoDB Database.html" class="link-btn">Read More &rarr;</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div>
+                    <h3>Connecting to the Database</h3>
+                    <p>Using the command line tool to jump into your database, checking connections, and adding your first test data.</p>
+                </div>
+                <a href="Connecting MongoDB Database.html" class="link-btn">Read More &rarr;</a>
+            </div>
+
+        </div>
+
+        <!-- Part 2 -->
+        <h2 class="section-heading">Advanced DBA Topics (Work in Progress)</h2>
+        <div class="grid">
+
+            <!-- Replication -->
+            <div class="card draft-card">
+                <div>
+                    <span class="status-tag">Writing this next</span>
+                    <h3>Replication & High Availability</h3>
+                    <p>Notes on how to build a reliable replica set cluster so your system handles unexpected crashes gracefully.</p>
+                </div>
+                <a href="#" class="link-btn" style="background-color: #cbd5e1; color: #64748b; cursor: not-allowed; pointer-events: none;">Coming soon</a>
+            </div>
+
+            <!-- Sharding -->
+            <div class="card draft-card">
+                <div>
+                    <span class="status-tag">Planned</span>
+                    <h3>Sharding & Sharded Clusters</h3>
+                    <p>Figuring out how to break down massive amounts of data across multiple database instances using config servers.</p>
+                </div>
+                <a href="#" class="link-btn" style="background-color: #cbd5e1; color: #64748b; cursor: not-allowed; pointer-events: none;">Coming soon</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Built as a quick reference guide. Hosted with GitHub Pages.</p>
+    </footer>
+
 </body>
 </html>

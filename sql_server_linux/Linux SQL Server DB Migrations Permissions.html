@@ -1,0 +1,175 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" id="docs-internal-guid-bbdbe3bd-7fff-1f78-733a-ea6aaa22cc87"><br></div><div dir="ltr" id="docs-internal-guid-bbdbe3bd-7fff-1f78-733a-ea6aaa22cc87">
+Flollowing are steps taken for migrating Database from Windows to Linux:</div>
+<div dir="ltr">
+<br></div>
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+<b>Open the SQL Server from Windows</b></div>
+</li>
+</ol>
+<h2 style="text-align: left;">
+<br></h2>
+<h2 style="text-align: left;">
+--<b>Creating Database&nbsp;</b></h2>
+<div dir="ltr">
+CREATE DATABASE MigrationTest</div>
+<div dir="ltr">
+USE MigrationTest</div>
+<br>
+<div dir="ltr">
+<b>--Creating Table</b></div>
+<div dir="ltr">
+Create table Employee(id int identity, city varchar(20))</div>
+<div dir="ltr">
+insert into Employee values('Pune'),('Mumbai')</div>
+<div dir="ltr">
+Select * from Employee</div>
+<br>
+<div dir="ltr">
+--Creating Login and assigning some server roles</div>
+<div dir="ltr">
+<img height="197" src="https://lh6.googleusercontent.com/Z1PQShuStZhE9bNxV9zLuMFEKIH3N-z_0cdo46Cz9N0TRc3IsQQpM810D5ZWGaKsGnmy4ewp2V2HuOhcar7MeBaoA1y4hvK0E670hXYy6sQ0tDY8BCRLWsbuyogjnSmLeKyMnWRY0JQ_V-KCQA" width="516"></div>
+<br>
+<div dir="ltr">
+USE [master]</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+CREATE LOGIN [anurag] WITH PASSWORD=N'anurag@123', DEFAULT_DATABASE=[master], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF</div>
+<div dir="ltr">
+GO</div>
+<br>
+<div dir="ltr">
+<img height="118" src="https://lh3.googleusercontent.com/mKOAnu8o2nKdKJF2rG6JqGcvOhK34THQ0Kq7-sBfFgO5DWhXU2PZ6B7Gz9MxL_CyT3jlBrAi6V_2KWFYSNlr4DK3PbxA1BlvRK-B_B0sWjN4okZF14a_oFxFccKxanY8heLAYKp3OTS94gX6lg" width="238"></div>
+<br>
+<div dir="ltr">
+ALTER SERVER ROLE [dbcreator] ADD MEMBER [anurag]</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+ALTER SERVER ROLE [diskadmin] ADD MEMBER [anurag]</div>
+<div dir="ltr">
+GO</div>
+<br>
+<div dir="ltr">
+--Mapping user to login and giving select permission</div>
+<div dir="ltr">
+USE [MigrationTest]</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+CREATE USER [anurag] FOR LOGIN [anurag]</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+GRANT SELECT ON EMPLOYEE TO ANURAG</div>
+<div dir="ltr">
+<img height="237" src="https://lh6.googleusercontent.com/R-WVnjg9gTvFWRUdcMk2LAUowdHrhfcLqePaouOK7jI8K7c8yEu_nXf2iniLz_Hy8bRoOXkgfgkatgWQKbeB2vTKep2g7fleYH7V5sfzEQ0e4pgVmthMUafgRkSJttRBUkQREXPibh2nTvIfCw" width="238"></div>
+<br>
+<div dir="ltr">
+Check table by selecting:</div>
+<br>
+<div dir="ltr">
+<img height="70" src="https://lh5.googleusercontent.com/ho0T3SAqFj-VA1txf4CJP856tWFeW-6AulZXKg87f7jsknqYLQhiEvHkiKHFNNuvxgPuvo-v8Q6WAiv9W6bkgYZ8Oh6OhfWK9OhlSVw9WzWOo6t8cQpx9JguMiJUCEyXuutzG4fdZVAGexkarA" width="125"></div>
+<br>
+<h2 style="text-align: left;">
+<br></h2>
+<h2 style="text-align: left;">
+<b>Taking Database Backup:</b></h2>
+<div dir="ltr">
+BACKUP DATABASE MigrationTest to DISK='MigrationTest.bak'</div>
+<br>
+<div dir="ltr">
+--Transfer Backup file in linux using WinScp</div>
+<div dir="ltr">
+Get ip address of linux using ifconfig &amp; connect using winscp</div>
+<br>
+<div dir="ltr">
+<img height="235" src="https://lh5.googleusercontent.com/2O4YqhQG9s7kwaYlVYXwW0Oe7NdYPcmlDKBvTVps4MqbNsIKR3m7dmyNw1Gv9Asz15k5R6N3cIPJVu7vxQrwef6uwNJ-ZaASv0SK9BhVMqzZjTKTMsdrIW0PzZwHPH0SnWMrF99L3THA3BBang" width="553"></div>
+<br>
+<h2 style="text-align: left;">
+Transfer &amp; restore backup</h2>
+<div dir="ltr">
+Here I have created a folder under var named backup and uploaded a backup file</div>
+<div dir="ltr">
+<img height="325" src="https://lh6.googleusercontent.com/-bASW6-azvpUVCd2TfqMM_AIjZjq3m1R68ISJXpIe4KVabG-iK7oLq9dOZuPIny6eQiSye4paC61MVsirxBwml3nf68O6zQJQ2g-y37vFaZztv5-IRd41XR3S_0EOgLBWCFF2WiodawM_dfOqw" width="554"></div>
+<br>
+<br>
+<div dir="ltr">
+RESTORE FILELISTONLY FROM DISK=N'/var/backup/MigrationTest.bak'</div>
+<br>
+<div dir="ltr">
+USE [master]</div>
+<div dir="ltr">
+RESTORE DATABASE [MigrationTest] FROM&nbsp; DISK = N'/var/backup/MigrationTest.bak' WITH&nbsp; FILE = 1,&nbsp;&nbsp;</div>
+<div dir="ltr">
+MOVE N'MigrationTest' TO N'/var/opt/mssql/data/MigrationTest.mdf',&nbsp;&nbsp;</div>
+<div dir="ltr">
+MOVE N'MigrationTest_log' TO N'/var/opt/mssql/data/MigrationTest_log.ldf',&nbsp;&nbsp;</div>
+<div dir="ltr">
+NOUNLOAD,&nbsp; STATS = 5</div>
+<br>
+<div dir="ltr">
+GO</div>
+<br>
+<div dir="ltr">
+After restoring database checking if table, user are reflected or not:</div>
+<br>
+<div dir="ltr">
+<img height="336" src="https://lh5.googleusercontent.com/S86BxdM8iDCU7Q9K2tAQgWLuXokrE5g-Zi15E3kGxP3RK27s1xAZCyb03EhbiwYfHjw8qvWFXNiLBKmGtgJfb5EbyCYG8tbYdACZcaevOMRylBrPMUQhO0eSJOywB0SigtsLt9MoCk1nAa5sIQ" width="243"></div>
+<div dir="ltr">
+As no login is reflected so we have to map it:</div>
+<div dir="ltr">
+<img height="125" src="https://lh5.googleusercontent.com/GrmagVD1p-Wqv1aD_XPpAl1AsegXxwybJ1tqpMOPHGKAj3gxLVxpHksMDRQCoF9aUxeuqrW6PaQ2ZXrntw7zKYNA2i7V2SaELqw-_uSouo939-hRQgExUrlzuKbTvNMMedHiEQv2HiYuwjS0xg" width="229"></div>
+<h2 style="text-align: left;">
+<br></h2>
+<h2 style="text-align: left;">
+&nbsp;Mapping Logins:</h2>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+Creating login by mapping it so same sid is attached with previous passwords, permissions:</div>
+<div dir="ltr">
+Here is good link to get description about this:</div>
+<br>
+<div dir="ltr">
+<a href="https://support.microsoft.com/en-in/help/918992/how-to-transfer-logins-and-passwords-between-instances-of-sql-server">https://support.microsoft.com/en-in/help/918992/how-to-transfer-logins-and-passwords-between-instances-of-sql-server</a></div>
+<br>
+<div dir="ltr">
+-- <b>Revlogin Script to get login names:</b></div>
+<br>
+<div dir="ltr">
+USE master<br>GO<br>IF OBJECT_ID ('sp_hexadecimal') IS NOT NULL<br>&nbsp; DROP PROCEDURE sp_hexadecimal<br>GO<br>CREATE PROCEDURE sp_hexadecimal<br>&nbsp; &nbsp; @binvalue varbinary(256),<br>&nbsp; &nbsp; @hexvalue varchar (514) OUTPUT<br>AS<br>DECLARE @charvalue varchar (514)<br>DECLARE @i int<br>DECLARE @length int<br>DECLARE @hexstring char(16)<br>SELECT @charvalue = '0x'<br>SELECT @i = 1<br>SELECT @length = DATALENGTH (@binvalue)<br>SELECT @hexstring = '0123456789ABCDEF'<br>WHILE (@i &lt;= @length)<br>BEGIN<br>&nbsp; DECLARE @tempint int<br>&nbsp; DECLARE @firstint int<br>&nbsp; DECLARE @secondint int<br>&nbsp; SELECT @tempint = CONVERT(int, SUBSTRING(@binvalue,@i,1))<br>&nbsp; SELECT @firstint = FLOOR(@tempint/16)<br>&nbsp; SELECT @secondint = @tempint - (@firstint*16)<br>&nbsp; SELECT @charvalue = @charvalue +<br>&nbsp; &nbsp; SUBSTRING(@hexstring, @firstint+1, 1) +<br>&nbsp; &nbsp; SUBSTRING(@hexstring, @secondint+1, 1)<br>&nbsp; SELECT @i = @i + 1<br>END<br><br>SELECT @hexvalue = @charvalue<br>GO<br> <br>IF OBJECT_ID ('sp_help_revlogin') IS NOT NULL<br>&nbsp; DROP PROCEDURE sp_help_revlogin<br>GO<br>CREATE PROCEDURE sp_help_revlogin @login_name sysname = NULL AS<br>DECLARE @name sysname<br>DECLARE @type varchar (1)<br>DECLARE @hasaccess int<br>DECLARE @denylogin int<br>DECLARE @is_disabled int<br>DECLARE @PWD_varbinary&nbsp; varbinary (256)<br>DECLARE @PWD_string&nbsp; varchar (514)<br>DECLARE @SID_varbinary varbinary (85)<br>DECLARE @SID_string varchar (514)<br>DECLARE @tmpstr&nbsp; varchar (1024)<br>DECLARE @is_policy_checked varchar (3)<br>DECLARE @is_expiration_checked varchar (3)<br><br>DECLARE @defaultdb sysname<br> <br>IF (@login_name IS NULL)<br>&nbsp; DECLARE login_curs CURSOR FOR<br><br>&nbsp; &nbsp; &nbsp; SELECT p.sid, p.name, p.type, p.is_disabled, p.default_database_name, l.hasaccess, l.denylogin FROM <br>sys.server_principals p LEFT JOIN sys.syslogins l<br>&nbsp; &nbsp; &nbsp; ON ( l.name = p.name ) WHERE p.type IN ( 'S', 'G', 'U' ) AND p.name &lt;&gt; 'sa'<br>ELSE<br>&nbsp; DECLARE login_curs CURSOR FOR<br><br><br>&nbsp; &nbsp; &nbsp; SELECT p.sid, p.name, p.type, p.is_disabled, p.default_database_name, l.hasaccess, l.denylogin FROM <br>sys.server_principals p LEFT JOIN sys.syslogins l<br>&nbsp; &nbsp; &nbsp; ON ( l.name = p.name ) WHERE p.type IN ( 'S', 'G', 'U' ) AND p.name = @login_name<br>OPEN login_curs<br><br>FETCH NEXT FROM login_curs INTO @SID_varbinary, @name, @type, @is_disabled, @defaultdb, @hasaccess, @denylogin<br>IF (@@fetch_status = -1)<br>BEGIN<br>&nbsp; PRINT 'No login(s) found.'<br>&nbsp; CLOSE login_curs<br>&nbsp; DEALLOCATE login_curs<br>&nbsp; RETURN -1<br>END<br>SET @tmpstr = '/* sp_help_revlogin script '<br>PRINT @tmpstr<br>SET @tmpstr = '** Generated ' + CONVERT (varchar, GETDATE()) + ' on ' + @@SERVERNAME + ' */'<br>PRINT @tmpstr<br>PRINT ''<br>WHILE (@@fetch_status &lt;&gt; -1)<br>BEGIN<br>&nbsp; IF (@@fetch_status &lt;&gt; -2)<br>&nbsp; BEGIN<br>&nbsp; &nbsp; PRINT ''<br>&nbsp; &nbsp; SET @tmpstr = '-- Login: ' + @name<br>&nbsp; &nbsp; PRINT @tmpstr<br>&nbsp; &nbsp; IF (@type IN ( 'G', 'U'))<br>&nbsp; &nbsp; BEGIN -- NT authenticated account/group<br><br>&nbsp; &nbsp; &nbsp; SET @tmpstr = 'CREATE LOGIN ' + QUOTENAME( @name ) + ' FROM WINDOWS WITH DEFAULT_DATABASE = [' + @defaultdb + ']'<br>&nbsp; &nbsp; END<br>&nbsp; &nbsp; ELSE BEGIN -- SQL Server authentication<br>&nbsp; &nbsp; &nbsp; &nbsp; -- obtain password and sid<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SET @PWD_varbinary = CAST( LOGINPROPERTY( @name, 'PasswordHash' ) AS varbinary (256) )<br>&nbsp; &nbsp; &nbsp; &nbsp; EXEC sp_hexadecimal @PWD_varbinary, @PWD_string OUT<br>&nbsp; &nbsp; &nbsp; &nbsp; EXEC sp_hexadecimal @SID_varbinary,@SID_string OUT<br> <br>&nbsp; &nbsp; &nbsp; &nbsp; -- obtain password policy state<br>&nbsp; &nbsp; &nbsp; &nbsp; SELECT @is_policy_checked = CASE is_policy_checked WHEN 1 THEN 'ON' WHEN 0 THEN 'OFF' ELSE NULL END FROM sys.sql_logins WHERE name = @name<br>&nbsp; &nbsp; &nbsp; &nbsp; SELECT @is_expiration_checked = CASE is_expiration_checked WHEN 1 THEN 'ON' WHEN 0 THEN 'OFF' ELSE NULL END FROM sys.sql_logins WHERE name = @name<br> <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SET @tmpstr = 'CREATE LOGIN ' + QUOTENAME( @name ) + ' WITH PASSWORD = ' + @PWD_string + ' HASHED, SID = ' + @SID_string + ', DEFAULT_DATABASE = [' + @defaultdb + ']'<br><br>&nbsp; &nbsp; &nbsp; &nbsp; IF ( @is_policy_checked IS NOT NULL )<br>&nbsp; &nbsp; &nbsp; &nbsp; BEGIN<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SET @tmpstr = @tmpstr + ', CHECK_POLICY = ' + @is_policy_checked<br>&nbsp; &nbsp; &nbsp; &nbsp; END<br>&nbsp; &nbsp; &nbsp; &nbsp; IF ( @is_expiration_checked IS NOT NULL )<br>&nbsp; &nbsp; &nbsp; &nbsp; BEGIN<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SET @tmpstr = @tmpstr + ', CHECK_EXPIRATION = ' + @is_expiration_checked<br>&nbsp; &nbsp; &nbsp; &nbsp; END<br>&nbsp; &nbsp; END<br>&nbsp; &nbsp; IF (@denylogin = 1)<br>&nbsp; &nbsp; BEGIN -- login is denied access<br>&nbsp; &nbsp; &nbsp; SET @tmpstr = @tmpstr + '; DENY CONNECT SQL TO ' + QUOTENAME( @name )<br>&nbsp; &nbsp; END<br>&nbsp; &nbsp; ELSE IF (@hasaccess = 0)<br>&nbsp; &nbsp; BEGIN -- login exists but does not have access<br>&nbsp; &nbsp; &nbsp; SET @tmpstr = @tmpstr + '; REVOKE CONNECT SQL TO ' + QUOTENAME( @name )<br>&nbsp; &nbsp; END<br>&nbsp; &nbsp; IF (@is_disabled = 1)<br>&nbsp; &nbsp; BEGIN -- login is disabled<br>&nbsp; &nbsp; &nbsp; SET @tmpstr = @tmpstr + '; ALTER LOGIN ' + QUOTENAME( @name ) + ' DISABLE'<br>&nbsp; &nbsp; END<br>&nbsp; &nbsp; PRINT @tmpstr<br>&nbsp; END<br><br>&nbsp; FETCH NEXT FROM login_curs INTO @SID_varbinary, @name, @type, @is_disabled, @defaultdb, @hasaccess, @denylogin<br> &nbsp; END<br>CLOSE login_curs<br>DEALLOCATE login_curs<br>RETURN 0<br>GO</div>
+<br>
+<div dir="ltr">
+Run this stored procedure on primary server:</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<img height="113" src="https://lh5.googleusercontent.com/asNp9PSdjmMPAVHLFkIq9X1ALP5b5xWsLx_4lKjkLPxVt5Rtcbf8_droFJNPXmynNXHNhyN2gmMSba-_dRV6YoEQOFQvLb4XrFKcuLCwuS_PjNbdlShW4cX9QAVQGGmXNjC7yJ3vPLOkulnkIA" width="553"></div>
+<div dir="ltr">
+After running this create login on linux sql server check connection with same password:</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<img height="206" src="https://lh6.googleusercontent.com/UuZAelapipRaY3mPVTDIydT0FQWGDTZHJ-kr7_wCJt2bsvGL2Ndj8ZT9KVtsyLO5Ll_rTpQYGQTqEya8EWthRqisuwiIDcaqoIbZ_UO2KuhWF6101NUje1qRPWEkXmR4TX5r6THoZyAUSi3YOg" width="382"></div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+--login is connected successfully&nbsp;</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+--check if table has selwct access by quering.</div>
+<div dir="ltr">
+<br></div>
+<div dir="ltr">
+<img height="70" src="https://lh5.googleusercontent.com/ho0T3SAqFj-VA1txf4CJP856tWFeW-6AulZXKg87f7jsknqYLQhiEvHkiKHFNNuvxgPuvo-v8Q6WAiv9W6bkgYZ8Oh6OhfWK9OhlSVw9WzWOo6t8cQpx9JguMiJUCEyXuutzG4fdZVAGexkarA" width="125"></div>
+<br>
+<br></div>
+

@@ -1,0 +1,69 @@
+
+#Usage- Easy to count how much downtime during failover or upgrade or maintenance activity of database. Helps to monitor SQL Server database status. 
+
+# How to Run the Script
+# Open PowerShell as Administrator: Right-click the Start menu and select Windows PowerShell (Admin).
+# Enable Script Execution: If you haven't run scripts before, type this command and press Enter (then type A for Yes to All):
+# Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+#This script will save the output in excel file with status of db 
+<img src="assets/images/How to import data in MySQL DB using powershell.png" alt="How to import data in MySQL DB using powershell" width="100%">
+
+
+# --- Configuration ---
+$ListenerIP = "192.168.1.2"
+$Database   = "master"
+$User       = "anurag_dba"
+$Pass       = "psssword"
+$LogPath    = "C:\Users\anurag\OneDrive\Documents\Powershell\Monitor\Failover_redundancy_log.csv"
+
+# --- Initialize CSV File ---
+"Timestamp,DatabaseName,State,ServerName,Status,Error" | Out-File -FilePath $LogPath -Encoding utf8
+
+Write-Host "Monitoring Listener: $ListenerIP for Database: $Database" -ForegroundColor Cyan
+Write-Host "Logging to: $LogPath. Press Ctrl+C to stop." -ForegroundColor Yellow
+
+# Query to get DB info and the actual responding node name
+$SqlQuery = "SELECT '$Database' as DB, state_desc, @@SERVERNAME as Node FROM sys.databases WHERE name = '$Database'"
+
+while ($true) {
+    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $Conn = New-Object System.Data.SqlClient.SqlConnection
+    # Setting a short Connection Timeout (2 seconds) to detect failover/downtime quickly
+    $Conn.ConnectionString = "Server=$ListenerIP;Database=master;User ID=$User;Password=$Pass;Connect Timeout=2;"
+
+    try {
+        $Conn.Open()
+        $Cmd = $Conn.CreateCommand()
+        $Cmd.CommandText = $SqlQuery
+        $Reader = $Cmd.ExecuteReader()
+
+        if ($Reader.Read()) {
+            $DBName = $Reader["DB"]
+            $State  = $Reader["state_desc"]
+            $Node   = $Reader["Node"]
+            
+            $CsvLine = "$Timestamp,$DBName,$State,$Node,Success,"
+            Write-Host "[$Timestamp] ONLINE | Node: $Node | State: $State" -ForegroundColor Green
+        }
+        $Conn.Close()
+    }
+    catch {
+        # Capture the specific error and clean it for CSV (remove commas/newlines)
+        $CleanErr = ($_.Exception.Message -replace '[\r\n,]', ';').Trim()
+        if (-not $CleanErr) { $CleanErr = "Connection Timeout/Listener Down" }
+        
+        $CsvLine = "$Timestamp,$Database,UNKNOWN,UNKNOWN,Failed,$CleanErr"
+        Write-Host "[$Timestamp] OFFLINE | $CleanErr" -ForegroundColor Red
+    }
+    finally {
+        if ($Conn.State -eq "Open") { $Conn.Close() }
+    }
+
+    # Append data to the CSV file
+    $CsvLine | Out-File -FilePath $LogPath -Append -Encoding utf8
+    
+    # Wait 1 second before next check
+    Start-Sleep -Seconds 1
+}
+

@@ -1,0 +1,357 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div style="background-color: white; line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"></a></div>
+<h2>
+<span lang="EN-US"><br /></span></h2>
+<h2>
+<b style="mso-bidi-font-weight: normal;"><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">SQL constraints</span></b></h2>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-left: 1em;"></a><br />
+<b style="mso-bidi-font-weight: normal;"><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"><br /></span></b>
+<b style="mso-bidi-font-weight: normal;"><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">SQL constraints</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"> are used to specify rules for the data in a
+table.</span><span style="color: #333333; font-family: &quot;arial&quot; , sans-serif; font-size: 11.5pt;">If
+there is any violation between the constraint and the data action, the action
+is aborted by the constraint.</span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">Constraints
+can be specified when the table is created (inside the CREATE TABLE statement)
+or after the table is created (inside the ALTER TABLE statement).<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<br /></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">The
+aim of this article is to create tblPerson and tblGender tables and establish
+primary key and foreign key constraints. In SQL Server, tables can be created
+graphically using SQL Server Management Studio (SSMS) or using a query.</span><br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"></a></div>
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"></span><br />
+<div class="separator" style="clear: both; text-align: center;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkiHCziK6W3QB1Fg7m9hXoBfeiBVqM3zDjFt8agiLRhLGADZpJn1QgSgs8fQtrCf278RRdFUHYzJnMHS5rnm4-7QOhjl_JF8ZwCXvf3bGOGC0zsYoO5TelsssTjbwc8R367d1QckBEm8Re/s1600/1579332384728076-0.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkiHCziK6W3QB1Fg7m9hXoBfeiBVqM3zDjFt8agiLRhLGADZpJn1QgSgs8fQtrCf278RRdFUHYzJnMHS5rnm4-7QOhjl_JF8ZwCXvf3bGOGC0zsYoO5TelsssTjbwc8R367d1QckBEm8Re/s1600/1579332384728076-0.png" width="400" />
+  </a>
+</span></div>
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">
+<br /><br />
+<b>To create tblPerson table, graphically, using SQL Server Management Studio</b><br />
+<b>1.</b>&nbsp;Right click on Tables folder in Object explorer window<br />
+<b>2.</b>&nbsp;Select New Table<br />
+<b>3.</b>&nbsp;Fill Column Name, Data Type and Allow Nulls, as shown below and
+save the table as tblPerson.</span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"><br /></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"></span><br />
+<div class="separator" style="clear: both; text-align: center;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhD0ybo8EJEHLNqbZ4tC4CRvBjZRQtcn4io5OI_4x1FSfH3EvDmrYbIC3-NW5iYJkuXTRkmdrg7U0iuyJD8CdB8RO5F9ck7EsK_CC2FqfFGA2-hxh3Xj6DqN2ncoTtdtMRhMZYYEACalKYy/s1600/1579332380753219-1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhD0ybo8EJEHLNqbZ4tC4CRvBjZRQtcn4io5OI_4x1FSfH3EvDmrYbIC3-NW5iYJkuXTRkmdrg7U0iuyJD8CdB8RO5F9ck7EsK_CC2FqfFGA2-hxh3Xj6DqN2ncoTtdtMRhMZYYEACalKYy/s1600/1579332380753219-1.png" width="400" />
+  </a>
+</span></div>
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">
+<br /><br />
+The following statement creates&nbsp;<b>tblGender</b>&nbsp;table, with&nbsp;<b>ID</b>&nbsp;and&nbsp;<b>Gender</b>&nbsp;columns.&nbsp;The
+following statement creates tblGender table, with ID and Gender columns.&nbsp;<b>ID&nbsp;</b>column,
+is the&nbsp;<b>primary key</b>&nbsp;column. The primary key is used to uniquely
+identify each row in a table. Primary key does not allow nulls.<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">Create Table</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;<b>tblGender</b><br />
+(ID&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">int&nbsp;</span><span lang="EN-US" style="color: #666666; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">Not Null</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">Primary Key</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">,<br />
+Gender&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">nvarchar</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">(50))<br />
+<br />
+<br />
+In&nbsp;<b>tblPerson&nbsp;</b>table,&nbsp;<b>GenderID&nbsp;</b>is the&nbsp;<b>foreign
+key</b>&nbsp;referencing&nbsp;<b>ID</b>&nbsp;column in&nbsp;<b>tblGender</b>table.
+Foreign key references can be added graphically using SSMS or using a query.<br />
+<br />
+<br />
+<b>To graphically add a foreign key reference</b><br />
+1. Right click tblPerson table and select Design<br />
+2. In the table design window, right click on GenderId column and select
+Relationships<br />
+3. In the Foreign Key Relationships window, click Add button<br />
+4. Now expand, in Tables and Column Specification row, by clicking the, + sign<br />
+5. Click on the elipses button, that is present in Tables and Column
+Specification row<br />
+6. From the Primary Key Table, dropdownlist, select tblGender<br />
+7. Click on the row below, and select ID column<br />
+8. From the column on the right hand side, select GenderId<br />
+9. Click OK and then click close.<br />
+10. Finally save the table.<br />
+<br />
+<br />
+<b>To add a foreign key reference using a query</b></span><br />
+<div style="text-align: left;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"><b><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">Alter table</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;<b>tblPerson</b></span></span></div>
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">
+</span><b></b>
+<br />
+<div style="text-align: left;">
+<b><b><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">add constraint</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;<b>tblPerson_GenderId_FK&nbsp;</b></span><b><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">FOREIGN KEY</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;<b>(GenderId)&nbsp;</b></span><b><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">references</span></b><b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">tblGender(ID)</span></b></b></div>
+<b>
+</b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;"></span>
+<br />
+<div style="text-align: left;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;"><span style="font-size: 15.3333px;"><br /></span></span></div>
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+<br />
+<b style="font-size: 11.5pt;">The general formula is here</b><br />
+</span><b><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">Alter table</span></b><b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;ForeignKeyTable&nbsp;</span></b><b><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">add constraint&nbsp;</span></b><b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">ForeignKeyTable_ForiegnKeyColumn_FK&nbsp;</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"><br />
+</span><b><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">FOREIGN KEY</span></b><b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;(ForiegnKeyColumn)&nbsp;</span></b><b><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">references&nbsp;</span></b><b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">PrimaryKeyTable (PrimaryKeyColumn)</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"><br />
+<br />
+<br />
+<b>Foreign keys</b>&nbsp;are used to enforce&nbsp;<b>database integrity</b>. A&nbsp;<b>foreign
+key </b>in one table points to a&nbsp;<b>primary key</b>&nbsp;in another table.
+The foreign key constraint prevents invalid data form being inserted into the
+foreign key column. The values that you enter into the foreign key column, has
+to be one of the values contained in the table it points to.</span></div>
+<h2>
+<span lang="EN-US" style="mso-fareast-font-family: &quot;Times New Roman&quot;;">Default constraint in sql server</span></h2>
+<div>
+<span lang="EN-US" style="mso-fareast-font-family: &quot;Times New Roman&quot;;"></span><br />
+<div class="separator" style="clear: both; text-align: center;">
+<span lang="EN-US" style="mso-fareast-font-family: &quot;Times New Roman&quot;;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHJUkYGwMAfK6wI-VhbrbqubJJPpQLpP1yMzd8QNQXYU5CFQzVlnufydQcVYPzcnfbyNo7sv2nxMLvYwVYf0av4d-kCaX68Zoj48uwR9aNq0vQvzg-0_l7ZUZuwV17o2Sj0e1IWzCSQHGD/s1600/1579332376621546-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHJUkYGwMAfK6wI-VhbrbqubJJPpQLpP1yMzd8QNQXYU5CFQzVlnufydQcVYPzcnfbyNo7sv2nxMLvYwVYf0av4d-kCaX68Zoj48uwR9aNq0vQvzg-0_l7ZUZuwV17o2Sj0e1IWzCSQHGD/s1600/1579332376621546-2.png" width="400" />
+  </a>
+</span></div>
+</div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+A column default can be specified using Default constraint. The default
+constraint is used to insert a default value into a column. The default value
+will be added to all new records, if no other value is specified, including
+NULL.<br />
+<br />
+<br />
+<b>Altering an existing column to add a default constraint:</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ALTER TABLE</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;{ TABLE_NAME }<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ADD CONSTRAINT</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;{ CONSTRAINT_NAME }<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">DEFAULT</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;{
+DEFAULT_VALUE }&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">FOR</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;{ EXISTING_COLUMN_NAME }<br />
+<br />
+<br />
+<b>Adding a new column, with default value, to an existing table:</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ALTER TABLE</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;{ TABLE_NAME }<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ADD&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">{ COLUMN_NAME } { DATA_TYPE } { NULL | NOT NULL }<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">CONSTRAINT&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">{ CONSTRAINT_NAME }&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">DEFAULT&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">{ DEFAULT_VALUE }<br />
+<br />
+<br />
+<b>The following command will add a default constraint, DF_tblPerson_GenderId.</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ALTER TABLE</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ADD CONSTRAINT</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;DF_tblPerson_GenderId<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">DEFAULT&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">1&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">FOR</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;GenderId<br />
+<br />
+<br />
+The insert statement below does not provide a value for GenderId column, so the
+default of 1 will be inserted for this record.<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Insert into</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson(ID,Name,Email)&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">values</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(5,</span><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'Sam'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">,</span><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'s@s.com'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">)<br />
+<br />
+<br />
+On the other hand, the following insert statement will insert NULL, instead of
+using the default.<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Insert into</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;tblPerson(ID,Name,Email,GenderId)&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">values&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">(6,</span><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'Dan'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">,</span><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">'d@d.com'</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">,</span><span lang="EN-US" style="color: #666666; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">NULL</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">)<br />
+<br />
+<br />
+<b>To drop a constraint</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ALTER TABLE</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;{ TABLE_NAME }<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">DROP CONSTRAINT</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;{ CONSTRAINT_NAME }<br style="mso-special-character: line-break;" />
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character: line-break;" />
+<!--[endif]--><o:p></o:p></span></div>
+<h2>
+<span lang="EN-US" style="mso-fareast-font-family: &quot;Times New Roman&quot;;">Cascading referential
+integrity constraint</span></h2>
+<h1>
+<a href="https://www.blogger.com/null" name="_Cascading_referential_integrity"></a></h1>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-outline-level: 3;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">Cascading referential integrity constraint allows to define the
+actions Microsoft SQL Server should take when a user attempts to delete or
+update a key to which an existing foreign keys points.<br />
+<br />
+<br />
+<b>For example</b>, consider the 2 tables shown below. If you delete row
+with&nbsp;</span><b><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ID = 1</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;from <b>tblGender&nbsp;</b>table, then
+row with&nbsp;</span><b><span lang="EN-US" style="color: #990000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">ID = 3</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;from&nbsp;<b>tblPerson&nbsp;</b>table
+becomes an&nbsp;<b>orphan record</b>. You will not be able to tell the Gender
+for this row. So, Cascading referential integrity constraint can be used to
+define actions Microsoft SQL Server should take when this happens. By
+default,&nbsp;</span><span lang="EN-US" style="color: #cc0000; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">we get an error and
+the DELETE or UPDATE statement is rolled back.</span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjhwmuQpZKyPxZ-VABc0JfOQkD8Ef_hVdUjzJGwbO6jrI89WwoGBxh5f65ac1egAQPosFgSw8R3jRcjb4ayUjH5RbzbihmFXbJyVk51L3mWPb2BGoQi_7aajBNeovwgqcDm664vV25BEpC/s1600/1579332372215564-3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjhwmuQpZKyPxZ-VABc0JfOQkD8Ef_hVdUjzJGwbO6jrI89WwoGBxh5f65ac1egAQPosFgSw8R3jRcjb4ayUjH5RbzbihmFXbJyVk51L3mWPb2BGoQi_7aajBNeovwgqcDm664vV25BEpC/s1600/1579332372215564-3.png" width="400" />
+  </a>
+</div>
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+<b>However, you have the following options when setting up Cascading
+referential integrity constraint</b><br />
+<b>1. No Action</b>: This is the default behavior. No Action specifies that if
+an attempt is made to delete or update a row with a key referenced by foreign
+keys in existing rows in other tables, an error is raised and the DELETE or
+UPDATE is rolled back.<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span>
+<span style="color: teal;">tblGender</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">)</span> <o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span> <span style="color: teal;">tblPerson</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">),</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">GenderId</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">constraint</span> <span style="color: teal;">FK_tblPerson_GenderId</span>
+<span style="color: blue;">foreign</span> <span style="color: blue;">key</span> <span style="color: blue;">references</span> <span style="color: teal;">tblGender</span><span style="color: grey;">(</span><span style="color: teal;">Id</span><span style="color: grey;">)</span> <span style="color: blue;">on</span> <span style="color: blue;">delete</span> <span style="color: blue;">no</span> <span style="color: blue;">action</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)<o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+<br />
+<b>2. Cascade</b>: Specifies that if an attempt is made to delete or update a
+row with a key referenced by foreign keys in existing rows in other tables, all
+rows containing those foreign keys are also deleted or updated.<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span>
+<span style="color: teal;">tblGender</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">)</span> <o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span> <span style="color: teal;">tblPerson</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">),</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">GenderId</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">constraint</span> <span style="color: teal;">FK_tblPerson_GenderId</span>
+<span style="color: blue;">foreign</span> <span style="color: blue;">key</span> <span style="color: blue;">references</span> <span style="color: teal;">tblGender</span><span style="color: grey;">(</span><span style="color: teal;">Id</span><span style="color: grey;">)</span> <span style="color: blue;">on</span> <span style="color: blue;">delete</span> <span style="color: blue;">cascade</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)<o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;"><br />
+<br />
+<b>3. Set NULL</b>: Specifies that if an attempt is made to delete or update a
+row with a key referenced by foreign keys in existing rows in other tables, all
+rows containing those foreign keys are set to NULL. <br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span>
+<span style="color: teal;">tblGender</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">)</span> <o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span> <span style="color: teal;">tblPerson</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">),</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">GenderId</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">constraint</span> <span style="color: teal;">FK_tblPerson_GenderId</span>
+<span style="color: blue;">foreign</span> <span style="color: blue;">key</span> <span style="color: blue;">references</span> <span style="color: teal;">tblGender</span><span style="color: grey;">(</span><span style="color: teal;">Id</span><span style="color: grey;">)</span> <span style="color: blue;">on</span> <span style="color: blue;">delete</span> <span style="color: blue;">set</span> <span style="color: grey;">NULL</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">4. Set Default</span></b><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;;">: Specifies that if an attempt is made to
+delete or update a row with a key referenced by foreign keys in existing rows
+in other tables, all rows containing those foreign keys are set to default
+values.<o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span> <span style="color: teal;">tblGender</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">)</span> <o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br /></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt;">create</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">table</span> <span style="color: teal;">tblPerson</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">(</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Id</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">primary</span> <span style="color: blue;">key</span><span style="color: grey;">,</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">Name</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">varchar</span><span style="color: grey;">(</span>50<span style="color: grey;">),</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: teal; font-family: &quot;consolas&quot;; font-size: 9.5pt;">GenderId</span><span lang="EN-US" style="font-family: &quot;consolas&quot;; font-size: 9.5pt;"> <span style="color: blue;">int</span> <span style="color: blue;">constraint</span> <span style="color: teal;">FK_tblPerson_GenderId</span>
+<span style="color: blue;">foreign</span> <span style="color: blue;">key</span> <span style="color: blue;">references</span> <span style="color: teal;">tblGender</span><span style="color: grey;">(</span><span style="color: teal;">Id</span><span style="color: grey;">)</span> <span style="color: blue;">on</span> <span style="color: blue;">delete</span> <span style="color: blue;">set</span> <span style="color: blue;">default</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt;">)<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<br /></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<span lang="EN-US">Note : If you have not already set a
+default value to GenderId column then on delete of Primary Key Table value will
+going to set NULL as a default value to Foreign Key Table value.</span></div>
+<h2>
+<span lang="EN-US" style="mso-fareast-font-family: &quot;Times New Roman&quot;;">Check constraint in SQL Server</span></h2>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"></a></div>
+<a href="https://www.blogger.com/blogger.g?rinli=1&amp;pli=1&amp;blogID=4382721266238152161" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"></a><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;"><br />
+<b>CHECK constraint</b>&nbsp;is used to&nbsp;<b>limit the range of the values</b>,
+that can be entered for a column.<br />
+<br />
+Let's say, we have an integer AGE column, in a table. The AGE in general cannot
+be less than ZERO and at the same time cannot be greater than 150. But, since
+AGE is an integer column it can accept negative values and values much greater
+than 150.<br />
+<br />
+So, to limit the values, that can be added, we can use CHECK constraint. In SQL
+Server, CHECK constraint can be created graphically, or using a
+query.<br />
+<br />
+<b>The following check constraint, limits the age between ZERO and 150.</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">ALTER TABLE</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;tblPerson<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">ADD CONSTRAINT</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;CK_tblPerson_Age&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">CHECK&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">(Age &gt; 0&nbsp;</span><span lang="EN-US" style="color: #444444; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">AND&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">Age &lt; 150)<br />
+<br />
+<br />
+<b>The general formula for adding check constraint in SQL Server:</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">ALTER TABLE</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;{ TABLE_NAME }<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">ADD CONSTRAINT</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;{ CONSTRAINT_NAME }&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">CHECK&nbsp;</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">( BOOLEAN_EXPRESSION )<br />
+<br />
+<br />
+If the BOOLEAN_EXPRESSION returns&nbsp;</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">true</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">, then the CHECK constraint allows the value, otherwise it
+doesn't. Since, AGE is a nullable column, it's possible to pass null for this
+column, when inserting a row. When you pass NULL for the AGE column, the
+boolean expression evaluates to&nbsp;<b>UNKNOWN</b>, and allows the value.<br />
+<br />
+<br />
+<b>To drop the CHECK constraint:</b><br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">ALTER TABLE</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;tblPerson<br />
+</span><span lang="EN-US" style="color: blue; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">DROP CONSTRAINT</span><span lang="EN-US" style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">&nbsp;CK_tblPerson_Age</span><span class="Heading1Char"><span lang="EN-US" style="font-size: 14.0pt;"><o:p></o:p></span></span></div>
+<div class="MsoNormal">
+<br /></div>
+<br /></div>
+</div>
+
