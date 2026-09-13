@@ -35,7 +35,7 @@
       Before you can configure database parameters, you must establish a stable Linux server operating environment. If your base virtual server environment is not yet active, stop here and follow our dedicated playbooks inside the local Linux folder:
       
       <div class="link-card" style="margin-top: 10px; background-color: #252526;">
-        👉 <a href="https://agblog.github.io/Linux/Linux%20installing%20vmware.html">Playbook 1: Installing VMware Workstation for Linux Hosts</a>
+        👉 <a href="https://github.io">Playbook 1: Installing VMware Workstation for Linux Hosts</a>
       </div>
       
       <div class="link-card" style="margin-top: 6px; background-color: #252526;">
@@ -75,7 +75,7 @@
         <tr>
           <td><strong>System Memory (RAM)</strong></td>
           <td><strong>2 GB Minimum</strong></td>
-          <td>Required to safely execute base internal system threads and process memory managers. Always verify this capacity before adjusting server constraints.</td>
+          <td>Required to safely execute base internal system threads and process memory managers.</td>
         </tr>
         <tr>
           <td><strong>File System Type</strong></td>
@@ -100,7 +100,7 @@
         <tr>
           <td><strong>CPU Architecture</strong></td>
           <td><strong>x64-Compatible Architecture</strong></td>
-          <td>Optimized for 64-bit Intel and AMD processor configurations. Emulation frameworks are not supported.</td>
+          <td>Optimized for 64-bit Intel and AMD processor configurations.</td>
         </tr>
       </tbody>
     </table>
@@ -129,16 +129,21 @@
     <ul>
       <li><strong>Red Hat Enterprise Linux (RHEL):</strong> Supported on bare metal or virtual containers on versions 7.3, 7.4, 8.x, 9.x, and 10.x.</li>
       <li><strong>Ubuntu Server:</strong> Fully compatible across LTS releases (including versions 16.04, 18.04, 20.04, 22.04, and 24.04).</li>
-      <li><strong>SUSE Linux Enterprise Server (SLES):</strong> Supported on version 12 (SP2 to SP5) and version 15 systems. *(Note: SLES is no longer supported starting with SQL Server 2025).*</li>
+      <li><strong>SUSE Linux Enterprise Server (SLES):</strong> Supported on version 12 (SP2 to SP5) and version 15 systems.</li>
       <li><strong>Docker Engine:</strong> Supported on version 1.8 or higher platforms on x86-64 processors.</li>
     </ul>
 
-    <!-- PACKAGE REPOSITORY FILES INDEX -->
+    <!-- PACKAGE REPOSITORY FILES INDEX WITH INTAC GOOGLE CONTENT IMAGE -->
     <h3>📦 Component Package Inventory Paths</h3>
     <p>When downloading system components or pulling down offline dependencies, look under the official Microsoft package distribution channel routes:</p>
     <div class="link-card">📂 <strong>Microsoft Packages Portal:</strong> <a href="https://microsoft.com" target="_blank">https://microsoft.com</a></div>
     <div class="link-card">📦 <strong>RHEL 7 SQL Server 2017 Repository Channel:</strong> <a href="https://microsoft.comrhel/7/mssql-server-2017/" target="_blank">https://microsoft.comrhel/7/mssql-server-2017/</a></div>
     
+    <div style="background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 15px; text-align: center; border-radius: 6px; margin: 15px 0;">
+      <img src="https://googleusercontent.com" width="553" height="342" alt="Packages Microsoft Portal RHEL Index Map">
+      <p style="margin: 5px 0 0 0; font-size: 11px; color: #6a9955; font-family: monospace;">Image: Official Packages Directory Path Tracking Sheet</p>
+    </div>
+
     <p>The setup functions are broken into independent packages to maintain a clean filesystem:</p>
     <ul style="padding-left: 20px; margin-bottom: 20px;">
       <li><strong>mssql-server:</strong> The foundational database engine container binaries package.</li>
@@ -148,13 +153,23 @@
       <li><strong>mssql-server-is:</strong> Enables execution of Integration Services (SSIS) data migration and ETL pipelines.</li>
     </ul>
 
+    <!-- SERVICING POLICIES WITH INTAC GOOGLE CONTENT IMAGES -->
     <h3>🔄 Cumulative Updates (CUs) Servicing Guidelines</h3>
     <p>Microsoft handles product updates through Cumulative Updates (CUs). Observe these operational guidelines during patching tasks:</p>
     <ul>
       <li><strong>CUs are Collective:</strong> Each new CU release completely replaces the older packages and includes all bug fixes, security enhancements, and patches from prior updates. You do not need to apply past updates sequentially.</li>
       <li><strong>No Need to Install All CUs:</strong> You can skip past updates entirely. Only the most recent CU released for SQL Server on Linux is kept available at the main Download Center to streamline your maintenance windows.</li>
-      <li><strong>Database Safety:</strong> Patching your system modifies only the application binaries found inside the <code>/opt/mssql/</code> tree. Your actual data tables and system schema setups remain entirely unaffected.</li>
     </ul>
+
+    <div style="background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 15px; text-align: center; border-radius: 6px; max-width: 300px; margin: 15px auto;">
+      <img src="https://googleusercontent.com" width="200" height="338" alt="Download Portal Selection Chain">
+      <p style="margin: 5px 0 0 0; font-size: 11px; color: #6a9955; font-family: monospace;">Image: Microsoft Download Center CU Navigation Menu</p>
+    </div>
+
+    <div style="background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 15px; text-align: center; border-radius: 6px; margin: 15px 0;">
+      <img src="https://googleusercontent.com" width="553" height="324" alt="RHEL Component Package Selection Channel">
+      <p style="margin: 5px 0 0 0; font-size: 11px; color: #6a9955; font-family: monospace;">Image: Target Operating System Architecture Target Map</p>
+    </div>
 
     <h3>🛡️ System User Isolation & Account Security Best Practices</h3>
     <ul>
