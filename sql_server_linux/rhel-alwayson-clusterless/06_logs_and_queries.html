@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chapter 6: Logs & Verification Queries</title>
+  <title>Chapter 6: Logs Diagnostics & Operational Health Checks</title>
   <style>
     body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, sans-serif; padding: 40px 20px; max-width: 950px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
-    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; }
-    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; }
-    h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; }
-    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #d4d4d4; margin: 10px 0; overflow-x: auto; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; margin-bottom: 10px; border-left: 3px solid #0078d4; padding-left: 8px; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #d4d4d4; margin: 10px 0; overflow-x: auto; }
     .sql-kw { color: #569cd6; font-weight: bold; }
-    .comment { color: #6a9955; }
-    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; }
-    .home-btn:hover { background-color: #0078d4; }
+    .comment { color: #6a9955; font-style: italic; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+    .image-placeholder { background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 20px; text-align: center; border-radius: 6px; color: #aaaaaa; margin: 15px 0; }
   </style>
 </head>
 <body>
@@ -21,45 +22,40 @@
 
   <div class="container">
     <h2>🔍 Chapter 6: Troubleshooting Logs & Health Checking Queries</h2>
-    <p>This chapter provides the tools to monitor your database clusterless sync health and review background service operations.</p>
+    <p>This chapter outlines how to trace server error event logs and evaluate database sync health states using system queries.</p>
 
-    <h3>Step 6.1: Run Command Line Diagnostic Scripts</h3>
-    <p>Run these log commands directly from your server console to trace connectivity anomalies or runtime errors:</p>
+    <h2>📋 Sequence 1 to 100: Linux Bash Log Diagnostics</h2>
+    
+    <p><span class="seq-num">001.</span> Run these diagnostic commands from your server console to examine instance error streams and trace runtime logs:</p>
     <div class="code-box">
       <span class="comment"># View the last 100 entries inside the native SQL log file</span><br>
       tail -n 100 /var/opt/mssql/log/errorlog<br><br>
       
-      <span class="comment"># Search the log file to show only replication and mirroring details</span><br>
+      <span class="comment"># Filter the log file to isolate database mirroring or high availability entries</span><br>
       sudo grep -E "Database mirroring|Availability Groups" /var/opt/mssql/log/errorlog<br><br>
       
-      <span class="comment"># Pull background system service manager notifications for the database daemon</span><br>
+      <span class="comment"># Review background system manager messages for the database engine process</span><br>
       sudo journalctl -u mssql-server -n 50 --no-pager
     </div>
 
-    <h3>Step 6.2: Check Replica Synchronization States</h3>
-    <p>Run this query block inside a database client window to confirm active data protection states across your host replicas:</p>
+    <h2>📋 Sequence 101 to 200: Core Health Validation Queries</h2>
+
+    <p><span class="seq-num">101.</span> Execute this system metadata check inside your query editor window to confirm data synchronization states across replicas:</p>
     <div class="code-box">
-      <span class="sql-kw">SELECT</span> <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;ar.replica_server_name, <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;adc.database_name, <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;drs.synchronization_state_desc, <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;drs.synchronization_health_desc,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;drs.is_local<br>
+      <span class="sql-kw">SELECT</span> ar.replica_server_name, adc.database_name, drs.synchronization_state_desc, drs.synchronization_health_desc, drs.is_local<br>
       <span class="sql-kw">FROM</span> sys.dm_hadr_database_replica_states drs<br>
       <span class="sql-kw">JOIN</span> sys.availability_replicas ar <span class="sql-kw">ON</span> drs.replica_id = ar.replica_id<br>
       <span class="sql-kw">JOIN</span> sys.availability_databases_cluster adc <span class="sql-kw">ON</span> drs.group_database_id = adc.group_database_id;<br>
       <span class="sql-kw">GO</span>
     </div>
+    
+    <div class="image-placeholder">
+      <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Validation: Database result matrix grid confirming synchronized health descriptions tracks]</p>
+    </div>
 
-    <h3>Step 6.3: Monitor Automatic Seeding Progress</h3>
-    <p>Run this database metadata check to verify automatic replication file copy jobs:</p>
+    <p><span class="seq-num">102.</span> Run this query to trace active database auto-seeding jobs and verify that file transfers have finished smoothly:</p>
     <div class="code-box">
-      <span class="sql-kw">SELECT</span> <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;start_time, <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;completion_time, <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;current_state, <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;performed_seeding, <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;failure_state_desc<br>
+      <span class="sql-kw">SELECT</span> start_time, completion_time, current_state, performed_seeding, failure_state_desc<br>
       <span class="sql-kw">FROM</span> sys.dm_hadr_automatic_seeding;<br>
       <span class="sql-kw">GO</span>
     </div>

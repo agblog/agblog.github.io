@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chapter 4: SQL Server Engine Installation</title>
+  <title>Chapter 4: SQL Server 2025 Package Installation</title>
   <style>
     body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
-    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; }
-    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; }
-    h3 { color: #4ec9b0; font-size: 15px; margin-top: 20px; }
-    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #d4d4d4; margin: 10px 0; overflow-x: auto; }
-    .comment { color: #6a9955; }
-    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; }
-    .home-btn:hover { background-color: #0078d4; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
+    .comment { color: #6a9955; font-style: italic; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
+    .image-placeholder { background-color: #1a1a1a; border: 1px dashed #3d3d3d; padding: 20px; text-align: center; border-radius: 6px; color: #aaaaaa; margin: 15px 0; }
   </style>
 </head>
 <body>
@@ -19,46 +19,59 @@
   <a href="./index.html" class="home-btn">🏠 Return to Main Dashboard</a>
 
   <div class="container">
-    <h2>📦 Chapter 4: SQL Server 2025 Installation steps</h2>
-    <p>This chapter registers the official distribution channels and sets up the instance binaries on the servers.</p>
+    <h2>📦 Chapter 4: SQL Server 2025 Installation</h2>
+    <p>This chapter walks you through installing the core database binaries and initializing your system administration accounts.</p>
 
-    <h3>Step 4.1 & 4.2: Run Updates and Verify Free Disk Space</h3>
-    <div style="background-color: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 12px; border-radius: 0 6px 6px 0; font-size: 13px; color: #cccccc; margin-bottom: 10px;">
-      ⚠️ <strong>Notice:</strong> The database security module relies on updates introduced in RHEL 9.8. Running older operating system versions may cause installation bugs.
+    <h2>📋 Sequence 1 to 100: Register Package Repositories</h2>
+    
+    <div style="background-color: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 12px; border-radius: 0 6px 6px 0; font-size: 13px; color: #cccccc; margin-bottom: 12px;">
+      ⚠️ <strong>OS Library Dependency Warning:</strong> The database engine context tracking frameworks depend on features introduced in RHEL 9.7/9.8. Running older 9.4 staging releases will cause errors due to missing package dependencies.
     </div>
-    <p>Run these clean updates and confirm you have at least 10 GB of free space inside the <code>/opt</code> directory layout:</p>
+
+    <p><span class="seq-num">001.</span> Run these update steps on <strong>both servers</strong> to pull down the newest operating system patches and verify that you have at least 10 GB of free space inside the root partition:</p>
     <div class="code-box">
       sudo dnf clean all<br>
       sudo dnf update -y<br>
       cat /etc/redhat-release<br>
       df -h /opt
     </div>
-
-    <h3>Step 4.3 & 4.4: Register Repositories and Download Binaries</h3>
-    <p>Add the official Microsoft package distribution channels to your repository definitions and run the installation:</p>
-    <div class="code-box">
-      <span class="comment"># Download repository map setups</span><br>
-      sudo curl -o /etc/yum.repos.d/mssql-server.repo https://microsoft.com<br>
-      sudo curl -o /etc/yum.repos.d/mssql-release.repo https://microsoft.com<br><br>
-      <span class="comment"># Download the engine package along with context security extensions</span><br>
-      sudo dnf install -y mssql-server mssql-server-selinux
+    
+    <div class="image-placeholder">
+      <p style="margin: 0; font-size: 12px; color: #6a9955;">📷 [Visual Validation: Console display verification checks showing operating system release maps and disk free storage thresholds]</p>
     </div>
 
-    <h3>Step 4.5 & 4.6: Run Instance Configuration Prompt Wizards</h3>
-    <p>Execute the core configuration utility script to select your edition profile and assign passwords:</p>
-    <div class="code-box">sudo /opt/mssql/bin/mssql-conf setup</div>
-    <p style="margin-left: 10px; font-size: 13px; color: #cccccc;">➡️ Select option <strong>2 (Enterprise Developer Edition)</strong> and set a strong, complex password for your main <strong>sa account</strong>.</p>
-    
-    <p>Enable background service orchestration management tracking flags, update shell environment variable profiles, and launch the engine process daemon:</p>
+    <p><span class="seq-num">002.</span> Register the official Microsoft package distribution channels across both staging server hosts:</p>
     <div class="code-box">
-      <span class="comment"># Enable the SQL Server Agent feature</span><br>
+      sudo curl -o /etc/yum.repos.d/mssql-server.repo https://microsoft.com<br>
+      sudo curl -o /etc/yum.repos.d/mssql-release.repo https://microsoft.com
+    </div>
+
+    <p><span class="seq-num">003.</span> Download and install the SQL Server core package along with its matching SELinux security module context extension:</p>
+    <div class="code-box">sudo dnf install -y mssql-server mssql-server-selinux</div>
+
+    <h2>📋 Sequence 101 to 200: Initialize the Database Instance</h2>
+    
+    <p><span class="seq-num">101.</span> Run the initial configuration utility script to pick your licensing edition and establish passwords:</p>
+    <div class="code-box">sudo /opt/mssql/bin/mssql-conf setup</div>
+    <p style="margin-left: 10px; color: #cccccc; font-size: 13px;">➡️ Select option <strong>2 (Enterprise Developer Edition - Free for non-production environments)</strong> and set a strong password for your core <strong>sa administrative user</strong>.</p>
+
+    <p><span class="seq-num">102.</span> Turn on the background SQL Server Agent feature and bind utility connection tool paths to your system profile settings:</p>
+    <div class="code-box">
+      <span class="comment"># Enable the automation engine properties</span><br>
       sudo /opt/mssql/bin/mssql-conf set sqlagent.enabled true<br><br>
-      <span class="comment"># Add command line tools to your profile path shortcuts</span><br>
+      
+      <span class="comment"># Append command shortcuts to your terminal path variables</span><br>
       echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc<br>
-      source ~/.bashrc<br><br>
-      <span class="comment"># Start the main engine process automatically on boot up</span><br>
+      source ~/.bashrc
+    </div>
+
+    <p><span class="seq-num">103.</span> Configure the system process daemon to load automatically on boot up, and test connection lines to confirm engine availability:</p>
+    <div class="code-box">
       sudo systemctl enable mssql-server<br>
-      sudo systemctl restart mssql-server
+      sudo systemctl restart mssql-server<br><br>
+      
+      <span class="comment"># Query local instance name to confirm connectivity</span><br>
+      sqlcmd -S localhost -U sa -C -Q "SELECT @@SERVERNAME;"
     </div>
   </div>
 

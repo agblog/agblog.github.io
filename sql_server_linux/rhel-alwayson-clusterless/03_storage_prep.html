@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chapter 3: Storage Preparation</title>
+  <title>Chapter 3: Directory Trees & Hardened Storage</title>
   <style>
     body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
-    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; }
-    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; }
-    h3 { color: #4ec9b0; font-size: 15px; margin-top: 20px; }
-    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #d4d4d4; margin: 10px 0; overflow-x: auto; }
-    .comment { color: #6a9955; }
-    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; }
-    .home-btn:hover { background-color: #0078d4; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 13px; line-height: 1.5; color: #d4d4d4; margin: 12px 0; overflow-x: auto; }
+    .comment { color: #6a9955; font-style: italic; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
   </style>
 </head>
 <body>
@@ -20,40 +19,48 @@
 
   <div class="container">
     <h2>🗄️ Chapter 3: Storage Allocation & Disk Preparation</h2>
-    <p>Creating independent folders isolates your transactional write tracking logs from routine data read requests, helping improve overall backend drive performance.</p>
+    <p>Separating directory layouts isolates sequential database transaction tracking logs from random data drive reads, optimizing performance.</p>
 
-    <h3>Step 3.1: Build Folders and Lock Down Access Permissions</h3>
-    <p>Run these commands on <strong>both servers</strong> to set up folder paths and configure secure file permissions:</p>
+    <h2>📋 Sequence 1 to 100: Create Directories & Secure Access</h2>
+    
+    <p><span class="seq-num">001.</span> Run these commands on <strong>both servers</strong> to build separate folder trees for your data files, logs, temp tables, and keys:</p>
     <div class="code-box">
-      <span class="comment"># Create isolated paths for database data, logs, temp files, and certificate files</span><br>
+      <span class="comment"># Build segregated storage volume paths</span><br>
       sudo mkdir -p /var/opt/mssql/sql-data<br>
       sudo mkdir -p /var/opt/mssql/sql-tlog<br>
       sudo mkdir -p /var/opt/mssql/sql-tempdb<br>
-      sudo mkdir -p /var/opt/mssql/backup/agcerts<br><br>
-      
-      <span class="comment"># Assign directory ownership to the standard database system user account</span><br>
+      sudo mkdir -p /var/opt/mssql/backup/agcerts
+    </div>
+
+    <p><span class="seq-num">002.</span> Hand over full directory tree ownership permissions to the native database service worker daemon user account:</p>
+    <div class="code-box">
       sudo chown -R mssql:mssql /var/opt/mssql/sql-data<br>
       sudo chown -R mssql:mssql /var/opt/mssql/sql-tlog<br>
       sudo chown -R mssql:mssql /var/opt/mssql/sql-tempdb<br>
-      sudo chown -R mssql:mssql /var/opt/mssql/backup<br><br>
-      
-      <span class="comment"># Security Hardening: Block generic group/public file exposure completely</span><br>
+      sudo chown -R mssql:mssql /var/opt/mssql/backup
+    </div>
+
+    <p><span class="seq-num">003.</span> Hardening step: Remove generic public/group read-write access to secure all folders from external system users:</p>
+    <div class="code-box">
       sudo chmod -R 700 /var/opt/mssql/sql-data<br>
       sudo chmod -R 700 /var/opt/mssql/sql-tlog<br>
       sudo chmod -R 700 /var/opt/mssql/sql-tempdb<br>
       sudo chmod -R 700 /var/opt/mssql/backup
     </div>
 
-    <h3>Step 3.2: Map Local SELinux Policies</h3>
-    <p>Because RHEL runs strict kernel security checks, you must label the new folders correctly so the system doesn't block database engine file operations:</p>
+    <h2>📋 Sequence 101 to 200: Apply Kernel SELinux Policies</h2>
+    
+    <p><span class="seq-num">101.</span> Register the target custom folder extensions into the operating system security core context policy maps:</p>
     <div class="code-box">
-      <span class="comment"># Register the directory extensions into the system core security context policies</span><br>
+      <span class="comment"># Label directories so they are recognized under standard database structures</span><br>
       sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/sql-data(/.*)?"<br>
       sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/sql-tlog(/.*)?"<br>
       sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/sql-tempdb(/.*)?"<br>
-      sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/backup(/.*)?"<br><br>
-      
-      <span class="comment"># Force recursive updates immediately across all directory target structures</span><br>
+      sudo semanage fcontext -a -t mssql_db_t "/var/opt/mssql/backup(/.*)?"
+    </div>
+
+    <p><span class="seq-num">102.</span> Force an immediate recursive context update to apply the security labels across all folder targets:</p>
+    <div class="code-box">
       sudo restorecon -R -v /var/opt/mssql/sql-data<br>
       sudo restorecon -R -v /var/opt/mssql/sql-tlog<br>
       sudo restorecon -R -v /var/opt/mssql/sql-tempdb<br>

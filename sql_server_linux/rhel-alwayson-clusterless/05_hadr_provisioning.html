@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chapter 5: Availability Group Provisioning</title>
+  <title>Chapter 5: Always On Provisioning & Sync Loops</title>
   <style>
     body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, sans-serif; padding: 40px 20px; max-width: 950px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
-    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; }
-    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; }
-    h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; }
-    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #d4d4d4; margin: 10px 0; overflow-x: auto; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
+    h3 { color: #4ec9b0; font-size: 15px; margin-top: 25px; margin-bottom: 10px; border-left: 3px solid #0078d4; padding-left: 8px; }
+    p { color: #dddddd; margin-bottom: 12px; }
+    .code-box { background-color: #1a1a1a; border: 1px solid #2d2d2d; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #d4d4d4; margin: 10px 0; overflow-x: auto; }
     .sql-kw { color: #569cd6; font-weight: bold; }
     .sql-str { color: #ce9178; }
-    .comment { color: #6a9955; }
-    .home-btn { display: inline-block; padding: 8px 16px; background-color: #3a3a3a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; margin-bottom: 20px; }
-    .home-btn:hover { background-color: #0078d4; }
+    .comment { color: #6a9955; font-style: italic; }
+    .seq-num { color: #4fc1ff; font-weight: bold; font-family: monospace; margin-right: 5px; }
   </style>
 </head>
 <body>
@@ -22,21 +22,23 @@
 
   <div class="container">
     <h2>🚀 Chapter 5: Always On Feature Activation, AG Provisioning & DB Sync</h2>
-    <p>This module walks you through activating high availability features, exporting transport certificates, and setting up automatic replication seeding rules.</p>
+    <p>This chapter outlines how to activate high availability engine settings, create secure certificates, and establish a clusterless replication channel.</p>
 
-    <h3>Step 5.1: Enable the High Availability Engine Module</h3>
-    <p>Run these terminal configurations on <strong>both servers</strong> to activate the framework extensions:</p>
+    <h2>📋 Sequence 1 to 100: Activate HADR Extensions & Generate Primary Certs</h2>
+    
+    <p><span class="seq-num">001.</span> Run these commands on <strong>both servers</strong> to turn on high availability framework extensions and restart the instance process daemon:</p>
     <div class="code-box">
       sudo /opt/mssql/bin/mssql-conf set hadr.hadrenabled 1<br>
-      sudo systemctl restart mssql-server
+      sudo systemctl restart mssql-server<br><br>
+      <span class="comment"># Verify that configurations updated inside the settings configuration file</span><br>
+      cat /var/opt/mssql/mssql.conf
     </div>
 
-    <h3>Step 5.2 & 5.3: Set Up Security Keys, Certificates, and Backups</h3>
-    <p>Connect to the <strong>Primary Server (rhel-node1)</strong> and execute this script to generate master keys and the mirror data transport path endpoint:</p>
+    <p><span class="seq-num">002.</span> Connect to your client query tool on the <strong>Primary Server (rhel-node1)</strong> and build your security transport certificate along with port 5022 data listeners:</p>
     <div class="code-box">
       <span class="sql-kw">USE</span> master;<br>
       <span class="sql-kw">GO</span><br>
-      <span class="sql-kw">CREATE MASTER KEY ENCRYPTION BY PASSWORD</span> = <span class="sql-str">'YourStrongKeyPassword99!'</span>;<br>
+      <span class="sql-kw">CREATE MASTER KEY ENCRYPTION BY PASSWORD</span> = <span class="sql-str">'SecureKeyPassword99!'</span>;<br>
       <span class="sql-kw">GO</span><br><br>
       <span class="sql-kw">CREATE CERTIFICATE</span> AG_Transport_Cert<br>
       <span class="sql-kw">WITH SUBJECT</span> = <span class="sql-str">'Availability Group Replica Transport Authentication'</span>,<br>
@@ -45,100 +47,72 @@
       <span class="sql-kw">CREATE ENDPOINT</span> [Hadr_endpoint]<br>
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">STATE</span> = STARTED<br>
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">AS TCP</span> (LISTENER_PORT = 5022)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">FOR DATABASE_MIRRORING</span> (<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROLE = ALL,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTHENTICATION = <span class="sql-kw">CERTIFICATE</span> AG_Transport_Cert,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENCRYPTION = REQUIRED ALGORITHM AES<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;);<br>
-      <span class="sql-kw">GO</span><br><br>
-      <span class="comment">-- Back up the security key so it can be trusted by the secondary host node</span><br>
-      <span class="sql-kw">BACKUP CERTIFICATE</span> AG_Transport_Cert<br>
-      <span class="sql-kw">TO FILE</span> = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.cer'</span><br>
-      <span class="sql-kw">WITH PRIVATE KEY</span> (<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">FILE</span> = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.key'</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">ENCRYPTION BY PASSWORD</span> = <span class="sql-str">'YourStrongKeyPassword99!'</span><br>
-      );<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">FOR DATABASE_MIRRORING</span> (ROLE = ALL, AUTHENTICATION = <span class="sql-kw">CERTIFICATE</span> AG_Transport_Cert, ENCRYPTION = REQUIRED ALGORITHM AES);<br>
       <span class="sql-kw">GO</span>
     </div>
 
-    <h3>Step 5.4: Copy Certificates to the Secondary Server</h3>
-    <p>Run these file transfer commands on the <strong>Primary Host console</strong> to move keys to the secondary node and correct their file ownership mappings:</p>
+    <p><span class="seq-num">003.</span> Export the certificate files out to your backup path so they can be securely shared with the replica server node:</p>
+    <div class="code-box">
+      <span class="sql-kw">BACKUP CERTIFICATE</span> AG_Transport_Cert<br>
+      <span class="sql-kw">TO FILE</span> = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.cer'</span><br>
+      <span class="sql-kw">WITH PRIVATE KEY</span> (FILE = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.key'</span>, ENCRYPTION BY PASSWORD = <span class="sql-str">'SecureKeyPassword99!'</span>);<br>
+      <span class="sql-kw">GO</span>
+    </div>
+
+    <h2>📋 Sequence 101 to 200: Key Sharing, Secondary Imports & Seeding</h2>
+
+    <p><span class="seq-num">101.</span> Run this network copy command on the <strong>Primary Host console</strong> to move keys to the secondary host, then adjust file owner attributes:</p>
     <div class="code-box">
       sudo scp /var/opt/mssql/backup/agcerts/AG_Transport_Cert.* root@192.168.20.12:/var/opt/mssql/backup/agcerts/<br><br>
-      <span class="comment"># Switch to Server 2 and fix ownership rules</span><br>
+      <span class="comment"># Switch to Server Node 2 and align access control lists permissions</span><br>
       sudo chown -R mssql:mssql /var/opt/mssql/backup/agcerts/<br>
       sudo chmod 600 /var/opt/mssql/backup/agcerts/AG_Transport_Cert.*
     </div>
 
-    <h3>Step 5.5: Configure the Secondary Replica Node</h3>
-    <p>Connect to your client session on the <strong>Secondary Server (rhel-node2)</strong> and run this database script to import the transport keys:</p>
+    <p><span class="seq-num">102.</span> Connect to the <strong>Secondary Server (rhel-node2)</strong> query terminal to import the primary certificate keys and initialize the database endpoints:</p>
     <div class="code-box">
-      <span class="sql-kw">USE</span> master;<br><br>
-      <span class="sql-kw">CREATE MASTER KEY ENCRYPTION BY PASSWORD</span> = <span class="sql-str">'YourStrongKeyPassword99!'</span>;<br>
-      <span class="sql-kw">GO</span><br><br>
-      <span class="sql-kw">CREATE CERTIFICATE</span> AG_Transport_Cert<br>
-      <span class="sql-kw">FROM FILE</span> = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.cer'</span><br>
-      <span class="sql-kw">WITH PRIVATE KEY</span> (<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">FILE</span> = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.key'</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">DECRYPTION BY PASSWORD</span> = <span class="sql-str">'YourStrongKeyPassword99!'</span><br>
-      );<br>
-      <span class="sql-kw">GO</span><br><br>
-      <span class="sql-kw">CREATE ENDPOINT</span> [Hadr_endpoint]<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">STATE</span> = STARTED<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">AS TCP</span> (LISTENER_PORT = 5022)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">FOR DATABASE_MIRRORING</span> (<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROLE = ALL,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTHENTICATION = <span class="sql-kw">CERTIFICATE</span> AG_Transport_Cert,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENCRYPTION = REQUIRED ALGORITHM AES<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+      <span class="sql-kw">USE</span> master;<br>
+      <span class="sql-kw">GO</span><br>
+      <span class="sql-kw">CREATE MASTER KEY ENCRYPTION BY PASSWORD</span> = <span class="sql-str">'SecureKeyPassword99!'</span>;<br>
+      <span class="sql-kw">GO</span><br>
+      <span class="sql-kw">CREATE CERTIFICATE</span> AG_Transport_Cert <span class="sql-kw">FROM FILE</span> = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.cer'</span><br>
+      <span class="sql-kw">WITH PRIVATE KEY</span> (FILE = <span class="sql-str">'/var/opt/mssql/backup/agcerts/AG_Transport_Cert.key'</span>, DECRYPTION BY PASSWORD = <span class="sql-str">'SecureKeyPassword99!'</span>);<br>
+      <span class="sql-kw">GO</span><br>
+      <span class="sql-kw">CREATE ENDPOINT</span> [Hadr_endpoint] <span class="sql-kw">STATE</span> = STARTED <span class="sql-kw">AS TCP</span> (LISTENER_PORT = 5022)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-kw">FOR DATABASE_MIRRORING</span> (ROLE = ALL, AUTHENTICATION = <span class="sql-kw">CERTIFICATE</span> AG_Transport_Cert, ENCRYPTION = REQUIRED ALGORITHM AES);<br>
       <span class="sql-kw">GO</span>
     </div>
 
-    <h3>Step 5.6, 5.7 & 5.8: Provision the Availability Group and Sync Databases</h3>
-    <p>Connect to the <strong>Primary Server (rhel-node1)</strong> to provision the clusterless group:</p>
+    <p><span class="seq-num">103.</span> Create the clusterless Availability Group object by running this script on the <strong>Primary Server (rhel-node1)</strong>:</p>
     <div class="code-box">
-      <span class="sql-kw">CREATE AVAILABILITY GROUP</span> [ptag]<br>
-      <span class="sql-kw">WITH</span> (CLUSTER_TYPE = <span style="color: #569cd6;">NONE</span>) <span class="comment">-- Tells the engine there are no cluster daemon dependencies</span><br>
+      <span class="sql-kw">CREATE AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">WITH</span> (CLUSTER_TYPE = <span class="sql-kw">NONE</span>) <span class="comment">-- Set to NONE for clusterless architecture</span><br>
       <span class="sql-kw">FOR REPLICA ON</span><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;N<span class="sql-str">'rhel-node1'</span> <span class="sql-kw">WITH</span> (<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDPOINT_URL = N<span class="sql-str">'TCP://192.168.20.11:5022'</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVAILABILITY_MODE = <span class="sql-kw">SYNCHRONOUS_COMMIT</span>, <span class="comment">-- Guarantees absolute zero data loss</span><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAILOVER_MODE = <span class="sql-kw">MANUAL</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEEDING_MODE = <span class="sql-kw">AUTOMATIC</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECONDARY_ROLE(ALLOW_CONNECTIONS = <span class="sql-kw">ALL</span>)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;),<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;N<span class="sql-str">'rhel-node2'</span> <span class="sql-kw">WITH</span> (<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDPOINT_URL = N<span class="sql-str">'TCP://192.168.20.12:5022'</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVAILABILITY_MODE = <span class="sql-kw">SYNCHRONOUS_COMMIT</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAILOVER_MODE = <span class="sql-kw">MANUAL</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEEDING_MODE = <span class="sql-kw">AUTOMATIC</span>,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SECONDARY_ROLE(ALLOW_CONNECTIONS = <span class="sql-kw">ALL</span>)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;N<span class="sql-str">'rhel-node1'</span> <span class="sql-kw">WITH</span> (ENDPOINT_URL = N<span class="sql-str">'TCP://192.168.20.11:5022'</span>, AVAILABILITY_MODE = SYNCHRONOUS_COMMIT, FAILOVER_MODE = MANUAL, SEEDING_MODE = AUTOMATIC, SECONDARY_ROLE(ALLOW_CONNECTIONS = ALL)),<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;N<span class="sql-str">'rhel-node2'</span> <span class="sql-kw">WITH</span> (ENDPOINT_URL = N<span class="sql-str">'TCP://192.168.20.12:5022'</span>, AVAILABILITY_MODE = SYNCHRONOUS_COMMIT, FAILOVER_MODE = MANUAL, SEEDING_MODE = AUTOMATIC, SECONDARY_ROLE(ALLOW_CONNECTIONS = ALL));<br>
       <span class="sql-kw">GO</span>
     </div>
 
-    <p>Connect to the <strong>Secondary Server (rhel-node2)</strong> to join the operational session channel:</p>
+    <p><span class="seq-num">104.</span> Connect to your query session on the <strong>Secondary Server (rhel-node2)</strong> and run this query block to join the pipeline and authorize automatic seeding:</p>
     <div class="code-box">
       <span class="sql-kw">ALTER AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">JOIN WITH</span> (CLUSTER_TYPE = <span class="sql-kw">NONE</span>);<br>
       <span class="sql-kw">GO</span><br>
-      <span class="comment">-- Give permission to the group to auto-create matching data volumes locally</span><br>
       <span class="sql-kw">ALTER AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">GRANT CREATE ANY DATABASE</span>;<br>
       <span class="sql-kw">GO</span>
     </div>
 
-        <p>Finally, return to the <strong>Primary Server (rhel-node1)</strong> to add your active user databases to the synchronization stream:</p>
+    <p><span class="seq-num">105.</span> Finally, add your active production database containers to the group by running this script on the <strong>Primary Server (rhel-node1)</strong>:</p>
     <div class="code-box">
       <span class="sql-kw">CREATE DATABASE</span> EnterpriseAppDB;<br>
       <span class="sql-kw">GO</span><br>
-      <span class="sql-kw">ALTER DATABASE</span> EnterpriseAppDB <span class="sql-kw">SET RECOVERY FULL</span>; <span class="comment">-- Mandatory model for Always On environments</span><br>
+      <span class="sql-kw">ALTER DATABASE</span> EnterpriseAppDB <span class="sql-kw">SET RECOVERY FULL</span>; <span class="comment">-- Mandatory logging setting for Always On</span><br>
       <span class="sql-kw">GO</span><br><br>
-      
-      <span class="comment">-- Run initial data and transaction log snapshots to initialize the tracking chain</span><br>
       <span class="sql-kw">BACKUP DATABASE</span> EnterpriseAppDB <span class="sql-kw">TO DISK</span> = <span class="sql-str">'/var/opt/mssql/backup/EnterpriseAppDB.bak'</span> <span class="sql-kw">WITH COMPRESSION</span>, STATS = 30;<br>
       <span class="sql-kw">BACKUP LOG</span> EnterpriseAppDB <span class="sql-kw">TO DISK</span> = <span class="sql-str">'/var/opt/mssql/backup/EnterpriseAppDB.trn'</span> <span class="sql-kw">WITH COMPRESSION</span>, STATS = 30;<br>
       <span class="sql-kw">GO</span><br><br>
-      
-      <span class="comment">-- Direct the engine to inject the database container into the live synchronization stream</span><br>
       <span class="sql-kw">ALTER AVAILABILITY GROUP</span> [ptag] <span class="sql-kw">ADD DATABASE</span> [EnterpriseAppDB];<br>
       <span class="sql-kw">GO</span>
     </div>
+  </div>
+
+</body>
+</html>

@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chapter 1: Hardware Capacity Matrix</title>
+  <title>Chapter 1: Server Resources & System Capacity</title>
   <style>
     body { background-color: #1e1e1e; color: #ffffff; font-family: -apple-system, sans-serif; padding: 40px 20px; max-width: 900px; margin: 0 auto; font-size: 14px; line-height: 1.6; }
-    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; }
-    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; }
+    .container { background-color: #252526; border: 1px solid #3d3d3d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    h2 { border-bottom: 1px solid #3d3d3d; padding-bottom: 8px; color: #ffffff; margin-top: 0; }
     h3 { color: #4ec9b0; font-size: 15px; margin-top: 20px; }
     table { width: 100%; border-collapse: collapse; text-align: left; margin: 15px 0; font-size: 13px; }
     th { padding: 10px; color: #aaaaaa; background-color: #1a1a1a; border-bottom: 2px solid #3d3d3d; }
@@ -22,7 +22,7 @@
 
   <div class="container">
     <h2>🎛️ Chapter 1: Environment Details & System Resource Matrix</h2>
-    <p>Below is the baseline look at the allocated compute power and filesystem spacing active in our lab environment:</p>
+    <p>The table below provides a detailed view of the computed resources and operating system versions active on our servers:</p>
 
     <table>
       <thead>
@@ -40,29 +40,31 @@
       </tbody>
     </table>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; margin-top: 20px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; margin-top: 25px;">
       
-      <!-- Node 1 Profile -->
-      <div style="background-color: #1a1a1a; padding: 15px; border-radius: 6px; border: 1px solid #3d3d3d;">
-        <h3>🖥️ Primary Node: rhel-node1 (192.168.20.11)</h3>
-        <p><strong>💾 Compute Power:</strong> 4 Cores | 15 GiB Total RAM (13 GiB Available, Swap space disabled).</p>
-        <p><strong>🗄️ Storage Layout (df -h):</strong></p>
+      <!-- Primary Node Card -->
+      <div style="background-color: #1a1a1a; padding: 20px; border-radius: 6px; border: 1px solid #3d3d3d;">
+        <h3>🖥️ PRIMARY NODE: rhel-node1 (192.168.20.11)</h3>
+        <p><strong>💾 Compute Allocation:</strong> 4 Cores (x86_64 architecture) | 15 GiB RAM (13 GiB Available, Swap disabled).</p>
+        <p><strong>🗄️ Storage Spaces (df -h):</strong></p>
         <table style="margin: 0; font-size: 12px;">
           <tr><td><code>/</code> (Root Mount)</td><td>Size: 12G</td><td>Used: 1.6G</td><td>Use%: 14%</td></tr>
-          <tr><td><code>/var</code> (SQL Storage)</td><td>Size: 15G</td><td>Used: 844M</td><td>Use%: 6%</td></tr>
+          <tr><td><code>/var</code> (SQL System)</td><td>Size: 15G</td><td>Used: 844M</td><td>Use%: 6%</td></tr>
           <tr><td><code>/usr</code> (Binaries)</td><td>Size: 15G</td><td>Used: 4.7G</td><td>Use%: 32%</td></tr>
+          <tr><td><code>/home</code></td><td>Size: 11G</td><td>Used: 114M</td><td>Use%: 2%</td></tr>
         </table>
       </div>
 
-      <!-- Node 2 Profile -->
-      <div style="background-color: #1a1a1a; padding: 15px; border-radius: 6px; border: 1px solid #3d3d3d;">
-        <h3>🖥️ Secondary Node: rhel-node2 (192.168.20.12)</h3>
-        <p><strong>💾 Compute Power:</strong> 2 Cores | 7.4 GiB Total RAM (6.1 GiB Available, Swap space disabled).</p>
-        <p><strong>🗄️ Storage Layout (df -h):</strong></p>
+      <!-- Secondary Node Card -->
+      <div style="background-color: #1a1a1a; padding: 20px; border-radius: 6px; border: 1px solid #3d3d3d;">
+        <h3>🖥️ SECONDARY NODE: rhel-node2 (192.168.20.12)</h3>
+        <p><strong>💾 Compute Allocation:</strong> 2 Cores (Intel Xeon Platinum @ 2.80GHz) | 7.4 GiB RAM (6.1 GiB Available, Swap disabled).</p>
+        <p><strong>🗄️ Storage Spaces (df -h):</strong></p>
         <table style="margin: 0; font-size: 12px;">
           <tr><td><code>/</code> (Root Mount)</td><td>Size: 12G</td><td>Used: 1.6G</td><td>Use%: 14%</td></tr>
-          <tr><td><code>/var</code> (SQL Storage)</td><td>Size: 15G</td><td>Used: 818M</td><td>Use%: 6%</td></tr>
+          <tr><td><code>/var</code> (SQL System)</td><td>Size: 15G</td><td>Used: 818M</td><td>Use%: 6%</td></tr>
           <tr><td><code>/usr</code> (Binaries)</td><td>Size: 15G</td><td>Used: 2.2G</td><td>Use%: 15%</td></tr>
+          <tr style="color: #6a9955;"><td colspan="4" style="text-align: center; padding: 4px 0;">-- Dedicated /home mount omitted --</td></tr>
         </table>
       </div>
 
