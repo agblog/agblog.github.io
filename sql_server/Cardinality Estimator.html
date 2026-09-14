@@ -1,0 +1,274 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code><span id="docs-internal-guid-86acd9a6-7fff-5075-85ac-541bc501ec42" style="background-color: white; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">new CE setting should impact performance while operating at the 130 CL. Weâ€™ve upgraded from 2005 to 2016 and noticed significant performance issues in several areas of our applications. The estimated plan looks quite different in the upgraded environment. Query times have gone up from a second or two to 30+ in 2016. After enabling the Legacy CE, the performance is back on.</span></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+<div dir="ltr" id="docs-internal-guid-f7cd2d50-7fff-221c-dc0f-82bb27291351" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">&nbsp;What changed in SQL Server 2014/2016?&nbsp;</span><br />
+<span style="background-color: white; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"><br />Using the compatibility levels 120 and 130 that works with the new Cardinality Estimator, better query plans will be generated, leading to better queries performance.
+<br />
+<br />In addition to the compatibility level and database scoped configuration options, there are two trace flags; 
+<br />
+<br />Trace Flag 2312 and Trace Flag 9481, that can be used to decide which Cardinality Estimator will be used. Trace Flag 2312 can be used to force the new Cardinality Estimator usage and Trace Flag 9481 will force the old Cardinality Estimator usage, without looking to the compatibility level of the database.
+</span><br />
+<br />
+<span style="background-color: white; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">The Cardinality Estimator (CE) predicts how many rows your query will likely return. The cardinality prediction is used by the query optimizer to generate an acceptable query plan. The more accurate the CE, the more optimal the query plan, at least that is the intent.</span></div>
+<br />
+Queries:
+<br />
+<pre class="prettyprint">SELECT name, compatibility_level FROM sys.databases;
+SELECT SERVERPROPERTY('ProductVersion');
+</pre>
+<div>
+<br />
+<div dir="ltr" id="docs-internal-guid-de2339cc-7fff-6765-b2d9-657a28a3f89b" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: #0101fd; font-family: &quot;consolas&quot;; font-size: 10.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SELECT</span><span style="background-color: #fafafa; color: black; font-family: &quot;consolas&quot;; font-size: 10.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> SERVERPROPERTY(</span><span style="background-color: transparent; color: #a31515; font-family: &quot;consolas&quot;; font-size: 10.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">'ProductVersion'</span><span style="background-color: #fafafa; color: black; font-family: &quot;consolas&quot;; font-size: 10.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">);</span></div>
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: #fafafa; color: black; font-family: &quot;consolas&quot;; font-size: 10.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"><span style="display: inline-block; position: relative; width: 100px;"></span></span></div>
+<br />
+<br />
+<br />
+<div align="left" dir="ltr" style="margin-left: -12pt;">
+<table style="border-collapse: collapse; border: none;"><colgroup><col width="148"></col><col width="99"></col><col width="119"></col><col width="225"></col></colgroup><tbody>
+<tr style="height: 33.8pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: bottom;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 8pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre;">Product</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: bottom;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 8pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre;">Database Engine Version</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: bottom;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 8pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre;">Compatibility Level Designation</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: bottom;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 8pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre;">Supported Compatibility Level Values</span></div>
+</td></tr>
+<tr style="height: 30pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2019 preview</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">15</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">150</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">150, 140, 130, 120, 110, 100</span></div>
+</td></tr>
+<tr style="height: 23.2pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2017 (14.x)</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">14</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">140</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">140, 130, 120, 110, 100</span></div>
+</td></tr>
+<tr style="height: 4.5pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Azure SQL Database logical server</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">12</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">130</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">150, 140, 130, 120, 110, 100</span></div>
+</td></tr>
+<tr style="height: 52.85pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Azure SQL Database Managed Instance</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">12</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">130</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">150, 140, 130, 120, 110, 100</span></div>
+</td></tr>
+<tr style="height: 40.25pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2016 (13.x)</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">13</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">130</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">130, 120, 110, 100</span></div>
+</td></tr>
+<tr style="height: 33.4pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2014 (12.x)</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">12</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">120</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">120, 110, 100</span></div>
+</td></tr>
+<tr style="height: 36.85pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2012 (11.x)</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">11</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">110</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">110, 100, 90</span></div>
+</td></tr>
+<tr style="height: 33.1pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2008 R2</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">10.5</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">100</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">100, 90, 80</span></div>
+</td></tr>
+<tr style="height: 20.4pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2008</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">10</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">100</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">100, 90, 80</span></div>
+</td></tr>
+<tr style="height: 44.45pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2005 (9.x)</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">9</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">90</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">90, 80</span></div>
+</td></tr>
+<tr style="height: 23pt;"><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">SQL Server 2000</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">8</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">80</span></div>
+</td><td style="background-color: white; overflow-wrap: break-word; overflow: hidden; padding: 9pt 12pt 9pt 12pt; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 12pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">80</span></div>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<div>
+<code class="language-sql"></code><br />
+<br />
+<div dir="ltr" id="docs-internal-guid-bee12015-7fff-dc0c-0519-44a602fd8c3f" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Remember that CE version is tied to the compatibility mode, and the CE that will be used is tied to the current database&nbsp;</span><span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre;">context</span><span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">.</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">By default the compatibility is&nbsp;not&nbsp;changed&nbsp;after restoring database from 2008 to 2016 or higher versions.</span></div>
+<br />
+<span style="background-color: white; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Changing the compatibility level also means that you would be</span><span style="background-color: white; color: red; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> unable to use any of the new features in SQL 2014 or SQL 2016</span><span style="background-color: white; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> and subsequent versions</span><br />
+<div>
+<div dir="ltr" trbidi="on">
+<pre class="prettyprint"><code class="language-sql">To change CE use following tsql command:</code></pre>
+<pre class="prettyprint"><code class="language-sql">ALTER DATABASE [TestDB] SET COMPATIBILITY_LEVEL = 130; </code></pre>
+</div>
+<pre class="prettyprint"><code class="language-sql"><code class="language-sql">GO
+
+ALTER DATABASE [AdventureWorks2007] SET COMPATIBILITY_LEVEL = 110;
+GO</code></code></pre>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+</div>
+<div>
+<br />
+<div dir="ltr" id="docs-internal-guid-8487279e-7fff-5dec-b0e6-2c9e5a5cae76" style="line-height: 1.2; margin-bottom: 0pt; margin-left: -18pt; margin-top: 0pt; text-indent: 18pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">To override the compatibility level(use new) and force the optimizer to use a specific CE by using one of two trace flags:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Use Trace Flag 9481 to revert to the legacy CE behavior from the context of a database with a compatibility level of 120 or higher to lower versions&nbsp;</span></div>
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: #222222; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Trace flag 9481 can be used when running SQL Server 2014+ with the database compatibility set to level 120+ and this forces the optimizer to use version 70 (SQL Server 2012) of the cardinality estimator when creating the query plan.</span></div>
+<br />
+<br />
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Use Trace Flag 2312 to enable to the new CE from the context of a database with a compatibility level below 120.</span></div>
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: #222222; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Trace flag 2312 works in kind of the opposite way. When running SQL Server 2014+ with the database compatibility set to level set to 110 this trace flag forces the query optimizer to use version 120 (the SQL Server 2014 version) of the cardinality estimator when creating the query plan.</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: #222222; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">These trace flags can also be set using the&nbsp;</span><a href="https://docs.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-traceon-transact-sql" style="text-decoration: none;"><span style="background-color: white; color: #008cba; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">DBCC TRACEON</span></a><span style="background-color: white; color: #222222; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">&nbsp;command. If you want this setting enabled at the session level you can run "DBCC TRACEON (####)" and if you want it set globally for the entire instance you can run "DBCC TRACEON (####,-1)".</span></div>
+<div>
+<br />
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">DBCC</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> TRACEON</span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">(</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">9481</span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">)--to enable for session level</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;calibri&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"><span style="border: none; display: inline-block; height: 51px; overflow: hidden; width: 242px;"><img height="51" src="https://lh6.googleusercontent.com/koHqUNU6jzW-_COBwRnyjBu55u5yDe-QWBgHaKh2apz_ySuKnts6v_oBSrxEnGyCJNk27nltu6-9DIFt18YSuxECla0kNaOcKtDRvLlVB11-WQDNX6lsIwSld3HxI9vAlI5HBEzjTUkjka4wUg" style="margin-left: 0px; margin-top: 0px;" width="242" /></span></span></div>
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">Dbcc</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> Traceoff</span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">(</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">9481</span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">,-</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">1</span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">)</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> --To Enable Globally</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;calibri&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"><span style="border: none; display: inline-block; height: 67px; overflow: hidden; width: 252px;"><img height="67" src="https://lh4.googleusercontent.com/vFNuONL-iuJcrUTGwehBlfrtjShvoVVEnRBOQouqcFYg_tjDtC238HSUVUDw8AgGD5goH58CVBa_O_zRLFeRG62L2WkaDiVWSgXAimiHj1e3UzlIvIdaq41Z0ufngQEnQRPQ1_fliIISc0-mzg" style="margin-left: 0px; margin-top: 0px;" width="252" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">DBCC</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> TRACESTATUS</span><span style="background-color: white; color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> --</span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">(</span><span style="background-color: white; color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">if</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> </span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">not</span><span style="background-color: white; color: black; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"> </span><span style="background-color: white; color: blue; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">enabled follwing text displayed</span><span style="background-color: white; color: grey; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">)</span></div>
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: green; font-family: &quot;consolas&quot;; font-size: 9.5pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;">--DBCC execution completed. If DBCC printed error messages, contact your system administrator.</span></div>
+<code class="language-sql"></code></div>
+<pre class="prettyprint"><code class="language-sql">
+</code></pre>
+<pre class="prettyprint"><code class="language-sql">
+</code></pre>
+<pre class="prettyprint"><code class="language-sql"><code class="language-sql"><b>Using DB Compatibility Level 130 with Old CE in SQL: Server 2016
+</b>
+Microsoft stepped in with a fix that is much simpler and still allows you to  access the new features in the upgraded version. The name of this fix  is Legacy Cardinality Estimation. 
+The downside of this fix is that you have to upgrade to SQL 2016 to use it
+</code></code></pre>
+<div>
+<code class="language-sql"><code class="language-sql"><br /></code></code></div>
+<pre class="prettyprint"><code class="language-sql"><code class="language-sql">
+</code></code></pre>
+</div>
+</div>
+<pre class="prettyprint"><code class="language-sql">SEL</code>ECT  name, value  </pre>
+<pre class="prettyprint"><code class="language-sql">    FROM  sys.database_scoped_configurations  
+    WHERE name = 'LEGACY_CARDINALITY_ESTIMATION'; -- if above is having value = 0, then set to ONALTER DATABASE
+    SCOPED CONFIGURATION  
+        SET LEGACY_CARDINALITY_ESTIMATION = ON;  
+go  
+  
+</code></pre>
+<pre class="prettyprint"><code class="language-sql">ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = ON
+</code><code class="language-sql"><code class="language-sql">  
+</code><code class="language-sql">ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF
+    
+</code>    
+</code></pre>
+</div>
+<pre class="prettyprint"><code class="language-sql">
+If you set this option, and you set Compatibility Level to 130, you get all the performance benefits for query execution that come with SQL Server 2016, while still using old CE.
+Warning: only use this option if the performance of your workload in a specific database scope is significantly worse with new CE, when compared with old CE.
+
+<b>Reference:</b></code></pre>
+<pre class="prettyprint"><code class="language-sql">https://www.sqlconsulting.com/archives/big-performance-problems-with-the-cardinality-estimator/
+
+https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/04/27/using-db-compatibility-level-130-with-old-ce-in-sql-server-2016/
+
+https://dba.stackexchange.com/questions/142068/microsoft-sql-server-2016-performance-degradation-for-stored-procedure-called-10
+
+https://support.microsoft.com/en-us/help/974006/sql-server-query-optimizer-hotfix-trace-flag-4199-servicing-model
+
+https://www.mssqltips.com/sqlservertip/4815/checking-sql-server-query-cardinality-estimator-version/
+
+https://www.mssqltips.com/sqlservertip/4815/checking-sql-server-query-cardinality-estimator-version/
+
+https://www.mssqltips.com/sqlservertip/4245/sql-server-2016-database-scoped-configuration-options/
+</code></pre>
+<div>
+<code class="language-sql"><br /></code></div>
+</div>
+

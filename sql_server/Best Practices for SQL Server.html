@@ -1,0 +1,158 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<table><colgroup><col width="64"></col><col width="132"></col><col width="441"></col></colgroup><tbody>
+<tr><td><div dir="ltr">
+<b>Sr. No.</b></div>
+</td><td><div dir="ltr">
+<b>SQL Best Practices</b></div>
+</td><td><div dir="ltr">
+<b>Reason</b></div>
+</td></tr>
+<tr><td><div dir="ltr">
+<b>1</b></div>
+</td><td><div dir="ltr">
+<b>Enabling Trace Flags<br />Globally</b></div>
+</td><td><div dir="ltr">
+<br /></div>
+</td></tr>
+<tr><td><div dir="ltr">
+<br /></div>
+</td><td><div dir="ltr">
+1117</div>
+</td><td><div dir="ltr">
+To Enable Data Files grow equally in case of Autogrow.</div>
+</td></tr>
+<tr><td><div dir="ltr">
+<br /></div>
+</td><td><div dir="ltr">
+1118</div>
+</td><td><div dir="ltr">
+To Reduce Allocation Contention on TempDb Database<br />
+when the TempDb database is heavily used.</div>
+</td></tr>
+<tr><td><div dir="ltr">
+<br /></div>
+</td><td><div dir="ltr">
+4199</div>
+</td><td><div dir="ltr">
+Enables all the fixes that were previously made for the<br />
+query processor under many Trace Flags.</div>
+</td></tr>
+<tr><td><div dir="ltr">
+<br /></div>
+</td><td><div dir="ltr">
+834</div>
+</td><td><div dir="ltr">
+All Buffer pool memory will be allocated during startup.<br />
+It Increases performance of queries.</div>
+</td></tr>
+<tr><td><div dir="ltr">
+<b>2</b></div>
+</td><td><div dir="ltr">
+<b>Max Server memory</b></div>
+</td><td><div dir="ltr">
+Its value should be kept 70-80% of physical memory. It sets the upper limit to the amount of memory used by the buffer pool of the database engine.</div>
+</td></tr>
+<tr><td><div dir="ltr">
+<b>3</b></div>
+</td><td><div dir="ltr">
+<b>Min Server memory</b></div>
+</td><td><div dir="ltr">
+It can be set to any mimimum value. . The buffer pool does not immediately acquire the amount of memory specified in min server memory. The buffer pool starts with only the memory required to initialize. As the Database Engine workload increases, it keeps acquiring the memory required to support the workload.</div>
+</td></tr>
+<tr><td><div dir="ltr">
+<b>4</b></div>
+</td><td><div dir="ltr">
+<b>Backup Compression<br />should be enabled</b></div>
+</td><td><div dir="ltr">
+By enabling backup compression disk space can be<br />
+saved as the size of backup file reduces.</div>
+</td></tr>
+<tr><td><div dir="ltr">
+<b>5</b></div>
+</td><td><div dir="ltr">
+<b>TempDB as per cores</b></div>
+</td><td><div dir="ltr">
+When the tempdb database is heavily used, SQL Server<br />
+may experience contention when it tries to allocate pages.&nbsp;As a general rule, if the number of logical processors is less than or equal to 8, use the same number of data files as logical processors. If the number of logical processors is greater than 8, use 8 data files and then if contention continues, increase the number of data files by multiples of 4. It â€œLoad Balancesâ€ the thread.</div>
+</td></tr>
+</tbody></table>
+<br />
+<b>1.&nbsp;</b><b>Enabling TraceFlags:</b></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<b></b><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzZmL5DjQhdV-V_R7uorL576RjL_-YpNowt2H9OwTTs2b3Qw517qkUQISPjQGWu2p745xPqJs2Oh4y8d3RerGdayjyYJ__Xa6ZT8HpgKPJiyID77fP31l3nuJChiS3E_HAZnkMlFnKtXd0/s1600/1577961297211857-0.png" style="text-align: left;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzZmL5DjQhdV-V_R7uorL576RjL_-YpNowt2H9OwTTs2b3Qw517qkUQISPjQGWu2p745xPqJs2Oh4y8d3RerGdayjyYJ__Xa6ZT8HpgKPJiyID77fP31l3nuJChiS3E_HAZnkMlFnKtXd0/s1600/1577961297211857-0.png" width="400" /></a></div>
+<br />
+<div>
+<br />
+<br />
+<br />
+<b>2. Setting Server memory</b><br />
+<div dir="ltr">
+sp_configure 'show advanced options',1</div>
+<div dir="ltr">
+reconfigure</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+sp_configure 'max server memory (MB)',40960</div>
+<div dir="ltr">
+reconfigure&nbsp;</div>
+<br />
+<div dir="ltr">
+sp_configure 'min server memory (MB)',512</div>
+<div dir="ltr">
+reconfigure&nbsp;</div>
+<div>
+<br /></div>
+<b>3. Enable backup compression</b><br />
+<div dir="ltr">
+sp_configure 'backup compression default',1</div>
+<div dir="ltr">
+reconfigure&nbsp;</div>
+<br />
+<b>4. Tempdb Contention</b><br />
+<div dir="ltr">
+USE [master]</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev_1', FILENAME = N'H:\Tempdb\tempdev_1.ndf' , SIZE = 32768KB , FILEGROWTH = 153600KB )</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev_2', FILENAME = N'H:\Tempdb\tempdev_2.ndf' , SIZE = 32768KB , FILEGROWTH = 153600KB )</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev_3', FILENAME = N'H:\Tempdb\tempdev_3.ndf' , SIZE = 32768KB , FILEGROWTH = 153600KB )</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev_4', FILENAME = N'H:\Tempdb\tempdev_4.ndf' , SIZE = 32768KB , FILEGROWTH = 153600KB )</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev_5', FILENAME = N'H:\Tempdb\tempdev_5.ndf' , SIZE = 32768KB , FILEGROWTH = 153600KB )</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev_6', FILENAME = N'H:\Tempdb\tempdev_6.ndf' , SIZE = 32768KB , FILEGROWTH = 153600KB )</div>
+<div dir="ltr">
+GO</div>
+<div dir="ltr">
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev_7', FILENAME = N'H:\Tempdb\tempdev_7.ndf' , SIZE = 32768KB , FILEGROWTH = 153600KB )</div>
+<div dir="ltr">
+GO</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br /></div>
+</div>
+</div>
+

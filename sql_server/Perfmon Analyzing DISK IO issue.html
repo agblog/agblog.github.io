@@ -1,0 +1,120 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<span id="docs-internal-guid-d1777db2-7fff-a2cf-bb7e-7eaf069edf23"></span><br />
+<div dir="ltr" style="line-height: 1.44; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<span id="docs-internal-guid-d1777db2-7fff-a2cf-bb7e-7eaf069edf23"><span style="font-family: &quot;arial&quot;; font-size: 11pt; vertical-align: baseline; white-space: pre-wrap;">If you see high latencies beyond threshold limit using sys.dm_io_virtual_file_stats dmv, you can involve system admin to check the drive.</span></span></div>
+<span id="docs-internal-guid-d1777db2-7fff-a2cf-bb7e-7eaf069edf23">
+</span>
+<br />
+<div style="line-height: 1.44; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<h2>
+<span id="docs-internal-guid-d1777db2-7fff-a2cf-bb7e-7eaf069edf23"><span style="font-family: &quot;arial&quot;; font-size: 11pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Following are performance counters for checking IO issue at OS level:</span></span></h2>
+<ul><span id="docs-internal-guid-d1777db2-7fff-a2cf-bb7e-7eaf069edf23">
+</span></ul>
+<ul>
+<li><span style="font-family: &quot;arial&quot;; font-size: 11pt; white-space: pre-wrap;">PhysicalDisk: Avg. Disk Queue Length</span></li>
+<li><span style="font-family: &quot;arial&quot;; font-size: 11pt; white-space: pre-wrap;">Disk Reads/Sec</span></li>
+<li><span style="font-family: &quot;arial&quot;; font-size: 11pt; white-space: pre-wrap;">Disk Writes/Sec</span></li>
+<li><span style="font-family: &quot;arial&quot;; font-size: 11pt; white-space: pre-wrap;">Disk queue length</span></li>
+</ul>
+<ul>
+</ul>
+<ul>
+</ul>
+</div>
+<span id="docs-internal-guid-d1777db2-7fff-a2cf-bb7e-7eaf069edf23">
+</span>
+<br />
+<div>
+<div style="text-align: justify;">
+<span style="font-family: &quot;arial&quot;;"><span style="font-size: 14.6667px; white-space: pre-wrap;"><br /></span></span></div>
+<span style="font-family: &quot;arial&quot;; font-size: 11pt; white-space: pre;"></span><br />
+<ul style="margin-bottom: 0px; margin-top: 0px; text-align: left;">
+</ul>
+<div style="line-height: 1.44; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Following are steps for analyzing perfmon data for IO latency:</span></div>
+<div style="line-height: 1.44; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<h3>
+Disk Queue Length:
+</h3>
+</div>
+<div style="line-height: 1.44; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<span style="background-color: white; color: #222222; font-family: &quot;arial&quot;; font-size: 12pt; vertical-align: baseline; white-space: pre-wrap;">Tracks the number of requests that are queued and waiting for a disk during the sample interval, as well as requests in service. As a result, this might overstate activity. If more than two requests are continuously waiting on a single-disk system, the disk might be a bottleneck.</span><br />
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;"><br /></span>
+<br />
+<h3>
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">PhysicalDisk:Avg. Disk Queue Length</span><span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; vertical-align: baseline; white-space: pre-wrap;"> </span></h3>
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; vertical-align: baseline; white-space: pre-wrap;">This counter shows you the average number of read and write requests that were queued on the selected physical disk. </span><span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; white-space: pre-wrap;">It requires attention if this value frequently exceeds a value of 2 during peak usage of SQL Server.</span></div>
+<br />
+<div style="line-height: 1.38; margin-bottom: 0pt; margin-left: 36pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Calculating Max of Avg. Disk Queue Length:</span><br />
+<br />
+<img height="79" src="https://lh6.googleusercontent.com/k1DZVXwEHhnAjpIozYIwxu5O__gAjVoE8AxKbqI0JxcxU0MwvLKsMh0R-i5HtRwFKYens6zAmkVFs00834HQgolkCyaL0do2-y5rKcrbO4wWEMv54MdeK2my0kykGUg3QnfYBEuu" style="font-family: arial; font-size: 11pt; margin-left: 0px; margin-top: 0px; text-align: left; text-indent: 36pt; white-space: pre-wrap;" width="469" /></div>
+<br />
+<br />
+<div style="line-height: 1.38; margin-bottom: 0pt; margin-left: 36pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Check Disk Queue Length which is greater than threshold i.e 2:</span></div>
+<div style="line-height: 1.38; margin-bottom: 0pt; margin-left: 36pt; margin-top: 0pt; text-align: justify; text-indent: 36pt;">
+<span style="font-family: &quot;arial&quot;; font-size: 12pt; vertical-align: baseline; white-space: pre-wrap;">Formula: =COUNTIF(E2:E2042,"&lt;2")</span><br />
+<br />
+<img height="271" src="https://lh5.googleusercontent.com/OyUGNPv2YujyakeMgD0Il1mAL9aoA2UStlVy9BN0EdESJWWmwdexMRDWJqgxpTQfrwi2Gjl1DiUIAqez7j0PC9auK8i6zbYPhkJudDE-TH2jsjjydfAwjMXjMWPylNQTXJ5KzAaT" style="font-family: arial; font-size: 11pt; margin-left: 0px; margin-top: 0px; text-align: left; white-space: pre-wrap;" width="407" /></div>
+<br />
+<div style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important; text-align: start;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important; text-align: start;" />
+<span style="font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;"></span>
+
+<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important; text-align: start;">
+<br /></div>
+<h3>
+<span style="font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Monitor disk queue length using Resource monitor:</span></h3>
+</div>
+<div style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;arial&quot;; font-size: 12pt; vertical-align: baseline; white-space: pre-wrap;">Disk queue length:&nbsp;</span><br />
+<img height="311" src="https://lh5.googleusercontent.com/jgqcZZLLbIWFSMUSCuEuTYKxjdnbDvcJqlzd4NQtR5c4DtrffYV06kCZeo78RyLMdUKgSMpq0WbSC_CuMDETFRU8gRd2KqaJjFY6BmVFoM1yTgbmizaytS4ZaWoSx2VYY_ZB8Wqc" style="font-family: arial; font-size: 11pt; margin-left: 0px; margin-top: 0px; text-indent: 21pt; white-space: pre-wrap;" width="553" /></div>
+<div style="line-height: 1.44; margin-bottom: 0pt; margin-top: 0pt; text-align: justify; text-indent: 21pt;">
+<br /></div>
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<span style="font-family: &quot;arial&quot;;"><span style="white-space: pre-wrap;"></span></span><br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<h3 style="text-align: left;">
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; font-style: italic; font-weight: 700; text-align: justify; vertical-align: baseline; white-space: pre-wrap;">Disk Reads/Sec</span><span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; text-align: justify; vertical-align: baseline; white-space: pre-wrap;"> and </span><span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; font-style: italic; font-weight: 700; text-align: justify; vertical-align: baseline; white-space: pre-wrap;">Disk Writes/Sec:</span></h3>
+<div>
+<span style="font-family: &quot;arial&quot;;"><span style="font-size: 14.6667px; white-space: pre;"><br /></span></span></div>
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; text-align: justify; vertical-align: baseline; white-space: pre-wrap;">Show you the rate of read/write operations on the disk. It should be less than 85 percent of the disk capacity. </span><span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; text-align: justify; vertical-align: baseline; white-space: pre-wrap;">Disk transfers/Sec</span><span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; text-align: justify; vertical-align: baseline; white-space: pre-wrap;"> is the total of addition Disk reads/sec and disk writes/sec.</span></div>
+<div>
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; text-align: justify; white-space: pre-wrap;"><br /></span></div>
+<div>
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; text-align: justify; white-space: pre-wrap;">To summarize latency get the disk IOPS:</span></div>
+<div>
+<ul style="text-align: left;">
+<li><span style="font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; text-align: justify; white-space: pre;">My total IOPS disk: suppose 540 (which is sum of read 133 and write 407)</span></li>
+<li><span style="font-family: &quot;arial&quot;; font-size: 12pt; text-align: justify; white-space: pre;">Find the drive partitions that iops is divided, in my case i have C , D, E, F drives.</span></li>
+</ul>
+</div>
+<div>
+<div style="line-height: 1.38; margin-bottom: 0pt; margin-left: 36pt; margin-top: 0pt; text-align: justify;">
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;"><span id="docs-internal-guid-26b8e80b-7fff-b277-5116-c5f1512f9f53" style="font-weight: normal;"></span></span></div>
+<br />
+<br />
+<div style="line-height: 1.44; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;arial&quot;; font-size: 12pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Finding IOPS for C drive greater than 540:</span><br />
+<br />
+<img height="332" src="https://lh6.googleusercontent.com/aJYL285hyxF9iW44jkZ2az7K4lrxLNfIXl8eplLhRGRdz5A-olxNeTzBhTKwIfmCHBKu9GoTRyroxolnR9-XAW_5j4jvr_qc9I-zo8ltjIBtdVxSjV4rMWqQUq2l7mkZrYjihc-e" style="font-family: arial; font-size: 11pt; margin-left: 0px; margin-top: 0px; text-indent: 36pt; white-space: pre-wrap;" width="403" /><br />
+<br />
+<br />
+<img height="184" src="https://lh5.googleusercontent.com/SvDa2DTdOgxxKFfNaNe6xEwttAdHnHYKJPj9i6hlSJpqzSPqbfr5Qd0GRW1FJdZYB7UoS3yOAgWTBGKiV7N0peQx-OoU8RgCkywcih2Sntg85KyjgR6as7_TY2pjhsSb8mEMkZ0Z" style="font-family: arial; font-size: 11pt; margin-left: 0px; margin-top: 0px; text-indent: 36pt; white-space: pre-wrap;" width="553" /></div>
+<br />
+<div style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;">
+<span style="font-family: &quot;arial&quot;; font-size: 11pt; vertical-align: baseline; white-space: pre-wrap;">Using above analysis and information we are able to recommend and solve the IO issue.</span></div>
+<div style="text-align: left;">
+<span style="font-family: &quot;arial&quot;; font-size: 11pt; vertical-align: baseline; white-space: pre-wrap;"><br /></span></div>
+<div style="text-align: left;">
+</div>
+</div>
+</div>
+

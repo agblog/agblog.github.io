@@ -1,0 +1,498 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" trbidi="on">
+<b>Deadlock graph using WMI(Windows Management Instrumentaion):</b><br />
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<b>WMI event alert:-</b>&nbsp;</div>
+<div dir="ltr" trbidi="on">
+This fires an event in response to a Windows Management Instrumentation (WMI) event, such as when a new file appears in a specific folder.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<h2 style="text-align: left;">
+<b>Advantages of deadlock graph:</b></h2>
+</div>
+<div dir="ltr" trbidi="on">
+1. It is in readable format.</div>
+<div dir="ltr" trbidi="on">
+2. The graph actually attached with mail.</div>
+<div dir="ltr" trbidi="on">
+3. No unnecessary mail triggered.</div>
+<div dir="ltr" trbidi="on">
+4. Deadlock information is live scenario base.</div>
+<div dir="ltr" trbidi="on">
+5. Previous deadlock entries getting stored in dba database.</div>
+<div dir="ltr" trbidi="on">
+6. It detects deadlock information from default trace, no trace flag 1204 and 1222 is not required.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div>
+<div>
+<br /></div>
+<div>
+<h3 style="text-align: left;">
+<b>Email:</b></h3>
+</div>
+</div>
+<div>
+<br /></div>
+<div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivCGaNq1yxBM-c0QIlRloSfGzeqabk-o-fmFANTKWc-MnLVZ-ewlvHZ8coZCm0P3BkTXeO4ahRSxIofPs4TSJkN7-BPe05qQ2Heh9kuFtzqNeDtuyJjylZCczV6eALVoKuPTjSKO0CsEgD/s1600/1578909384798864-0.png"></a></div>
+<div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivCGaNq1yxBM-c0QIlRloSfGzeqabk-o-fmFANTKWc-MnLVZ-ewlvHZ8coZCm0P3BkTXeO4ahRSxIofPs4TSJkN7-BPe05qQ2Heh9kuFtzqNeDtuyJjylZCczV6eALVoKuPTjSKO0CsEgD/s1600/1578909384798864-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivCGaNq1yxBM-c0QIlRloSfGzeqabk-o-fmFANTKWc-MnLVZ-ewlvHZ8coZCm0P3BkTXeO4ahRSxIofPs4TSJkN7-BPe05qQ2Heh9kuFtzqNeDtuyJjylZCczV6eALVoKuPTjSKO0CsEgD/s1600/1578909384798864-0.png" width="400" /></a></div>
+<br />
+<br />
+<br /></div>
+<div>
+<h3 style="text-align: left;">
+<b>Graph:</b></h3>
+</div>
+<div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-821_V6fKhG_VFO_J-AvOdyQWVtbheLiPfAjwgs9P7eE8MGrDYzy_wG0ZFwjrEYg4hBuK6xjnad1lUnmlHgSY0jJanm0GmG0mufn7UihzSRiynvavaDsijU7eOoUvAPwxbA5E2uez_p-h/s1600/1578909381167111-1.png"></a></div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-821_V6fKhG_VFO_J-AvOdyQWVtbheLiPfAjwgs9P7eE8MGrDYzy_wG0ZFwjrEYg4hBuK6xjnad1lUnmlHgSY0jJanm0GmG0mufn7UihzSRiynvavaDsijU7eOoUvAPwxbA5E2uez_p-h/s1600/1578909381167111-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-821_V6fKhG_VFO_J-AvOdyQWVtbheLiPfAjwgs9P7eE8MGrDYzy_wG0ZFwjrEYg4hBuK6xjnad1lUnmlHgSY0jJanm0GmG0mufn7UihzSRiynvavaDsijU7eOoUvAPwxbA5E2uez_p-h/s1600/1578909381167111-1.png" width="400" /></a></div>
+<br />
+<br />
+<h3 style="text-align: left;">
+<b>Deadlock history in table</b>:</h3>
+</div>
+<div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFN_Hjb_c6U1STYnPiC9NUZ7_BpP7Op-5T5TXwCtKWUi_6y6bJD33hialyREIpHydOf1bc9RAZKuBcz8A63W5CzAHsBZ2eq4cGmTipDsN6RyY_P3-KZUTdau997dYIj6xRQEJrbr31YUt0/s1600/1578909376186375-2.png"></a></div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFN_Hjb_c6U1STYnPiC9NUZ7_BpP7Op-5T5TXwCtKWUi_6y6bJD33hialyREIpHydOf1bc9RAZKuBcz8A63W5CzAHsBZ2eq4cGmTipDsN6RyY_P3-KZUTdau997dYIj6xRQEJrbr31YUt0/s1600/1578909376186375-2.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFN_Hjb_c6U1STYnPiC9NUZ7_BpP7Op-5T5TXwCtKWUi_6y6bJD33hialyREIpHydOf1bc9RAZKuBcz8A63W5CzAHsBZ2eq4cGmTipDsN6RyY_P3-KZUTdau997dYIj6xRQEJrbr31YUt0/s1600/1578909376186375-2.png" width="400" /></a></div>
+<br />
+<br /></div>
+<div>
+<div>
+<h3 style="text-align: left;">
+<b>Configuration</b>:</h3>
+</div>
+<div>
+<pre class="prettyprint"><code class="language-sql">
+/*Requires sysadmin permission to create and execute this job*/
+
+create database dbaalert
+
+go
+
+use dbaalert  
+
+go
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[Deadlock]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+
+Print ' *** IF Table Deadlock Table Already Exists... moving Further *** '
+
+ELSE
+
+create table Deadlock
+
+(
+
+RecordId int identity (1,1) primary key not null,
+
+AlertTime datetime not null,
+
+DeadlockGraph xml,
+
+Notified int not null constraint [DF_deadlock_flag] default (0)
+
+)
+
+go
+
+
+
+create index deadlock_idx on Deadlock  (AlertTime) with fillfactor = 100 
+
+go
+
+</code></pre>
+-- enable replace runtime tokens for sql agent to respond to WMI alets
+
+
+<br />
+<pre class="prettyprint"><code class="language-sql">
+
+USE [msdb]
+
+GO
+
+EXEC msdb.dbo.sp_set_sqlagent_properties @alert_replace_runtime_tokens=1
+
+GO
+
+</code></pre>
+-- Create the agent job 
+<br />
+<pre class="prettyprint"><code class="language-sql">
+
+USE [msdb]
+
+GO
+
+
+
+BEGIN TRANSACTION
+
+DECLARE @ReturnCode INT
+
+SELECT @ReturnCode = 0
+
+
+
+IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
+
+BEGIN
+
+EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
+
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+
+
+
+END
+
+
+
+DECLARE @jobId BINARY(16)
+
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'DBA Group - monitoring - Deadlock detector',  
+
+@enabled=1, 
+
+@notify_level_eventlog=0, 
+
+@notify_level_email=0, 
+
+@notify_level_netsend=0, 
+
+@notify_level_page=0, 
+
+@delete_level=0, 
+
+@description=N'
+
+Funtionality:
+
+1. Real time Deadlock detection using WMI
+
+2. Send email out when deadlock occurs along with Deadlock Graph attached.
+
+3. Logs all the deadlocks in a central Table
+
+dbamaint.dbo.Deadlock
+
+4. Does not require trace flags 1204 and 1222 enabled', 
+
+@category_name=N'[Uncategorized (Local)]', 
+
+@owner_login_name=N'sa', @job_id = @jobId OUTPUT
+
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+
+
+
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Insert Deadlock info', 
+
+@step_id=1, 
+
+@cmdexec_success_code=0, 
+
+@on_success_action=3, 
+
+@on_success_step_id=0, 
+
+@on_fail_action=2, 
+
+@on_fail_step_id=0, 
+
+@retry_attempts=0, 
+
+@retry_interval=0, 
+
+@os_run_priority=0, @subsystem=N'TSQL', 
+
+@command=N'INSERT INTO Deadlock (
+
+AlertTime,
+
+DeadlockGraph
+
+)
+
+VALUES (
+
+GETDATE(),
+
+''$(ESCAPE_NONE(WMI(TextData)))''
+
+)', 
+
+@database_name=N'dbaalert', 
+
+@flags=0
+
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+
+
+
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Send Email with Deadlock Graph', 
+
+@step_id=2, 
+
+@cmdexec_success_code=0, 
+
+@on_success_action=1, 
+
+@on_success_step_id=0, 
+
+@on_fail_action=2, 
+
+@on_fail_step_id=0, 
+
+@retry_attempts=0, 
+
+@retry_interval=0, 
+
+@os_run_priority=0, @subsystem=N'TSQL', 
+
+@command=N'if exists (select 1 from dbo.Deadlock where notified = 0 )
+
+begin
+
+declare @tableHTML nvarchar(max)
+
+set @tableHTML =N''
+<span style="font-family: &quot;tahoma&quot;; font-size: small;">Deadlock Has occured on ''+@@servername+'' ..  </span>
+''
+
+set @tableHTML = @tableHTML+ N'''' +
+
+           N''<span style="font-family: &quot;calibri&quot;; font-size: x-small;">'' +           
+
+            N''</span><span style="font-family: &quot;calibri&quot;; font-size: x-small;">'' +
+
+N''</span><span style="font-family: &quot;calibri&quot;; font-size: x-small;">'' +
+
+            N''</span><span style="font-family: &quot;calibri&quot;; font-size: x-small;">'' +        
+
+N''</span><span style="font-family: &quot;calibri&quot;; font-size: x-small;">'' +
+
+           ISNULL(CAST ( ( 
+
+select  td = '''',
+
+td = RecordId,'''',
+
+                              td = AlertTime,'''',
+
+td = DeadlockGraph,''''                             
+
+                     from dbo.Deadlock where notified = 0
+
+FOR XML PATH(''tr''), TYPE 
+
+            ) AS NVARCHAR(MAX) ),'''') +
+
+            N''</span>'' +
+
+            N''<table border="1"><tbody>
+<tr><th align="center">RecordId</th><th align="center">AlertTime</th><th align="center">DeadlockGraph</th></tr>
+</tbody></table>
+'' ;
+
+
+
+exec master..xp_cmdshell 'bcp "SELECT  [Deadlockgraph].query(''/TextData/deadlock-list'') FROM dbaalert..[Deadlock] where Notified = 0" queryout "c:\deadlock_test\deadlock.xdl" -c -q -T -S MBISQLVP1';
+
+
+
+-- send email out with the graph attached 
+
+declare @subject1 varchar(50)
+
+set @subject1 = ''Deadlock Has Occured on ''+@@servername
+
+EXEC msdb.dbo.sp_send_dbmail 
+
+@profile_name = ''DBASUPPORT_profile'',
+
+            @recipients=''dbasupport@manipalcigna.com'',  
+
+            @subject = @subject1,
+
+            @body = @tableHTML,
+
+            @body_format = ''HTML'', 
+
+            @file_attachments = ''c:\deadlock\deadlock.xdl'';
+
+end
+
+go
+
+-- update the Deadlock table so that when the job runs it wont send out previous alert
+
+update dbaalert.dbo.Deadlock
+
+set Notified = 1 where notified = 0
+
+--SELECT * FROM dbaalert.dbo.Deadlock', 
+
+@database_name=N'dbaalert', 
+
+@flags=0
+
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+
+EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
+
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+
+EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
+
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+
+COMMIT TRANSACTION
+
+GOTO EndSave
+
+QuitWithRollback:
+
+    IF (@@TRANCOUNT &gt; 0) ROLLBACK TRANSACTION
+
+EndSave:
+
+
+
+-- Create an WMI alert to respond to deadlocks
+
+IF EXISTS (SELECT name FROM msdb.dbo.sysalerts WHERE name = N'Respond to Deadlock')
+
+EXEC msdb.dbo.sp_delete_alert @name=N'Respond to Deadlock'
+
+GO
+
+DECLARE @server_namespace varchar(255)
+
+IF ISNULL(CHARINDEX('\', @@SERVERNAME), 0) &gt; 0
+
+SET @server_namespace = N'\\.\root\Microsoft\SqlServer\ServerEvents\' + SUBSTRING(@@SERVERNAME, ISNULL(CHARINDEX('\', @@SERVERNAME), 0) + 1, LEN(@@SERVERNAME) - ISNULL(CHARINDEX('/', @@SERVERNAME), 0))
+
+ELSE
+
+SET @server_namespace = N'\\.\root\Microsoft\SqlServer\ServerEvents\MSSQLSERVER'
+
+EXEC msdb.dbo.sp_add_alert @name=N'Respond to Deadlock',
+
+@wmi_namespace=@server_namespace,
+
+@wmi_query=N'SELECT * FROM DEADLOCK_GRAPH',
+
+@job_name='DBA Group - monitoring - Deadlock detector' ;  
+
+</code></pre>
+Creating and Testing Deadlock:
+
+
+<br />
+<pre class="prettyprint"><code class="language-sql">
+
+--Two global temp tables with sample data for demo purposes.
+
+CREATE TABLE Employees (
+
+    EmpId INT IDENTITY,
+
+    EmpName VARCHAR(16),
+
+    Phone VARCHAR(16)
+
+)
+
+GO
+
+
+
+INSERT INTO Employees (EmpName, Phone)
+
+VALUES ('Martha', '800-555-1212'), ('Jimmy', '619-555-8080')
+
+GO
+
+
+
+CREATE TABLE Suppliers(
+
+    SupplierId INT IDENTITY,
+
+    SupplierName VARCHAR(64),
+
+    Fax VARCHAR(16)
+
+)
+
+GO
+
+
+
+INSERT INTO Suppliers (SupplierName, Fax)
+
+VALUES ('Acme', '877-555-6060'), ('Rockwell', '800-257-1234')
+
+GO
+
+
+
+Session 1                   | Session 2
+
+========================================
+
+BEGIN TRAN;                 | BEGIN TRAN;
+
+========================================
+
+UPDATE Employees
+
+SET EmpName = 'Mary'
+
+WHERE EmpId = 1
+
+========================================
+
+                             | UPDATE Suppliers
+
+                             | SET Fax = N'555-1212'
+
+                             | WHERE SupplierId = 1  
+
+========================================
+
+UPDATE Suppliers
+
+SET Fax = N'555-1212'
+
+WHERE SupplierId = 1
+
+========================================
+
+<blocked>                    | UPDATE Employees
+
+                             | SET Phone = N'555-9999'
+
+                             | WHERE EmpId = 1
+
+========================================
+
+                             | <blocked>
+
+========================================
+
+</blocked></blocked></code></pre>
+</div>
+</div>
+</div>
+</div>
+

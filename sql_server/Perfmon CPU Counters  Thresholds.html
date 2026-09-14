@@ -1,0 +1,103 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>Perfmon counters and thresholds for CPU utilization at OS Level:</b><br />
+<br />
+<h2 style="text-align: left;">
+CPU Utilization Counters at OS Level:</h2>
+<ul style="text-align: left;">
+<li><b>\Processor\% Processor Time:</b></li>
+<ul>
+<li>Sum of <b>%user time</b> and <b>% provileged time.</b></li>
+<li>If Processor is below 90% if normal, if is spikes above&nbsp;<b>90% then there is an issue.</b></li>
+</ul>
+</ul>
+<br />
+<ul style="text-align: left;">
+<li><b>\Processor\% Privileged Time</b></li>
+<ul>
+<li><b>Privileged Time</b> is the amount of time being spent in the Windows kernel executing system calls such as drivers, <b>IRPs (I/O Request Packets), context switching, etc</b>.&nbsp;</li>
+<li>If the <b>operating system</b> is spending <b>more than 30%</b> of itâ€™s time in privileged mode, then it means that it is likely doing a <b>high amount of I/O</b> and one or more of the drivers are executing to manage that I/O.</li>
+<li>If more than 30% involve Windows Admins.</li>
+<li><b>Ref:&nbsp;<a href="https://blog.heroix.com/blog/windows-cpu-metric-guide" target="_blank">heroix</a>&nbsp;&nbsp;<a href="http://dba-datascience.com/high-cpu-usage-sql-server/" target="_blank">datascience</a>&nbsp; <a href="http://micc.mitel.com/kb/TroubleshooterGuide50563.aspx" target="_blank">mitel</a></b></li>
+</ul>
+</ul>
+<br />
+<ul style="text-align: left;">
+<li><b>\Processor(*)\% Interrupt Time</b></li>
+<ul>
+<li>Is the time the processor spends receiving and servicing hardware       interrupts during sample intervals.</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>\Processor(*)\% DPC Time</b></li>
+<ul>
+<li>Deferred process call means OS is waiting to do something later on.</li>
+<li>Issue if Both <b>Interrupt time and dpc time </b>High above <b>20%.</b></li>
+<li>High Deferred Procedure Calls (DPCs) and high interrupts are typically     caused by very busy or poorly written device drivers.&nbsp;</li>
+<li>If â€œ\Processor(*)\% DPC Timeâ€ is greater than 20%, or if â€œ\Processor(*)\% Interrupt Timeâ€ is greater then 20%. Then check following:</li>
+<ul>
+<li>Press caps lock key on keyboard and its respond in time.</li>
+<li>If the Cap Lock key light does not respond, then the computer is hung due     to a hardware problem. Otherwise, it is most likely a software problem.</li>
+</ul>
+</ul>
+</ul>
+<ul style="text-align: left;"><ul>
+<li>IF low than 20%: Then check following:</li>
+<ul>
+<li>If <b>â€œ\Processor(*)\% DPC Timeâ€</b> is not greater than 20%, or if <b>â€œ\Processor(*)\% Interrupt Timeâ€</b> is not greater then <b>20%</b>. If both of the counters above show very low values <b>(less than 20%)</b>, then it could also be caused by high amounts of context switches per second.</li>
+</ul>
+<li><b>Reference: <a href="https://docs.microsoft.com/en-us/azure/monitoring/infrastructure-health/vmhealth-windows/winserver-processor-cpudpctime" target="_blank">Microsoft</a></b></li>
+</ul>
+</ul>
+<br />
+<ul style="text-align: left;">
+<li><b>\System\Context Switches/sec:</b></li>
+<ul>
+<li>When high priority enters low priority processes are switched then context switch happens).&nbsp;</li>
+<li>Normal is considered 1000 or below 5000 if it exceed 15,000 per second per processor, then there is a constraint.</li>
+<li><b>Reference: <a href="http://micc.mitel.com/kb/TroubleshooterGuide50563.aspx" target="_blank">Mitel</a></b></li>
+</ul>
+</ul>
+<br />
+<ul style="text-align: left;">
+<li><b>\System\Processor Queue Length&nbsp;</b></li>
+<ul>
+<li>It should not greater than 2.</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>\Processor(*)\% User Time(for user apps)</b>&nbsp;</li>
+<ul>
+<li>Processor: % User Time â€“ percentage of time the processor spends on executing user processes such as SQL Server. This includes I/O requests from SQL Server.</li>
+<li><b>Ref: <a href="http://dba-datascience.com/high-cpu-usage-sql-server/" target="_blank">datascience</a></b></li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>Process (sqlservr): % Privileged Time</b>&nbsp;</li>
+<ul>
+<li>The sum of processor time on each processor for all threads of the process (SQL Kernel)</li>
+<li>Divide SQL Server %Privileged Time by number of logical processors to understand if the usage is due to SQL Kernal. If this value is more than 30% involve the Windows Admins. (Process (sqlservr): % Privileged Time / No of logical cpus)&nbsp;</li>
+<li>Potential causes could be antivirus faulty drivers or encryption services.&nbsp;</li>
+</ul>
+</ul>
+<br />
+<h2>
+CPU Utilization Parameters at SQL Level:</h2>
+<div>
+<br />
+<ul style="text-align: left;">
+<li>Check the following configurations are according to Microsoft Best Practice recommendations:</li>
+<ul>
+<li>Affinity Mask</li>
+<li>Cost Threshold for Parallelism</li>
+<li>Max Degree of Parallelism</li>
+<ul>
+<li>Ref: <b><a href="https://support.microsoft.com/en-gb/help/2806535/recommendations-and-guidelines-for-the-max-degree-of-parallelism-confi" target="_blank">Microsoft</a></b></li>
+</ul>
+<li>Max Worker Threads</li>
+<li>Optimize for ad-hoc workloads</li>
+<li>Priority boost</li>
+</ul>
+</ul>
+<br /></div>
+</div>
+

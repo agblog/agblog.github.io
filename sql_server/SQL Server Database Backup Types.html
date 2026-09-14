@@ -1,0 +1,339 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" trbidi="on">
+SQL Server supports different types of backups for databases. However, which type of a database backup can be performed totally depends upon the recovery model of the database one choose.</div>
+<div dir="ltr" trbidi="on">
+<h4>
+<div>
+</div>
+</h4>
+<h2>
+Different Types of SQL Server Backups are:-</h2>
+<ul>
+<li>Full Backup</li>
+<li>Differential Backup</li>
+<li>Transaction Log Backup</li>
+<li>File Backup</li>
+<li>FileGroup Backup</li>
+<li>Mirror Backup</li>
+<li>Partial Backup</li>
+<li>Copy-Only Backup</li>
+<li>Tail log backup</li>
+</ul>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>Backup Types:</b></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>Ref:</b></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+https://docs.microsoft.com/en-us/previous-versions/technet-magazine/dd822915(v=msdn.10)?redirectedfrom=MSDN</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<div>
+<hr />
+<h2>
+<b>Full Backup</b></h2>
+</div>
+</div>
+<div>
+The simplest kind of backup is a full database backup.&nbsp;</div>
+<div>
+A full database backup provides a complete copy of the database and provides a single point-in-time to which the database can be restored. A full backup does not allow recovery to any point in time while the backup was running.</div>
+<div>
+<br /></div>
+<div>
+<b>A full backup does the following:</b></div>
+<div>
+1. Force a database checkpoint and make a note of the log sequence number at this point. This flushes all updated-in-memory pages to disk before anything is read by the backup to help minimize the amount of work the recovery part of restore has to do.</div>
+<div>
+2. Start reading from the data files in the database.</div>
+<div>
+3. Stop reading from the data files and make a note of the log sequence number of the start of the oldest active transaction at that point.</div>
+<div>
+4. Read as much transaction log as is necessary.</div>
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE AdventureWorks TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Full_Backup\AdventureWorks.BAK'
+WITH INIT
+    ,FORMAT
+    ,NAME = 'AdventureWorks'
+    ,COMPRESSION
+    ,NOREWIND
+    ,STATS = 10
+    ,SKIP
+PRINT 'AdventureWorks Full DATABASE BACKUP FINISHED'
+GO</code></pre>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<hr />
+<div dir="ltr" trbidi="on">
+<h2>
+DIFFERENTIAL BACKUP</h2>
+</div>
+</div>
+<div>
+<div>
+A differential backup performs the same operations as a full backup, but only contains all the data that has changed or been added since the previous full backup. This backups are actually cumulative and successive differential backups after a full backup and will increase in size as more data is changed or added.</div>
+<div>
+<br /></div>
+<div>
+In every 4GB section (called a GAM interval) of every data file there is a special database page called a differential bitmap that tracks which portions (called extents) of that 4GB section have changed since the last full backup, indicating data that has changed or been added to the database.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+A differential backup scans through these bitmaps and only backs up the data file extents that are marked as changed. The bitmaps are reset by the next full backup, so you can see that as more and more of the database changes, more of it will be marked in the differential bitmaps and successive differential backups will be larger and larger.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+You can find out how large your next differential backup will be using a script I wrote that is available from my blog article "New script: How much of the database has changed since the last full backup?."&nbsp;</div>
+<div>
+<br /></div>
+<div>
+Advantage of differential backups is it can speed up restore operations by allowing many transaction log backups to be skipped in the restore process.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+If you want to take an ad-hoc full backup of database and not have it reset the differential bitmaps or backup strategy, you should use the WITH COPY_ONLY option on the BACKUP statement.</div>
+</div>
+</div>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE AdventureWorks TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Differntial_Backup\AdventureWorks.BAK'
+WITH DIFFERENTIAL
+    ,NOINIT
+    ,NOFORMAT
+    ,NAME = 'AdventureWorks'
+    ,COMPRESSION
+    ,NOREWIND
+    ,STATS = 10
+    ,SKIP
+PRINT 'AdventureWorks Differntial DATABASE BACKUP FINISHED'
+GO</code></pre>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<hr />
+<h2>
+TRANSACTION LOG BACKUP</h2>
+</div>
+<div>
+<div>
+A transaction log backup contains all the transaction log records generated since the last log backup or full backup that starts a log backup chain and is used to allow the database to be recovered to a specific point in time.&nbsp; A transaction log backup are incremental, unlike differential backups, which are cumulative. A chain starts with a full database backup, and continues until the breaks of the chain.&nbsp;</div>
+<div>
+Operations that break the log backup chain include switching to the SIMPLE recovery model, reverting from a database snapshot, and forcibly clearing the log using the WITH NO_LOG or TRUNCATE_ONLY options.</div>
+</div>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<pre class="prettyprint"><code class="language-sql">
+BACKUP LOG AdventureWorks TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Transaction_Backup\AdventureWorks.TRN'
+MIRROR TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Transaction_Backup\AdventureWorks1.TRN'
+WITH
+FORMAT
+PRINT 'AdventureWorks LOG DATABASE BACKUP FINISHED'&nbsp;</code>Go</pre>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<hr />
+<div dir="ltr" trbidi="on">
+<div>
+<h2>
+FILE BACKUP</h2>
+</div>
+<div>
+<div>
+Using FILE backup is used to backup SQL Server Data File individually. A FILE backup can also serve as the differential base for differential file backups.</div>
+</div>
+<div>
+<br /></div>
+</div>
+<div dir="ltr" trbidi="on">
+<pre class="prettyprint">BACKUP DATABASE [SQLDose_FileBkp] FILE = N'SQLDose_FileBkp_Data2' TO DISK = N'D:\Backups\SQLDose_FileBkp_Data2.bak' WITH NOFORMAT, NOINIT, COMPRESSION, STATS = 25 GO<code class="language-sql">PRINT 'FILE BACKUP FINISHED'&nbsp;</code>Go</pre>
+<div dir="ltr" trbidi="on">
+<hr />
+<div dir="ltr" trbidi="on">
+<div>
+<h2>
+FILEGROUP BACKUP</h2>
+</div>
+<div>
+FILEGROUP backup used to backup all the data files within the Specific SQL Server FILEGROUP individually. With back up the database option specify whole FILEGROUP (i.e., PRIMARY or SECONDARY).</div>
+</div>
+<div dir="ltr" trbidi="on">
+<pre class="prettyprint"><code class="language-sql">BACKUP DATABASE [SQLDose_FG] FILEGROUP = N'ReadOnly' TO DISK = N'D:\Backups\SQLDose_FG_ReadOnly.bak' WITH NOFORMAT, NOINIT, COMPRESSION, STATS = 25 GO </code><code class="language-sql">PRINT 'Filegroup BACKUP FINISHED'&nbsp;</code>Go</pre>
+<div dir="ltr" trbidi="on">
+<hr />
+<h2>
+Mirror Backup</h2>
+</div>
+</div>
+</div>
+</div>
+<div style="text-align: left;">
+Using MIRRORED Backup feature we can create up to 3 identical copies of a database backup.&nbsp;</div>
+</div>
+<h3>
+SINGLE-FAMILY MIRRORED MEDIA SET BACKUP</h3>
+</div>
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE AdventureWorks
+TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\Mirror_Backup\tape0.bak'
+MIRROR TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\Mirror_Backup\tape1.bak'  
+MIRROR TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\Mirror_Backup\tape2.bak'  
+MIRROR TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\Mirror_Backup\tape3.bak'  
+WITH  
+   FORMAT,  
+   MEDIANAME = 'AdventureWorksSet0'
+   ,INIT
+
+PRINT 'AdventureWorks MIRRORED DATABASE BACKUP FINISHED'
+GO</code></pre>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<h3>
+A MULTIFAMILY MIRRORED MEDIA SET</h3>
+</div>
+<pre class="prettyprint"><code class="language-sql">
+
+BACKUP DATABASE AdventureWorks
+TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\Mirror_Backup\tape0.bak'
+,DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\Mirror_Backup\tape1.bak'  
+MIRROR TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\Mirror_Backup\tape3.bak'
+,DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\Mirror_Backup\tape4.bak'  
+WITH  
+   FORMAT,  
+   MEDIANAME = 'AdventureWorksSet1';
+
+PRINT 'AdventureWorks CREATING AND BACKING UP TO A MULTIFAMILY MIRRORED MEDIA FINISHED'
+GO</code></pre>
+<hr />
+<h2>
+Partial Backup</h2>
+<div>
+PARTIAL Backups are designed for use under SIMPLE recovery model as to improve flexibility to backup very large database which contain one or more read-only Filegroups. They are useful whenever you want to exclude read-only Filegroups. PARTIAL backup does not contain all the Filegroups.</div>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<h3>
+Full Partial Backup</h3>
+</div>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE AdventureWorks READ_WRITE_FILEGROUPS TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Partial_Backup\AdventureWorks.BAK'
+WITH NOFORMAT
+    ,NOINIT
+    ,COMPRESSION
+    ,STATS = 10
+GO
+</code></pre>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<h3>
+DIFFERENTIAL Partial Backup</h3>
+</div>
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE AdventureWorks READ_WRITE_FILEGROUPS TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Partial_Backup\AdventureWorks.DIF'
+WITH DIFFERENTIAL
+    ,COMPRESSION
+    ,STATS = 10
+GO</code></pre>
+<div>
+<br /></div>
+<hr />
+<h2>
+Copy Only Backup:</h2>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" trbidi="on">
+COPY_ONLY Specifies that the backup is a copy-only backup, which does not affect the normal sequence of backups. A copy-only backup does not affect your overall backup and restore procedures for the database.</div>
+<div dir="ltr" trbidi="on">
+Copy-only backups should be used in situations in which a backup is taken for a special purpose, such as backing up the log before an online file restore. Typically, a copy-only log backup is used once and then deleted.</div>
+<div dir="ltr" trbidi="on">
+The differential bitmap is not updated, and differential backups behave as if the copy-only backup does not exist.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+If DIFFERENTIAL and COPY_ONLY are used together, COPY_ONLY is ignored, and a differential backup is created.</div>
+<div dir="ltr" trbidi="on">
+When used with BACKUP LOG, the COPY_ONLY option creates a copy-only log backup, which does not truncate the transaction log. The copy-only log backup has no effect on the log chain, and other log backups behave as if the copy-only backup does not exist.</div>
+<div>
+<br /></div>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>
+<h3>
+Copy_Only Full Backup</h3>
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE AdventureWorks
+TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Copy_Only_Backup\AdventureWorks_Copy_Only.BAK'
+WITH COPY_ONLY, COMPRESSION, STATS = 25 
+GO
+</code></pre>
+/* Verify the Database Backup File Once the Backup has completed successfully */
+<br />
+<pre class="prettyprint"><code class="language-sql">
+RESTORE VERIFYONLY
+FROM DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Copy_Only_Backup\AdventureWorks_Copy_Only.BAK'
+GO</code></pre>
+<h3>
+Copy_Only Differential Backup</h3>
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE AdventureWorks
+TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Copy_Only_Backup\AdventureWorks_Copy_Differntial_Only.BAK'
+WITH DIFFERENTIAL,COPY_ONLY, COMPRESSION, STATS = 25 
+GO
+</code></pre>
+/* Verify the Database Backup File Once the Backup has completed successfully */
+
+<br />
+<pre class="prettyprint"><code class="language-sql">
+RESTORE VERIFYONLY
+FROM DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Copy_Only_Backup\AdventureWorks_Copy_Differntial_Only.BAK'
+GO&nbsp;</code></pre>
+<h3>
+Copy_Only Log Backup&nbsp;</h3>
+<pre class="prettyprint"><code class="language-sql">
+BACKUP LOG AdventureWorks
+TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Copy_Only_Backup\AdventureWorks_Copy_LOG_Only.BAK'
+WITH COPY_ONLY, COMPRESSION, STATS = 25 
+GO
+</code></pre>
+/* Verify the Database Backup File Once the Backup has completed successfully */
+<br />
+<pre class="prettyprint"><code class="language-sql">
+RESTORE VERIFYONLY
+FROM DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Copy_Only_Backup\AdventureWorks_Copy_LOG_Only.BAK'
+GO</code></pre>
+<div>
+<div>
+<br /></div>
+<hr />
+<h2>
+Tail log backup</h2>
+</div>
+</div>
+<h3>
+Tail LOG Backup with NORECOVERY</h3>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<pre class="prettyprint"><code class="language-sql">
+BACKUP LOG AdventureWorks TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Tail_log_Backup\AdventureWorks_NORECOVERY.TRN'
+WITH NORECOVERY
+    ,COMPRESSION
+    ,CHECKSUM
+    ,STATS = 25&nbsp;</code></pre>
+<h3>
+Tail LOG Backup with No_truncate&nbsp;</h3>
+<pre class="prettyprint"><code class="language-sql">
+BACKUP LOG AdventureWorks TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Tail_log_Backup\AdventureWorks_No_truncate.TRN'
+WITH No_truncate
+    ,COMPRESSION
+    ,CHECKSUM
+    ,STATS = 25&nbsp;</code></pre>
+<h3>
+Tail LOG Backup with Continue_after_error</h3>
+<pre class="prettyprint"><code class="language-sql">
+BACKUP LOG AdventureWorks TO DISK = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER2014\MSSQL\Backup\User_Database_Tail_log_Backup\AdventureWorks_Countinue_after_error.TRN'
+WITH NORECOVERY
+    ,Continue_after_error
+    ,COMPRESSION
+    ,CHECKSUM
+    ,STATS =25
+</code></pre>
+</div>
+</div>
+

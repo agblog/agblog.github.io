@@ -1,0 +1,100 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<b>DBCC CHECKDB</b></div>
+<div>
+<br /></div>
+<div>
+<b>DBCC CHECKDB</b> â€“ is the Database Console Command, and is very important to SQL Server. This command is used to check the physical and logical consistency of a database.<br />
+<div>
+<b><br /></b>
+<br />
+<h2 id="h2-5" style="background-color: white; color: #222222; font-family: Roboto, sans-serif; margin: 1em 0px 0.5em; overflow-wrap: break-word !important; position: relative;">
+<b style="background-color: transparent;">DBCC is Used To:</b></h2>
+</div>
+<div>
+â€¢ Check for and fix database corruption issues.</div>
+<div>
+â€¢ Checks each table one by one for data corruption issues.</div>
+<div>
+â€¢ Checks values within tables to ensure thatâ€™s values are valid for that data type.</div>
+<div>
+â€¢ Should be run regular.</div>
+<div>
+â€¢ Should be run off hours</div>
+<div>
+â€¢ Most expensive IO operations.<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<h2 id="h2-5" style="background-color: white; color: #222222; font-family: Roboto, sans-serif; margin: 1em 0px 0.5em; overflow-wrap: break-word !important; position: relative;">
+DBCC Internals:</h2>
+</div>
+When this command is issued it does run few commands that actually do the validation and do check if the pages are consistent and report if they are not. Basically, DBCC CHECKDB internally does below:<br />
+<br />
+<h3 style="text-align: left;">
+<i><b>DBCC CHECKALLOC</b></i>&nbsp;</h3>
+This check validates the disk space allocation and compares it with the internal structure of the pages, it can also repair the allocation structure if an anomaly is found. It runs at a database level.<br />
+<i><b><br /></b></i>
+<br />
+<h3 style="text-align: left;">
+<i><b>DBCC CHECKTABLE</b></i>&nbsp;</h3>
+This check integrity of the pages and structure for the table or indexed views, it also validates linkages between pages, sort orders, pointers and offset. This check runs at a table and view level.<br />
+<i><b><br /></b></i>
+<br />
+<h3 style="text-align: left;">
+<i><b>DBCC CHECKCATALOG</b></i>&nbsp;</h3>
+This check validates the consistency for data type used in the database and compares each of them with the systypes and sysobjects&nbsp;system table. This check runs at a database level.<br />
+<br />
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+</div>
+<div>
+<h2 style="text-align: left;">
+<b>
+Repair Levels</b></h2>
+</div>
+<div>
+To repair a suspect&nbsp;database use following script:<br />
+DBCC CHECKDB(<i>databaseName</i>,&nbsp;<b>repair options</b>)</div>
+<div>
+<ul>
+<li>REPAIR_REBUILD</li>
+<li>REPAIR_FAST</li>
+<li>REPAIR_ALLOW_DATA_LOSS</li>
+</ul>
+</div>
+<div>
+<h3 style="text-align: left;">
+1.&nbsp;<b>Repair_Rebuild</b></h3>
+<span data-blogger-escaped-lang="EN-US"></span><br />
+If a user wants to repair SQL database without any loss of information, then this repair option is selected.<br />
+<br />
+<h3 style="text-align: left;">
+2.<b>Repair_Allow_Data_Loss:</b></h3>
+<span lang="EN-US">The database should be set on single user mode to run&nbsp;</span><span lang="EN-US">REPAIR_ALLOW_DATA_LOSS.&nbsp;</span>In
+ some cases users take help of repair_allow_data_loss command to repair 
+all type of errors in the SQL database. It is pretty much clear from the
+ name that there might be some loss of data during the recovery process.
+ This means this DBCC CHECKDB command does not promise data integrity.<br />
+<br />
+<h3 style="text-align: left;">
+3. <b>REPAIR_FAST</b>:&nbsp;</h3>
+Does minor fast repairs on database without risk of data loss such as repairing extra keys in nonclustered indexes.</div>
+<div>
+<div>
+<br /></div>
+<div>
+<div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+</div>
+<div>
+<br /></div>
+</div>
+</div>
+</div>
+

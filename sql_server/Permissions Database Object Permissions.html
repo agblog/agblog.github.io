@@ -1,0 +1,126 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+Permissions: Database Object Permissions<br />
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+We have various database objects such as view, stored procedures, triggers, functions and indexes in a relational database.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+SQL Server:&nbsp;Grant/Revoke Privileges</div>
+<div dir="ltr" trbidi="on">
+<div id="main">
+<div class="three_column" id="content">
+<div class="page" role="main">
+<div class="article" readability="79.4231">
+<div class="section" readability="7">
+<b>Grant and revoke privileges</b>&nbsp;in SQL Server (Transact-SQL) with syntax and examples.<br />
+<br /></div>
+<div class="section" readability="8">
+You
+ can GRANT and REVOKE privileges on various database objects in SQL 
+Server. We'll look at how to grant and revoke privileges on tables in 
+SQL Server.</div>
+<div class="section" readability="48">
+<h2>
+Grant Privileges on Table</h2>
+You
+ can grant users various privileges to tables. These permissions can be 
+any combination of SELECT, INSERT, UPDATE, DELETE, REFERENCES, ALTER, or
+ ALL.<br />
+Permission for object level:<br />
+<div class="separator" style="clear: both; text-align: center;"><p><br /></p><p class="separator" data-blogger-escaped-style="clear: both; text-align: center;"><a data-blogger-escaped-style="margin-left: 1em; margin-right: 1em;" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghFghuSrX9ciW4n-YRK271zrkoRE85acQPeZa5lrsOTmrALMdopljb7O9vV9u4oa47rd_k-28hWCrG4jYwfRv8jONcpp775YIAFi2U1SjDbRW_keGwB5w2bHKLCSJV-H1hkjbls1LVBqkZ/s1600/1579194396853130-0.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghFghuSrX9ciW4n-YRK271zrkoRE85acQPeZa5lrsOTmrALMdopljb7O9vV9u4oa47rd_k-28hWCrG4jYwfRv8jONcpp775YIAFi2U1SjDbRW_keGwB5w2bHKLCSJV-H1hkjbls1LVBqkZ/s1600/1579194396853130-0.png" width="400" /></a></p><p class="separator" data-blogger-escaped-style="clear: both; text-align: center;" style="text-align: left;">Permission for database level:</p><p class="separator" data-blogger-escaped-style="clear: both; text-align: center;"><a data-blogger-escaped-style="margin-left: 1em; margin-right: 1em;" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSxZQH9xvdn_rnFhrx06n4l0BnmoVR_VnVGu_ZZw8WZPmv07Z0RE2STyTXre5Aj1wsB_GbhP5hqVG_wp06KVlXwr3rUlGHI4tfC2VQxQxGtf17vyTTf898Z3txndz-xwESpsWWeU5PDxWh/s1600/1579194387515255-1.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSxZQH9xvdn_rnFhrx06n4l0BnmoVR_VnVGu_ZZw8WZPmv07Z0RE2STyTXre5Aj1wsB_GbhP5hqVG_wp06KVlXwr3rUlGHI4tfC2VQxQxGtf17vyTTf898Z3txndz-xwESpsWWeU5PDxWh/s1600/1579194387515255-1.png" width="400" /></a></p><p><br style="text-align: left;" /></p></div>
+<h3>
+Syntax</h3>
+The syntax for granting privileges on a table in SQL Server is:<br />
+<pre class="notranslate">GRANT privileges ON object TO user;</pre>
+<dl readability="-2">
+<dt><b><br /></b></dt>
+<dt>
+<dl readability="-2">
+<dt><b>Object:</b>&nbsp;</dt>
+<dt>The name of the database object that you are granting permissions for. In the case of granting privileges on a table, this would be the table name.</dt>
+<dt><br /></dt>
+<dt><b>User:</b>&nbsp;</dt>
+<dt>The name of the user that will be granted these privileges.</dt>
+<dd><div>
+<br /></div>
+</dd><dd><div>
+<br /></div>
+</dd></dl>
+</dt>
+<dt><b>Privileges:</b></dt>
+<dt><br /></dt>
+<dd readability="-1">The privileges to assign. It can be any of the following values:<br />
+<div class="std_table_responsive">
+<br /></div>
+</dd>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiYyZul8UY3fr0R2sUjc7IqTAx_vFgeKKs23qGEz5M6hlc8P4YYcvYWxRkM000U_FPz8G9P8zN38aaYPV7NiCNFkl46yAbGlAbfEr8FNLjqhYv7yhs1L676MnzsSX3NhgA6_NKZH5JgeN8/s1600/1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="251" data-original-width="565" height="141" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiYyZul8UY3fr0R2sUjc7IqTAx_vFgeKKs23qGEz5M6hlc8P4YYcvYWxRkM000U_FPz8G9P8zN38aaYPV7NiCNFkl46yAbGlAbfEr8FNLjqhYv7yhs1L676MnzsSX3NhgA6_NKZH5JgeN8/s320/1.png" width="320" /></a></div>
+<dt><br /></dt>
+<dt><b>Examples:</b></dt>
+</dl>
+<div>
+<br /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+--Assign database read permission to user</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<pre class="notranslate">USE [TESTDB]
+ALTER ROLE [db_datareader] ADD MEMBER [ROCK]</pre>
+<br /></div>
+<div dir="ltr" trbidi="on">
+--Assigning the SELECT and INSERT the table level permission</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<pre class="notranslate">GRANT SELECT,INSERT ON TEST TO ROCK; </pre>
+</div>
+<div dir="ltr" trbidi="on">
+<h2>
+Revoke Privileges on Table</h2>
+Once
+ you have granted privileges, you may need to revoke some or all of 
+these privileges. To do this, you can run a revoke command. You can 
+revoke any combination of SELECT, INSERT, UPDATE, DELETE, REFERENCES, 
+ALTER, or ALL.<br />
+<h3>
+Syntax</h3>
+The syntax for revoking privileges on a table in SQL Server is:<br />
+<pre class="notranslate">REVOKE privileges ON object FROM user;</pre>
+<dl readability="-2">
+<dt><br /></dt>
+<dt></dt>
+<dt><b>object:</b></dt>
+<dt>The name of the database object that you are revoking privileges for. In the case of revoking privileges on a table, this would be the table name.</dt>
+<dt><b><br /></b></dt>
+<dt><b>user:</b></dt>
+<dt></dt>
+<dt>The name of the user that will have these privileges revoked.</dt>
+<dt><b><br /></b></dt>
+<dt><b>privileges:</b></dt>
+<dt>It is the privileges to assign. It can be any of the following values:</dt>
+<dd readability="-1"><br /></dd><dd readability="-1"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiYyZul8UY3fr0R2sUjc7IqTAx_vFgeKKs23qGEz5M6hlc8P4YYcvYWxRkM000U_FPz8G9P8zN38aaYPV7NiCNFkl46yAbGlAbfEr8FNLjqhYv7yhs1L676MnzsSX3NhgA6_NKZH5JgeN8/s1600/1.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" data-original-height="251" data-original-width="565" height="141" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiYyZul8UY3fr0R2sUjc7IqTAx_vFgeKKs23qGEz5M6hlc8P4YYcvYWxRkM000U_FPz8G9P8zN38aaYPV7NiCNFkl46yAbGlAbfEr8FNLjqhYv7yhs1L676MnzsSX3NhgA6_NKZH5JgeN8/s320/1.png" width="320" /></a></dd>
+<dt><br /></dt>
+</dl>
+<h3>
+Example</h3>
+Let's look at some examples of how to revoke privileges on tables in SQL Server.<br />
+For example, if you wanted to revoke DELETE privileges on a table called&nbsp;<i>employees</i>&nbsp;from a user named&nbsp;<i>anurag</i>, you would run the following REVOKE statement:<br />
+<pre class="notranslate">REVOKE DELETE ON employees FROM anurag;</pre>
+If you wanted to revoke ALL permissions (ie: SELECT, INSERT, UPDATE, DELETE, and REFERENCES) on a table for a user named&nbsp;<i>anurag</i>, you could use the ALL keyword as follows:<br />
+<pre class="notranslate">REVOKE ALL ON employees FROM anurag;</pre>
+<br /></div>
+</div>
+</div>
+

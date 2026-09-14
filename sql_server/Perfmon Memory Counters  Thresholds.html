@@ -1,0 +1,133 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>Perfmon counters and thresholds to detect the memory pressure :</b><br />
+<br />
+<br />
+<b>Following are counters to identify SQL Server Memory consumption at the OS level:</b><br />
+<ul style="text-align: left;">
+<li><b>SQL SEVER: memory manager: total server memory</b></li>
+<li><b>SQL SEVER: memory manager: target server memory</b></li>
+</ul>
+<div>
+<ul style="text-align: left;"><ul>
+<li>Target server memory is equal to max server memory as we set in sp_configure parameter.</li>
+<li>Total server time not higher than equal to target memory.</li>
+<li>If <b>Total Server Memory </b>is <b>much smaller than</b> <b>Target Server Memory</b>&nbsp;it can be a sign of&nbsp;&nbsp;<b>Memory Pressure </b>or Max Server Memory is set to too low.</li>
+</ul>
+</ul>
+<div>
+<ul style="text-align: left;">
+<li><b>Lazy Writes/sec </b>which tells you that number of times the buffer pool flushed dirty pages to disk outside of the CHECKPOINT process.  This should be <b>near zero.</b></li>
+</ul>
+<ul style="text-align: left;">
+<li><b>Memory\Available MBytes: </b></li>
+<ul>
+<li>Not below 2 GB to 4GB, or If this value falls below 5% of installed RAM</li>
+</ul>
+</ul>
+</div>
+<ul style="text-align: left;">
+<li><b>Buffer Manager:Page life expectancy</b></li>
+</ul>
+</div>
+<ul style="text-align: left;"><ul>
+<li>Look at&nbsp;<b>Page Life Expectancy</b>, which should be well&nbsp;<b>above the 300&nbsp;</b>number&nbsp;</li>
+<li>Page life expectany if less than 300 seconds, pages are flushed from buffer.</li>
+</ul>
+</ul>
+<div>
+<ul style="text-align: left;">
+<li><b>SQL Server: Buffer Manager: Buffer Cache Hit Ratio</b></li>
+<ul>
+<li>Add more memory(ram) until the value is consistently greater than 90 percent</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>Memory:Page Writes/sec</b></li>
+<ul>
+<li>The same as Page reads/sec, the recommended value for Page writes/sec is below 90</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>SQLServer:Buffer Manager\Lazy writes/sec</b></li>
+<ul>
+<li>It write dirty pages to disk to make availbale buffer</li>
+<li>When this indicator is greater than 20, then it indicates a need for more memory</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>Memory Grants Pending</b></li>
+<ul>
+<li>Processes waiting for memory,value of this measurement should always be less or equal to 1.</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>Perfmon: Memory\Commit Limit</b></li>
+<ul>
+<li>This is the<b> total amount of memory </b>that can be used on the system, and is the <b>sum of RAM and pagefile space</b>. If pagefiles are set to automatically extend, and there is disk space for them to do so, then the commit limit can increase.</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>Perfmon: Memory\Committed Bytes</b></li>
+<ul>
+<li>Committed bytes includes memory that is not yet allocated to a process, but is reserved for future use.&nbsp;</li>
+<li>If commit limit exceeds system extends pagefile space if possible.</li>
+<li><b>Make sure: Committed Bytes &lt; Commit Limit</b></li>
+<li><b>Threshold issue:- if Committed Bytes &gt; Commit Limit</b></li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>Process(process_name)\Working Set:</b></li>
+<ul>
+<li>The WorkingSet counter shows the amount of memory that is used by a process.</li>
+<li>The working set is the set of memory pages that were touched recently by the threads in the process.</li>
+<li>If this number is consistently below the <b>amount of memory </b>that is set by the <b>min server memory and max server memory </b>server options, SQL Server is configured to use <b>too much memory</b>.</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li style="font-weight: bold;"><b>Process(process_name)\Private Bytes</b></li>
+<ul>
+<li>Shows the size, in bytes, that this process has allocated that cannot be shared with other processes.</li>
+</ul>
+</ul>
+<ul style="text-align: left;">
+<li><b>Memory CacheFaults/sec</b></li>
+<li><b>Memory - Page Faults/sec counter&nbsp;</b></li>
+<ul>
+<li>The Page faults/sec counter shows both <b>hard and soft page faults.</b></li>
+<li><b>Soft page faults </b>cause no performance issues reading from <b>memory </b>rather than <b>disk(hard fault)</b>.&nbsp;</li>
+<li>The normal values are <b>10 to 15</b>, but even <b>1,000 page faults per second </b>can be normal in specific environments.</li>
+<li>The value depends on the <b>type and amount of memory, and the speed of disk access.</b></li>
+</ul>
+</ul>
+<div>
+<br /></div>
+</div>
+<div>
+<ul style="text-align: left;">
+<li><b>Memory \ Pages /sec&nbsp;</b></li>
+<ul>
+<li>Memory \ Pages /sec is the rate at which pages are read from or written to disk to resolve hard page faults.</li>
+<li>It is the sum of <b>Memory \ Pages Input/sec</b> and <b>Memory \ Pages Output/sec.</b></li>
+<li>Both <b>Pages Input/sec </b>and <b>Pages Output/sec </b>values are recommended to be lower than <b>10 </b>means below <b>20 for Memory\ pages/sec.</b></li>
+<li>A <b>high rate </b>for the <b>Pages/sec counter </b>could indicate <b>excessive paging</b>.</li>
+<li>If the <b>Pages/sec </b>value is constantly higher than <b>50 or 70% </b>, to confirm that hard page faults.</li>
+<li>Monitor disk behavior and paging via <b>memory and disk counters</b>, such as <b>Pages Input/sec</b>, <b>Pages Output/sec</b>, <b>Disk Reads/sec</b>, and <b>Avg. Disk Read Bytes/sec</b></li>
+<li>If the <b>Pages / sec </b>multiplied by <b>4,000 (the 4k page size)</b> is greater than <b>70%</b> of the total number of <b>LogicalDIsk: Disk Bytes/ sec</b> to the disk(s)</li>
+</ul>
+</ul>
+<div>
+<br /></div>
+<ul style="text-align: left;">
+<li><b>Memory\ Page Reads/sec</b></li>
+<ul>
+<li>The Page Reads counter allows you to <b>track hard page faults</b>.</li>
+<li>Compare the value of <b>Memory \ Pages Reads/sec</b> to the value of <b>Memory \ Pages     Input/sec</b> to determine the <b>average number of pages read </b>during each operation.</li>
+<li>The same as <b>Page reads/sec</b>, the recommended value for Page writes/sec is below 90</li>
+</ul>
+</ul>
+<div>
+<br /></div>
+<b>References: <a href="http://blogs.microsoft.co.il/sasha/2016/01/05/windows-process-memory-usage-demystified/" target="_blank">Microsoft</a>&nbsp;<a href="http://sqlguru.in/memory.html" target="_blank">SQLGuru</a></b><br />
+<br /></div>
+</div>
+

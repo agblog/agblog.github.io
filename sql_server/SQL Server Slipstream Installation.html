@@ -1,0 +1,155 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" id="docs-internal-guid-6f3d92d8-7fff-2d9e-569c-2404fe13426f">
+<br /></div>
+<div dir="ltr" id="docs-internal-guid-6f3d92d8-7fff-2d9e-569c-2404fe13426f">
+Slipstream is an installation method in SQL Server where SQL Server Instance and Service Pack/CU can be packaged together. This feature has been introduced from SQL 2008 SP1.</div>
+<div dir="ltr" id="docs-internal-guid-6f3d92d8-7fff-2d9e-569c-2404fe13426f">
+Slip stream SQL Server 2008 R2 with SP1:</div>
+<div dir="ltr">
+Here are the steps:</div>
+<div dir="ltr">
+1. Copy your original SQL Server 2008 R2 source media to C:\SQLServer2008R2_SP1</div>
+<div dir="ltr">
+2. Download the SQL Server 2008 R2 SP1 packages from&nbsp;<a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26727">here</a>. You need to download all Service Pack 1 architecture packages:</div>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+SQLServer2008R2SP1-KB2528583-IA64-ENU.exe</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+SQLServer2008R2SP1-KB2528583-x64-ENU.exe</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+SQLServer2008R2SP1-KB2528583-x86-ENU.exe</div>
+</li>
+</ul>
+<div dir="ltr">
+3. Extract each of the&nbsp;SQL Server 2008 SP1&nbsp;packages to C:\SQLServer2008R2_SP1\SP as follows:</div>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+SQLServer2008R2SP1-KB2528583-IA64-ENU.exe /x:C:\SQLServer2008R2_SP1\SP</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+SQLServer2008R2SP1-KB2528583-x64-ENU.exe /x:C:\SQLServer2008R2_SP1\SP</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+SQLServer2008R2SP1-KB2528583-x86-ENU.exe /x:C:\SQLServer2008R2_SP1\SP</div>
+</li>
+</ul>
+<div dir="ltr">
+Ensure you complete this step for all architectures to ensure the original media is updated correctly.</div>
+<div dir="ltr">
+4. Copy Setup.exe from the SP extracted location to the original source media location. Here is the robocopy command:</div>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+robocopy C:\SQLServer2008R2_SP1\SP C:\SQLServer2008R2_SP1 Setup.exe</div>
+</li>
+</ul>
+<div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1GKEpYXViYZazvklMMSYVkYfp0H9hIUtA7H8VH3QEXxMLgQRGsaSZebRmzSofYktSCFTDwUZEx58ZffnNYKWwYFY25PbYTS-XQsRzU60jAhnEdqxZ4m1rYkC0P8z2lPd_omEm9bXwd876/s1600/1578336756958894-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1GKEpYXViYZazvklMMSYVkYfp0H9hIUtA7H8VH3QEXxMLgQRGsaSZebRmzSofYktSCFTDwUZEx58ZffnNYKWwYFY25PbYTS-XQsRzU60jAhnEdqxZ4m1rYkC0P8z2lPd_omEm9bXwd876/s1600/1578336756958894-0.png" width="400" /></a></div>
+</div>
+<div dir="ltr">
+5. Copy all files not the folders,&nbsp;except the Microsoft.SQL.Chainer.PackageData.dll, in C:\SQLServer2008R2_SP1\SP\&lt;architecture&gt; to C:\SQLServer2008R2_SP1\&lt;architecture&gt; to update the original files. Here is the robocopy command:</div>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+robocopy C:\SQLServer2008R2_SP1\SP\x86 C:\SQLServer2008R2_SP1\x86 /XF Microsoft.SQL.Chainer.PackageData.dll</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+robocopy C:\SQLServer2008R2_SP1\SP\x64 C:\SQLServer2008R2_SP1\x64 /XF Microsoft.SQL.Chainer.PackageData.dll</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+robocopy C:\SQLServer2008R2_SP1\SP\ia64 C:\SQLServer2008R2_SP1\ia64 /XF Microsoft.SQL.Chainer.PackageData.dll</div>
+</li>
+</ul>
+<div dir="ltr">
+6. Determine if you have a DefaultSetup.INI at the following locations:</div>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+C:\SQLServer2008R2_SP1\x86</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+C:\SQLServer2008R2_SP1\x64</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+C:\SQLServer2008R2_SP1\ia64</div>
+</li>
+</ul>
+<div dir="ltr">
+If you have a DefaultSetup.INI at the above locations, add the following lines to each DefaultSetup.INI:</div>
+<div dir="ltr">
+PCUSOURCE=".\SP"</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+If you do NOT have a DefaultSetup.INI, create one with the following content:</div>
+<div dir="ltr">
+;SQLSERVER2008 R2 Configuration File</div>
+<div dir="ltr">
+[SQLSERVER2008]</div>
+<div dir="ltr">
+PCUSOURCE=".\SP"</div>
+<div dir="ltr">
+and copy to the following locations</div>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+C:\SQLServer2008R2_SP1\x86</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+C:\SQLServer2008R2_SP1\x64</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+C:\SQLServer2008R2_SP1\ia64</div>
+</li>
+</ul>
+<div dir="ltr">
+This file will tell the setup program where to locate the SP source media that you previously extracted.</div>
+<div dir="ltr">
+7. Run setup.exe as you normally would.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+<b>How to know slipstreaming:</b></div>
+<div><div class="separator" style="clear: both; text-align: center;"><br /></div></div><div class="separator" style="clear: both; text-align: center;"><ol style="text-align: left;"><li dir="ltr"><div dir="ltr" role="presentation">You should see the "Update Setup Media Language Rule" on the Installation Rules dialog:</div></li></ol><div dir="ltr" style="text-align: left;"><br /></div><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8yXjdqHO92bMcleZZou9epNnE2QlbF6d6cX8oUaY-vWEG4iGTlXSUt6mDn6TfklNT8gtb-27q0aLqMj7voqROJgwRC6JZorYFj_SkhP3e3032IFTUoVfbx104aWDHUuqpRmZX0cca8WxD/s1600/1578336752491104-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8yXjdqHO92bMcleZZou9epNnE2QlbF6d6cX8oUaY-vWEG4iGTlXSUt6mDn6TfklNT8gtb-27q0aLqMj7voqROJgwRC6JZorYFj_SkhP3e3032IFTUoVfbx104aWDHUuqpRmZX0cca8WxD/s1600/1578336752491104-1.png" width="400" /></a></div><br style="text-align: left;" /><div dir="ltr" style="text-align: left;">2) On the Ready to Install dialog, the Action will indicated (â€œSlipstreamâ€):</div><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtZ7nUdj59-A3Hp5wh8-IMGgcNu7NUAeGNiA11HZfihxds7GXihkfBXLJML7v5sU83I27GYuxK__Gd162OKJZ3w6BqCLb8bqKalyh5gHnUGB_pNMo2MbGSQQHtxBnXLtqCjIbxktx14Ua4/s1600/1578336748080214-2.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtZ7nUdj59-A3Hp5wh8-IMGgcNu7NUAeGNiA11HZfihxds7GXihkfBXLJML7v5sU83I27GYuxK__Gd162OKJZ3w6BqCLb8bqKalyh5gHnUGB_pNMo2MbGSQQHtxBnXLtqCjIbxktx14Ua4/s1600/1578336748080214-2.png" width="400" /></a></div><div><br /></div></div>
+<br />
+<div dir="ltr">
+</div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhDy9IWlDotUVJKauCmWio6Uzdg1Byv8vGXWIRhYC6tVzcAiv6EKaOP-M7sI9BlbEvM4fxnSxHVilQqk4yx6ryxuJNWExzbUNxO0hpSiISOSFi4p1jC9E_nvKCivDebGwVFDFoNsSdSdS0T/s1600/1578336743623690-3.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhDy9IWlDotUVJKauCmWio6Uzdg1Byv8vGXWIRhYC6tVzcAiv6EKaOP-M7sI9BlbEvM4fxnSxHVilQqk4yx6ryxuJNWExzbUNxO0hpSiISOSFi4p1jC9E_nvKCivDebGwVFDFoNsSdSdS0T/s1600/1578336743623690-3.png" width="400" /></a></div>
+<br />
+<div dir="ltr">
+SQL Server Version number changed from&nbsp;</div>
+<div dir="ltr">
+10.50.1600.0 to 10.50.2500.0</div>
+<div class="separator">
+</div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMuMS8AulBVmYD1faAVoA2fB_PbQkVu5BQctqJTwaLzQXboPDlKvO8Wb4WwewHMPjcFQpIj-Z8WSZ6ImyNeuiteCN5-KmbLzjQb1ENtCL2GSOJL_6fk3ty9dqcSKiZJyC6D0LyQJVP4uUs/s1600/1578336738581442-4.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMuMS8AulBVmYD1faAVoA2fB_PbQkVu5BQctqJTwaLzQXboPDlKvO8Wb4WwewHMPjcFQpIj-Z8WSZ6ImyNeuiteCN5-KmbLzjQb1ENtCL2GSOJL_6fk3ty9dqcSKiZJyC6D0LyQJVP4uUs/s1600/1578336738581442-4.png" width="400" /></a></div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMuMS8AulBVmYD1faAVoA2fB_PbQkVu5BQctqJTwaLzQXboPDlKvO8Wb4WwewHMPjcFQpIj-Z8WSZ6ImyNeuiteCN5-KmbLzjQb1ENtCL2GSOJL_6fk3ty9dqcSKiZJyC6D0LyQJVP4uUs/s1600/1578336738581442-4.png"><br /></a></div>
+<div dir="ltr">
+<b>Here is what we should do to slipstream SQL Server 2012 and 2014:</b></div>
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Download SQL Server 2012 or SQL Server 2014 media</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Download all the needed SPs, CUs and Hotfixes that you want to â€œembedâ€</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Put all of the .exe files in one directory</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Launch the setup.exe from CMD by issuing the command:</div>
+</li>
+</ol>
+<div dir="ltr">
+Setup.exe /Action=Install /UpdateEnabled=TRUE /UpdateSource=â€path_to_the_directroy_where_the_hotfixes_areâ€</div>
+<div dir="ltr">
+F:\batch_27_mssql_server\SQL_SERVER_2012\setup.exe /Action=Install /UpdateEnabled=TRUE /UpdateSource=F:\Software\SP2012</div>
+<div dir="ltr">
+Following window comes that shows SP4 found at location F:\Software\SP2012:</div>
+<div dir="ltr">
+</div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD8Nv_tzjhYACRb1GikW6exdYLFrPaRIDL48VIAQWdx7OV8U6DbqKQbPv4U-78-VecjH_kixWvZmeh4yChz5TeR__rNde5yngz-NlKq3riExGQ2M6OV90iSk3ec7OPenU3VZsFDXJwQtzX/s1600/1578336733804380-5.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD8Nv_tzjhYACRb1GikW6exdYLFrPaRIDL48VIAQWdx7OV8U6DbqKQbPv4U-78-VecjH_kixWvZmeh4yChz5TeR__rNde5yngz-NlKq3riExGQ2M6OV90iSk3ec7OPenU3VZsFDXJwQtzX/s1600/1578336733804380-5.png" width="400" /></a></div><br /><div dir="ltr">If there are two updates in folder&nbsp;</div><div dir="ltr">Sp1 and sp4 it would take latest update</div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV4v3NQZL7HicHn9ZcRs_mEekiPyipvx6nq5uvMZn-gHISt1femDTXKWbOY-2JF4wsLgvJy244II6OT9rFGs7TGuHlI4M96SuTEqTdAPo2gO6wqZqoahkoU8HaKjhuO5c2eLSWGbopCUdr/s1600/1578336728978513-6.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV4v3NQZL7HicHn9ZcRs_mEekiPyipvx6nq5uvMZn-gHISt1femDTXKWbOY-2JF4wsLgvJy244II6OT9rFGs7TGuHlI4M96SuTEqTdAPo2gO6wqZqoahkoU8HaKjhuO5c2eLSWGbopCUdr/s1600/1578336728978513-6.png" width="400" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijS7aImypu8MjjGJhbuQdgEFz-lzSHdWf6bdM6pJddEC-W_4Ynm-lwCf2Bj_e6ZTVDPwAndIYy9e0CLYbdlsq9uGG98iEONz1w9DySDXGrn6d-979gq7E_nSL9wmVuE1dIZhiYTZHUGKeK/s1600/1578336724912672-7.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijS7aImypu8MjjGJhbuQdgEFz-lzSHdWf6bdM6pJddEC-W_4Ynm-lwCf2Bj_e6ZTVDPwAndIYy9e0CLYbdlsq9uGG98iEONz1w9DySDXGrn6d-979gq7E_nSL9wmVuE1dIZhiYTZHUGKeK/s1600/1578336724912672-7.png" width="400" /></a></div><div dir="ltr"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjbP4dB3jayYM_Dsk4kAgeG8f7XZtMGhjQG4aTsvG3fAsPVduj4mk9MXpOgNAxCGTPOX1hWc25vZX2HETMCdai3zsW7YdaEUwh6vRvC32jvax5d5Nnlozuvf3r6w0lCYfLTQUhGqmobJn0o/s1600/1578336719070202-8.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjbP4dB3jayYM_Dsk4kAgeG8f7XZtMGhjQG4aTsvG3fAsPVduj4mk9MXpOgNAxCGTPOX1hWc25vZX2HETMCdai3zsW7YdaEUwh6vRvC32jvax5d5Nnlozuvf3r6w0lCYfLTQUhGqmobJn0o/s1600/1578336719070202-8.png" width="400" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div>
+<br />
+<div dir="ltr">
+<br /></div>
+</div>
+

@@ -1,0 +1,62 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<pre class="prettyprint"><b>Fragmentation</b>:<code class="language-sql">
+
+USE dbname 
+IF OBJECT_ID('tempdb..#table3') IS NOT NULL
+DROP TABLE #table3
+select * into #table3 from(
+
+select row_number()over(partition by S.name,b.Name order by b.Name) as rowno,
+DB_NAME(PS.database_id) AS dbName,
+S.name  AS SchemaName,O.name AS TableName,
+b.name AS indexName,b.fill_factor,st.row_count,
+SUM(RW.user_seeks + RW.user_scans + RW.user_lookups)Reads , SUM(RW.user_updates)Writes,
+RW.last_user_update,
+STATS_DATE(i.[object_id], i.index_id) AS [Statistics Date], 
+
+PS.avg_fragmentation_in_percent
+FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS PS
+INNER JOIN 
+sys.dm_db_index_usage_stats  AS RW 
+ON PS.OBJECT_ID = RW.OBJECT_ID AND PS.index_id = RW.index_id
+INNER JOIN sys.indexes AS b ON PS.OBJECT_ID = b.OBJECT_ID AND PS.index_id = b.index_id
+INNER JOIN sys.objects O  ON PS.object_id = O.object_id
+INNER JOIN sys.indexes AS i WITH (NOLOCK)
+ON O.[object_id] = i.[object_id]
+INNER JOIN sys.dm_db_partition_stats AS st WITH (NOLOCK)
+ON O.[object_id] = st.[object_id]
+
+INNER JOIN sys.schemas S ON S.schema_id = O.schema_id
+WHERE  
+PS.avg_fragmentation_in_percent &gt; 30 and
+PS.index_type_desc IN ('CLUSTERED INDEX','NONCLUSTERED INDEX') -- Only get clustered and nonclustered indexes
+AND b.is_hypothetical = 0 -- Only real indexes
+AND O.type_desc = 'USER_TABLE' -- Restrict to user tables
+AND PS.page_count &gt; 8 --- ignore tables less tha 64K
+group by
+PS.database_id,S.name  ,O.name,b.name,PS.avg_fragmentation_in_percent
+,RW.last_user_update,b.fill_factor
+,STATS_DATE(i.[object_id], i.index_id),st.row_count
+)
+as x 
+where rowno=2
+
+
+
+SELECT 
+dbName,
+SchemaName,TableName,
+indexName,fill_factor,row_count,
+Reads ,Writes,
+last_user_update,
+[Statistics Date], avg_fragmentation_in_percent
+,DATEDIFF(DAY, [Statistics Date], getdate()) AS 'DaysElapsed' from #table3
+ORDER BY avg_fragmentation_in_percent DESC</code></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+<div dir="ltr" id="docs-internal-guid-48f604c5-7fff-8410-c3e3-4303742d9087" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+Output:<span style="background-color: transparent; color: black; font-family: &quot;calibri&quot;; font-size: 11pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre;"><br /></span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: &quot;calibri&quot;; font-size: 11pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"><span style="border: none; display: inline-block; height: 36px; overflow: hidden; width: 601px;"><img height="36" src="https://lh4.googleusercontent.com/Kculr4pJWXT88TdeR75bMzTghd6ymO0izOq3wRukmetx3drFsp6FMDqvQF8nCjuEI8a7jTA8S7gHDiJiM4vzdTx9KfexdKiirYCtV8UqrsDlEYQww52Qp-2NSUmfoCEXVNXZK8pQRGCMj0kkdA" style="margin-left: 0px; margin-top: 0px;" width="601" /></span></span></div>
+</div>
+

@@ -1,0 +1,56 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+Following are the requirements for clustering:<br />
+<b><br /></b>
+<br />
+<h2 style="text-align: left;">
+Physical Hardware Requirements<b>:</b> </h2>
+</div>
+<div>
+Instances of SQL Server requires the following resource:&nbsp;</div>
+<div>
+1.Processor 2 processors for each instance.&nbsp;</div>
+<div>
+2. Memory 2 GB of memory for each instance.</div>
+<div>
+3. Network adapters- Microsoft certified network adapter. Converged adapter or iSCSI Adapter or HBA.&nbsp;</div>
+<div>
+4. Storage Adapter- multipath I/O (MPIO) supported hardware&nbsp;</div>
+<div>
+5. Storage â€“ shared storage that is compatible with Windows Server 2008/2012. Storage requirements include the following:</div>
+<div>
+â€¢ Use basic disks, not dynamic disks.&nbsp;</div>
+<div>
+â€¢ Use NTFS partition.&nbsp;</div>
+<div>
+â€¢ Use either master boot record (MBR) or GUID partition table (GPT).&nbsp;</div>
+<div>
+â€¢ Storage volume larger than 2 terabytes, use GUID partition table (GPT).&nbsp;</div>
+<div>
+â€¢ Storage volumes smaller than 2 terabytes, use master boot record (MBR).&nbsp;</div>
+<div>
+â€¢ 4 disks for each instances of SQL Server as a cluster disk.</div>
+<div>
+â€¢ Cluster storage must not be Windows Distributed File System (DFS)</div>
+<div>
+<br /></div>
+<div>
+<div>
+<h2 style="text-align: left;">
+Software Requirements:</h2>
+</div>
+<div>
+<b><br /></b></div>
+<div>
+Download SQL Server 2012 installation media. Review SQL Server 2012 Release Notes. Install the following prerequisite software on each failover cluster node and then restart nodes once before running Setup.&nbsp;</div>
+<div>
+1. Windows Power Shell 2.0&nbsp;</div>
+<div>
+2. .NET Framework 3.5 SP1&nbsp;</div>
+<div>
+3. .NET Framework 4&nbsp;</div>
+</div>
+<div>
+<br /></div>
+</div>
+

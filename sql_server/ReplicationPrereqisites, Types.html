@@ -1,0 +1,223 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<b>What is replication?</b><br />
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+Replication
+ is subset of SQL Server that can move data and database objects in an 
+automated way from one database to another database. This allows users 
+to work with the same data at different locations and changes that are 
+made are transferred to keep the databases synchronized.</div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+<div class="MsoNormal">
+<h2 style="text-align: left;">
+<b>Types of replication?</b></h2>
+</div>
+<ul type="disc">
+<li class="MsoNormal"><b>Snapshot replication</b>&nbsp;â€“ As the name implies 
+snapshot replication takes a snapshot of the published objects and 
+applies it to a subscriber. Snapshot replication completely overwrites 
+the data at the subscriber each time a snapshot is applied. It is best 
+suited for fairly static data or if itâ€™s acceptable to have data out of 
+sync between replication intervals. A subscriber does not always need to
+ be connected, so data marked for replication can be applied the next 
+time the subscriber is connected.&nbsp; An example use of snapshot 
+replication is to update a list of items that only changes periodically.</li>
+</ul>
+<div>
+<br /></div>
+<ul type="disc">
+<li class="MsoNormal"><b>Transactional replication</b>&nbsp;â€“ As the name 
+implies, it replicates each transaction for the article being published.
+ To set up transactional replication, a snapshot of the publisher or a 
+backup is taken and applied to the subscriber to synchronize the data. 
+After that, when a transaction is written to the transaction log, the 
+Log Reader Agent reads it from the transaction log and writes it to the 
+distribution database and then to the subscriber. Only committed 
+transactions are replicated to ensure data consistency. Transactional 
+replication is widely applied where high latency is not allowed, such as
+ an OLTP system for a bank or a stock trading firm, because you always 
+need real-time updates of cash or stocks.</li>
+</ul>
+<div>
+<br /></div>
+<ul type="disc">
+<li class="MsoNormal"><b>Merge replication</b>&nbsp;â€“ This is the most 
+complex types of replication which allows changes to happen at both the 
+publisher and subscriber.&nbsp; As the name implies, changes are merged to 
+keep data consistency and a uniform set of data. Just like transactional
+ replication, an initial synchronization is done by applying snapshot. 
+When a transaction occurs at the Publisher or Subscriber, the change is 
+written to change tracking tables. The Merge Agent checks these tracking
+ tables and sends the transaction to the distribution database where it 
+gets propagated.&nbsp; The merge agent has the capability of resolving 
+conflicts that occur during data synchronization.&nbsp; An example of using 
+merge replication can be a store with many branches where products may 
+be centrally stored in inventory. As the overall inventory is reduced it
+ is propagated to the other stores to keep the databases synchronized.</li>
+</ul>
+<div>
+<br /></div>
+<ul type="disc">
+<li class="MsoNormal"><div class="MsoNormal">
+<b>Peer to Peer replication.</b></div>
+<div class="MsoNormal">
+Peer-to-peer replication provides a scale-out 
+and high-availability solution by maintaining copies of data across 
+multiple server instances, also referred to as nodes. Built on the 
+foundation of transactional replication, peer-to-peer replication 
+propagates transactionally consistent changes in near real-time. This 
+enables applications that require scale-out of read operations to 
+distribute the reads from clients across multiple nodes. Because data is
+ maintained across the nodes in near real-time, peer-to-peer replication
+ provides data redundancy, which increases the availability of data</div>
+</li>
+</ul>
+<div class="MsoNormal">
+<h2 style="text-align: left;">
+<b>Agents of replication?</b></h2>
+</div>
+<ul type="disc">
+<li class="MsoNormal"><b>Snapshot Agent-&nbsp;</b>The Snapshot Agent is used 
+with all types of replication. It prepares the schema and the initial 
+bulk copy files of published tables and other objects, stores the 
+snapshot files, and records information about synchronization in the 
+distribution database. The Snapshot Agent runs at the Distributor.</li>
+</ul>
+<div>
+<br /></div>
+<ul type="disc">
+<li class="MsoNormal"><b>Log Reader Agent â€“&nbsp;</b>The Log Reader Agent is 
+used with transactional replication. It moves transactions marked for 
+replication from the transaction log on the Publisher to the 
+distribution database. Each database published using transactional 
+replication has its own Log Reader Agent that runs on the Distributor 
+and connects to the Publisher (the Distributor can be on the same 
+computer as the Publisher)</li>
+</ul>
+<ul type="disc">
+<li class="MsoNormal"><b>Distribution Agent â€“&nbsp;</b>The Distribution Agent
+ is used with snapshot replication and transactional replication. It 
+applies the initial snapshot to the Subscriber and moves transactions 
+held in the distribution database to Subscribers. The Distribution Agent
+ runs at either the Distributor for push subscriptions or at the 
+Subscriber for pull subscriptions.</li>
+</ul>
+<div>
+<br /></div>
+<ul type="disc">
+<li class="MsoNormal"><b>Merge Agent â€“&nbsp;</b>The Merge Agent is used with 
+merge replication. It applies the initial snapshot to the Subscriber and
+ moves and reconciles incremental data changes that occur. Each merge 
+subscription has its own Merge Agent that connects to both the Publisher
+ and the Subscriber and updates both. The Merge Agent runs at either the
+ Distributor for push subscriptions or the Subscriber for pull 
+subscriptions.</li>
+</ul>
+<div>
+<br /></div>
+<ul type="disc">
+<li class="MsoNormal"><b>Queue Reader Agent â€“&nbsp;</b>The Queue Reader Agent
+ is used with transactional replication with the queued updating option.
+ The agent runs at the Distributor and moves changes made at the 
+Subscriber back to the Publisher. Unlike the Distribution Agent and the 
+Merge Agent, only one instance of the Queue Reader Agent exists to 
+service all Publishers and publications for a given distribution 
+database.</li>
+</ul>
+<div>
+<div class="MsoNormal">
+<h2 style="text-align: left;">
+<b>Prerequisites of transactional replication?</b></h2>
+</div>
+<div class="MsoNormal">
+<b><br /></b></div>
+<div class="MsoNormal">
+<b>Primary Key:</b></div>
+<div class="MsoNormal">
+This
+ is a basic rule that every article should have a Primary&nbsp;Key to be a 
+candidate table for Transactional Replication.&nbsp;Primary keys are used to 
+maintain uniqueness of records and to maintain &nbsp;referential integrity 
+between tables, and that is why it is recommended for&nbsp;every article to 
+have a primary key.</div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+<b>Securing snapshot folder:</b></div>
+<div class="MsoNormal">
+<b><br /></b></div>
+<div class="MsoNormal">
+<b>Schedule:</b></div>
+<div class="MsoNormal">
+<b><br /></b></div>
+<div class="MsoNormal">
+<b>Network bandwidth:</b></div>
+<div class="MsoNormal">
+<b><br /></b></div>
+<div class="MsoNormal">
+<b>Enough disk space for database being published</b>:</div>
+<div class="MsoNormal">
+We
+ need to make sureWe need to make sure&nbsp;that we have ample space 
+available for the transaction log for the published&nbsp;database, as it will
+ continue to grow and wonâ€™t truncate the log records until&nbsp;they are 
+moved to the distribution database. Please note that even in 
+simple&nbsp;recovery model, the log fle can grow large if replication breaks.
+ That is the&nbsp;reason it is recommended to set T-logâ€™s auto grow option to
+ value â€œtrueâ€. &nbsp;We should also make sure that the distribution database 
+is available and &nbsp;log reader agent is running.</div>
+<div class="MsoNormal">
+<b><br /></b></div>
+<div class="MsoNormal">
+<b>Enough disk space for distribution database:</b></div>
+<div class="MsoNormal">
+It
+ is necessary to have&nbsp;enough disk space allocated to the distribution 
+database. This is because the&nbsp;distribution database will store the 
+transactions marked for replication until&nbsp;it is applied to the 
+subscriber database within the limit of retention period of&nbsp;distribution
+ (which is 72 hours by default), or it will retain the 
+transactions&nbsp;until the snapshot agent re-runs and creates a new 
+snapshot. re-runs and creates a new snapshot.</div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+<b>Use domain account as service account:</b></div>
+<div class="MsoNormal">
+We
+ should always use the domain&nbsp;account as a service account, so that when
+ agents access the shared folder&nbsp;of snapshot fles, it wonâ€™t have any 
+problem just because they are local to&nbsp;the system and do not have 
+permission to access network share. While&nbsp;mentioning service account, we
+ are asked to choose from two built-in&nbsp;accounts including Local System 
+account, Network Services, and this&nbsp;account, wherein we have to specify 
+the domain account on which the&nbsp;service account will run.</div>
+</div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+<div class="MsoNormal">
+<h2 style="text-align: left;">
+<b>&nbsp;Push and Pull replication.</b></h2>
+</div>
+<ul type="disc">
+<li class="MsoNormal"><b>Push â€“&nbsp;</b>As the name implies, a push 
+subscription pushes data from publisher to the subscriber. Changes can 
+be pushed to subscribers on demand, continuously, or on a scheduled 
+basis.</li>
+<li class="MsoNormal"><b>Pull â€“&nbsp;</b>As the name implies, a pull 
+subscription requests changes from the Publisher.&nbsp; This allows the 
+subscriber to pull data as needed.&nbsp; This is useful for disconnected 
+machines such as notebook computers that are not always connected and 
+when they connect they can pull the data.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+

@@ -1,0 +1,62 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+SQL Server supports following types of installation âˆ’<br />
+<ul class="list">
+<li>Graphical Installation</li>
+<li>Silent Installation Using Command Line</li>
+<li>Installation Using ConfigurationFile.ini File</li>
+<li>Slipstream Installation</li>
+</ul>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>Situations on which Installation type to choose :</b></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+Imagine a situation when you are tasked to install a dozen of SQL Server instances.<br />
+Using <b>graphical installation</b> can take a significant amount of resources and time, also there is a probability of errors due to typos (e.g. in directory paths, etc.)<br />
+There are following options that can be used for the installation:<br />
+<ol>
+<li>Using ConfigurationFile.ini</li>
+<li>Using command line parameters to setup.exe file</li>
+<li>Slipstream Installation</li>
+</ol>
+<div>
+<div class="MsoNormal">
+<b>Slipstream</b> is an installation method in SQL Server where SQL Server Instance and Service Pack/CU can be packaged together. This feature has been introduced from SQL 2008 SP1.</div>
+<div class="MsoNormal">
+This is also command based installation using parameters:</div>
+<div class="MsoNormal">
+<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+&nbsp;<i>/Action="i</i>nstall"</div>
+<div class="MsoNormal">
+<o:p></o:p></div>
+<div class="MsoNormal">
+/<i>UpdateEnabled</i>="<i>True or 1" /"</i><i>False or 0"&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</i></div>
+<div class="MsoNormal">
+<o:p></o:p></div>
+<div class="MsoNormal">
+/<i>UpdateSource=</i>"<i>MU"/"</i><i>UNC path"/"</i><i>.\Myupdates"</i></div>
+Inside file we have several sections that are interesting for silent Installation:<br />
+<ol>
+<li>QUIET â€“ determines if a user interface is disabled</li>
+<li>QUIETSIMPLE â€“ Setup will display&nbsp; progress only, without any user interaction</li>
+<li>UIMODE â€“&nbsp;defines how User Interface will be displayed, requires that QUIETSIMPLE is set to True</li>
+<li>UpdateEnabled â€“ allows installation of updates</li>
+<li>UpdateSource â€“ specifies the location of updates</li>
+<li>INDICATEPROGRESS â€“ specifies that the detailed log will be shown on the console</li>
+</ol>
+Possible values of above parameters:<br />
+<div>
+<ol>
+<li>QUIET=â€Falseâ€</li>
+<li>QUIETSIMPLE=â€Falseâ€</li>
+<li>UIMODE=â€Normalâ€</li>
+<li>UpdateEnabled=â€Trueâ€</li>
+<li>UpdateSource=â€MUâ€</li>
+<li>INDICATEPROGRESS=â€Falseâ€</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+

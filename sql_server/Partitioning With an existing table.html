@@ -1,0 +1,186 @@
+﻿<div dir="ltr" id="docs-internal-guid-0afd392d-7fff-f67b-3843-fb37681d7876"><br></div><div dir="ltr" id="docs-internal-guid-0afd392d-7fff-f67b-3843-fb37681d7876"><font color="#2a2a2a"><br></font></div><div dir="ltr" id="docs-internal-guid-0afd392d-7fff-f67b-3843-fb37681d7876">Partitioning can be achieved in two different ways:</div><ol><li dir="ltr"><div dir="ltr" role="presentation">With a new table.</div></li><li dir="ltr"><div dir="ltr" role="presentation">With an existing table.</div></li></ol><div dir="ltr">Partitioning Steps:</div><ul><li dir="ltr"><div dir="ltr" role="presentation">Partition Range Function</div></li><li dir="ltr"><div dir="ltr" role="presentation">Partition Schemes</div></li><li dir="ltr"><div dir="ltr" role="presentation">Dropping and recreating the Clustered Index on the table to be partitioned</div></li></ul><br><br><div dir="ltr">SQL SERVER DATE - format&nbsp;YYYY-MM-DD.&nbsp;</div><br><br><h1 dir="ltr">With an existing table.</h1><br><div dir="ltr">To get table definition:</div><br><div dir="ltr"><img height="168" src="https://lh4.googleusercontent.com/YA9VEHSE3ahTTDAc-VcVBp4ZHMThICEOLHUuGSuZ0Rer09RscSOszNq5sybcajDGTmQqpyGQegXC_WSSH6AbaCj6vfMSmav1b2ZkK7rRdp2fwqoqPf3WErXwgXnuocyB5eSK-LBDrADOWuzTeg" width="554"></div><br><div dir="ltr"></div><b>Creating Table and Index:&nbsp;</b><br><br><pre class="prettyprint"><code class="language-sql">CREATE TABLE dbo.PartitionedTable_Existing
+
+(PKID INT IDENTITY(1,1),
+
+ ColA VARCHAR(10),
+
+ ColB VARCHAR(10),
+
+ CreatedDate DATE)
+
+ GO
+
+ALTER TABLE dbo.PartitionedTable_Existing ADD CONSTRAINT PK_PartitionedTable_Existing PRIMARY KEY CLUSTERED (PKID)
+
+GO
+
+CREATE NONCLUSTERED INDEX IX_PartitionedTable_COLACOLB ON dbo.PartitionedTable_Existing (ColA,ColB)
+
+  WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+
+        ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) 
+
+  ON [PRIMARY]
+
+GO
+
+</code></pre><b>Populating Data:</b><br><pre class="prettyprint"><code class="language-sql">
+
+SET NOCOUNT ON;
+
+    SET STATISTICS IO OFF;
+
+    
+
+    DECLARE @FromDate date = '2014-01-01';
+
+    DECLARE @ToDate date =   '2017-01-01';
+
+    
+
+    INSERT INTO dbo.PartitionedTable_Existing
+
+    SELECT 
+
+        REPLICATE('A',10),
+
+        REPLICATE('B',10),
+
+        DATEADD(DD,FLOOR(RAND()*(DATEDIFF(DD,@FromDate,@ToDate))),@FromDate);
+
+GO 1000
+</code></pre><br>Checking if having single partition:<br><pre class="prettyprint"><code class="language-sql">
+
+
+SELECT o.name objectname,i.name indexname, partition_id, partition_number, [rows]
+
+FROM sys.partitions p
+
+INNER JOIN sys.objects o ON o.object_id=p.object_id
+
+INNER JOIN sys.indexes i ON i.object_id=p.object_id and p.index_id=i.index_id
+
+WHERE o.name LIKE '%Partitioned%'
+
+
+</code></pre><div dir="ltr"><img height="207" src="https://lh3.googleusercontent.com/OJ-ZTkk_xvR7FQEm3KjpSpvUTguj1CwJf2HiDvifDfqF2QKSTUUwAm4eftR_54cnuI1q_Fg30Bt5Fa8SPb8XKYQVuVP_w7NuLCze_0MEYJkk8rcpIjGy6e2fUf_TBITrIacKltCshAfpetvRqg" width="553"></div><br><div dir="ltr">The above table dbo.PartitionedTable_Existing&nbsp;is single partition as partition_number is 1.</div><pre class="prettyprint"><code class="language-sql">
+
+select CreatedDate, count(*) from PartitionedTable_Existing
+
+group by CreatedDate
+
+</code></pre><div dir="ltr"><img height="135" src="https://lh5.googleusercontent.com/QFmf1og9S2E9WoboPTUMpPsMDe4nAvmA4akxHIFaBLvzmgHKU3FGcFzwC1M_KigKMY-LfwLZD6SQUfev9HKTUqlE3Tq_mVf45JkP2LhBdiosIFk195vCNMIYxWQlHyGtQVc_C_jcUX_hGEdHMg" width="468"></div><br><div dir="ltr">Total rows:</div><pre class="prettyprint"><code class="language-sql">
+
+SELECT count(*) FROM dbo.PartitionedTable_Existing 
+
+WHERE CreatedDate between '2014-01-01'
+
+AND '2017-01-01'
+</code></pre><br><div dir="ltr"><img height="63" src="https://lh4.googleusercontent.com/ytx_xjg35JTgfDidMXeC6o-cZs1iDbVmKNZ-OoV-AaNYBnySvMuAXa62Oh5V22oCM6FLKstyX7PFv9_nCpE6sjoNUiL4FkAEuwiwFLc7FH9dmnw7OcIw80NcwiD1YMJ6d1KxtRB-QsRl9aPsnA" width="179"></div><br><div dir="ltr">Rows Sort by date:</div><pre class="prettyprint"><code class="language-sql">
+
+SELECT count(*) FROM dbo.PartitionedTable_Existing 
+
+WHERE CreatedDate between '2014-01-01'
+
+AND '2015-01-01'
+
+
+
+--243
+
+
+
+SELECT count(*) FROM dbo.PartitionedTable_Existing 
+
+WHERE CreatedDate between '2015-01-01'
+
+AND '2016-01-01'
+
+--365
+
+
+
+SELECT count(*) FROM dbo.PartitionedTable_Existing 
+
+WHERE CreatedDate between '2016-01-01'
+
+AND '2017-01-01'
+</code></pre><div dir="ltr"><br></div><div dir="ltr"><img height="517" src="https://lh3.googleusercontent.com/EjgM6WEYJoduZ-ACEW6zYc6zdf7NvwEEt0fi7q6c7Qf6rXHpd2DiBKeHiNCVazhEfIIjA29PnIrLoTKd7ci9-aRnGEOxtQmOT_lromx7n3LoFrfX3vYtYZ4l8I-ihzKAIWmvefKkzK3vy6UgWw" width="505"></div><br><div dir="ltr">Alter&nbsp;table&nbsp;[dbo].[PartitionedTable_Existing]&nbsp;</div><div dir="ltr">Drop&nbsp;CONSTRAINT&nbsp;[PK_PartitionedTable_Existing]</div><br><div dir="ltr"><img height="51" src="https://lh6.googleusercontent.com/6ve7tzVNsQjRmg_roHHCTZ8U2vdr49FxrmKVvq7zABwg0463zSBDz3REG9_8caWrT_F9rqHSYTa0chdxExb3Fc8vwbeF4RW3QUSHcu6pRyvDVv2JWyDLkN4Cj4ZjQzZO3DAhZt2eAZjZHu79Ww" width="289"></div><br><div dir="ltr"><br>--Creating file and filegroup</div><pre class="prettyprint"><code class="language-sql">
+
+USE [master]
+
+GO
+
+ALTER DATABASE [PartitionDemo] ADD FILEGROUP [Existing2015]
+
+GO
+
+
+
+ALTER DATABASE [PartitionDemo] ADD FILE ( NAME = N'Existing2015', 
+
+FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\Existing2015.ndf' ,     
+
+SIZE = 8192KB , FILEGROWTH = 65536KB ) TO FILEGROUP [Existing2015]
+
+GO
+
+
+
+USE [master]
+
+GO
+
+ALTER DATABASE [PartitionDemo] ADD FILEGROUP [Existing2016]
+
+GO
+
+
+
+ALTER DATABASE [PartitionDemo] ADD FILE ( NAME = N'Existing2016', 
+
+FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\Existing2016.ndf' ,     
+
+SIZE = 8192KB , FILEGROWTH = 65536KB ) TO FILEGROUP [Existing2016]
+
+GO
+
+</code></pre><div dir="ltr">Filegroups:<img height="98" src="https://lh6.googleusercontent.com/5FM6lyUnUVspSRWCLxw5Oluq2jmUyx4yQ4ko7c6_zpPqtEHrYS80PMwokPQ0aFVlvdXvcCideKR0CWkTf5Su2cz7K0zqaSxxUMI-6vxeFy4jFltenURJ4oMatueayuav1TdIxfSvcFBWI3CCzg" width="553"></div><br><div dir="ltr">Files:</div><div dir="ltr"><img height="135" src="https://lh6.googleusercontent.com/ojK71tU45SEr2Dg_ztVxHncjiXJg2dtW6iMT9kHY-_-fYeRsFwx0d_BqAS8olf1j8xsLzpJW5EzCSJDSQZE2Qpke6_k70SGbF6b8OAzl7JbT1ThQIPPl7W_uYu2Y623hxzjazzNMAsyY4Kg3ng" width="553"></div><br><br><div dir="ltr">--creating partition function and scheme&nbsp;</div><pre class="prettyprint"><code class="language-sql">
+
+CREATE PARTITION FUNCTION PF_PartitionedTable_Existing(DATE)
+
+       AS RANGE RIGHT 
+
+    FOR VALUES ('2015-01-01','2016-01-01')
+
+GO
+
+
+
+
+
+CREATE PARTITION SCHEME PS_PartitionedTable_Existing
+
+    AS PARTITION PF_PartitionedTable_Existing
+
+TO ([PRIMARY],[Existing2015],[Existing2016]);
+
+GO
+
+
+
+--Creating clustered index on Partition Scheme
+
+
+
+CREATE CLUSTERED INDEX IX_TABLE1_partitioncol ON dbo.PartitionedTable_Existing (CreatedDate)
+
+  WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+
+        ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) 
+
+  ON PS_PartitionedTable_Existing(CreatedDate)
+
+GO
+
+</code></pre><br><div dir="ltr"><img height="111" src="https://lh5.googleusercontent.com/JqfhJy0-TvpMvdDKGt60vjVbKQIOWvVCbPyVVV1AvfugdT3N2qSICTq6jzbBj63TvaHm16RcQcjS9Iw0mWEeiEDPVDlvcpkMIpl0Zs37y4So75ymmpSs0nIaRpLqm8xtwcIcDg0jHz4CTMBfbg" width="553"></div><br><div dir="ltr">drop&nbsp;table&nbsp;dbo.PartitionedTable_Existing</div><br><div dir="ltr">After dropping table:</div><div dir="ltr">PF, PS, Files, Filegroups still there.</div><br><div dir="ltr"><img height="395" src="https://lh5.googleusercontent.com/MV-NtsKKTMkAtjbmU0JSiutysoOXqPoKWO0YE1NXv1XIzgVPP1lEiyIttiBWeqyYE9ola6KWluc44B6sOGMisqCgUi4LHnxv0EIuhq6LAF38ILHUhxEc9_PaCAKlJbnFI-prH_vd1raeNodjIw" width="313"></div><br><div dir="ltr"><img height="123" src="https://lh3.googleusercontent.com/Fu_rZ3RF71jo5MZg-SJ9WU0EMG1Dun_hARB_p4Nbl-qK5EVeUJwqt6zoea3inJtJmd0I0yznWNBDfjFSKYZh1rdTmSpxUwMzFqYndn1aw36wK41DjRRHdAe0hqX-V_6XjAo5NqopcAvd5cfTgQ" width="553"></div><br><br><div dir="ltr"><img height="184" src="https://lh4.googleusercontent.com/vXg851WLR2pTyDYr6zapY5KokRbfrswhRBhmMLL13xMKNu0wrwGwwVbjcSkPnJjghw-9dH7nh6fBQMtCEMsN40LZR6aBfxhQbhpO7Tm6OEsrUeGjZPpsFru2xnfxJNrNH8VnVqpqZxM5MPPgaw" width="553"></div><br><br><div dir="ltr"><img height="386" src="https://lh6.googleusercontent.com/87dONQQPILKCghrCdWZGECM6iMxfrRefEWHlyya6iUsiCmrFuaUU5RDF4XXQfzbWuMrCVV3mPSw8GhrgLCZ3sjZujX9rwg0c3ZZIwsgTEm3mYcoiN5cmrkUj8Znn65gyUecd5R6VLYiIKML6xA" width="553"></div><br><div dir="ltr"><img height="233" src="https://lh3.googleusercontent.com/U_P8aIUSkaMMhHrqwaGc8WTY9g6xdihU01hvEyYutGxwzMuS5CjLKhBVO7OFBe6iGA0kys3WDcWeVKEHEKi9M71WeUYksMlqcX-RL7b0ttbW2Hp7jU4uCt4I5g_HKiIRAVaJQ83sR_KmRVS6bQ" width="431"></div><br><br><div dir="ltr">After deleting PF and PS files are automatically deleted .</div><br><div dir="ltr">Just manually remove filegroups:</div><br><div dir="ltr"><img height="211" src="https://lh5.googleusercontent.com/iVi8XgTpZTHU3O-pDdsoz6W_GMbxPy0rPwRsVwlww6cjZO7SR4-CskVCaJadzF8WHEZ4dVAU-a-HINlwHXpKETRGknDTxaGBMPbRveeZdfoAyVkn61HSXLonFhfodjOIggevN-yXQMokrvv6aA" width="407"></div><div><br></div>

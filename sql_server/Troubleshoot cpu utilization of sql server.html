@@ -1,0 +1,54 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<br id="docs-internal-guid-e260a693-7fff-dc91-5eae-20abbbc161a5">
+<div dir="ltr">
+1Troubleshoot cpu utilization of sql server:</div><div><br></div><b>Ref</b>:</div><div>https://logicalread.com/2014/12/04/troubleshoot-high-cpu-sql-server-pd01/<br>
+<br>
+<br>
+<br>
+<pre class="prettyprint"><code class="language-sql">
+
+WITH DB_CPU_Stats
+
+AS
+
+(SELECT DatabaseID, DB_Name(DatabaseID) AS [DatabaseName], SUM(total_worker_time) AS [CPU_Time_Ms]
+
+ FROM sys.dm_exec_query_stats AS qs
+
+ CROSS APPLY (SELECT CONVERT(int, value) AS [DatabaseID] 
+
+              FROM sys.dm_exec_plan_attributes(qs.plan_handle)
+
+              WHERE attribute = N'dbid') AS F_DB
+
+ GROUP BY DatabaseID)
+
+SELECT ROW_NUMBER() OVER(ORDER BY [CPU_Time_Ms] DESC) AS [row_num],
+
+       DatabaseName, [CPU_Time_Ms], 
+
+       CAST([CPU_Time_Ms] * 1.0 / SUM([CPU_Time_Ms]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [CPUPercent]
+
+FROM DB_CPU_Stats
+
+WHERE DatabaseID &gt; 4 -- system databases
+
+AND DatabaseID &lt;&gt; 32767 -- ResourceDB
+
+ORDER BY row_num OPTION (RECOMPILE);
+</code></pre>
+<div dir="ltr">
+Result:-</div>
+<br>
+<div dir="ltr">
+<a href="https://lh3.googleusercontent.com/tJ0eCLn-JdJ7kGSBS6p0bd8tgJzH3CD-nuOwJq2iQLzd_ugzdw4F6tEnK7b4dTVwpESdeWjZdJBGfp6V0yaTtt3iugBzB2EhWbqpRWXv0n3xLgNh_SI2adn9JdcZtiSmj01q37AESsF2xUv9gw"><img alt="https://lh3.googleusercontent.com/tJ0eCLn-JdJ7kGSBS6p0bd8tgJzH3CD-nuOwJq2iQLzd_ugzdw4F6tEnK7b4dTVwpESdeWjZdJBGfp6V0yaTtt3iugBzB2EhWbqpRWXv0n3xLgNh_SI2adn9JdcZtiSmj01q37AESsF2xUv9gw" height="115" src="https://lh3.googleusercontent.com/tJ0eCLn-JdJ7kGSBS6p0bd8tgJzH3CD-nuOwJq2iQLzd_ugzdw4F6tEnK7b4dTVwpESdeWjZdJBGfp6V0yaTtt3iugBzB2EhWbqpRWXv0n3xLgNh_SI2adn9JdcZtiSmj01q37AESsF2xUv9gw" width="342"></a></div>
+<br>
+<br>
+<br>
+<br>
+<div dir="ltr">
+References:<a href="https://social.msdn.microsoft.com/Forums/sqlserver/en-US/ba581d47-df1e-4fe8-80ca-0649aba0a4b7/cpu-utilization-of-sql-server-2008r2-is-high?forum=sqldatabaseengine">Microsoft </a></div>
+</div>
+</div>
+

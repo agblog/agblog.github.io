@@ -1,0 +1,145 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>Memory (or simply RAM)</b> is the memory or information storage in a computer that is used to store running programs and data for the programs. The default setting for min server memory is 0, and the default setting for max server memory(<b>sp_configure max server memory</b>) is <b>2,147,483,647 megabytes (2TB)</b>.<br />
+<br />
+<h2 style="text-align: left;">
+SQL Server Best Memory Practices:</h2>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<h3 style="text-align: left;">
+<b>Min server memory:</b>&nbsp;</h3>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+Min server memory controls the minimum amount of Physical memory that sql server will try to keep committed.</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" trbidi="on">
+<b><br /></b>
+<br />
+<h3 style="text-align: left;">
+<b>Max server memory:</b>&nbsp;</h3>
+To prevent Microsoft SQL Server from consuming too much memory, set Max server memory.</div>
+<div dir="ltr" trbidi="on">
+Usually it is 70% of total Memory.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<h3 style="text-align: left;">
+<b>Query to find assigned memory to SQL:</b></h3>
+<div>
+<b>Query 1:</b></div>
+<br /></div>
+<pre class="prettyprint"><code class="language-sql">
+SELECT physical_memory_kb,physical_memory_kb/1024 as mb FROM sys.dm_os_sys_info;
+
+EXEC sp_configure 'max server memory';
+
+</code></pre>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div dir="ltr" trbidi="on">
+</div>
+</div>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<h2>
+<b style="font-size: medium;">Query 2:</b></h2>
+<pre class="prettyprint"><code class="language-sql">
+
+SELECT object_name, cntr_value,cntr_value/1024 as mb
+&nbsp;&nbsp;FROM sys.dm_os_performance_counters
+-- WHERE counter_name IN ('Total Server Memory (KB)', 'Target Server Memory (KB)');
+&nbsp;&nbsp;WHERE&nbsp;
+&nbsp;&nbsp;&nbsp;counter_name ='Target Server Memory (KB)' or&nbsp;
+&nbsp;&nbsp;&nbsp;counter_name = 'Total Server Memory (KB)'&nbsp;
+
+</code></pre>
+<br />
+When the <b>Total Server Memory</b> and <b>Target Server Memory</b>&nbsp;values are close to each other, thereâ€™s <b>no</b> <b>memory pressure</b> on the server.</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/a/AVvXsEhEAozALY3Xjx04GKTkl-2L_CLe-Pp01F8fzP5NWVKn1mAD0c21BQF2VFt3bhBEKwKhwqG8hdTZzzeysyk6B7L6Xb8VBCKUl0SynsOkBbzN9ne3mIrQL-pqXZOC9WK-K5o-zMUqknISh1DPADUJQAGiFJhA5tJmqAht3UsGoTDcg2I-P_94ULn3_0vDMQ=s564" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="564" data-original-width="497" height="320" src="https://blogger.googleusercontent.com/img/a/AVvXsEhEAozALY3Xjx04GKTkl-2L_CLe-Pp01F8fzP5NWVKn1mAD0c21BQF2VFt3bhBEKwKhwqG8hdTZzzeysyk6B7L6Xb8VBCKUl0SynsOkBbzN9ne3mIrQL-pqXZOC9WK-K5o-zMUqknISh1DPADUJQAGiFJhA5tJmqAht3UsGoTDcg2I-P_94ULn3_0vDMQ=s320" width="282" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<h3 style="text-align: left;">
+Analyze Memory Using DMO:(sys.dm_os_ring_buffers)</h3>
+<br />
+The sys.dm_os_ring_buffers DMV is used to diagnose system wide problem in SQL Server. It is also used to troubleshoot connectivity error, track deadlock, monitor system health, CPU, RAM and Disk Utilization etc by using this dmo.</div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+According to&nbsp;<b><a href="https://docs.microsoft.com/en-us/archive/blogs/mvpawardprogram/using-sys-dm_os_ring_buffers-to-diagnose-memory-issues-in-sql-server" target="_blank">Microsoft</a></b>&nbsp;link, taking advantage of the dynamic management object (DMO) sys.dm_os_ring_buffers might be a great way to get you that quick and accurate determination if you have memory problems and if theyâ€™re coming from the Windows operating system or within SQL Server. To get information about SQL Server memory usage you need to query sys.dm_os_ring_buffers and filter out for "RING_BUFFER_RESOURCE_MONITOR" as used in below query:</div>
+</div>
+<br />
+<pre class="prettyprint"><code class="language-sql">
+
+/******************************************/
+
+SELECT&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;EventTime,
+&nbsp;&nbsp;&nbsp;&nbsp;record.value('(/Record/ResourceMonitor/Notification)[1]', 'varchar(max)') as [Type],
+&nbsp;&nbsp;&nbsp;&nbsp;record.value('(/Record/ResourceMonitor/IndicatorsProcess)[1]', 'int') as [IndicatorsProcess],
+&nbsp;&nbsp;&nbsp;&nbsp;record.value('(/Record/ResourceMonitor/IndicatorsSystem)[1]', 'int') as [IndicatorsSystem],
+&nbsp;&nbsp;&nbsp;&nbsp;record.value('(/Record/MemoryRecord/AvailablePhysicalMemory)[1]', 'bigint') AS [Avail Phys Mem, Kb],
+&nbsp;&nbsp;&nbsp;&nbsp;record.value('(/Record/MemoryRecord/AvailableVirtualAddressSpace)[1]', 'bigint') AS [Avail VAS, Kb]
+FROM (
+&nbsp;&nbsp;&nbsp;&nbsp;SELECT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--select 6610904/1024 =6455
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; --select 137423795704/1024=134202925.492187
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; DATEADD (ss, (-1 * ((cpu_ticks / CONVERT (float, ( cpu_ticks / ms_ticks ))) - [timestamp])/1000), GETDATE()) AS EventTime,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONVERT (xml, record) AS record
+&nbsp;&nbsp;&nbsp;&nbsp;FROM sys.dm_os_ring_buffers
+&nbsp;&nbsp;&nbsp;&nbsp;CROSS JOIN sys.dm_os_sys_info
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE ring_buffer_type = 'RING_BUFFER_RESOURCE_MONITOR') AS tab
+ORDER BY EventTime DESC;</code></pre>
+<div dir="ltr" id="docs-internal-guid-d42d3650-7fff-5afc-c6bc-fce6a630d250" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: white; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre;"><br /></span>
+<span style="background-color: white; color: black; font-family: &quot;quattrocento sans&quot;; font-size: 10pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre;">Output:-</span></div>
+<div class="separator" style="clear: both; text-align: center;"><br /></div>
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;"><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/a/AVvXsEhQiBUVA6lMr4_wf8ekdn-1YBVkA8se0v2HJlkW-a6TykKTTAQp2L2sE8iyRtcPt1a-EwpxNsRWEZOnRYwRR0UIQkLx0X91NKRXaNwO6ydMttYqOdI1WnrN0Bw5AEyustaOi6FFIEbsG8lY9VMgCY5FCkJ4irWhTOJYpLVqjIdDKa60iQ0OxNSdOkDzuw=s1063" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="534" data-original-width="1063" height="161" src="https://blogger.googleusercontent.com/img/a/AVvXsEhQiBUVA6lMr4_wf8ekdn-1YBVkA8se0v2HJlkW-a6TykKTTAQp2L2sE8iyRtcPt1a-EwpxNsRWEZOnRYwRR0UIQkLx0X91NKRXaNwO6ydMttYqOdI1WnrN0Bw5AEyustaOi6FFIEbsG8lY9VMgCY5FCkJ4irWhTOJYpLVqjIdDKa60iQ0OxNSdOkDzuw=s320" width="320" /></a></div><br /><span style="font-family: &quot;calibri&quot;; font-size: 10pt; text-align: justify; white-space: pre;"><br /></span>
+<br />
+<br /></div>
+<b>Meaning of output:</b><br />
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 13.3333px;">The Type column is to be read as follows:</span><br />
+<br />
+<ul style="background-color: white; font-family: Arial; font-size: 13.3333px;">
+<li>RESOURCE_MEM_STEADY</li>
+<li style="list-style-type: none;"><ul>
+<li>No memory issues (the order above is inconsistent due to the timestamps, but these usually follow a memory low condition to say that Windows is happy with the new memory level achieved)</li>
+</ul>
+</li>
+<br />
+<li>RESOURCE_MEMPHYSICAL_LOW</li>
+<li style="list-style-type: none;"><ul>
+<li>Windows is running low on memory and SQL Server must return some</li>
+</ul>
+</li>
+<br />
+<li>RESOURCE_MEMPHYSICAL_HIGH</li>
+<li style="list-style-type: none;"><ul>
+<li>Windows has spare memory and SQL Server can take some more if required</li>
+</ul>
+</li>
+</ul>
+<br style="background-color: white; font-family: Arial; font-size: 13.3333px;" />
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 13.3333px;">If the IndicatorsSystem value is greater than zero then this means that the memory situation was server-wide.</span><br />
+<br style="background-color: white; font-family: Arial; font-size: 13.3333px;" />
+<span style="background-color: white; font-family: &quot;arial&quot;; font-size: 13.3333px;">The IndicatorsProcess value means that it was a specific process which ran into the memory condition and can be one of 3 values:</span><br />
+<br />
+<ul style="background-color: white; font-family: Arial; font-size: 13.3333px;">
+<li>1 = High Physical Memory</li>
+<li>2 = Low Physical Memory</li>
+<li>3 = Low Virtual Memory</li>
+</ul>
+<br /></div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<b>Note:&nbsp;</b></div>
+<div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+If available memory is constantly low and server load cannot be reduced, itâ€™s necessary to add more RAM.&nbsp;</div>
+</div>
+</div>
+

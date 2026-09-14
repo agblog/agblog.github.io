@@ -1,0 +1,153 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div style="text-align: justify;"><div dir="ltr"><b>Deadlock:</b></div>
+<div>
+System is deadlocked if there is a set of transactions such that every transaction in the set is waiting for another transaction in the set.</div>
+<div>
+<br /></div>
+<div dir="ltr">
+Before starting first learn what is lock:</div>
+<h3>
+LOCK:</h3>
+<div dir="ltr">
+A lock is a mechanism to control concurrent access to a data item</div>
+<div dir="ltr">
+Data items can be locked in two modes :</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+1. Exclusive (X) mode.&nbsp;</div>
+<div dir="ltr">
+Data item can be both read as well as&nbsp;written. X-lock is requested using&nbsp; lock-X instruction.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+2. Shared (S) mode. Data item can only be read. S-lock is&nbsp;requested using&nbsp; lock-S instruction.</div>
+<br />
+<div dir="ltr">
+<div class="separator" style="clear: both; text-align: center;"><img height="127" src="https://lh4.googleusercontent.com/GG3FIw_sozybhx2PxiUEyImINOwq9-ElUJuwWSLyQ1s-SOF_fN4LDZLLaGTGblBwKXn-6LFyqSKJGFgc62s5o7zL5Rqls1_MVRFADJRpiDCoyhpKI6zj0KMVAed99zYhF9nn14kd3mQrnkADJw" style="font-family: &quot;quattrocento sans&quot;; font-size: 16px; margin-left: 0px; margin-top: 0px; text-align: justify; white-space: pre-wrap;" width="222" /></div>
+</div>
+<br />
+<h3>
+Deadlock Situation:</h3>
+<div dir="ltr">
+Consider the partial schedule</div>
+<br />
+<div dir="ltr">
+<div class="separator" style="clear: both; text-align: center;"><img alt="15" height="212" src="https://lh6.googleusercontent.com/NxPW3lXGoTrEoSgN6IwXUTtSQhQi4DO1yDl_09HD9GXxQ9xwFZfJo4oPqaBG6k0Dzo88HScVRzKbh2qYbdtGNneAeguhdWNir8nlqljB_me0taovAS3o1KQLGkGgiSyye_KOBElZqYuOg1rutA" style="font-family: &quot;quattrocento sans&quot;; font-size: 16px; margin-left: 0px; margin-top: 0px; text-align: justify; white-space: pre-wrap;" width="257" /></div>
+<br /></div>
+<br />
+<div dir="ltr">
+Neither T3 nor T4 can make progress â€” executing&nbsp; lock-S(B) causes T4 to wait for T3 to release its lock on B, while executing&nbsp; lock-X(A) causes T3 to wait for T4 to release its lock on A.</div>
+<div dir="ltr">
+Such a situation is called a&nbsp;deadlock.&nbsp;</div>
+<div dir="ltr">
+<br />
+To handle a deadlock one of T3 or T4 must be rolled back&nbsp;and its locks released.</div>
+<div dir="ltr">
+<br />
+SQL Server selects&nbsp;deadlock victim&nbsp;following these rules:</div>
+<div dir="ltr">
+<br />
+1. The process with the lowest deadlock priority is set as deadlock victim.</div>
+<div dir="ltr">
+<br />
+2. If the deadlock priority of all the processes involved in deadlock is same, then the process that is least expensive to rollback is selected as deadlock victim.</div>
+<div dir="ltr">
+<br />
+3. If both the deadlock priority and cost of processes involved in deadlock is same, then the process a process is selected randomly as deadlock victim.</div>
+<h3>
+Handling Deadlock:</h3>
+<div dir="ltr">
+After a deadlock is detected, the Database Engine ends a deadlock by choosing one of the threads as a&nbsp;deadlock victim.</div>
+<br />
+<div dir="ltr">
+After choosing it rolls back the transaction of the deadlock victim, and returns a&nbsp;1205 error&nbsp;to the application.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+The 1205 deadlock victim error records information about the threads and resources involved in a deadlock in the error log.</div>
+<br />
+<h3>
+Deadlock Error Detail:</h3>
+<br />
+<div dir="ltr">
+Msg 1205, Level 13, State 45, Line 20</div>
+<div dir="ltr">
+Transaction (Process ID 57) was deadlocked on lock resources with another process and has been</div>
+<div dir="ltr">
+chosen as the deadlock victim. Rerun the transaction.</div>
+<br />
+<h3>
+DEADLOCK PRIORITY:</h3>
+<div dir="ltr">
+Alternatively, a user can specify the priority of sessions in a deadlock situation using the SET DEADLOCK_PRIORITY statement. DEADLOCK_PRIORITY can be set to LOW, NORMAL, or HIGH, or alternatively can be set to any integer value in the range (-10 to 10). The deadlock priority defaults to NORMAL.&nbsp;</div>
+<br />
+<div dir="ltr">
+Deadlock priority low : -5</div>
+<div dir="ltr">
+Deadlock priority high: 5</div>
+<div dir="ltr">
+Normal: 0</div>
+<br />
+<div dir="ltr">
+After setting low and high priority deadlock is resolved automatically by eliminating low priority deadlock session.</div>
+<br />
+<div dir="ltr">
+If both sessions have the same deadlock priority, the session with the transaction that is least expensive to roll back is chosen. If sessions involved in the deadlock cycle have the same deadlock priority and the same cost, a victim is chosen randomly.</div>
+<br />
+<div dir="ltr">
+<b>Setting deadlock priority:</b></div>
+<br />
+<div dir="ltr">
+<pre class="prettyprint"><code class="language-sql">
+SET DEADLOCK_PRIORITY NORMAL;  
+
+GO 
+
+or 
+
+SET DEADLOCK_PRIORITY -10
+
+GO
+</code></pre>
+</div>
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjw5Q210DlketNEMELQk2n_wCDliTRmo0erpHWaCkR-ElAnxzcywvxVFo4PZqaffqhMVNh-zaBYAi655W_y9sMihEu5eoq57IHQD4HmOn3hpcSH8lcmYlyeY9fhxtYDmpxXbr6KpnNt7vY5/s1600/1578897108577605-0.png"></a></div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjw5Q210DlketNEMELQk2n_wCDliTRmo0erpHWaCkR-ElAnxzcywvxVFo4PZqaffqhMVNh-zaBYAi655W_y9sMihEu5eoq57IHQD4HmOn3hpcSH8lcmYlyeY9fhxtYDmpxXbr6KpnNt7vY5/s1600/1578897108577605-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjw5Q210DlketNEMELQk2n_wCDliTRmo0erpHWaCkR-ElAnxzcywvxVFo4PZqaffqhMVNh-zaBYAi655W_y9sMihEu5eoq57IHQD4HmOn3hpcSH8lcmYlyeY9fhxtYDmpxXbr6KpnNt7vY5/s1600/1578897108577605-0.png" width="400" /></a></div>
+<br />
+<div dir="ltr">
+<br /></div>
+<h3>
+DMVâ€™s to identify deadlock priority:&nbsp;</h3>
+<div>
+<pre class="prettyprint"><code class="language-sql">
+SELECT session_id, deadlock_priority FROM sys.dm_exec_sessions;
+GO
+</code></pre>
+</div>
+<div dir="ltr">
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0q7Buc7gdmZPpqrxuW06_blRw5Lz7y2B9KcU5PImM9pDjcYLPXkAE7Mo6IM8CLq9Zv5yjJTb-G3pw-KU6oB1GzeTiM8HBAZoHLK9d2m8s9lwiON-do03zc_vCUC2j9OM-EufEYlg0DK8C/s1600/1578897105097637-1.png"></a></div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0q7Buc7gdmZPpqrxuW06_blRw5Lz7y2B9KcU5PImM9pDjcYLPXkAE7Mo6IM8CLq9Zv5yjJTb-G3pw-KU6oB1GzeTiM8HBAZoHLK9d2m8s9lwiON-do03zc_vCUC2j9OM-EufEYlg0DK8C/s1600/1578897105097637-1.png" style="clear: left; margin-bottom: 1em; margin-left: 1em;"><img border="0" height="91" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0q7Buc7gdmZPpqrxuW06_blRw5Lz7y2B9KcU5PImM9pDjcYLPXkAE7Mo6IM8CLq9Zv5yjJTb-G3pw-KU6oB1GzeTiM8HBAZoHLK9d2m8s9lwiON-do03zc_vCUC2j9OM-EufEYlg0DK8C/s320/1578897105097637-1.png" width="320" /></a></div>
+<br /></div>
+<div dir="ltr">
+</div>
+<div dir="ltr">
+Changing deadlock priority:<br />
+<pre class="prettyprint"><code class="language-sql">
+SET DEADLOCK_PRIORITY 5
+GO
+
+SELECT session_id, deadlock_priority FROM sys.dm_exec_sessions;
+</code></pre>
+<br /></div>
+<div dir="ltr">
+<div class="separator">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQrVneBZQ-QbnzA8OCulgh1vYN5B4MliJU-PGjIp0opDFuCyZmlDbSL5hm_viCPxCKiAJtuzJhyDj5sTOg17Um4b6HHrhwae7Nvq8WwG01ds8uUt2aDtT0bUC6W1ohb_u0FUndHIQpFbWP/s1600/1578897101136061-2.png"></a></div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQrVneBZQ-QbnzA8OCulgh1vYN5B4MliJU-PGjIp0opDFuCyZmlDbSL5hm_viCPxCKiAJtuzJhyDj5sTOg17Um4b6HHrhwae7Nvq8WwG01ds8uUt2aDtT0bUC6W1ohb_u0FUndHIQpFbWP/s1600/1578897101136061-2.png" style="clear: left; margin-bottom: 1em; margin-left: 1em;"><img border="0" height="111" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQrVneBZQ-QbnzA8OCulgh1vYN5B4MliJU-PGjIp0opDFuCyZmlDbSL5hm_viCPxCKiAJtuzJhyDj5sTOg17Um4b6HHrhwae7Nvq8WwG01ds8uUt2aDtT0bUC6W1ohb_u0FUndHIQpFbWP/s320/1578897101136061-2.png" width="320" /></a></div>
+<br />
+<br />
+<br style="text-align: left;" /></div>
+</div>
+</div>
+

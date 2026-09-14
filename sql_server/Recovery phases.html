@@ -1,0 +1,46 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" trbidi="on">
+<b>The Phases of Restore</b></div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+A restore is a multiphase process. The possible phases of a restore include the data copy, redo (roll forward), and undo (roll back) phases:</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<h2>
+Data copy phase</h2>
+</div>
+<div dir="ltr" trbidi="on">
+The data copy phase involves copying all the data, log, and index pages from the backup media of a database to the database files.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div>
+<hr />
+<h2>
+Redo phase</h2>
+</div>
+<div dir="ltr" trbidi="on">
+The redo phase applies the logged transactions to the data copied from the backup to roll forward that data to the recovery point. At this point, a database typically has uncommitted transactions and is in an unusable state. In that case, an undo phase is required as part of recovering the database.</div>
+<div dir="ltr" trbidi="on">
+<div>
+<br /></div>
+<hr />
+<h2>
+Undo phase</h2>
+</div>
+<div dir="ltr" trbidi="on">
+The undo phase, which is the first part of recovery, rolls back any uncommitted transactions and makes the database available to users. After the roll back phase, subsequent backups cannot be restored.</div>
+<div>
+<div>
+<br /></div>
+<hr />
+<h2>
+<b>Ref:</b></h2>
+</div>
+<div>
+<div dir="ltr" trbidi="on">
+https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms191455(v=sql.105)?redirectedfrom=MSDN</div>
+</div>
+</div>
+

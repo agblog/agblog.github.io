@@ -1,0 +1,18 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div><b>SOS_SCHEDULER_YIELD</b>:</div>
+<div>
+<br></div>
+<div>
+Occurs when a task voluntarily yields the scheduler for other tasks to execute. During this wait the task is waiting for its quantum to be renewed.</div>
+<div>
+<br></div>
+<div>
+<b>Recommendation</b>:</div>
+<div>
+<br></div>
+<div>
+If you go to a higher maxdop, you donâ€™t want to see waits like SOS_SCHEDULER_YIELD get worse, indicating that youâ€™ve got contention and that queries are spending a lot of time waiting to get access to a CPU.</div>
+<div>
+<br></div>
+</div>
+

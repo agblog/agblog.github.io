@@ -1,0 +1,80 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+Following are the checklist before migration process.<br />
+<b>Database Migration Checklist</b><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8DOEVD4neQmMRHbQNbThGPHTkY3kTdFIOhui5z06EE3j5rMkKyLerd-yoZylcOkOWcausK7ayyq_yoY2tIlul0dLpO0sni_GI68nN9mNeNNek4EVFIdq4IRuagnnpyvUlxJFfQoX3smr9/s1600/1579085530133019-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8DOEVD4neQmMRHbQNbThGPHTkY3kTdFIOhui5z06EE3j5rMkKyLerd-yoZylcOkOWcausK7ayyq_yoY2tIlul0dLpO0sni_GI68nN9mNeNNek4EVFIdq4IRuagnnpyvUlxJFfQoX3smr9/s1600/1579085530133019-0.png" width="400" /></a></div>
+<br />
+<hr />
+<b>Pre-Migration Checklist</b><br />
+<ol>
+<li>Analyze 
+the disk space of the target server for the new database, if the disk 
+space is not enough add more space on the target server</li>
+<li>Confirm the data and log file location for the target server</li>
+<li>Collect
+ the information about the Database properties (Auto Stats, DB Owner, 
+Recovery Model, Compatibility level, Trustworthy option etc)</li>
+<li>Collect the information of dependent applications, make sure application services will be stopped during the database migration</li>
+<li>Collect the information of database logins, users and their permissions. (Optional)</li>
+<li>Check the database for the Orphan users if any</li>
+<li>Check the SQL Server for any dependent objects (SQL Agent Jobs and Linked Servers)</li>
+<li>Check, if the database is part of any maintenance plan</li>
+</ol>
+<hr />
+Below are various scripts you can run to collect data.<br />
+<b>Script to Check the Disk and Database Size</b><br />
+<div class="codediv">
+<pre>-- Procedure to check disc space
+exec master..xp_fixeddrives
+-- To Check database size
+exec sp_helpdb [dbName]
+or
+use [dbName]
+select str(sum(convert(dec(17,2),size)) / 128,10,2)  + 'MB'
+from dbo.sysfiles
+GO</pre>
+</div>
+<b>Script to Check Database Properties</b><br />
+<div class="codediv">
+<pre>select 
+ sysDB.database_id,
+ sysDB.Name as 'Database Name',
+ syslogin.Name as 'DB Owner',
+ sysDB.state_desc,
+ sysDB.recovery_model_desc,
+ sysDB.collation_name, 
+ sysDB.user_access_desc,
+ sysDB.compatibility_level, 
+ sysDB.is_read_only,
+ sysDB.is_auto_close_on,
+ sysDB.is_auto_shrink_on,
+ sysDB.is_auto_create_stats_on,
+ sysDB.is_auto_update_stats_on,
+ sysDB.is_fulltext_enabled,
+ sysDB.is_trustworthy_on
+from sys.databases sysDB
+INNER JOIN sys.syslogins syslogin ON sysDB.owner_sid = syslogin.sid</pre>
+</div>
+<b>Script to List Orphan Users</b><br />
+<div class="codediv">
+<pre>sp_change_users_login 'report'
+GO</pre>
+</div>
+<b>Script to List Linked Servers</b><br />
+<div class="codediv">
+<pre>select  *
+from sys.sysservers
+</pre>
+</div>
+<b>Script to List Database Dependent Jobs</b><br />
+<div class="codediv">
+<pre>select 
+ distinct 
+ name,
+ database_name
+from sysjobs sj
+INNER JOIN sysjobsteps sjt on sj.job_id = sjt.job_id
+</pre>
+</div>
+<hr />
+<br /></div>
+

@@ -1,0 +1,35 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<h3>
+DBCC CHECKDB</h3>
+<br />
+<div style="text-align: left;">
+To identify corruption in the database&nbsp;<b>DBCC CHECKDB </b>is used.</div>
+<br />
+<h2>
+Finding corrupted pages</h2>
+Usually the first sign that something is wrong will be an inconsistency error generated when a select statement is executed. The Microsoft SQL Server Messages pane will show an error like:<br />
+<pre class="prettyprint"><code class="language-sql">
+<code>Msg 5242, Level 22, State 1, Line 1
+An inconsistency was detected during an internal operation in database â€˜SQLDoseDBâ€™(ID:9) on page (1:254).
+Please contact technical support. Reference number 4.
+As you would expect, the page number referenced, 254, is the corrupt page that needs to be recovered.</code>
+
+</code></pre>
+<h2>
+Recovering corrupted pages</h2>
+The Microsoft SQL Server page recovery operation is very similar to that of a full recovery, the only difference being the use of the&nbsp;<span class="acss6461b">NORECOVERY</span>command:<br />
+<pre class="prettyprint"><code class="language-sql">
+<code>RESTORE DATABASE SQLDoseDB
+PAGE = 'fileid:pageid'&nbsp; -- e.g. 1:254
+FROM DISK = 'D:\SQLBackups\SQLDoseDB_lastFull.BAK'
+WITH
+NORECOVERY
+GO</code>
+
+</code></pre>
+This will the re-insert the corrupted page from backup without going through the time-consuming process of a full SQL Server recovery. To recover more than one page at a time simply by add additional&nbsp;<span class="acss6461b"><b>fileid:pageid</b></span>&nbsp;combinations separated by commas.<br />
+<br />
+<div dir="ltr" style="text-align: left;" trbidi="on">
+Test that the data has been recovered successfully by running&nbsp;<a href="https://docs.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-2017" target="_top"><span class="acss6461b">DBCC CHECKDB</span></a>&nbsp;on the affected database â€“ it should complete without error.</div>
+</div>
+

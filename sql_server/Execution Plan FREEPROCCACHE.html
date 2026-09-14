@@ -1,0 +1,70 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">DBCCâ€‚FREEPROCCACHE</div><div dir="ltr" style="text-align: left;" trbidi="on">Remove all elements from the plan cache for the entire instance. DBCC FREEPROCCACHE command allows you to clear the plan cache or a specific plan.</div><div dir="ltr" style="text-align: left;" trbidi="on"><pre class="prettyprint"><code class="language-sql">
+DBCC FREEPROCCACHE;
+
+</code></pre>
+It can actually be pretty useful for resetting the cached_time time for sys.dm_exec_procedure_stats
+
+-- Remove all elements from the plan cache for one database&nbsp;</div><div dir="ltr" style="text-align: left;" trbidi="on">
+<pre class="prettyprint"><code class="language-sql">
+
+-- Get DBID from one database name first
+select db_name(15)
+
+DECLARE @intDBID INT;SET @intDBID = (SELECT [dbid]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM master.dbo.sysdatabases&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE name = 'ReportServer');
+-- Flush the procedure cache for one database only
+DBCC FLUSHPROCINDB (@intDBID);
+
+</code></pre>
+-- Remove one plan from the cache
+-- Get the plan handle for a cached plan
+
+<br>
+<pre class="prettyprint"><code class="language-sql">
+
+CREATE PROCEDURE [dbo].[sp_sales1]&nbsp; AS SELECT *&nbsp;
+FROM [AdventureWorks].[Person].[Contact]
+
+exec dbo.Select_Person
+exec sp_mgr_emp1
+exec sp_mgr_emp2
+exec [dbo].[sp_sales1]&nbsp;
+
+select db_id('adventureworks')
+--7
+</code></pre>
+--For procedure plan-- (plan_handle and sql_handle)
+
+<br>
+<pre class="prettyprint"><code class="language-sql">
+
+select * from sys.dm_exec_procedure_stats
+CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS st
+WHERE [text] LIKE '%sp_sales%';
+0x05000700E2F1FA2E307DF7A7A102000001000000000000000000000000000000000000000000000000000000
+</code></pre>
+--For query plan-- (plan_handle only)
+
+<br>
+<pre class="prettyprint"><code class="language-sql">
+
+SELECT cp.plan_handle, st.[text]
+FROM sys.dm_exec_cached_plans AS cp&nbsp;
+CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS st
+--or use filter
+WHERE [text] LIKE '%sp_sales%';
+--
+</code></pre>
+WE GOT SAME PLAN FROM BOTH QUERY
+
+-- Remove the specific plan from the cache using the plan handle
+
+<br>
+<pre class="prettyprint"><code class="language-sql">
+
+DBCC FREEPROCCACHE (0x05000700E2F1FA2E307DF7A7A102000001000000000000000000000000000000000000000000000000000000);
+
+</code></pre>
+</div>
+

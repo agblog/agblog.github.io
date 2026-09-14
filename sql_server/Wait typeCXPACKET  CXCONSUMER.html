@@ -1,0 +1,42 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div style="text-align: justify;">
+<b>Cxpacket:</b></div>
+<div style="text-align: justify;">
+Occurs when queries using parallelism plan.</div>
+<div style="text-align: justify;">
+When the parallel plan is used, the query is executed in multiple threads and the query can continue only when all parallel threads are completed.</div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<b>Action to take:-</b></div>
+<div style="text-align: justify;">
+According to available processor and workload manage MAXDOP &amp; Cost threshold of parallelism</div>
+<div style="text-align: justify;">
+The MAXDOP number represents the number of CPU cores SQL Server will use for parallel query execution. Default is set to 0</div>
+<div style="text-align: justify;">
+When the serialized query plan cost exceeds the cost threshold for parallelism it will create a parallel query plan. The CTFP is set by default to 5</div>
+<div style="text-align: justify;">
+From&nbsp;<b>Sql Server 2016 SP2</b>&nbsp;CXPACKET is split into Consumer and producer.</div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+Following photo show relationship between CXCONSUMER &amp; CXPACKET, It is safe to ignore CXCONSUMER wait type:</div>
+<div style="text-align: justify;">
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDnhwogjVSpOV0nyjiyUKXdr8ZrcB8KGSaB5JixMa27aaN6BhC2osclpW9ocE2IWzeHhriP717jQhEP__NOh98Lqwi8JTAxiG47OA_MAjIeqVuVPwyf3oQHzIuRcO7MjkedzSRfn88MCH8/s1600/1577630598536598-0.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDnhwogjVSpOV0nyjiyUKXdr8ZrcB8KGSaB5JixMa27aaN6BhC2osclpW9ocE2IWzeHhriP717jQhEP__NOh98Lqwi8JTAxiG47OA_MAjIeqVuVPwyf3oQHzIuRcO7MjkedzSRfn88MCH8/s1600/1577630598536598-0.png" width="400" /></a></div>
+</div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<div>
+<b>REFERENCE:</b></div>
+<div>
+<a href="https://blogs.msdn.microsoft.com/jimmymay/2008/11/28/case-study-part-1-cxpacket-wait-stats-max-degree-of-parallelism-option-introduction-to-using-wait-stats-to-identify-remediate-query-parallelism-bottlenecks/">Microsoft</a></div>
+<div>
+<a href="https://www.brentozar.com/archive/2013/08/what-is-the-cxpacket-wait-type-and-how-do-you-reduce-it/">Brentozar</a></div>
+<div>
+<a href="https://www.sqlshack.com/troubleshooting-the-cxpacket-wait-type-in-sql-server/">Sqlshack</a></div>
+</div>
+<div style="text-align: justify;">
+<br /></div>
+</div>
+

@@ -1,0 +1,41 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<div>
+<b>Understanding Quorum configuration:</b></div>
+<div>
+In a simple definition, quorum is a voting mechanism in a Microsoft cluster. Each node has one vote. In a MSCS cluster, this voting mechanism constantly monitor cluster that how many nodes are online and how nodes are required to run the cluster smoothly. Each node contains a copy of cluster information and their information is also stored in witness disk/directory.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<b>For a MSCS, you have to choose a quorum among four possible quorum configurations.&nbsp;</b></div>
+<div>
+<b><br /></b></div>
+<div>
+<h2 style="text-align: left;">
+<b>Node Majority-</b>&nbsp;</h2>
+<div style="text-align: left;">
+Recommended for clusters with an odd number of nodes.&nbsp;</div>
+</div>
+<div>
+<br /></div>
+<div>
+<h2 style="text-align: left;">
+<b>Node and Disk Majority â€“</b></h2>
+&nbsp;Recommended for clusters with an even number of nodes. Can sustain (Total no of Node)/2 failures if a disk witness node is online. Can sustain ((Total no of Node)/2)-1 failures if a disk witness node is offline.</div>
+<div>
+<h2 style="text-align: left;">
+<b>Node and File Share Majority-</b>&nbsp;</h2>
+&nbsp;Clusters with special configurations. Works in a similar way to Node and Disk Majority, but instead of a disk witness, this cluster uses a file share witness.</div>
+<div>
+<br /></div>
+<div>
+<h2 style="text-align: left;">
+<b>No Majority:</b> Disk Only (not recommended)</h2>
+</div>
+<div>
+Why quorum is necessary? Network problems can interfere with communication between cluster nodes. This can cause serious issues. To prevent the issues that are caused by a split in the cluster, the cluster software requires that any set of nodes running as a cluster must use a voting algorithm to determine whether, at a given time, that set has quorum. Because a given cluster has a specific set of nodes and a specific quorum configuration, the cluster will know how many â€œvotesâ€ constitutes a majority (that is, a quorum). If the number drops below the majority, the cluster stops running. Nodes will still listen for the presence of other nodes, in case another node appears again on the network, but the nodes will not begin to function as a cluster until the quorum exists again.</div>
+</div>
+<div>
+<br /></div>
+</div>
+

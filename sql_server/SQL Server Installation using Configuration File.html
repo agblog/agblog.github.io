@@ -1,0 +1,282 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+SQL Server Installation using Configuration File<br />
+<div dir="ltr" trbidi="on">
+<br />
+The&nbsp;<b>ConfigurationFile.ini</b>&nbsp;file is a text file which contains the set of parameters in name/value pairs along with descriptive comments</div>
+<div dir="ltr" trbidi="on">
+SQL Server generates the&nbsp;<b>Configurationfile.ini</b>&nbsp;file on the&nbsp;<b>Ready to Install</b>&nbsp;step</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+Path of Configuration.ini file:</div>
+<div dir="ltr" trbidi="on">
+C:\Program Files\Microsoft SQL Server\100\SetupBootstrap\Log\20180430_153855\ConfigurationFile.ini</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+In Log folder, there will a subfolder based on a&nbsp;<b>timestamp&nbsp;</b>of when you went through the SQL Server installation.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+</div>
+<div dir="ltr" trbidi="on">
+<b>Two ways to install using configuration file:</b></div>
+<div dir="ltr" trbidi="on">
+1. By using wizard :&nbsp;</div>
+<div dir="ltr" trbidi="on">
+It uses user interface, use of mouse for terms and conditions and other features.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+2. By using command line install</div>
+<div dir="ltr" trbidi="on">
+You
+ may use a silent installation to avoid interacting with the client 
+installation dialogs and you may automatically run the silent setup in a
+ log-on script or through the registry. Silent setup uses the 
+configuration.ini file.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<b>By Using Wizard:</b></div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+1. Right Click on setup and <b>run as Administrator</b></div>
+<div dir="ltr" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigScwDON7jPM5NFrpDqzgTnz07m7fh4_WeDJjnGEjjLbUoBmTAdpA3oLI_EfKRuDj1R3IcTQtQAmnK5gKyDZfpgmd9Fx5j_xPDcEJ1Oc34GUJ7Te_BqMqKRt_v0yemiOMrd4sfKG9EF95v/s1600/1578337726566144-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigScwDON7jPM5NFrpDqzgTnz07m7fh4_WeDJjnGEjjLbUoBmTAdpA3oLI_EfKRuDj1R3IcTQtQAmnK5gKyDZfpgmd9Fx5j_xPDcEJ1Oc34GUJ7Te_BqMqKRt_v0yemiOMrd4sfKG9EF95v/s1600/1578337726566144-0.png" width="400" /></a></div>
+</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+2. Go to advanced tab and click on install based on configuration file</div>
+<div dir="ltr" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgr1gzncW3wlTY2PbvyibBYxNAw10lsH_lI9OdHStl5WQGbMPimax1QNJtx9pN6Of6Nj_AHGEOVpuhdceku21PfUQVTAAWy-dL_IcbOkhdfqvVPNTEPAi9JUPGu0mjX1JAJlf4Xpwhk3qAA/s1600/1578337721277132-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgr1gzncW3wlTY2PbvyibBYxNAw10lsH_lI9OdHStl5WQGbMPimax1QNJtx9pN6Of6Nj_AHGEOVpuhdceku21PfUQVTAAWy-dL_IcbOkhdfqvVPNTEPAi9JUPGu0mjX1JAJlf4Xpwhk3qAA/s1600/1578337721277132-1.png" width="400" /></a></div>
+</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+3. Give path of configuration file and click open</div>
+<div dir="ltr" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJU99LUUJBrGrkWDlTDxNoN1HXDC41MWZ2B1703AsmA5X-egcvKwGD9G5FZKM5x8R4eZQZQnbIjEadW-DQBcIbixSw3I6OaOYQHT_OpZoD11iZf7_QiTreO5XC8tx0GfeqihK4rdlYKBbO/s1600/1578337716432038-2.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJU99LUUJBrGrkWDlTDxNoN1HXDC41MWZ2B1703AsmA5X-egcvKwGD9G5FZKM5x8R4eZQZQnbIjEadW-DQBcIbixSw3I6OaOYQHT_OpZoD11iZf7_QiTreO5XC8tx0GfeqihK4rdlYKBbO/s1600/1578337716432038-2.png" width="400" /></a></div>
+</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div>
+<div dir="ltr" trbidi="on">
+This will automatically select features based on condiguration instance id and user name etc.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+Rest steps are same as Installation.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+</div>
+</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<b>By Using command:</b></div>
+<div dir="ltr" trbidi="on">
+<h4 dir="ltr">
+Performing a Silent Client Installation Using the CONFIGURATION.INI File.</h4>
+<div>
+<div dir="ltr">
+Following are syntax to use the configuration file: To specify the configuration file at the command prompt:</div>
+<div dir="ltr">
+Setup.exe /ConfigurationFile=MyConfigurationFile.INI&nbsp;&nbsp;</div>
+</div>
+</div>
+<div dir="ltr" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwzctp6I9OoApawSHtnefRCIjuN6DPpKdSjNM8idht5EF5RtRip29A64Zre3nGF4hS3WBZ1tI6WuCEa9EMn4cxdG0sILuJ27zRFRu3RnZpAu_qt1emvfHxn2Wvl54_45PjR3QI7Rf7HO5Z/s1600/1578314729147672-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwzctp6I9OoApawSHtnefRCIjuN6DPpKdSjNM8idht5EF5RtRip29A64Zre3nGF4hS3WBZ1tI6WuCEa9EMn4cxdG0sILuJ27zRFRu3RnZpAu_qt1emvfHxn2Wvl54_45PjR3QI7Rf7HO5Z/s1600/1578314729147672-0.png" width="400" /></a></div>
+</div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr">
+You
+ may use a silent installation to avoid interacting with the client 
+installation dialogs and you may automatically run the silent setup in a
+ log-on script or through the registry. Silent setup uses the 
+configuration.ini file.</div>
+<h2 dir="ltr">
+Configuration file structure</h2>
+<div dir="ltr">
+;SQL Server 2012 Configuration File</div>
+<div dir="ltr">
+[OPTIONS]</div>
+<div dir="ltr">
+; Required to acknowledge acceptance of the license terms.&nbsp;</div>
+<div dir="ltr">
+IACCEPTSQLSERVERLICENSETERMS="True"&nbsp;</div>
+<div dir="ltr">
+; Specifies a Setup work flow, like INSTALL, UNINSTALL, or UPGRADE. This is a required parameter.&nbsp;</div>
+<div dir="ltr">
+ACTION="Install"</div>
+<div dir="ltr">
+; Detailed help for command line argument ENU has not been defined yet.&nbsp;</div>
+<div dir="ltr">
+ENU="True"</div>
+<div dir="ltr">
+; Setup will not display any user interface.&nbsp;</div>
+<div dir="ltr">
+QUIET="True"</div>
+<div dir="ltr">
+; Setup will display progress only, without any user interaction.&nbsp;</div>
+<div dir="ltr">
+QUIETSIMPLE="False"</div>
+<div dir="ltr">
+;
+ Specify whether SQL Server Setup should discover and include product 
+updates. The valid values are True and False or 1 and 0. By default SQL 
+Server Setup will include updates that are found.&nbsp;</div>
+<div dir="ltr">
+UpdateEnabled="True"</div>
+<div dir="ltr">
+;
+ Specifies features to install, uninstall, or upgrade. The list of 
+top-level features include SQL, AS, RS, IS, MDS, and Tools. The SQL 
+feature will install the Database Engine, Replication, Full-Text, and 
+Data Quality Services (DQS) server. The Tools feature will install 
+Management Tools, Books online components, SQL Server Data Tools, and 
+other shared components.&nbsp;</div>
+<div dir="ltr">
+FEATURES=SQLENGINE</div>
+<div dir="ltr">
+;
+ Specify the location where SQL Server Setup will obtain product 
+updates. The valid values are "MU" to search Microsoft Update, a valid 
+folder path, a relative path such as .\MyUpdates or a UNC share. By 
+default SQL Server Setup will search Microsoft Update or a Windows 
+Update service through the Window Server Update Services.&nbsp;</div>
+<div dir="ltr">
+UpdateSource="MU"</div>
+<div dir="ltr">
+; Displays the command line parameters usage&nbsp;</div>
+<div dir="ltr">
+HELP="False"</div>
+<div dir="ltr">
+; Specifies that the detailed Setup log should be piped to the console.&nbsp;</div>
+<div dir="ltr">
+INDICATEPROGRESS="False"</div>
+<div dir="ltr">
+; Specifies that Setup should install into WOW64. This command line argument is not supported on an IA64 or a 32-bit system.&nbsp;</div>
+<div dir="ltr">
+X86="False"</div>
+<div dir="ltr">
+;
+ Specify the root installation directory for shared components. This 
+directory remains unchanged after shared components are already 
+installed.&nbsp;</div>
+<div dir="ltr">
+INSTALLSHAREDDIR="C:\Program Files\Microsoft SQL Server"</div>
+<div dir="ltr">
+;
+ Specify the root installation directory for the WOW64 shared 
+components. This directory remains unchanged after WOW64 shared 
+components are already installed.&nbsp;</div>
+<div dir="ltr">
+INSTALLSHAREDWOWDIR="C:\Program Files (x86)\Microsoft SQL Server"</div>
+<div dir="ltr">
+;
+ Specify a default or named instance. MSSQLSERVER is the default 
+instance for non-Express editions and SQLExpress for Express editions. 
+This parameter is required when installing the SQL Server Database 
+Engine (SQL), Analysis Services (AS), or Reporting Services (RS).&nbsp;</div>
+<div dir="ltr">
+INSTANCENAME="MSSQLSERVER"</div>
+<div dir="ltr">
+;
+ Specify that SQL Server feature usage data can be collected and sent to
+ Microsoft. Specify 1 or True to enable and 0 or False to disable this 
+feature.&nbsp;&nbsp;</div>
+<div dir="ltr">
+SQMREPORTING="False"</div>
+<div dir="ltr">
+; 
+Specify the Instance ID for the SQL Server features you have specified. 
+SQL Server directory structure, registry structure, and service names 
+will incorporate the instance ID of the SQL Server instance.&nbsp;</div>
+<div dir="ltr">
+INSTANCEID="MSSQLSERVER"</div>
+<div dir="ltr">
+;
+ Specify if errors can be reported to Microsoft to improve future SQL 
+Server releases. Specify 1 or True to enable and 0 or False to disable 
+this feature.&nbsp;</div>
+<div dir="ltr">
+ERRORREPORTING="False"</div>
+<div dir="ltr">
+; Specify the installation directory.&nbsp;</div>
+<div dir="ltr">
+INSTANCEDIR="C:\Program Files\Microsoft SQL Server"</div>
+<div dir="ltr">
+; Agent account name&nbsp;</div>
+<div dir="ltr">
+AGTSVCACCOUNT="NT Service\SQLSERVERAGENT"</div>
+<div dir="ltr">
+; Auto-start service after installation.&nbsp;</div>
+<div dir="ltr">
+AGTSVCSTARTUPTYPE="Manual"&nbsp;</div>
+<div dir="ltr">
+; CM brick TCP communication port&nbsp;&nbsp;</div>
+<div dir="ltr">
+COMMFABRICPORT="0"&nbsp;</div>
+<div dir="ltr">
+; How matrix will use private networks&nbsp;</div>
+<div dir="ltr">
+COMMFABRICNETWORKLEVEL="0"&nbsp;</div>
+<div dir="ltr">
+; How inter brick communication will be protected&nbsp;</div>
+<div dir="ltr">
+COMMFABRICENCRYPTION="0"</div>
+<div dir="ltr">
+; TCP port used by the CM brick&nbsp;&nbsp;</div>
+<div dir="ltr">
+MATRIXCMBRICKCOMMPORT="0"&nbsp;</div>
+<div dir="ltr">
+; Startup type for the SQL Server service.&nbsp;</div>
+<div dir="ltr">
+SQLSVCSTARTUPTYPE="Automatic"</div>
+<div dir="ltr">
+; Level to enable FILESTREAM feature at (0, 1, 2 or 3).&nbsp;</div>
+<div dir="ltr">
+FILESTREAMLEVEL="0"&nbsp;</div>
+<div dir="ltr">
+ENABLERANU="False"</div>
+<div dir="ltr">
+; Specifies a Windows collation or an SQL collation to use for the Database Engine.&nbsp;</div>
+<div dir="ltr">
+SQLCOLLATION="SQL_Latin1_General_CP1_CI_AS"</div>
+<div dir="ltr">
+; Account for SQL Server service: Domain\User or system account.&nbsp;&nbsp;</div>
+<div dir="ltr">
+SQLSVCACCOUNT="NT Service\MSSQLSERVER"</div>
+<div dir="ltr">
+; Windows account(s) to provision as SQL Server system administrators.&nbsp;</div>
+<div dir="ltr">
+SQLSYSADMINACCOUNTS="POCDom\administrator"</div>
+<div dir="ltr">
+; The Database Engine root data directory.&nbsp;</div>
+<div dir="ltr">
+INSTALLSQLDATADIR="F:\SQL"</div>
+<div dir="ltr">
+; Provision current user as a Database Engine system administrator for SQL Server 2012 Express.&nbsp;</div>
+<div dir="ltr">
+ADDCURRENTUSERASSQLADMIN="False"</div>
+<div dir="ltr">
+; Specify 0 to disable or 1 to enable the TCP/IP protocol.</div>
+<div dir="ltr">
+TCPENABLED="1"</div>
+<div dir="ltr">
+; Specify 0 to disable or 1 to enable the Named Pipes protocol.&nbsp;</div>
+<div dir="ltr">
+NPENABLED="0"&nbsp;</div>
+<div dir="ltr">
+; Startup type for Browser Service.&nbsp;</div>
+<div dir="ltr">
+BROWSERSVCSTARTUPTYPE="Disabled"</div>
+<div dir="ltr">
+<br /></div>
+</div>
+</div>
+

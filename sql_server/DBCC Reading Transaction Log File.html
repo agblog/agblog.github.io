@@ -1,0 +1,46 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<h2>
+Why to Read SQL Server Transaction Log?</h2>
+Before revealing 
+to you why we need to read the transaction logs on SQL Server, it is 
+necessary for you to know what kind of data is caught by the transaction
+ logs.<br />
+<b>Basic Operation:</b>The transaction log captures all the fundamental DML Operations like&nbsp;<b>INSERT, UPDATE, DELETE</b>&nbsp;and furthermore captures DDL Operations like&nbsp;<b>CREATE, TRUNCATE, and DROP</b><br />
+Presently,
+ getting to the heart of the matter, reading SQL Server transaction logs
+ is important because the transaction logs contain all the information 
+about the transactions which we have performed on our database. 
+Moreover, this information can be used in forensics:<br />
+<ul>
+<li>To find those records which have been erased erroneously or;</li>
+<li>If the size of our log file is growing automatically or;</li>
+<li>Lost information need to be recuperated</li>
+</ul>
+Thus, the transaction logs are very important assets in such scenarios.<br />
+<br />
+The
+ fn_dblog() function (formerly known as the DBCC command) is one of 
+several undocumented functions for SQL Server; it allows you to view the
+ transaction log records in the active part of the transaction log file 
+for the current database.<br />
+Note that use of the fn_dblog() function
+ (and all other undocumented commands) against a production database 
+instance is executed at your own risk.<br />
+fn_dblog() Parameters<br />
+The fn_dblog() function accepts two parameters:<br />
+<ul>
+<li>The
+ first is starting log sequence number, or LSN. You can also specify 
+NULL, which means it will return everything from the start of the log.</li>
+<li>The second is the ending LSN. You can also specify NULL, which means you want to return everything to the end of the log.</li>
+</ul>
+The
+ fn_dblog() function is fairly simple. Use the fn_dblog() function as 
+shown below in Example 1 to get info from the transaction log.<br />
+fn_dblog() Example:<br />
+This basic fn_dblog() function statement will return details from the transaction log:<br />
+<pre class="prettyprint lang-sql">SELECT * FROM fn_dblog(NULL, NULL)</pre>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1FghyjPJQLz2t4t9Sg_QZ4eq8zsMwxipgGju8QsDdHZaFwHOx0gpN_ZDsB0uDll8y8wjcSTzBeC3q3gv6UKrXt_0M1YPO-Ee-S4T-X9Amj5DTaRDR8hYTMcHZlJEtvwDMQiOYPqbfabM4/s1600/1578767775455902-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1FghyjPJQLz2t4t9Sg_QZ4eq8zsMwxipgGju8QsDdHZaFwHOx0gpN_ZDsB0uDll8y8wjcSTzBeC3q3gv6UKrXt_0M1YPO-Ee-S4T-X9Amj5DTaRDR8hYTMcHZlJEtvwDMQiOYPqbfabM4/s1600/1578767775455902-0.png" width="400" /></a></div>
+<br />
+<br /></div>
+

@@ -1,0 +1,56 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<div class="search-vertical-space">
+<div class="container articlepage" id="swipecontainer" readability="36.4415">
+<div class="row-fluid bottommargin10" readability="7.5">
+<div class="span12" id="article-header" readability="40">
+<div id="article-title-container">
+<h1 class="media-heading">
+Point in Time Recovery</h1>
+</div>
+</div>
+</div>
+<div class="row-fluid">
+<div class="social-media-mobile-icons">
+<div class="oas_box oas_box_btns_lfr" data-force-refresh="true" data-title="Point in Time Recovery" data-url="https://mobile.databasejournal.com/features/mssql/article.php/3530616/Point-in-Time-Recovery.htm">
+<span class="oas_btn oas_btn_facebook oas_btn_service" title="Share On Facebook"><span class="oas_btn_ico oas_icons_white"></span></span><span class="oas_btn oas_btn_twitter oas_btn_service" title="Share On Twitter"><span class="oas_btn_ico oas_icons_white"></span></span><span class="oas_btn oas_btn_linkedin oas_btn_service" title="Share On LinkedIn"><span class="oas_btn_ico oas_icons_white"></span></span><span class="oas_btn oas_btn_email oas_btn_service" title="Share On Email"><span class="oas_btn_ico oas_icons_white"></span></span></div>
+</div>
+</div>
+<div class="row-fluid bottommargin10" id="content" readability="90.8535">
+<div class="span12">
+</div>
+<div class="span12" id="article-lead" readability="39">
+<div class="lead">
+<br /></div>
+</div>
+<div class="span12" id="article-body" readability="135.013">
+A point in time recovery is restoring a database to a specified date and time. A point in time recovery is a method to recover your database to any point in time since the last database backup.<br />
+Specify the date and time that you want the restore process to stop restoring.<br />
+<h3>
+<span class="acssa24fe">Point in Time Restore Steps</span></h3>
+1. There are three recovery models, point in time is possible only for the databases that are using full or bulk logged recovery model. Under the bulk-logged recovery model, if a log backup contains bulk-logged changes, point-in-time recovery is not possible to a point within that backup. The database must be recovered to the end of the transaction log backup.<br />
+2-Restore the last full database backup and, if any, the last differential database backup without recovering the database (RESTORE DATABASE database_name FROM backup_device&nbsp;<b>WITH NORECOVERY</b>).<br />
+3-Apply each transaction log backup in the same sequence in which they were created, specifying the time at which you intend to stop restoring log (RESTORE DATABASE database_name FROM WITH STOPAT=time, RECOVERY).<br />
+4-The basic syntax is:<br />
+<div class="codediv">
+<pre class="prettyprint lang-sql"><span class="acssad7cf"><b>RESTORE LOG database_name FROM </b></span><b>WITH STOPAT =time, RECOVERY</b></pre>
+</div>
+<h5>
+<span class="acssa24fe">T-SQL Code:</span></h5>
+<div class="codediv">
+<pre class="prettyprint lang-sql"><span class="acss5c497"><b><span class="acss6958b">-- Restore the full database backup.</span>
+RESTORE DATABASE AdventureWorks
+FROM disk='backup file location'
+WITH NORECOVERY;
+GO
+<span class="acss6958b">
+</span></b></span></pre>
+<pre class="prettyprint lang-sql"><span class="acss5c497"><b><span class="acss6958b">-- Restore the required Log backup </span></b></span><b><span class="acss6958b">with </span></b><b><span class="acss6958b">STOPAT keyword.</span></b></pre>
+<pre class="prettyprint lang-sql"><b>RESTORE LOG AdventureWorks </b><b>FROM disk='backup file location' </b><b>WITH RECOVERY,</b><b>STOPAT = 'Apr 15, 2005 12:00 AM';</b></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+

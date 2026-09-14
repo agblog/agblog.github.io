@@ -1,0 +1,208 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div id="docs-internal-guid-c95ed5d7-7fff-18a9-5009-3ba7dd963186">
+<div style="text-align: left;"><br />
+<br />
+The Database Mirroring in SQL Server was firstly implemented on 
+Microsoft SQL Server 2005, which is basically designed for 
+high-performance and high-availability resolution of database 
+redundancy.&nbsp;<b> </b></div>
+<h2>
+<b>What is mirroring ?</b></h2>
+</div>
+<div>
+<br /></div>
+<div>
+SQL Server database mirroring is a disaster recovery and high availability technique which<br />
+involves two SQL Server instances on the same or different machines. Mirroring is implemented on a database basis with only <b>full recovery model</b>.</div>
+<div>
+Database mirroring maintains two copies of a single database on different server instances of SQL Server Database Engine.</div>
+<div>
+<br /></div>
+<div>
+<h2 style="text-align: left;">
+<b>Servers in Mirroring:</b></h2>
+</div>
+<div>
+Mirroring contains principal,mirror and witness server.</div>
+<div>
+<b><br /></b></div>
+<div dir="ltr">
+<b>Mirror server :</b></div>
+<div dir="ltr">
+In a database mirroring configuration, the server instance on which the mirror database resides.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+<b>Principal server :</b></div>
+<div dir="ltr">
+In database mirroring, the partner whose database is currently the principal&nbsp; database.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+<b>Witness :</b></div>
+<div dir="ltr">
+For
+ use only with high-safety mode, an optional instance of SQL Server that
+ enables the mirror server to recognize when to initiate an automatic 
+failover. Unlike the two failover partners, the witness does not serve 
+the database. Supporting automatic failover is the only role of the 
+witness.</div>
+<div>
+<br /></div>
+<div>
+<div dir="ltr">
+<h2 style="text-align: left;">
+<b>Operating modes:-</b></h2>
+</div>
+<div dir="ltr">
+<b><br /></b></div>
+<div dir="ltr">
+SQL Server database mirroring can be set to provide high availability or disaster recovery.<br />
+Depending on the needs, a DBA can choose among three available modes.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+<b>High safety</b> :</div>
+<div dir="ltr">
+Data
+ is written and committed on the principal and mirror databases 
+synchronously.&nbsp;Only after committing on both databases, the database 
+application can continue with activity.</div>
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Might produce delay and slower operation because transactions must be committed on both databases.</div>
+</li>
+</ol>
+<div>
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+If the principal database goes down, two options are available:-</div>
+</li>
+</ol>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Do
+ nothing: â€“ wait for the principal to become available again. During 
+that time, the SQL Server instance is unavailable. Mirroring will 
+continue where it has stopped.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Force
+ the SQL Server instance on the mirror database :â€“ the mirror database 
+becomes the principal. Possible data loss due to committed transactions 
+on the original principal database which are not yet committed on the 
+mirror currently acting as the principal.</div>
+</li>
+</ul>
+<div dir="ltr">
+<b>High safety with automatic failover:</b></div>
+<div dir="ltr">
+Three
+ servers are necessary. Data is written and must be committed 
+synchronously both on the principal and mirror databases. Only after 
+committing on both databases, the application can continue running.</div>
+</div>
+</div>
+<div dir="ltr">
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Might produce delay and slower operation because transactions must be committed on both databases.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+If the principal database goes down, only one option is available:</div>
+</li>
+</ol>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Let the automatic failover process complete, the mirrored database becomes the principal.</div>
+</li>
+</ul>
+<div dir="ltr">
+<b>High performance:</b>&nbsp;</div>
+<div dir="ltr">
+The
+ asynchronous communication, data is written and committed on the 
+principal server, and later sent and committed to the mirror server. 
+Automatic failover isnâ€™t possible and the witness server canâ€™t be used.</div>
+<ol>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The high performance mode is only available in the Enterprise edition of SQL Server.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+If the principal database goes down, three options are available:</div>
+</li>
+</ol>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Do
+ nothing :â€“ wait for the principal to become available again. The SQL 
+Server is unavailable. Mirroring will continue where it has stopped.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Force
+ the SQL Server instance on the mirror database: â€“ the mirror database 
+becomes the principal. Greater possibility for data loss, due to 
+asynchronous communication between databases.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Manual
+ update :â€“ to reduce data loss, take the tail of the log backup if the 
+failed server allows, remove mirroring and restore the tail of the log 
+on the previously mirrored database.</div>
+</li>
+</ul>
+<div>
+<div dir="ltr">
+<h2 style="text-align: left;">
+<b>Prerequisites:</b></h2>
+</div>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+For a mirroring, the partners and the witness, if any, must be running on the same version of SQL Server.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The
+ two partners, that is the principal server and mirror server, must be 
+running the same edition of SQL Server. The witness, if any, can run on 
+any edition of SQL Server that supports database mirroring.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The database must use the full recovery model. The simple and bulk-logged recovery models do not support database mirroring.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Verify that the mirror server has sufficient disk space for the mirror database.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+When
+ you are creating the mirror database on the mirror server then restore 
+the backup of the principal database with same database name WITH 
+NORECOVERY. Also, all log backups that were created after that backup 
+was taken must also be applied, again WITH NORECOVERY.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+<div dir="ltr" role="presentation">
+All
+ of the server instances in a mirroring session should use the same 
+master code page and collation. Differences can cause a problem during 
+mirroring setup.</div>
+</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+Database&nbsp; mirroring should be configure with domain login</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The
+ mirror database must be initialized from a restore of the principal 
+database with NORECOVERY, followed by restores in sequence of principal 
+transaction log backups. Prior to configuring mirroring ensure that at 
+least 1 Tran log is restored in addition to full backup with NORECOVERY 
+mode.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The mirror database must have the same name as the principal database.</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+

@@ -1,0 +1,51 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" trbidi="on">
+Hardware failures can result in databases that are corrupt and will not open upon restart of the server. In some cases the database is marked suspect, and then cannot be opened.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+The best way to deal with a database in this state is to repair it and reload it from a backup.</div>
+<div dir="ltr" trbidi="on">
+The MSDN's&nbsp;<a href="https://msdn.microsoft.com/en-us/library/ms176064.aspx">article</a>&nbsp;about the command "DBCC CHECKDB" explains three ways to perform a database repair in the syntax section:<br />
+<pre class="lang-sql prettyprint prettyprinted"><code><span class="pun">-</span><span class="pln"> REPAIR_ALLOW_DATA_LOSS
+</span><span class="pun">-</span><span class="pln"> REPAIR_FAST
+</span><span class="pun">-</span><span class="pln"> REPAIR_REBUILD</span></code></pre>
+To repair a suspect&nbsp;database use following script:<br />
+<br /></div>
+<div dir="ltr" trbidi="on">
+<b>DBCC CHECKDB(<i style="font-weight: bold;">databaseName</i>,&nbsp;repair)</b></div>
+<div dir="ltr" trbidi="on">
+<code><br /></code></div>
+<div dir="ltr" trbidi="on">
+<code>REPAIR</code>&nbsp;is simply the short form of&nbsp;<code>REPAIR_ALLOW_DATA_LOSS</code>.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+Following are DBCC repair options that should be placed in place of repair word:</div>
+<div dir="ltr" trbidi="on">
+<br />
+<b>
+1. Repair_Rebuild</b><br />
+If a user wants to repair SQL database without any loss of information, then this repair option is selected.</div>
+<div dir="ltr" trbidi="on">
+<br />
+<b>
+2. Repair_Allow_Data_Loss:</b><br />
+In some cases users take help of repair_allow_data_loss command to repair all type of errors in the SQL database.&nbsp;<span lang="EN-US">The database should be set on single user mode to run&nbsp;</span><span lang="EN-US">REPAIR_ALLOW_DATA_LOSS. You cannot set the database in single user mode with all users connected, and DBCC&nbsp;</span><span lang="EN-US">REPAIR_ALLOW_DATA_LOSS will fail if the database is not in single user mode.&nbsp;</span>It is pretty much clear from the name that there might be some loss of data during the recovery process. This means this DBCC CHECKDB command does not promise data integrity.</div>
+<div dir="ltr" trbidi="on">
+<br />
+<b>
+3. REPAIR_FAST:</b><br />
+Does minor fast repairs on database without risk of data loss such as repairing extra keys in nonclustered indexes.<br />
+<br />
+Use DBCC statement in the third line in the script:<br />
+<ol>
+<li>ALTER DATABASE databaseName SET EMERGENCY;</li>
+<li>ALTER DATABASE databaseName SET SINGLE_USER;</li>
+<li>DBCC CHECKDB (databaseName, repair) ALL_ERRORMSGS</li>
+<li>ALTER DATABASE databaseName SET MULTI_USER;</li>
+<li>ALTER DATABASE databaseName SET ONLINE;</li>
+</ol>
+</div>
+</div>
+

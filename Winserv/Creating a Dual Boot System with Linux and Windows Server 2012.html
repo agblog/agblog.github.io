@@ -1,0 +1,34 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" id="docs-internal-guid-be5113a6-7fff-07f6-73da-6127b7348e7e" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Creating a Dual Boot System with Linux and Windows Server 2012:-</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">In this article we will see how to install a Linux based OS alongside a Windows Server already installed on a System with important data. This is my system configuration</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 230px; overflow: hidden; width: 553px;"><img alt="Untitled1" height="230" src="https://lh3.googleusercontent.com/eFIrWzAWIvksLwqKiYFiRevmNtDCPALPLqN7YJRPyabvkFyIEuNWha5vwcJiCFq50d5L7eOdOJSbMsTduv2vy3BV6-Xbx8ezDFQXipaOxoUOUtP2Ff2_01iIBWjw2AA5713ht1GOYhVQ3uMCcA" style="margin-left: 0px; margin-top: 0px;" width="553" /></span></span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">First step is to create partition for linux system:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">To create a partition from unpartitioned space follow these steps:</span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Open Computer Management by selecting the Start button. The select Control Panel &gt; System and Security&nbsp; &gt; Administrative Tools, and then double-click Computer Management</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Goto computer management&nbsp;</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 262px; overflow: hidden; width: 554px;"><img alt="3" height="262" src="https://lh5.googleusercontent.com/gKBMGP6UbYAtNlBc8a04MBq_p4RldxniSBNApoPdiCUgvcjPmAxfRGc5z7MPwEvFLb0nuIHx0VvlCaYAE4kG_3vj6J8_GdvbGtimVcTmd1F1n2gIYEWSLmZWUBE3YmtmSE4142C0Q0IBrSjm5w" style="margin-left: 0px; margin-top: 0px;" width="554" /></span></span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">In the left pane, under Storage, select Disk Management</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Create free space and delete partition and dont assign it to windows as following:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">&nbsp;</span><span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 321px; overflow: hidden; width: 553px;"><img alt="4" height="321" src="https://lh5.googleusercontent.com/aQcjmW8EZAM4DelT3d0fzHqEPjowWZYTYL6E_a39xqoewYCY9v8MVaaYiuolagrdCc95FdRjPpn89GrZyDEfEVyrlAoLS9GGGiFDxtGELiHQD-ur9LAMP8VILXpWzUc0C-fXLrgx9cmRNj6Vug" style="margin-left: 0px; margin-top: 0px;" width="553" /></span></span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">As I have created free space like below fig:</span></div>
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;"><span style="border: none; display: inline-block; height: 242px; overflow: hidden; width: 553px;"><img alt="2" height="242" src="https://lh3.googleusercontent.com/zgZnpBkvxqC8dDCBWvxH-KcKOHH2hI9u6CbChPb3LN4Hcq-qJ9JsOBJm_R906BO5vPs1-_TLvVM0CNog7zP7O4tyoDjWZsynGiMCZ9TcSeufhiXhU1aMhKnCsyGohZCXdN1WZioOIwNp8a2yEg" style="margin-left: 0px; margin-top: 0px;" width="553" /></span></span></div>
+<br />
+<div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt; text-indent: 21pt;">
+<span style="font-family: &quot;calibri&quot;; font-size: 10pt; vertical-align: baseline; white-space: pre-wrap;">Create bootable linux drive or insert DVD of linux, steps shows how to create USB bootable disk</span></div>
+<br /></div>
+

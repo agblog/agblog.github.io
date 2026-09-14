@@ -1,0 +1,100 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+Important Parameters of sp_configure<br />
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+Starting
+ SQL Server 2008, Microsoft has introduced a new catalog view which can 
+be used to see various server-wide configuration option value in the 
+system.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+sys.configurations (Transact-SQL)</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+It has a little-detailed output as compared to sp_configure.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<b>Here are the interesting columns.</b></div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+Is_dynamic:
+ This column is used to know if the option is dynamic or not. If the 
+value is 1 (one) then the parameter change takes effect when the 
+RECONFIGURE statement is executed. If the value is 0 (zero) the value 
+takes effect when the SQL Server service is restarted.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+Is_advanced:
+ This column is used to know if the option is an advanced option or not.
+ If the value for a parameter is 1 then itâ€™s an advanced option and 
+would is displayed or can be changed only when â€œshow advanced optionsâ€ 
+is set to 1 through sp_configure.</div>
+<div dir="ltr" trbidi="on">
+Below is the query which given an answer to our question!</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+-- these configuration values which need restart</div>
+<div dir="ltr" trbidi="on">
+SELECT name ,description</div>
+<div dir="ltr" trbidi="on">
+FROM sys.configurations</div>
+<div dir="ltr" trbidi="on">
+WHERE is_dynamic = 0</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<h3>
+Max Server Memory</h3>
+</div>
+<div dir="ltr" trbidi="on">
+The&nbsp;<b>Max Server Memory</b>&nbsp;configuration option to configure how much memory SQL Server can consume.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;"><a data-blogger-escaped-style="margin-left: 1em; margin-right: 1em;" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjV9eQKH2mr4g9-UlCyboqK0I1l2VqtUNmabhd6DG_cxHDkxPuUJDLfPs7sBE3BQrq42bvtvslEsNBsEemtXBsskaPwiZQB4DbgO14o5vBFi17L7qwWN7ufrmV0r-tt4Q2C0-Xe0Zy9lBsi/s1600/1579026980778037-0.png" style="text-align: left;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjV9eQKH2mr4g9-UlCyboqK0I1l2VqtUNmabhd6DG_cxHDkxPuUJDLfPs7sBE3BQrq42bvtvslEsNBsEemtXBsskaPwiZQB4DbgO14o5vBFi17L7qwWN7ufrmV0r-tt4Q2C0-Xe0Zy9lBsi/s1600/1579026980778037-0.png" width="400" /></a></div>
+<br /></div>
+<div dir="ltr" trbidi="on">
+SQL Server is configured by default to consume up to 2147483647 MB â€“ that is 2 Petabytes</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+With 64 GB of physical memory I would configure the&nbsp;<b>Max Server Memory</b>&nbsp;setting with around 56 GB, so that the OS can consume and work with the remaining 8 GB.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<h3>
+Cost Threshold for Parallelism</h3>
+The
+ next configuration option that you have to change has to do with how 
+SQL Server handles parallelism. Parallelism means that SQL Server is 
+able to run operators in an execution plan across multiple worker 
+threads. The goal of parallelism is to improve the throughput of your 
+queries.<br />
+<h3>
+<div class="separator" style="clear: both; text-align: center;"><a data-blogger-escaped-style="margin-left: 1em; margin-right: 1em;" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgv58pe_Rk2C_vV1eBb_pzQE1n8UWQBwcY5u-SKXtqpRgb1XtoQJLERR2JYOYsSPanMxy46MwP9aY6Lg1VzXyGU6xkbHF1PVnIeji7Axf74bnFgZ4Rk8gw2-aFuFRDYe0WeGdG5Hkq0cLiB/s1600/1579026974992030-1.png" style="font-size: 18.72px; text-align: left;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgv58pe_Rk2C_vV1eBb_pzQE1n8UWQBwcY5u-SKXtqpRgb1XtoQJLERR2JYOYsSPanMxy46MwP9aY6Lg1VzXyGU6xkbHF1PVnIeji7Axf74bnFgZ4Rk8gw2-aFuFRDYe0WeGdG5Hkq0cLiB/s1600/1579026974992030-1.png" width="400" /></a></div>
+</h3>
+<h3>
+Max Degree of Parallelism (MAXDOP)</h3>
+When an execution plan goes parallel in SQL Server, the&nbsp;<b>Max Degree of Parallelism</b>&nbsp;defines
+ how many worker threads each parallel operator in the execution plan 
+can use. The following picture shows the default configuration of this 
+option.<br />
+<div class="separator" style="clear: both; text-align: center;"><a data-blogger-escaped-style="margin-left: 1em; margin-right: 1em;" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9bvIL4PVHaJFBkXvxk5g31yoX5gntZV5cTzg-KnHUbEnx1r5P-lCWgxxBmdrn3CvemnQDvW-lOFeqahlOolHcqkQOuNl0sW115XmyI97mugIh7tN2vqdwNrywdcqm6Fcucm4p4EyKWfLE/s1600/1579026967214847-2.png" style="text-align: left;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9bvIL4PVHaJFBkXvxk5g31yoX5gntZV5cTzg-KnHUbEnx1r5P-lCWgxxBmdrn3CvemnQDvW-lOFeqahlOolHcqkQOuNl0sW115XmyI97mugIh7tN2vqdwNrywdcqm6Fcucm4p4EyKWfLE/s1600/1579026967214847-2.png" width="400" /></a></div>
+<br /></div>
+<div dir="ltr" trbidi="on">
+Link for all parameter:</div>
+<div dir="ltr" trbidi="on">
+https://docs.google.com/spreadsheets/d/1BPtfElZ4ovNBK5vNWOIksDB3YYVKGczS6N5x-_eY818/edit?usp=drivesdk</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div>
+<br /></div>
+</div>
+</div>
+

@@ -1,0 +1,92 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<code class="language-sql">
+</code><div dir="ltr" id="docs-internal-guid-b8a179d3-7fff-cf8f-acb0-ed8970013da7" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 11pt; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre-wrap; white-space: pre;">Bad/ unused indexes:-</span></div>
+<br /><div dir="ltr" style="line-height: 1.295; margin-bottom: 8pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 11pt; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap; white-space: pre;"><span style="border: none; display: inline-block; height: 37px; overflow: hidden; width: 601px;"><img height="37" src="https://lh5.googleusercontent.com/68pOejuEPkSAdN36G6l0oPgvV0i5IzBKp47VNubJ7XKD4eiP9U2N83t7FNAf_unVFGEnleyxAHGjxnsBZpvF4M-W9_KUbZaSx430HRnBLkcX7RRWnxT3omMKLvh5BEvZfiVJ6BiOCzz9mNP_5A" style="margin-left: 0px; margin-top: 0px;" width="601" /></span></span></div>
+<pre class="prettyprint"><code class="language-sql">
+IF OBJECT_ID('tempdb..#table1') IS NOT NULL
+&nbsp;&nbsp;&nbsp;&nbsp;DROP TABLE #table1
+select&nbsp;
+db_name() as DatabaseName,OBJECT_SCHEMA_NAME(i.OBJECT_ID) AS SchemaName,
+OBJECT_NAME(i.OBJECT_ID) AS TableName,
+i.name AS IndexName,
+i.index_id AS IndexID,
+8 * SUM(a.used_pages) AS 'Indexsize(KB)',
+CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00/1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceGB
+into #table1&nbsp;
+FROM sys.indexes AS i
+JOIN sys.partitions AS p ON p.OBJECT_ID = i.OBJECT_ID AND p.index_id = i.index_id
+JOIN sys.allocation_units AS a ON a.container_id = p.partition_id
+GROUP BY i.OBJECT_ID,i.index_id,i.name
+ORDER BY OBJECT_NAME(i.OBJECT_ID),i.index_id
+
+go
+
+IF OBJECT_ID('tempdb..#table2') IS NOT NULL
+&nbsp;&nbsp;&nbsp;&nbsp;DROP TABLE #table2
+SELECT&nbsp;
+o.name AS ObjectName
+, i.name AS IndexName
+, i.index_id AS IndexID
+, dm_ius.user_seeks AS UserSeek
+, dm_ius.user_scans AS UserScans
+, dm_ius.user_lookups AS UserLookups
+, dm_ius.user_updates AS UserUpdates
+, p.TableRows
+, 'DROP INDEX ' + QUOTENAME(i.name)
++ ' ON ' + QUOTENAME(s.name) + '.'
++ QUOTENAME(OBJECT_NAME(dm_ius.OBJECT_ID)) AS 'drop statement'
+into #table2
+FROM sys.dm_db_index_usage_stats dm_ius
+INNER JOIN sys.indexes i ON i.index_id = dm_ius.index_id&nbsp;
+AND dm_ius.OBJECT_ID = i.OBJECT_ID
+INNER JOIN sys.objects o ON dm_ius.OBJECT_ID = o.OBJECT_ID
+INNER JOIN sys.schemas s ON o.schema_id = s.schema_id
+INNER JOIN (SELECT SUM(p.rows) TableRows, p.index_id, p.OBJECT_ID
+FROM sys.partitions p GROUP BY p.index_id, p.OBJECT_ID) p
+ON p.index_id = dm_ius.index_id AND dm_ius.OBJECT_ID = p.OBJECT_ID
+WHERE OBJECTPROPERTY(dm_ius.OBJECT_ID,'IsUserTable') = 1
+AND dm_ius.database_id = DB_ID()
+AND i.type_desc = 'nonclustered'
+AND i.is_primary_key = 0
+AND i.is_unique_constraint = 0
+&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;dm_ius.user_updates &lt;&gt; 0 -- This line excludes indexes SQL Server hasnï¿½t done any work with
+&nbsp;&nbsp;&nbsp;&nbsp;AND
+&nbsp;&nbsp;&nbsp;&nbsp;dm_ius. user_lookups = 0
+&nbsp;&nbsp;&nbsp;&nbsp;AND
+&nbsp;&nbsp;&nbsp;&nbsp;dm_ius.user_seeks = 0
+&nbsp;&nbsp;&nbsp;&nbsp;AND
+&nbsp;&nbsp;&nbsp;&nbsp;dm_ius.user_scans = 0
+ORDER BY
+&nbsp;&nbsp;&nbsp;&nbsp;dm_ius.user_updates DESC
+go
+--=============================================
+IF OBJECT_ID('tempdb..#table3') IS NOT NULL
+DROP TABLE #table3
+select * into #table3 from(
+select row_number()over(partition by a.IndexName,a.ObjectName order by a.ObjectName) as rowno,
+db_name() as DatabaseName,ObjectName,a.IndexName,[Indexsize(KB)],TotalSpaceGB,a.IndexID,UserSeek,UserScans,UserLookups,UserUpdates,TableRows,[drop statement]
+from #table2 as a
+left join&nbsp;
+#table1 as b on a.[IndexName]=b.[IndexName]
+and a.[IndexID]=b.[IndexID]
+--order by a.UserUpdates desc
+) as x&nbsp;
+where rowno=1
+
+go
+--==============================================
+
+select db_name() as DatabaseName,ObjectName,IndexName,[Indexsize(KB)],TotalSpaceGB,IndexID,UserSeek,UserScans,UserLookups,UserUpdates,TableRows,[drop statement]
+&nbsp;from #table3&nbsp;
+order by UserUpdates desc
+--=======================================</code></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+<pre class="prettyprint"><code class="language-sql">&nbsp;</code></pre>
+</div>
+

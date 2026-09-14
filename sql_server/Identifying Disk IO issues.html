@@ -1,0 +1,386 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<div dir="ltr" trbidi="on">
+If you see I/O-related waits when looking at wait statistics then use the&nbsp;<b>sys.dm_io_virtual_file_stats</b>&nbsp;dmv to examine IO subsystem latencies from within SQL Server using SSMS:<br />
+<br />
+<h2 style="text-align: left;">
+<b>sys.dm_io_virtual_file_stats</b></h2>
+<b><br /></b>
+It was introduced in SQL Server 2005 as a replacement for&nbsp;<i><b>fn_virtualfilestats</b></i>&nbsp;and shows you how many I/Os have occurred, with latencies for all files.&nbsp; By this query, we will able to check the drive latency information for reads and writes, in milliseconds and based on my experience I found that the Latency above&nbsp;<b>20-25ms is considered bad and there's a problem.</b></div>
+<div dir="ltr" trbidi="on">
+<div>
+<br /></div>
+<b>Virtual file stats </b>are a great starting point when you want to understand <b>I/O performance</b> for a SQL Server instance.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+</div>
+<div>
+<div dir="ltr">
+<h3 style="text-align: left;">
+<b>Following are threshold to troubleshoot disk io problems:</b></h3>
+</div>
+<div dir="ltr">
+<br />
+<ul style="text-align: left;">
+<li>Excellent: &lt; 1ms</li>
+<li>Very good: &lt; 5ms</li>
+<li>Good: 5 â€“ 10ms</li>
+<li>Poor: 10 â€“ 20ms</li>
+<li>Bad: 20 â€“ 100ms</li>
+<li>Shockingly bad: 100 â€“ 500ms</li>
+<li>WOW!: &gt; 500ms</li>
+</ul>
+</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+<b>This query shows result from internal statistics since last restart of SQL server, make sure you have enough information before checking statistics:</b><br />
+<br />
+<h3>
+<ul style="text-align: left;">
+<li><b>Following query executed based on statistics without wait time:&nbsp;</b></li>
+</ul>
+</h3>
+<br />
+<br /></div>
+<pre class="prettyprint"><code class="language-sql">
+
+SELECT
+
+    [ReadLatency] =
+
+        CASE WHEN [num_of_reads] = 0
+
+            THEN 0 ELSE ([io_stall_read_ms] / [num_of_reads]) END,
+
+    [WriteLatency] =
+
+        CASE WHEN [num_of_writes] = 0
+
+            THEN 0 ELSE ([io_stall_write_ms] / [num_of_writes]) END,
+
+    [Latency] =
+
+        CASE WHEN ([num_of_reads] = 0 AND [num_of_writes] = 0)
+
+            THEN 0 ELSE ([io_stall] / ([num_of_reads] + [num_of_writes])) END,
+
+    [AvgBPerRead] =
+
+        CASE WHEN [num_of_reads] = 0
+
+            THEN 0 ELSE ([num_of_bytes_read] / [num_of_reads]) END,
+
+    [AvgBPerWrite] =
+
+        CASE WHEN [num_of_writes] = 0
+
+            THEN 0 ELSE ([num_of_bytes_written] / [num_of_writes]) END,
+
+    [AvgBPerTransfer] =
+
+        CASE WHEN ([num_of_reads] = 0 AND [num_of_writes] = 0)
+
+            THEN 0 ELSE
+
+                (([num_of_bytes_read] + [num_of_bytes_written]) /
+
+                ([num_of_reads] + [num_of_writes])) END,
+
+    LEFT ([mf].[physical_name], 2) AS [Drive],
+
+    DB_NAME ([vfs].[database_id]) AS [DB],
+
+    [mf].[physical_name]
+
+FROM
+
+    sys.dm_io_virtual_file_stats (NULL,NULL) AS [vfs]
+
+JOIN sys.master_files AS [mf]
+
+    ON [vfs].[database_id] = [mf].[database_id]
+
+    AND [vfs].[file_id] = [mf].[file_id]
+
+-- WHERE [vfs].[file_id] = 2 -- log files
+
+-- ORDER BY [Latency] DESC
+
+-- ORDER BY [ReadLatency] DESC
+
+ORDER BY [WriteLatency] DESC;
+
+
+GO
+
+</code></pre>
+<div dir="ltr">
+Note- It shows values in milliseconds and showing results from last restart of sql server:</div>
+<div dir="ltr">
+<br /></div>
+<b>Output:</b><br />
+<div>
+<b></b><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2m5i7Mpktpj9JzQfHzCcrU8PzIIeBHsL_fZvZMgZRFelycTeXosfdNO_jDXMSzHcShzYDuNG53PakY8mw9POjwgXQfEWQ_Ww507mSfHxnlwYjsJ4NZ5NvfepFBi1wREPtn9dQnT8FHvnz/s1600/1577628987956232-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2m5i7Mpktpj9JzQfHzCcrU8PzIIeBHsL_fZvZMgZRFelycTeXosfdNO_jDXMSzHcShzYDuNG53PakY8mw9POjwgXQfEWQ_Ww507mSfHxnlwYjsJ4NZ5NvfepFBi1wREPtn9dQnT8FHvnz/s1600/1577628987956232-0.png" width="400" /></a></div>
+<br />
+<div dir="ltr">
+<br />
+<h3>
+<ul style="text-align: left;">
+<li><b>Following query executed to calculate current load with 30 min wait time:&nbsp;</b></li>
+</ul>
+</h3>
+</div>
+<pre class="prettyprint"><code class="language-sql">
+
+/*==========================================
+
+  File:     ShortPeriodIOLatencies.sql
+
+
+  Summary:  Short snapshot of I/O latencies
+
+
+  SQL Server Versions: 2005 onwards
+
+------------------------------------------------------------------------------
+
+  Written by Paul S. Randal, SQLskills.com
+
+
+  (c) 2014, SQLskills.com. All rights reserved.
+
+
+  For more scripts and sample code, check out http://www.SQLskills.com
+
+
+  You may alter this code for your own *non-commercial* purposes (e.g. in a
+
+  for-sale commercial tool). Use in your own environment is encouraged.
+
+  You may republish altered code as long as you include this copyright and
+
+  give due credit, but you must obtain prior permission before blogging
+
+  this code.
+
+
+  THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF
+
+  ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+
+  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+
+  PARTICULAR PURPOSE.
+
+=======================================================*/
+
+  
+
+
+IF EXISTS (SELECT * FROM [tempdb].[sys].[objects]
+
+    WHERE [name] = N'##SQLskillsStats1')
+
+    DROP TABLE [##SQLskillsStats1];
+
+
+IF EXISTS (SELECT * FROM [tempdb].[sys].[objects]
+
+    WHERE [name] = N'##SQLskillsStats2')
+
+    DROP TABLE [##SQLskillsStats2];
+
+GO
+
+
+SELECT [database_id], [file_id], [num_of_reads], [io_stall_read_ms],
+
+       [num_of_writes], [io_stall_write_ms], [io_stall],
+
+       [num_of_bytes_read], [num_of_bytes_written], [file_handle]
+
+INTO ##SQLskillsStats1
+
+FROM sys.dm_io_virtual_file_stats (NULL, NULL);
+
+GO
+
+
+WAITFOR DELAY '00:05:00';
+
+GO
+
+
+SELECT [database_id], [file_id], [num_of_reads], [io_stall_read_ms],
+
+       [num_of_writes], [io_stall_write_ms], [io_stall],
+
+       [num_of_bytes_read], [num_of_bytes_written], [file_handle]
+
+INTO ##SQLskillsStats2
+
+FROM sys.dm_io_virtual_file_stats (NULL, NULL);
+
+GO
+
+
+WITH [DiffLatencies] AS
+
+(SELECT
+
+-- Files that weren't in the first snapshot
+
+        [ts2].[database_id],
+
+        [ts2].[file_id],
+
+        [ts2].[num_of_reads],
+
+        [ts2].[io_stall_read_ms],
+
+        [ts2].[num_of_writes],
+
+        [ts2].[io_stall_write_ms],
+
+        [ts2].[io_stall],
+
+        [ts2].[num_of_bytes_read],
+
+        [ts2].[num_of_bytes_written]
+
+    FROM [##SQLskillsStats2] AS [ts2]
+
+    LEFT OUTER JOIN [##SQLskillsStats1] AS [ts1]
+
+        ON [ts2].[file_handle] = [ts1].[file_handle]
+
+    WHERE [ts1].[file_handle] IS NULL
+
+UNION
+
+SELECT
+
+-- Diff of latencies in both snapshots
+
+        [ts2].[database_id],
+
+        [ts2].[file_id],
+
+        [ts2].[num_of_reads] - [ts1].[num_of_reads] AS [num_of_reads],
+
+        [ts2].[io_stall_read_ms] - [ts1].[io_stall_read_ms] AS [io_stall_read_ms],
+
+        [ts2].[num_of_writes] - [ts1].[num_of_writes] AS [num_of_writes],
+
+        [ts2].[io_stall_write_ms] - [ts1].[io_stall_write_ms] AS [io_stall_write_ms],
+
+        [ts2].[io_stall] - [ts1].[io_stall] AS [io_stall],
+
+        [ts2].[num_of_bytes_read] - [ts1].[num_of_bytes_read] AS [num_of_bytes_read],
+
+        [ts2].[num_of_bytes_written] - [ts1].[num_of_bytes_written] AS [num_of_bytes_written]
+
+    FROM [##SQLskillsStats2] AS [ts2]
+
+    LEFT OUTER JOIN [##SQLskillsStats1] AS [ts1]
+
+        ON [ts2].[file_handle] = [ts1].[file_handle]
+
+    WHERE [ts1].[file_handle] IS NOT NULL)
+
+SELECT
+
+    DB_NAME ([vfs].[database_id]) AS [DB],
+
+    LEFT ([mf].[physical_name], 2) AS [Drive],
+
+    [mf].[type_desc],
+
+    [num_of_reads] AS [Reads],
+
+    [num_of_writes] AS [Writes],
+
+    [ReadLatency(ms)] =
+
+        CASE WHEN [num_of_reads] = 0
+
+            THEN 0 ELSE ([io_stall_read_ms] / [num_of_reads]) END,
+
+    [WriteLatency(ms)] =
+
+        CASE WHEN [num_of_writes] = 0
+
+            THEN 0 ELSE ([io_stall_write_ms] / [num_of_writes]) END,
+
+    -- [Latency] =
+
+        -- CASE WHEN ([num_of_reads] = 0 AND [num_of_writes] = 0)
+
+            -- THEN 0 ELSE ([io_stall] / ([num_of_reads] + [num_of_writes])) END,
+
+    [AvgBPerRead] =
+
+        CASE WHEN [num_of_reads] = 0
+
+            THEN 0 ELSE ([num_of_bytes_read] / [num_of_reads]) END,
+
+    [AvgBPerWrite] =
+
+        CASE WHEN [num_of_writes] = 0
+
+            THEN 0 ELSE ([num_of_bytes_written] / [num_of_writes]) END,
+
+    -- [AvgBPerTransfer] =
+
+        -- CASE WHEN ([num_of_reads] = 0 AND [num_of_writes] = 0)
+
+            -- THEN 0 ELSE
+
+                -- (([num_of_bytes_read] + [num_of_bytes_written]) /
+
+                -- ([num_of_reads] + [num_of_writes])) END,
+
+    [mf].[physical_name]
+
+FROM [DiffLatencies] AS [vfs]
+
+JOIN sys.master_files AS [mf]
+
+    ON [vfs].[database_id] = [mf].[database_id]
+
+    AND [vfs].[file_id] = [mf].[file_id]
+
+-- ORDER BY [ReadLatency(ms)] DESC
+
+ORDER BY [WriteLatency(ms)] DESC;
+
+GO
+
+
+-- Cleanup
+
+IF EXISTS (SELECT * FROM [tempdb].[sys].[objects]
+
+    WHERE [name] = N'##SQLskillsStats1')
+
+    DROP TABLE [##SQLskillsStats1];
+
+
+IF EXISTS (SELECT * FROM [tempdb].[sys].[objects]
+
+    WHERE [name] = N'##SQLskillsStats2')
+
+    DROP TABLE [##SQLskillsStats2];
+
+GO
+
+
+</code></pre>
+</div>
+</div>
+</div>
+

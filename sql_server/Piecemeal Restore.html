@@ -1,0 +1,197 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<h3 class="post-title entry-title" itemprop="name">
+Piecemeal Restore in SQL Server</h3>
+<div class="post-header">
+<div class="post-header-line-1">
+</div>
+</div>
+<div class="post-body entry-content" id="post-body-3376820955607765302" itemprop="articleBody" readability="70">
+<div dir="ltr" readability="20.5" trbidi="on">
+<div readability="13">
+A piecemeal restore sequence restores and recovers a database in stages at the file group level, beginning with the primary and all read-write, secondary file groups. In this process, we can restore the primary file group first making database online and the remaining file groups can be restored while recovery while the transactions are running on primary. Mostly suitable for data warehousing databases.<br />
+<a href="https://www.blogger.com/null" name="more"></a></div>
+<br />
+<div>
+Consider we have a database of 4 TB whereas on primary file group is a read write FILEGROUP of size 1 TB and we have other files groups which are read-only of size 3 TB. In such cases, it becomes difficult task to perform full database backup and restore as it may take several hours to complete the backup and restore operation.&nbsp;</div>
+<br />
+<div>
+Piecemeal restore process allows us to restore the primary FILEGROUP first and the database can be online and the remaining FILEGROUPS can be restored while the recovery the transactions are running on primary File group. Mostly suitable for data warehousing databases.</div>
+<div>
+<h2>
+Demo</h2>
+<div readability="8">
+In this demo, we will see exactly how to perform piecemeal restore on a sample database.</div>
+</div>
+<div readability="8">
+<br />
+-- If exist drop database
+
+<br />
+<pre class="prettyprint"><code class="language-sql">
+IF EXISTS (SELECT name FROM sys.databases WHERE name = N'PiecemealDemo')
+   DROP DATABASE [PiecemealDemo]
+GO
+</code></pre>
+--Create database PiecemealDemo
+<br />
+<pre class="prettyprint"><code class="language-sql">
+Create database PiecemealDemo
+</code></pre>
+--Add filegroup ReadOnlyFG to the the database
+<br />
+<pre class="prettyprint"><code class="language-sql">
+ALTER DATABASE PiecemealDemo
+ADD FILEGROUP ReadOnlyFG;
+GO
+</code></pre>
+--Add datafile to the filegroup ReadOnlyFG
+<br />
+<pre class="prettyprint"><code class="language-sql">
+ALTER DATABASE PiecemealDemo
+ADD FILE
+(
+    NAME = ReadOnlyFile,
+    FILENAME = 'E:\Anurag\ReadOnlyData.ndf',
+    SIZE = 10 MB,
+    MAXSIZE = 100 MB,
+    FILEGROWTH = 15 MB
+)
+TO FILEGROUP ReadOnlyFG;
+GO
+</code></pre>
+--Verify the filegroups using below T-SQL
+<br />
+<pre class="prettyprint"><code class="language-sql">
+Use [PiecemealDemo]
+GO
+
+SELECT DB_NAME() DatabaseName,
+dbf.name FileName,
+size/128 SizeMB,
+fg.name FGName,dbf.physical_name
+FROM sys.database_files dbf INNERJOIN sys.filegroups fg 
+ON dbf.data_space_id=fg.data_space_id
+
+GO
+</code></pre>
+--Add a table to the filegroup
+<br />
+<pre class="prettyprint"><code class="language-sql">
+CREATE TABLE PrimaryTable
+      (
+            EmpID int IDENTITY(1,1) PRIMARY KEY,
+            EmpName varchar(100) NOT NULL,
+            FileGroupType varchar(100)
+      )
+GO
+CREATE TABLE ReadOnlyTable
+      (
+            EmpID int IDENTITY(1,1) PRIMARY KEY,
+            EmpName varchar(100) NOT NULL,
+            FileGroupType varchar(100)
+      )
+      ON ReadOnlyFG;
+GO
+</code></pre>
+--Insert some records in a table
+<br />
+<pre class="prettyprint"><code class="language-sql">
+INSERT INTO PrimaryTable(EmpName,FileGroupType)
+values('John','PrimaryFG'),('John','PrimaryFG'),('John','PrimaryFG'),('John','PrimaryFG'),('John','PrimaryFG')
+GO
+INSERT INTO ReadOnlyTable(EmpName,FileGroupType)
+values('Anurag','ReadOnlyFG'),('Anurag','ReadOnlyFG'),('Anurag','ReadOnlyFG'),('Anurag','ReadOnlyFG'),('Anurag','ReadOnlyFG')
+</code></pre>
+--Verify the data inserted into a table
+<br />
+<pre class="prettyprint"><code class="language-sql">
+Select * from PrimaryTable;
+Select * from ReadOnlyTable;
+</code></pre>
+--Change Filegroup status to readonly.
+<br />
+<pre class="prettyprint"><code class="language-sql">
+use master
+GO
+ALTER DATABASE PiecemealDemo MODIFYFILEGROUP ReadOnlyFG READ_ONLY;
+</code></pre>
+--Verify the filegroup status by executing following T-SQL
+<br />
+<pre class="prettyprint"><code class="language-sql">
+USE [PiecemealDemo]
+GO
+SELECT DB_NAME() databasename,dbf.name [FileName],
+         size/128 SizeMB,fg.name FGName,dbf.physical_name,
+         dbf.state_desc,dbf.is_read_only
+FROM
+      sys.database_files dbf INNER JOINsys.filegroups fg
+ON dbf.data_space_id=fg.data_space_id
+</code></pre>
+--Perform full database backup
+<br />
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE PiecemealDemo
+    TO DISK = 'F:\DBBackup\PiecemealDemo_Full.bak'
+    WITH Compression, stats=1;
+GO
+</code></pre>
+--Perform backup for read-only filegroup
+<br />
+<pre class="prettyprint"><code class="language-sql">
+BACKUP DATABASE PiecemealDemo
+   FILEGROUP = 'ReadOnlyFG'
+   TO DISK = 'F:\DBBackup\ReadOnlyFG.bak'
+WITH Compression, stats=1;
+</code></pre>
+--Drop the database to perform the piecemeal recovery process of the database
+<br />
+<pre class="prettyprint"><code class="language-sql">
+USE MASTER;
+GO
+
+DROP DATABASE [PiecemealDemo]
+</code></pre>
+--The RESTORE DATABASE command with PARTIAL clause starts a new piecemeal restore operation. The keyword PARTIAL indicates that the restore process involves a partial restore. The partial keyword defines and initiates the partial-restore sequence. This will be validated during the recovery stages.
+
+--Now, restore read-write filegroups using READ_WRITE_FILEGROUPS clause.
+<br />
+<pre class="prettyprint"><code class="language-sql">
+USE MASTER
+GO
+RESTORE DATABASE PiecemealDemo READ_WRITE_FILEGROUPS
+      FROM DISK ='F:\DBBackup\PiecemealDemo_Full.bak'  
+WITH PARTIAL, RECOVERY 
+GO
+</code></pre>
+--Verify the output by querying the read-only table data
+<br />
+<pre class="prettyprint"><code class="language-sql">
+SELECT *
+      FROM [PiecemealDemo].[dbo].[PrimaryTable]
+GO
+SELECT *
+      FROM [PiecemealDemo].[dbo].[ReadOnlyTable]
+</code></pre>
+Restore ReadOnly Filegroup
+<br />
+<pre class="prettyprint"><code class="language-sql">
+USE [master]
+GO
+RESTORE DATABASE PiecemealDemo
+   FILE = 'ReadOnlyFile',
+   FILEGROUP = 'ReadOnlyFG'
+   FROM DISK = 'F:\DBBackup\ReadOnlyFG.bak'
+   WITH RECOVERY
+</code></pre>
+--Verify the output by querying the read-only table data
+<br />
+<pre class="prettyprint"><code class="language-sql">
+SELECT * FROM PrimaryTable
+GO
+SELECT * FROM ReadOnlyTable 
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+

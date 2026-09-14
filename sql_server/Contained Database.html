@@ -1,0 +1,96 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>Contained database:</b><br />
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+Contained
+ Databases is a new feature which was initially introduced in SQL Server
+ 2012. A contained database is a database that will store all its 
+metadata within the database thereby not storing any configuration 
+information within the master database of the SQL Server Instance where 
+the Contained Database is created.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+Contained
+ databases have no dependencies on server-level metadata and settings.&nbsp; 
+&nbsp;These databases are fully portable, which makes it easier for a DBA to 
+move databases between instances without having to deal with issues like
+ orphaned users.</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+Contained
+ Database Authentication is not enabled by default on the SQL Server 
+instance. First you need to enable it at the instance level before you 
+can create a database with containment or a database that can 
+authenticate users.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<h3>
+How to Configure Contained Database Feature in SQL Server Using T-SQL Code</h3>
+Execute the below T-SQL to configure contained database feature in SQL Server at instance level.<br />
+<pre class="wp-block-code"><code>USE master
+GO
+sp_configure 'show advanced options', 1
+GO
+RECONFIGURE WITH OVERRIDE
+GO
+sp_configure 'contained database authentication', 1
+GO
+RECONFIGURE WITH OVERRIDE
+GO
+sp_configure 'show advanced options', 0
+GO
+RECONFIGURE WITH OVERRIDE
+GO</code></pre>
+Once the above TSQL Script is executed successfully 
+the Contained Database feature will be enabled at the SQL Server 
+Instance level.<br />
+<h3>
+How to Configure Contained Database Feature in SQL Server Using SSMS</h3>
+<b>Step 1</b>.<br />
+Connect to SQL Server 2012 Instance using SQL Server Management Studio and then right click the&nbsp;<b>SQL Server Instance</b>&nbsp;and choose&nbsp;<b>Properties</b>&nbsp;from the drop down list.<br />
+<b>Step 2</b>.<br />
+In&nbsp;<b>Server Properties&nbsp;</b>choose&nbsp;<b>Advanced&nbsp;</b>Page and set the value as&nbsp;<b>True&nbsp;</b>for&nbsp;<b>Enable Contained Databases&nbsp;</b>as highlighted in the below snippet and then click&nbsp;<b>OK&nbsp;</b>to save the changes.<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinhNW1Uksgq8rBFV0Mn8xtPT6MiLGIRCzcof-epwMqztsH-R0UhCZnTwp2xubSq0KsXo5swySrz7c7jUqHe5sTd3qqCzdQaVDad2XekDQzFhR9TVIpejnfDOqud9IwwKtgzgNKxIbU2OU_/s1600/1579098917239014-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinhNW1Uksgq8rBFV0Mn8xtPT6MiLGIRCzcof-epwMqztsH-R0UhCZnTwp2xubSq0KsXo5swySrz7c7jUqHe5sTd3qqCzdQaVDad2XekDQzFhR9TVIpejnfDOqud9IwwKtgzgNKxIbU2OU_/s1600/1579098917239014-0.png" width="400" /></a></div>
+<h2>
+Database Containment</h2>
+The database itself also has a
+ containment setting. In this case, you can look at the properties for 
+the database, on the options tab. You have â€œNoneâ€ and â€œPartialâ€ 
+available, and clicking Partial will enable containment in&nbsp; 2012.<br />
+<div>
+<h3>
+How to Configure Database Containment Feature in SQL Server Using TSQL</h3>
+</div>
+<b>Step 1</b>.<br />
+The code will appear as below:<br />
+<pre class="code"><span class="amp-wp-inline-4b6e73a3d9e3c461ef7943640bc40b8e">USE </span><span class="amp-wp-inline-f1d157e8ab42615679f392ad02f3779a">[master]
+</span><span class="amp-wp-inline-4b6e73a3d9e3c461ef7943640bc40b8e">GO
+ALTER DATABASE </span><span class="amp-wp-inline-f1d157e8ab42615679f392ad02f3779a">[ContainedDB] </span><span class="amp-wp-inline-4b6e73a3d9e3c461ef7943640bc40b8e">SET </span><span class="amp-wp-inline-f1d157e8ab42615679f392ad02f3779a">CONTAINMENT </span><span class="amp-wp-inline-74ef59bf3f178e2cfd39449e29858587">= </span><span class="amp-wp-inline-4b6e73a3d9e3c461ef7943640bc40b8e">PARTIAL WITH </span><span class="amp-wp-inline-f1d157e8ab42615679f392ad02f3779a">NO_WAIT
+</span><span class="amp-wp-inline-4b6e73a3d9e3c461ef7943640bc40b8e">GO
+
+</span></pre>
+You can also set this value when you create a database:<br />
+<pre class="code"><span class="amp-wp-inline-61f54ec584ad0df1f18f15c5583390b5">-- Create db with containment
+</span><span class="amp-wp-inline-4b6e73a3d9e3c461ef7943640bc40b8e">CREATE DATABASE ContainedDB</span><span class="amp-wp-inline-f1d157e8ab42615679f392ad02f3779a">CONTAINMENT </span><span class="amp-wp-inline-74ef59bf3f178e2cfd39449e29858587">= </span><span class="amp-wp-inline-4b6e73a3d9e3c461ef7943640bc40b8e">PARTIAL
+</span></pre>
+Thatâ€™s it.<br />
+<h3>
+How to Configure Database Containment Feature in SQL Server Using SSMS</h3>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitn2aStlMi4o9DBAlKHP_mJrzTyDNRWTzRHc9kwrpIu_YEj38l45K8wedUGpF1ZsmaJBjZrtOARGayyD2TcY6zOC677gkYmD55Ib_7RCNdVFdWrCb9twHL9zitl9uemQVjR5CLTVdUGHui/s1600/1579102809174192-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitn2aStlMi4o9DBAlKHP_mJrzTyDNRWTzRHc9kwrpIu_YEj38l45K8wedUGpF1ZsmaJBjZrtOARGayyD2TcY6zOC677gkYmD55Ib_7RCNdVFdWrCb9twHL9zitl9uemQVjR5CLTVdUGHui/s1600/1579102809174192-0.png" width="400" /></a></div>
+<br />
+These two settings together will enable containment on a database, and then you can work with contained users.<br />
+<b>â€“Create a contained database user:</b><br />
+CREATE USER&nbsp;[Anurag]<br />
+WITH PASSWORD=â€˜clover@123â€™,<br />
+DEFAULT_SCHEMA=[dbo]<br />
+GO<br />
+<b>â€“Give the newly created user permissions to access the database:</b><br />
+EXEC&nbsp;sp_addrolemember&nbsp;â€˜db_ownerâ€™,&nbsp;â€˜Anuragâ€™<br />
+GO<br />
+<div dir="ltr">
+<b>Connect with created orphaned user &amp; specify database name&nbsp;<u>ContainedDB</u>&nbsp;in Connection Properties:</b></div>
+<div class="separator" style="clear: both; text-align: center;"><div dir="ltr" style="text-align: left;" trbidi="on"><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZWTJly2WycsIicC-pS48GqHMEkPu_DfcjOmBnwOhwPLrHN05BXdIxeXIC990SqsIa3y78UXQ60eOBvNqESjT2kxKyAdXWdubHCQ3VmdJnWP6wfVtbly09lG3jhvr14BXFqAlx-YMTjwD-/s1600/1579102801512502-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZWTJly2WycsIicC-pS48GqHMEkPu_DfcjOmBnwOhwPLrHN05BXdIxeXIC990SqsIa3y78UXQ60eOBvNqESjT2kxKyAdXWdubHCQ3VmdJnWP6wfVtbly09lG3jhvr14BXFqAlx-YMTjwD-/s1600/1579102801512502-1.png" width="400" /></a></div><br /></div><div dir="ltr" style="text-align: left;" trbidi="on">You will then be connected to only the contained database. You should not be able to see any of the other databases or instance features.</div><div dir="ltr" style="text-align: left;" trbidi="on"><br /></div><div dir="ltr" style="text-align: left;" trbidi="on"><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyKMD8WpMdera-oyJie-on1-0t4kWl0FcEHWfPAx1BZm3jxBVz_iqHT0npE6dA1T77LOUGnBBZBvCLrpV5x94Z12lZVFLjGoo-LOKzBss0Fi0ZV_d3PI_w4c1uAHgz3lF27qrKbT4UHKL_/s1600/1579102791845704-2.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyKMD8WpMdera-oyJie-on1-0t4kWl0FcEHWfPAx1BZm3jxBVz_iqHT0npE6dA1T77LOUGnBBZBvCLrpV5x94Z12lZVFLjGoo-LOKzBss0Fi0ZV_d3PI_w4c1uAHgz3lF27qrKbT4UHKL_/s1600/1579102791845704-2.png" width="400" /></a></div><div><br /></div></div></div></div>
+</div>
+

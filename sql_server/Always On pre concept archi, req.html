@@ -1,0 +1,165 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div>
+<b>Introduction</b></div>
+<div>
+<br /></div>
+<div>
+<br /></div>
+<div>
+Microsoft introduced the AlwaysOn Availability Groups feature with SQL Server 2012 release.&nbsp;</div>
+<div>
+<div>
+AlwaysOn Availability Groups can be used to replace the previously described database mirroring and log shipping solution.&nbsp;</div>
+</div>
+<div>
+<br /></div>
+<div>
+It covers two features in SQL Server: <b>availablity groups (AGs)</b> and <b>failover clustering instances (FCIs).</b></div>
+<div>
+<br /></div>
+<div>
+Disaster Recovery was provided with Log Shipping but Real-time synchronization does not exist with Log Shipping.&nbsp; Mirroring has Real-time&nbsp;synchronization&nbsp;but there was no Read-Only option, and Witness Server required for Automatic Failover.</div>
+<div>
+Application has access to 2 nodes via Failover Cluster name same time with Failover Clustering , but the failover cluster was only a High availability solution.<br />
+Microsoft has combined&nbsp;all of the advantages Log Shipping, Mirroring and Failover Cluster in the SQL Server Always On.<br />
+<h2 style="text-align: left;">
+</h2>
+</div>
+<div style="text-align: left;">
+<h2>
+<b>SQL Server AlwaysOn Architecture:</b></h2>
+</div>
+<div>
+<br /></div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_3xh60es-pFdZ84XvPP4ocEJBoHTsmriQs5DCxsj4v0NsQbd0_4LuEaAy9Dif-E53IhC-o9EbJ8zoAhKSl0RbRFxpp2ylIuneV_TYAD-gbFS719khhM_P8s2vWaQQDbfM4-ypKNoYP1n5/s1600/1578217505454389-0.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+    <img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_3xh60es-pFdZ84XvPP4ocEJBoHTsmriQs5DCxsj4v0NsQbd0_4LuEaAy9Dif-E53IhC-o9EbJ8zoAhKSl0RbRFxpp2ylIuneV_TYAD-gbFS719khhM_P8s2vWaQQDbfM4-ypKNoYP1n5/s1600/1578217505454389-0.png" width="400" />
+  </a>
+</div>
+<br /></div>
+<div>
+Microsoft has combined&nbsp;all of the advantages Log Shipping, Mirroring and Failover Cluster in the SQL Server Always On.</div>
+<div>
+AlwaysOn provides Disaster Recovery because When Storage or Motherboard ( or other part of Server ) of Primary Server has failed , you can recover database with Automatic Failover. Because database physically exists at Secondary node and&nbsp;syncing from Primary database.<br />
+You can also use Secondary Node for Reporting and Backup purposes.<br />
+In short, if you are considering High Availability and Disaster Recovery together for your SQL Server databases running in your Company, the&nbsp;<span class="amp-wp-cc68ddc">only solution is AlwaysOn.</span><br />
+<br />
+<div>
+<b>Using availability groups for HA and DR provides the following&nbsp;</b><br />
+<h2 style="text-align: left;">
+<b>advantages:</b></h2>
+</div>
+<div>
+<br /></div>
+<div>
+â–º You can group more than one user database into a single unit of failover. In contrast , database mirroring permits only one user database as a unit of failover.</div>
+<div>
+<br /></div>
+<div>
+â–º Availability groups multiple secondary's enable the user to unify the HA and DR solution into one technology, instead of using multiple technologies used in the earlier solution.</div>
+<div>
+<br /></div>
+<div>
+â–º Secondary replicas can also be configured to permit read-only workloads to obtain close to real-time data from them. Unlike with log shipping, ongoing read-only connections to the secondary replicas do not need to be disconnected in order to see ongoing data modifications against the primary replica. Secondary replicas can also be used to offload full database and transaction log backup operations.</div>
+<div>
+<br /></div>
+<div>
+â–º Availability groups and the associated availability group listener support automatic client redirection to the primary replica or redirection to available readable secondary's. Availability group listeners remove the need to designate a failover partner in the client connection string.</div>
+</div>
+<div>
+<br /></div>
+<div>
+<div>
+<h2 style="text-align: left;">
+<b>PRE-REQUISITES</b></h2>
+</div>
+<div>
+<br /></div>
+<div>
+1. The system should not be a domain controller.</div>
+<div>
+<br /></div>
+<div>
+2. Primary &amp; Secondary Server should be connected to Same Domain.</div>
+<div>
+<br /></div>
+<div>
+3. All applicable Window hot fixes should have been installed on every server to be a part of WSFC With latest service pack installed on each node.</div>
+<div>
+<br /></div>
+<div>
+4. Each computer to be part of Windows Cluster should have Failover cluster Manager installed on it.</div>
+<div>
+<br /></div>
+<div>
+5. .Net Frame work 3.5 should be installed.</div>
+<div>
+<br /></div>
+<div>
+6. User creating Windows Cluster should be a domain Administrator or domain user with create computer.</div>
+<div>
+<br /></div>
+<div>
+Create Objects rights given to SQL Service Account.</div>
+<div>
+<br /></div>
+<div>
+7. Primary &amp; Secondary Server should be on the Same WSFC (Windows Server Failover Cluster).</div>
+<div>
+<br /></div>
+<div>
+8. File Share Witness to be allocated for Quorum Creation.</div>
+<div>
+<br /></div>
+<div>
+9. Virtual Name and IP to be allocated for Windows Cluster, MSDTC Resource, SQL Listener, SQL AG Group.</div>
+<div>
+<br /></div>
+<div>
+10. Primary &amp; DR Server Drive Letters should be exact Replica along with Software &amp; Patches.</div>
+<div>
+<br /></div>
+<div>
+11. SQL Server 2012 Enterprise Edition required along with SP1.</div>
+<div>
+<br /></div>
+<div>
+12. Windows 2012 STD Edition &amp; Above along with latest patch set.</div>
+</div>
+<div>
+<br /></div>
+<div>
+<div>
+<h2 style="text-align: left;">
+<b>REQUIREMENTS</b></h2>
+</div>
+<div>
+<br /></div>
+<div>
+1. SAN storage on DR AG node with exact same drive letters as per Primary Node.</div>
+<div>
+<br /></div>
+<div>
+2. Windows cluster virtual IP and Always on Listener IP.</div>
+<div>
+<br /></div>
+<div>
+3. Windows Cluster Name, SQL Listener Name &amp; SQL AG Group Name.</div>
+<div>
+<br /></div>
+<div>
+4. Domain User with privileges to Create Objects in Active Directory, Read Attributes and Modify.</div>
+<div>
+<br /></div>
+<div>
+5. Service Account for SQL Server i.e. Domain User.</div>
+<div>
+<br /></div>
+<div>
+6. File Share Witness connected to Primary &amp; Secondary Server with Read-Write Permission to SQL Service Account &amp; Windows Cluster Name.</div>
+<div>
+<br /></div>
+</div>
+</div>
+

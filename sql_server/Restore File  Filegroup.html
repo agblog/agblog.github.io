@@ -1,0 +1,111 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<h2>
+SQL Server Database Files</h2>
+<br />
+SQL Server Database has three types of files listed as below:<br />
+<ol>
+<li><b>Primary Data File (.mdf) â€“ </b>It contains all the information about the database. It also points to the other files in the database.</li>
+<li><b>Secondary Data File (.ndf) â€“&nbsp;</b>NDF files are user defined files and also called the optional file that is used to store the user data.</li>
+<li><b>Transaction Log (.ldf)â€“&nbsp;</b>&nbsp;It contains all the log information related to the database.</li>
+</ol>
+<h3>
+Backup SQL Server Database File and Filegroups</h3>
+Here we will discuss how to backup the SQL Server database file and filegroups using SQL Server Management Studio and Transact-SQL.<br />
+<b><span style="font-size: medium;">Via Transact-SQL</span></b><br />
+<h4>
+TSQL Script to Create Database with Multiple Data Files in Primary and Read Only File in Secondary File Group</h4>
+<div>
+<br />
+<pre class="prettyprint"><code class="language-sql">
+CREATE DATABASE [SQLDoseFG]
+
+ON PRIMARY
+
+( NAME = N'SQLDoseFG', FILENAME = N'F:\MSSQL\DATA\SQLDoseFG.mdf', SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB ),
+
+( NAME = N'SQLDoseFG_Data2', FILENAME = N'F:\MSSQL\DATA\SQLDoseFG_Data2.ndf', SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB ),
+
+FILEGROUP [Secondary]
+
+( NAME = N'SQLDoseFG_Secondary', FILENAME = N'F:\MSSQL\DATA\SQLDoseFG_Secondary.ndf', SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+
+FILEGROUP [ReadOnly]
+
+( NAME = N'SQLDoseFG_ReadOnly', FILENAME = N'F:\MSSQL\DATA\SQLDoseFG_ReadOnly.ndf', SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+
+LOG ON
+
+( NAME = N'SQLDoseFG_log', FILENAME = N'F:\MSSQL\DATA\SQLDoseFG_log.ldf', SIZE = 2048KB , MAXSIZE = 2048GB , FILEGROWTH = 10% )
+
+GO
+</code></pre>
+<br /></div>
+<h4>
+Create a FULL FILE backup Using TSQL command</h4>
+In this example we will backup Secondary Data File which is available in Primary File Group.<br />
+BACKUP DATABASE [SQLDoseFG] FILE = N'SQLDoseFG_Data2' TO DISK = N'C\DBBackups\SQLDoseFG_SQLDoseFG_Data2.bak' WITH NOFORMAT, NOINIT, COMPRESSION, STATS = 25<br />
+GO<br />
+<br />
+<b>Backup Secondary Filegroup:</b><br />
+<pre class="prettyprint"><code class="language-sql">
+
+USE [master]
+
+GO
+
+BACKUP DATABASE SQLDoseFG
+
+FILEGROUP = 'Secondary'
+
+TO DISK = N'C:\SQLServer\SQLDoseFG_Secondary.bak'
+
+WITH INIT, Stats=5
+
+</code></pre>
+Restore Secondary Filegroup:<br />
+<pre align="left" class="prettyprint lang-sql prettyprinted"><span class="kwd">RESTORE</span><span class="pln"> </span><span class="kwd">DATABASE</span><span class="pln"> SQLDoseFG 
+  FILEGROUP </span><span class="pun">=</span><span class="pln"> </span><b>'SECONDARY'</b><span class="pln">
+  </span><span class="kwd">FROM</span><span class="pln"> </span><span class="kwd">DISK</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">'C:\SQLServer\SQLDoseFG_Secondary.bak'</span><span class="pln">
+  </span><span class="kwd">WITH</span><span class="pln"> PARTIAL</span><span class="pun">,</span><span class="pln"> RECOVERY</span></pre>
+<b>Restore File:</b><br />
+Step 1: Check the logical file names with the help of the following command:<br />
+<pre class="prettyprint"><code class="language-sql">
+RESTORE FILELISTONLY FROM DISK = 'E:\DBBackups\SQLDoseFG.bak'</code></pre>
+Step 2: Use the logical names you get from the above query in the below query:<br />
+<pre class="prettyprint"><code class="language-sql">RESTORE DATABASE [SQLDoseFG_new] FILE = N'&lt;MDFLogicalName&gt;' FROM DISK = N'E:\DBBackups\SQLDoseFG.bak' WITH FILE = 1, NOUNLOAD, STATS = 10, MOVE N'&lt;MDFLogicalname&gt;' TO N'E:\DBBackups\SQLDoseFG_new.mdf', MOVE N'&lt;LDFLogicalName&gt;' TO N'E:\DBBackups\SQLDoseFG_new_0.ldf'</code></pre>
+After running the above commands with the correct values you will see the output like this:<br />
+<pre class="prettyprint"><code class="language-sql">
+10 percent processed.
+
+20 percent processed.
+
+30 percent processed.
+
+40 percent processed.
+
+50 percent processed.
+
+60 percent processed.
+
+70 percent processed.
+
+80 percent processed.
+
+90 percent processed.
+
+100 percent processed.
+
+Processed 7672 pages for database 'SQLDoseFG_new', file '&lt;MDFLogicalname&gt;' on file 1.
+
+Processed 5 pages for database 'SQLDoseFG_new', file '&lt;LDFLogicalName&gt;' on file RESTORE DATABASE ... FILE=&lt;name&gt; successfully processed 7677 pages in 0.780 seconds (76.893 MB/sec).
+
+Completion time: 2019-10-20T11:35:31.8343787+05:30
+
+
+
+
+</code></pre>
+<div>
+<br /></div>
+</div>
+

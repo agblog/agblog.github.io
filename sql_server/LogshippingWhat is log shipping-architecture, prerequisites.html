@@ -1,0 +1,226 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" id="docs-internal-guid-48560614-7fff-bfb0-8492-9e6cb1218a56" style="-webkit-text-stroke-width: 0px; background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; font-style: normal; font-variant-caps: normal; font-variant-ligatures: normal; font-weight: 400; letter-spacing: normal; orphans: 2; overflow-wrap: break-word; text-align: left; text-decoration-color: initial; text-decoration-style: initial; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">
+<div dir="ltr" id="docs-internal-guid-48560614-7fff-bfb0-8492-9e6cb1218a56"><br />
+<br />
+<b>What is Disaster?</b></div>
+<div dir="ltr" id="docs-internal-guid-48560614-7fff-bfb0-8492-9e6cb1218a56">
+<b><br /></b></div>
+<div dir="ltr">
+Disater
+ is an event that cause data loss and any sql server / database 
+disruption.The main causes of disaster are power failure,hardware 
+failure,virus attack,human errors etc.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+<b>What is DR Drill?</b></div>
+<div dir="ltr">
+<b><br /></b></div>
+<div dir="ltr">
+DR
+ Drill is an activity which involves actions which are taken to 
+overcome&nbsp; data loss after disaster for example if primary server down 
+due to some reason so we can&nbsp; make secondary instance to primary 
+instance is known as disaster drill .</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+<b>What is Always On feature of SQL Server 2012?</b></div>
+<div dir="ltr">
+Always on feature is advanced option of high availability</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+LOG SHIPPING IS HIGH AVAILABILITY OPTION WHICH COULD BE CONFIGURED FOR UNPREDICTED MANNER</div>
+<div style="text-align: left;">
+<h2>
+<b>DEFINITION OF LOG SHIPPING:</b></h2>
+</div>
+<div dir="ltr">
+It 
+automatically sends transaction log backups from one database (Known as 
+the primary database) to a database (Known as the Secondary database) on
+ another server. An optional third server, known as the monitor server, 
+records the history and status of backup and restore operations. The 
+monitor server can raise alerts if these operations fail to occur as 
+scheduled.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+There are four jobs created during the log shipping operation:</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+1.Backup job-Sql server agent&nbsp; perform backup operation.when log shipping enabled,log shipping backup created on primary server.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+2.Copy
+ job-sql server agent copies the backup file from primary server 
+(instance) to configurable destination on secondary server (instance) as
+ well as log history on secondary server.&nbsp;</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+3.Restore transaction log-Sql server agent restores the copied backup&nbsp; file to secondary database.&nbsp;</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+4.Alert-sql
+ server agent&nbsp; raises alert for primary and secondary database when 
+backup and restore operation does not complete successfully. If Monitor 
+server is configured then alerts are created on moniter server.</div>
+<div style="text-align: left;">
+<h2>
+<b>ARCHITECTURE OF LOG SHIPPING</b></h2>
+</div>
+<div dir="ltr">
+<img height="343" src="https://lh4.googleusercontent.com/1OZnJ-I9v0BsZ1m1f8BhmJ-ekAA7oRlWEbLstKVAxY3oFnXGDTr6YeZPjJhXQWORqHlc_se-DHwJXbIxoi-cZAGnkMHNt2hfaV-h7E7KEaqKTSG8DUess0hJX9btI7r4uNSVE1OxcCDd1V26MA" width="570" /></div>
+<br />
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The
+ backup job runs on the primary server sql agent, in that job log backup
+ is performed as it is scheduled at the time of configuration.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The backup file is stored in the shared backup folder.</div>
+</li>
+</ul>
+<div dir="ltr">
+Note: create share folder on primary server which have read write permission.</div>
+<ul>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The primary database is online on the primary server.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The
+ copy job which is running on the secondary serverâ€™s agent copies the 
+backup file from backup folder to the copy folder(we can set one folder 
+for backup and copy job,it does not make copy only restores from it)&nbsp;</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+The
+ restores job on the secondary server restores log backups keeping 
+secondary database in standby\read only state or restoring state.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+While
+ monitor server keeps status of all of this activity with alert job.It 
+sends mail for particular events eg.job failure,job complete.</div>
+</li>
+<li dir="ltr"><div dir="ltr" role="presentation">
+If
+ the primary server is crashed, the secondary database on the secondary 
+server should be restored with recovery and connect the front-end 
+application to the port of the secondary server to bring database 
+online.</div>
+</li>
+</ul>
+<div dir="ltr">
+<h2 style="text-align: left;">
+<b>PREREQUISITES FOR CONFIGURING LOG SHIPPING</b></h2>
+</div>
+<br />
+<div dir="ltr">
+1)Both
+ SQL &amp; OS Editions and Versions should be at same level on all 
+participating servers ( This applies to SQL Server version 2005 onwards)</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+2)Express Edition doesnâ€™t supports SQL server Logshipping</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+3) The user who configures the Logshipping must be member of sysadmin server role</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+4)SQL
+ Server and SQL Server agent services must be configured under windows 
+authentication account with sysadmin permissions on all participating 
+server</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+5)Recommended to have unique logon account for both SQL Server and SQL Server agent services</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+6)The Logon account must have at least local administrator privileges to carry out the administrative tasks</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+7)SQL Server port (1433) must be opened at network level for communication between both the servers</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+8)Sharing ports must be enabled on both production &amp; DR servers for log shipping</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+9)Create shared network share on both Primary or secondary servers</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+10)The backup and restore directories in your log shipping configuration must accomplish the following requirements.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+For the backup job, read/write permissions to the backup directory are required on the following:</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+Â· The SQL Server service account on the primary server instance.&nbsp;</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+Â· The SQL Server Agent account on the primary server instance.&nbsp;</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+Â·
+ For the copy job, read permissions to the backup directory and write 
+permissions to the copy directory are required by the service account of
+ the copy job. By default, this is the SQL Server Agent account on the 
+secondary server instance.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+For the restore job, read/write permission to the copy directory are required by the following:</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+Â·&nbsp; The SQL Server service account on the secondary server instance.&nbsp;</div>
+<div dir="ltr">
+Â·&nbsp; The SQL Server Agent account on the secondary server instance.&nbsp;</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+11)SQL service log on accounts must be same on both Environments.</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+12)Database
+ being log shipped must be in Full recovery model or Bulk logged 
+recovery model. The simple recovery model is not supported</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+13)Any
+ maintenance plan or backup job against log shipped databases should not
+ be planned since that would break Logshipping chain</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+14)Logshipping configuration can be done within trusted domain computers or work group computers</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr">
+15)Recommended
+ to have the same Drive Space capacity in fact more space of secondary 
+server considering the data growth in future</div>
+</div>
+</div>
+

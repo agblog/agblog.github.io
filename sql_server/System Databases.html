@@ -1,0 +1,90 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div style="text-align: justify;">
+<br /></div>
+<div dir="ltr" style="text-align: justify;" trbidi="on">
+SQL Server includes the following system databases:-</div>
+<div dir="ltr" style="text-align: justify;" trbidi="on">
+<br />
+<div dir="ltr" trbidi="on">
+<div dir="ltr">
+<ul>
+<li>Master</li>
+<li>Model</li>
+<li>Msdb</li>
+<li>Tempdb</li>
+<li>Resource Database</li>
+</ul>
+</div>
+<div dir="ltr">
+<br /></div>
+<div dir="ltr" id="docs-internal-guid-b43bdd44-7fff-99d9-8ae7-88a8852d19d2">
+<b>Master:</b></div>
+<div dir="ltr" id="docs-internal-guid-b43bdd44-7fff-99d9-8ae7-88a8852d19d2">
+The
+ master database contains all of the system level information like logins, linked servers, endpoints, and other 
+system-wide configuration settings.&nbsp;</div>
+<div dir="ltr" id="docs-internal-guid-b43bdd44-7fff-99d9-8ae7-88a8852d19d2">
+The master database is also stores information about the other databases on this instance
+ and the location of their files.&nbsp;</div>
+<div dir="ltr" id="docs-internal-guid-b43bdd44-7fff-99d9-8ae7-88a8852d19d2">
+If the master database is not present,
+ SQL Server cannot start via Configuration Manager.</div>
+<div dir="ltr">
+<br /></div>
+<div class="separator" style="clear: both;"><br /></div><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinNdn6Ys3l-bpnephpFMigyuiBId4MJ3fv1AlUM2qGX-hhdtPlQLDYvYUb48dz6i60ZVmX0KKZzUOlskMOpnZ_DEBvbvC6jbaggSbckfsBS7l8fZo9pwyE-pEea1RBXerfkdE_qVxT-5AJ/s1600/1578676283862508-0.png" style="text-align: left;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinNdn6Ys3l-bpnephpFMigyuiBId4MJ3fv1AlUM2qGX-hhdtPlQLDYvYUb48dz6i60ZVmX0KKZzUOlskMOpnZ_DEBvbvC6jbaggSbckfsBS7l8fZo9pwyE-pEea1RBXerfkdE_qVxT-5AJ/s1600/1578676283862508-0.png" width="400" /></a><br style="text-align: left;" /><div dir="ltr" style="text-align: left;" trbidi="on"><br /></div><div dir="ltr" style="text-align: left;" trbidi="on"><h3 dir="ltr" id="docs-internal-guid-a87839d3-7fff-9674-a0d4-4e43bdeafa3c">model</h3><div dir="ltr">The model database is used as a template whenever a new user database is created. You can change most database properties, create users, stored procedures, tables, views, etc â€“ whatever you do will be applied to any new databases.&nbsp;</div><div dir="ltr">The nice thing is that you can create a guaranteed set of users, stored procedures, and options (including collation options) by making changes to the model database. Once those changes are in place, they are applied to every new database.</div></div><br style="text-align: left;" /><div dir="ltr" style="text-align: left;"></div><div class="separator" style="text-align: left;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzfHEnlyJjpVddFTtXq3tlGwfisytoStuKnf9xg0HnVgFdmS38djVkQDUc0CWVuFxN4Igyk0L5HLzEMHpYwuXMUHp2dWDNkwcAcW4f1VVk7BHVp2Tq3NptJyH3lQvmpvtv-8Ww19H6yPTF/s1600/1578676237539714-1.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzfHEnlyJjpVddFTtXq3tlGwfisytoStuKnf9xg0HnVgFdmS38djVkQDUc0CWVuFxN4Igyk0L5HLzEMHpYwuXMUHp2dWDNkwcAcW4f1VVk7BHVp2Tq3NptJyH3lQvmpvtv-8Ww19H6yPTF/s1600/1578676237539714-1.png" width="400" /></a></div><br style="text-align: left;" /><div dir="ltr" style="text-align: left;"></div><div class="separator" style="text-align: left;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicd_Wcs484YHMaMZwFKQV6PaBW7JObS4fPpnk_sX-yQVl3TU3de-2er7-wdONAfwlaA4v7x6axGr_kglNvDCgFTdJfv53zpzfRzjQjcvKmKFTdyKZ8BtzsQGBq2AeQ3oGkhF_wuSxJMWp6/s1600/1578676123495439-2.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicd_Wcs484YHMaMZwFKQV6PaBW7JObS4fPpnk_sX-yQVl3TU3de-2er7-wdONAfwlaA4v7x6axGr_kglNvDCgFTdJfv53zpzfRzjQjcvKmKFTdyKZ8BtzsQGBq2AeQ3oGkhF_wuSxJMWp6/s1600/1578676123495439-2.png" width="400" /></a></div><br style="text-align: left;" /></div>
+<h3 dir="ltr" id="docs-internal-guid-614c94af-7fff-f561-14ec-c76a5f971095">
+msdb:</h3>
+<div dir="ltr">
+The msdb system database is used by the SQL Server Agent, database mail, Service Broker, etc.&nbsp;</div>
+<div dir="ltr">
+One
+ important item is that msdb holds backup history.&nbsp;</div>
+<div dir="ltr">
+<b><br /></b></div>
+<div dir="ltr">
+Important Tables:&nbsp;</div>
+<div dir="ltr">
+<i>
+msdb.dbo.backupset</i></div>
+<div dir="ltr">
+determine when each database and filegroup was last backed up.&nbsp;</div>
+<div dir="ltr">
+<b><br /></b></div>
+<div dir="ltr">
+<b>Resource:</b></div>
+<div dir="ltr" id="docs-internal-guid-085dc18b-7fff-2af2-341c-33321cf37d14">
+The
+ resource database is a hidden system database.</div>
+<div dir="ltr" id="docs-internal-guid-085dc18b-7fff-2af2-341c-33321cf37d14">
+Database id of&nbsp;resource database is&nbsp;<b>32767.</b></div>
+<div dir="ltr" id="docs-internal-guid-085dc18b-7fff-2af2-341c-33321cf37d14">
+In resource database system 
+objects are stored.&nbsp; The data file location of resource database is C:\Program Files\Microsoft SQL Server\MSSQLXX.MSSQLSERVER\MSSQL\Binn.&nbsp;</div>
+<div dir="ltr" id="docs-internal-guid-085dc18b-7fff-2af2-341c-33321cf37d14">
+<br /></div>
+<h3 dir="ltr" id="docs-internal-guid-fd90b62d-7fff-8bd1-c66b-b2a05b26727d">
+tempdb:</h3>
+<div dir="ltr">
+Is used for holding temporary objects, query processing and sorting purposes.</div>
+<div dir="ltr" id="docs-internal-guid-beb746d2-7fff-0b2a-5b67-439b594112db">
+Tempdb
+ is re-created every time the SQL Server service is started.&nbsp;</div>
+<div dir="ltr" id="docs-internal-guid-beb746d2-7fff-0b2a-5b67-439b594112db">
+By default tempdb starts at 8MB 
+in size.</div>
+<div dir="ltr" id="docs-internal-guid-beb746d2-7fff-0b2a-5b67-439b594112db">
+Any object created starting with #table will be stored into tempdb database.</div>
+<div dir="ltr" id="docs-internal-guid-beb746d2-7fff-0b2a-5b67-439b594112db">
+It is best practice to have trace flags enabled for autogrow of tempdb and upto 8 tempdb log files to speed up execution of queries that uses temporary objects.</div>
+<div dir="ltr" id="docs-internal-guid-beb746d2-7fff-0b2a-5b67-439b594112db">
+<br /></div>
+<div dir="ltr">
+<b><br /></b></div>
+<div dir="ltr">
+<b>Ref:</b></div>
+<div dir="ltr">
+<a href="https://docs.microsoft.com/en-us/sql/relational-databases/databases/system-databases?view=sql-server-2017">https://docs.microsoft.com/en-us/sql/relational-databases/databases/system-databases?view=sql-server-2017</a></div>
+</div>
+</div>
+</div>
+

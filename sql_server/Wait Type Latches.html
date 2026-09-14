@@ -1,0 +1,56 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div><b>1. LATCH_EX</b></div>
+<div>
+<br></div>
+<div>
+This wait type occurs when a thread is waiting for access to a non-page data structure so that it can modify the data structure. The thread cannot get access to the data structure because one or more other threads have it latched in share mode.</div>
+<div>
+<br></div>
+<div>
+Occurs when waiting for a EX (exclusive) latch. This does not include buffer latches or transaction mark latches. A breakdown of LATCH_* waits is available in sys.dm_os_latch_stats. Notice that sys.dm_os_latch_stats groups LATCH_NL, LATCH_SH, LATCH_UP, LATCH_EX, and LATCH_DT waits together.</div>
+<div>
+<br></div>
+<div>
+Recommendation :</div>
+<div>
+<br></div>
+<div>
+&nbsp;Identify what queries are getting the latch waits (query sys.dm_os_waiting_tasks)</div>
+<div>
+- Tune those queries so that they don't need to do table scans. This will be a combination of changing indexes and fixing queries. Repeat until performance is acceptable.&nbsp;</div>
+<div>
+<br></div>
+<div>
+<br></div>
+<div>
+<br></div>
+<div>
+<b>2. PAGEIOLATCH_SH:</b></div>
+<div>
+<div>
+<br></div>
+<div>
+Occurs when a task is waiting for a latch for a buffer that is in an I/O request. The latch request is in Shared mode. Long waits of this kind indicate a problem with the disk subsystem.</div>
+<div>
+<br></div>
+<div>
+Memory pressure and IO subsystem issues</div>
+<div>
+Latencies caused by disk to memory transfers frequently surface as PageIOLatch waits. Memory pressure or disk IO subsystem issues can also increase PageIOLatch waits. When a user needs a page that is not in buffer cache, SQL Server has to first allocate a buffer page, and then puts a exclusive PageIOLatch_ex latch on the buffer while the page is transferred from disk to cache.&nbsp;</div>
+<div>
+Meanwhile, SQL Server puts a PageIOLatch_sh request on the buffer on behalf of the user. After the write to cache finishes, the PageIOLatch_ex latch is released. This allows the user to read the buffer page after which the PageIOLatch_sh is released.&nbsp; Consequently, high values for both PageIOLatch_ex and PageIOLatch_sh wait types can indicate IO subsystem issues.</div>
+<div>
+Pertinent performance counters include Physical disk: disk seconds/read and Physical disk: disk seconds/write and SQL Server Buffer Manager: Page Life Expectancy.</div>
+<div>
+<br></div>
+<div>
+<div>
+<b>Reference</b>:</div>
+<div>
+<a href="https://www.blogger.com/goog_744860843"><br></a></div>
+<div>
+<a href="https://www.sqlskills.com/help/waits/latch_ex/">SQLSkills</a></div>
+</div>
+</div>
+</div>
+

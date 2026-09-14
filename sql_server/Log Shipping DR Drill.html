@@ -1,0 +1,73 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" trbidi="on">
+<div dir="ltr">
+<h2 style="text-align: left;">What is DR Drill?</h2><h2 style="text-align: left;"><div dir="ltr" trbidi="on"><div dir="ltr"></div><div dir="ltr">DR Drill is an activity which involves actions which are taken to overcome&nbsp; data loss after disaster for example if primary server down due to some reason so we can&nbsp; make secondary instance to primary instance is known as disaster drill .</div><div dir="ltr"><br /></div></div></h2><h2><b>&nbsp;Steps for DR DRILL:</b></h2><h2><div dir="ltr" trbidi="on"></div><div dir="ltr" trbidi="on"><b></b><br /><div class="separator" style="clear: both; text-align: center;"><b><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBnLkyO_pp7D-fimVe0E3cZrUeDd9xRFopWyGW0-8cTWrLB3GjJooYvXY3kUDPIhKm0zrqdKAoJ4q8TR02Y2j0-qYdPkXkT6rYBJXGSaxK0tnZmCMQdCgrKG5iicOhQvO5mA10kmzAJgy9/s1600/1578139465021773-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBnLkyO_pp7D-fimVe0E3cZrUeDd9xRFopWyGW0-8cTWrLB3GjJooYvXY3kUDPIhKm0zrqdKAoJ4q8TR02Y2j0-qYdPkXkT6rYBJXGSaxK0tnZmCMQdCgrKG5iicOhQvO5mA10kmzAJgy9/s1600/1578139465021773-0.png" width="400" /></a></b></div><b><br /></b></div></h2><h2><b>Configuring DR DRILL:</b></h2><h2><div dir="ltr" trbidi="on"></div><div dir="ltr" trbidi="on"><b><br /></b></div><div dir="ltr" trbidi="on"><b>1. Checking the status of logshipping</b><br /><div dir="ltr">&nbsp; &nbsp;</div><div dir="ltr"><br /><div dir="ltr" trbidi="on"><pre class="prettyprint"><code class="language-sql">
+
+
+select secondary_database as DBNAME
+
+last_restored_date as [LAST RESTORE DATE]
+
+DATEDIFF(minute
+
+case
+
+when
+
+DATEDIFF(minute
+
+, last_restored_date
+
+, last_restored_date
+
+,
+
+,
+
+, primary_server as [PRIMARY SERVER]
+
+GETDATE()) AS LATENCY
+
+,
+
+,
+
+GETDATE()) &lt; 60
+
+,then 'SYNCHRONIZED'
+
+else 'UNSYNCHRONIZED'
+
+end
+
+as [LOGSHIPPING STATUS]
+
+from msdb
+
+go
+
+sp_help_log_shipping_monitor
+
+select secondary_database as DBNAME
+
+case
+
+when
+
+DATEDIFF(minute
+
+then 'SYNCHRONIZED'
+
+else 'UNSYNCHRONIZED'
+
+end
+
+as [LOGSHIPPING STATUS]
+
+from msdb
+
+go
+
+</code></pre></div><div dir="ltr" trbidi="on"><br /></div><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhODA8gNCgkdbiXVPYbnzfNkqZUd5LDa0n9NkPyeiLt4fFzjFP-BkFOWumUalCIT28-QVLQodofZ-HYCnBrxCZyv-i0sDbMm_nNpEtdrUwb9t6q9snSUavF3EAv5CbK7UIvqWSYu1Gnabyr/s1600/1577824155685160-8.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhODA8gNCgkdbiXVPYbnzfNkqZUd5LDa0n9NkPyeiLt4fFzjFP-BkFOWumUalCIT28-QVLQodofZ-HYCnBrxCZyv-i0sDbMm_nNpEtdrUwb9t6q9snSUavF3EAv5CbK7UIvqWSYu1Gnabyr/s1600/1577824155685160-8.png" width="400" /></a></div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div><b>2. On primary server run backup job and disable</b></div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpY3sj_7LIHkIyGstVwYe0g1v0vV0xew4RBUESFoCImrKilzN7UcUZ0Z4KbdwIr5sv2OhgTb-yyiD8uglNL-SnWM0L5CMi-cZcJqt3UwGNCn56p-IbKxd_MaYN03jxb-IuZKqsca3ruVEI/s1600/1577824150895643-9.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpY3sj_7LIHkIyGstVwYe0g1v0vV0xew4RBUESFoCImrKilzN7UcUZ0Z4KbdwIr5sv2OhgTb-yyiD8uglNL-SnWM0L5CMi-cZcJqt3UwGNCn56p-IbKxd_MaYN03jxb-IuZKqsca3ruVEI/s1600/1577824150895643-9.png" width="400" /></a></div><div class="separator"><br /></div><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFEQYPC1PmV57kEe_KRph-h8q1BGAKAxmcN6VxPwVjCfey4b5JOHAf8DajUGbDTO1oQWBw5dD2Jff7D2qvEfT9qQ7h0ar66QXOiEuToT-vOk9gpi5TyECn0GJdK2qDZvMhCh_E_voW-Yw8/s1600/1577824145549507-10.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFEQYPC1PmV57kEe_KRph-h8q1BGAKAxmcN6VxPwVjCfey4b5JOHAf8DajUGbDTO1oQWBw5dD2Jff7D2qvEfT9qQ7h0ar66QXOiEuToT-vOk9gpi5TyECn0GJdK2qDZvMhCh_E_voW-Yw8/s1600/1577824145549507-10.png" width="400" /></a></div><br /><b>3. On secondary server run copy job and disable&nbsp;</b></div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfXGylaEmVm6nsTu6lPJu_mTPcyzKgEKXA9GIy__X2o6h584r8TfY1VsPtm3AZ-GbZ4_HIEr98nG19ZIZZlDyfjZ03-IsioHqbQPjBXmic5lXvslvlCmeEuPyG5INb-_Xmp-2kkIHPdja2/s1600/1577824140124564-11.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfXGylaEmVm6nsTu6lPJu_mTPcyzKgEKXA9GIy__X2o6h584r8TfY1VsPtm3AZ-GbZ4_HIEr98nG19ZIZZlDyfjZ03-IsioHqbQPjBXmic5lXvslvlCmeEuPyG5INb-_Xmp-2kkIHPdja2/s1600/1577824140124564-11.png" width="400" /></a></div><div class="separator"></div><div class="separator"></div><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggC1i2gC0UOPM2qEy3VHrFvkJF6FNWrpteYYuMT_wVARSLwv-Nrjk9crPjZ4I2Wl0M4P5ouALqh9fgwMMD2O1_TDcn5nfeQiX4tZc-FKjD_a_-Y7H5SqRW3ESb8sK1-S4xKB5AiFBWoN1L/s1600/1577824134879380-12.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggC1i2gC0UOPM2qEy3VHrFvkJF6FNWrpteYYuMT_wVARSLwv-Nrjk9crPjZ4I2Wl0M4P5ouALqh9fgwMMD2O1_TDcn5nfeQiX4tZc-FKjD_a_-Y7H5SqRW3ESb8sK1-S4xKB5AiFBWoN1L/s1600/1577824134879380-12.png" width="400" /></a></div><br /><b>4. On secondary server run restore job and disable</b></div><div dir="ltr" trbidi="on"><b><br /></b></div><div dir="ltr" trbidi="on"><div class="separator"></div><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHG9LMtwiTsRlmRZCXFitGqBJF2fpGgIW3oF57E4XmqhUrj0ARqFVklk5JIesoNU4aISyT9QPzGcIsV1OSL_SnTpTtx2GU4Oxon4u1sF5kMEwU3rpMBFOp4cc4De9qvHp0015DZaRsHB_1/s1600/1577824129338861-13.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHG9LMtwiTsRlmRZCXFitGqBJF2fpGgIW3oF57E4XmqhUrj0ARqFVklk5JIesoNU4aISyT9QPzGcIsV1OSL_SnTpTtx2GU4Oxon4u1sF5kMEwU3rpMBFOp4cc4De9qvHp0015DZaRsHB_1/s1600/1577824129338861-13.png" width="400" /></a></div><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzwIOnxtLrcgupXtBUxIfFdenQpLp84Y6Mx3NEatEojsiGVFs662qpP9KHXz74jVZVZVSC_4FAWNY_Ud8_zp4qhoCKAwXNl5c14rbd4jJlJJkPT57ppdhIosf8zcsrbp9qgSIo8-zSIQqm/s1600/1577824124081331-14.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzwIOnxtLrcgupXtBUxIfFdenQpLp84Y6Mx3NEatEojsiGVFs662qpP9KHXz74jVZVZVSC_4FAWNY_Ud8_zp4qhoCKAwXNl5c14rbd4jJlJJkPT57ppdhIosf8zcsrbp9qgSIo8-zSIQqm/s1600/1577824124081331-14.png" width="400" /></a></div><div dir="ltr" trbidi="on"><b><br /></b></div><b>Verify that job is disabled:</b></div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilK0u8pGABaCiPkHqG8PUyQAWe6iJpO89dZ91a-eYmdmTqbpsL-izIgZxqLT0hbcOnm3oSO_UqMphz76qBO574Cxty67h3AfDbrkzqKotiCCh_glMD4hrHLU9B3ce0RBYU1jp_zuAZNWry/s1600/1577824119537582-15.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilK0u8pGABaCiPkHqG8PUyQAWe6iJpO89dZ91a-eYmdmTqbpsL-izIgZxqLT0hbcOnm3oSO_UqMphz76qBO574Cxty67h3AfDbrkzqKotiCCh_glMD4hrHLU9B3ce0RBYU1jp_zuAZNWry/s1600/1577824119537582-15.png" width="400" /></a></div><div dir="ltr" trbidi="on"><br /></div><b>5.&nbsp; Run backup log command on primary server with norecovery option</b></div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiza1GZOH6kQtjdvmfqL0QwmQQkG_z1JQ1O54BTanh5LRokSlwiT_x55CY9GbwuUs189d68CP-IC7aWmg4cNmP7PxDc1WBJIhRPScMWJkba464-6nzbXKY8n7gHQLs-H7evxYKWFUfpxwUv/s1600/1577824115153677-16.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiza1GZOH6kQtjdvmfqL0QwmQQkG_z1JQ1O54BTanh5LRokSlwiT_x55CY9GbwuUs189d68CP-IC7aWmg4cNmP7PxDc1WBJIhRPScMWJkba464-6nzbXKY8n7gHQLs-H7evxYKWFUfpxwUv/s1600/1577824115153677-16.png" width="400" /></a></div><div dir="ltr" trbidi="on"><br /></div><b>6. Restore with recovery on secondary server.</b></div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg75bk71xjdUgbfTCiKcCdrIQQGexamIpAzQd_m8ZR42V6Lcqw4HkBpQf5M3ZmM1XAeufZoFB4VnhkQ-3Sw7k052UrdVGa54if3mvAbQmxSjvjZIUcO1VZKDG_8j7WFYZ2vNN3hrUBvAprK/s1600/1577824110147291-17.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg75bk71xjdUgbfTCiKcCdrIQQGexamIpAzQd_m8ZR42V6Lcqw4HkBpQf5M3ZmM1XAeufZoFB4VnhkQ-3Sw7k052UrdVGa54if3mvAbQmxSjvjZIUcO1VZKDG_8j7WFYZ2vNN3hrUBvAprK/s1600/1577824110147291-17.png" width="400" /></a></div><div dir="ltr" trbidi="on"><br /></div><b>7. Configure log shipping on secondary server</b></div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi45gyP7MlDgZ9kp8olElXlJ2j5hy7zVoy6y2kgQM9ogy70Vh_-ITU68pOpFkKQRiUEPuWXqUfrx3LceCJGQ1vAjaz4mLUG_9uBD-P7BsLwe9uwKmyHx7ZYdHwhsFWm6uwxLVGg6Mzd3U4x/s1600/1577824105416719-18.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi45gyP7MlDgZ9kp8olElXlJ2j5hy7zVoy6y2kgQM9ogy70Vh_-ITU68pOpFkKQRiUEPuWXqUfrx3LceCJGQ1vAjaz4mLUG_9uBD-P7BsLwe9uwKmyHx7ZYdHwhsFWm6uwxLVGg6Mzd3U4x/s1600/1577824105416719-18.png" width="400" /></a></div><div class="separator"><br /></div><div class="separator"><b>Specify copy path:</b></div><div class="separator"><br /></div><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdATYhHPmUiNyLN_EEiglVlCndUqD5TpcIbGv84-y8hHxHvTtwFLDhAV_F7rTYTSYsl5TIEwkkfkrlTnCLtm2JNLFBnWQH_cQrFzAPIbgXbjNiWacSILnrzu6IBR1ikZdBzaU5NB_LRkT7/s1600/1577824100330393-19.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdATYhHPmUiNyLN_EEiglVlCndUqD5TpcIbGv84-y8hHxHvTtwFLDhAV_F7rTYTSYsl5TIEwkkfkrlTnCLtm2JNLFBnWQH_cQrFzAPIbgXbjNiWacSILnrzu6IBR1ikZdBzaU5NB_LRkT7/s1600/1577824100330393-19.png" width="400" /></a></div><div class="separator"><br /></div><div class="separator"><b>Close wizard after configuration:</b></div><div class="separator"><br /></div><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhU0XFAPsJs1qYR6xohP4jLUEu1vBnmL4c5M82Br607jPlqCOzhn1C4HJxZK9tnQ8F_FIqXOwnynqLDlCZZosQCpbYwqxJj9t-vbY017Iw7aZdb1Q3eRoRuouI_qwja-lY1W2Qz67WJauhY/s1600/1577824095514557-20.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhU0XFAPsJs1qYR6xohP4jLUEu1vBnmL4c5M82Br607jPlqCOzhn1C4HJxZK9tnQ8F_FIqXOwnynqLDlCZZosQCpbYwqxJj9t-vbY017Iw7aZdb1Q3eRoRuouI_qwja-lY1W2Qz67WJauhY/s1600/1577824095514557-20.png" width="400" /></a></div><div class="separator"><br /></div><div class="separator"><b>Check that backup job is created on the primary server:</b></div><div class="separator"><br /></div><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgS-4U_4XS7VsulRksDv-6Vd4Xauz_aDynJH4D48jy2eoygdfDGwooyHCFS3blRj0B3s1OkVet4OxPJZSkO3q-gdvMk8zueTDvLGcwXknaGS3UWb0HISBpYLz-3dIfkE-inErg_rFkuvggR/s1600/1577824090453837-21.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgS-4U_4XS7VsulRksDv-6Vd4Xauz_aDynJH4D48jy2eoygdfDGwooyHCFS3blRj0B3s1OkVet4OxPJZSkO3q-gdvMk8zueTDvLGcwXknaGS3UWb0HISBpYLz-3dIfkE-inErg_rFkuvggR/s1600/1577824090453837-21.png" width="400" /></a></div></div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><b>Check copy and restore job are created on secondary server:</b></div><div dir="ltr" trbidi="on"><br /><div class="separator"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_2Uu2kNFAj-M4mlg69bH3_9uOMPHEVFQ6A4z7WJqMDzGFMNxdE_3WKmweA1B_AwbSYq-uCRglsp4HZsZC_j_nak-tTkSvNf7vbZwQ8epDt8G8A_ZU9SFyvCyK85ysJz27iqOuDuF4eAx2/s1600/1577824085715774-22.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_2Uu2kNFAj-M4mlg69bH3_9uOMPHEVFQ6A4z7WJqMDzGFMNxdE_3WKmweA1B_AwbSYq-uCRglsp4HZsZC_j_nak-tTkSvNf7vbZwQ8epDt8G8A_ZU9SFyvCyK85ysJz27iqOuDuF4eAx2/s1600/1577824085715774-22.png" width="400" /></a></div></div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><b>Check the sync status</b>:</div><div dir="ltr" trbidi="on"><br /></div><div dir="ltr" trbidi="on"><div dir="ltr" trbidi="on"><div class="separator" style="font-size: medium; font-weight: 400;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJMqgS7zzDHlyWicN06sBKbuota8m0lU-My0CUNdL8a3B7jklemn4f3yzU7H5XVVVKay6nFPKnIpDm-9AYB3iBcvuNjjfGLOMWZBTwJg9Y2wLOODRUeaRth6-j5yz325q45YVS-o3HSRF8/s1600/1577824080479280-23.png"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJMqgS7zzDHlyWicN06sBKbuota8m0lU-My0CUNdL8a3B7jklemn4f3yzU7H5XVVVKay6nFPKnIpDm-9AYB3iBcvuNjjfGLOMWZBTwJg9Y2wLOODRUeaRth6-j5yz325q45YVS-o3HSRF8/s1600/1577824080479280-23.png" width="400" /></a></div><div dir="ltr" style="font-size: medium; font-weight: 400;" trbidi="on"><br /></div><div dir="ltr" style="font-size: medium; font-weight: 400;" trbidi="on"><b><br /></b></div></div></div></h2></div></div>
+</div>
+

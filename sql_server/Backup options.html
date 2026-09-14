@@ -1,0 +1,230 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+SQL Server supports different types of backups for databases. However, which type of a database backup can be performed totally depends upon the recovery model of the database one choose.<br />
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<h4>
+<div style="-webkit-text-stroke-width: 0px; color: #37474f; font-family: sans-serif; font-size: medium; font-style: normal; font-variant-caps: normal; font-variant-ligatures: normal; font-weight: 400; letter-spacing: 0.2px; orphans: 2; text-align: start; text-decoration-color: initial; text-decoration-style: initial; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;">
+</div>
+</h4>
+<h2>
+Different Types of SQL Server Backups are:-</h2>
+<ul>
+<li>Full Backup</li>
+<li>Differential Backup</li>
+<li>Transaction Log Backup</li>
+<li>File Backup</li>
+<li>FileGroup Backup</li>
+<li>Partial Backup</li>
+<li>Copy-Only Backup</li>
+<li>Mirror Backup</li>
+</ul>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr" trbidi="on">
+<div>
+<hr />
+<h3>
+<b>Syntax for backup:</b></h3>
+</div>
+</div>
+<div dir="ltr" trbidi="on">
+BACKUP DATABASE database TO backup_device [ ,...n ] [ WITH <b>with_options</b> [ ,...o ] ] ;</div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<h2>
+<b>Basic backup set WITH options:</b></h2>
+</div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+<div>
+<hr />
+<h3>
+NOINIT | INIT:</h3>
+</div>
+</div>
+<div dir="ltr" trbidi="on">
+Controls whether the backup operation appends to or overwrites the existing backup sets on the backup media.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<b>
+NOINIT:</b></div>
+<div dir="ltr" trbidi="on">
+NOINIT is the default.</div>
+<div dir="ltr" trbidi="on">
+The default is to append to the most recent backup set on the media (NOINIT).</div>
+<div dir="ltr" trbidi="on">
+NOINIT Indicates that the backup set is appended to the specified media set, preserving existing backup sets. If a media password is defined for the media set, the password must be supplied.&nbsp;</div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<b>
+INIT:</b></div>
+<div dir="ltr" trbidi="on">
+INIT Specifies that all backup sets should be overwritten, but preserves the media header. If INIT is specified, any existing backup set on that device is overwritten, if conditions permit.&nbsp;</div>
+</div>
+<div dir="ltr" trbidi="on">
+<br /></div>
+<h3>
+COMPRESSION:&nbsp;</h3>
+<div dir="ltr" trbidi="on">
+In SQL Server 2008 Enterprise and later only, specifies whether backup compression is performed on this backup, overriding the server-level default.</div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" trbidi="on">
+COMPRESSION Explicitly enables backup compression.</div>
+<div dir="ltr" trbidi="on">
+NO_COMPRESSION Explicitly disables backup compression.</div>
+</div>
+<div dir="ltr" trbidi="on">
+<h3>
+ENCRYPTION (ALGORITHM, SERVER CERTIFICATE | ASYMMETRIC KEY):&nbsp;</h3>
+</div>
+<div dir="ltr" trbidi="on">
+In SQL Server 2014 or later only, specify the encryption algorithm to use, and the Certificate or Asymmetric key to use to secure the encryption.&nbsp;</div>
+<h3>
+DESCRIPTION:&nbsp;</h3>
+<div dir="ltr" trbidi="on">
+Specifies the free-form text that describes the backup set. The string can have a maximum of 255 characters.</div>
+<h3>
+NAME :&nbsp;</h3>
+<div dir="ltr" trbidi="on">
+Specifies the name of the backup set. Names can have a maximum of 128 characters. If NAME is not specified, it is blank.</div>
+<div>
+<h3>
+FORMAT:</h3>
+<div>
+Use the FORMAT clause when you are using media for the first time or you want to overwrite all existing data. Optionally, assign the new media a media name and description.</div>
+<div>
+Important</div>
+<div>
+Use extreme caution when you are using the FORMAT clause of the BACKUP statement because this destroys any backups that were previously stored on the backup media.</div>
+</div>
+<h3>
+EXPIREDATE:</h3>
+<div>
+Specifies when the backup set expires and can be overwritten.&nbsp;</div>
+<div>
+To ignore the expiration date, use the SKIP option.</div>
+<div>
+<h3>
+RETAINDAYS:</h3>
+<div>
+Specifies the number of days that must elapse before this backup media set can be overwritten.</div>
+</div>
+<div>
+<h3>
+NOSKIP | SKIP:</h3>
+</div>
+</div>
+<div>
+Controls whether a backup operation checks the expiration date and time of the backup sets on the media before overwriting them.</div>
+<div>
+<b>NOSKIP</b></div>
+<div>
+<div>
+Instructs the BACKUP statement to check the expiration date of all backup sets on the media before allowing them to be overwritten. This is the default behavior.</div>
+<div>
+<b>SKIP</b>&nbsp;</div>
+<div>
+SKIP Disables the checking of backup set expiration and name that is usually performed by the BACKUP statement to prevent overwrites of backup sets.</div>
+</div>
+<h3>
+BLOCKSIZE</h3>
+<div>
+Specifies the physical block size, in bytes.&nbsp;</div>
+<div>
+BACKUP automatically selects a block size that is appropriate to the device.</div>
+<div>
+The supported sizes are 512, 1024, 2048, 4096, 8192, 16384, 32768, and 65536 (64 KB) bytes. The default is 65536 for tape devices and 512 otherwise.&nbsp;</div>
+<div>
+<h3>
+NO_CHECKSUM | CHECKSUM:</h3>
+</div>
+<div>
+<div>
+Controls whether backup checksums are enabled.</div>
+<div>
+NO_CHECKSUM Explicitly disables the generation of backup checksums (and the validation of page checksums). This is the default behavior.</div>
+<div>
+CHECKSUM Specifies that the backup operation verifies each page for checksum and torn page, if enabled and available, and generate a checksum for the entire backup.</div>
+</div>
+<div>
+<h3>
+STOP_ON_ERROR | CONTINUE_AFTER_ERROR:&nbsp;</h3>
+<div>
+Controls whether a backup operation stops or continues after encountering a page checksum error.</div>
+</div>
+<div>
+<div>
+<b>
+STOP_ON_ERROR</b> Instructs BACKUP to fail if a page checksum does not verify. This is the default behavior.</div>
+<div>
+<b>
+CONTINUE_AFTER_ERROR</b> Instructs BACKUP to continue despite encountering errors such as invalid checksums or torn pages.</div>
+<div>
+If you are unable to back up the tail of the log using the NO_TRUNCATE option when the database is damaged, you can attempt a tail-log log backup by specifying CONTINUE_AFTER_ERROR instead of NO_TRUNCATE.</div>
+</div>
+<div>
+<h3>
+STATS</h3>
+</div>
+<div>
+<div>
+Displays a message each time another percentage completes, and is used to gauge progress. If percentage is omitted, SQL Server displays a message after each 10 percent is completed.</div>
+<div>
+<br /></div>
+<h3>
+REWIND | NOREWIND&nbsp;</h3>
+<div>
+<b>
+REWIND</b></div>
+<div>
+Specifies that SQL Server releases and rewinds the tape. REWIND is the default.</div>
+<div>
+<br /></div>
+<div>
+<b>
+NOREWIND</b></div>
+<div>
+Specifies that SQL Server will keep the tape open after the backup operation. You can use this option to help improve performance when performing multiple backup operations to a tape.</div>
+</div>
+<div>
+<br /></div>
+<div>
+<h2>
+<b>Log-specific options</b></h2>
+</div>
+<div>
+<div>
+These options are only used with BACKUP LOG.</div>
+<div>
+{ NORECOVERY | STANDBY = undo_file_name }</div>
+<h3>
+<b>NORECOVERY</b></h3>
+<div>
+Backs up the tail of the log and leaves the database in the RESTORING state. NORECOVERY is useful when failing over to a secondary database or when saving the tail of the log before a RESTORE operation.</div>
+<div>
+To perform a best-effort log backup that skips log truncation and then take the database into the RESTORING state atomically, use the NO_TRUNCATE and NORECOVERY options together.</div>
+<div>
+<h3>
+STANDBY = standby_file_name</h3>
+</div>
+<div>
+Backs up the tail of the log and leaves the database in a read-only and STANDBY state. The STANDBY clause writes standby data (performing rollback, but with the option of further restores).&nbsp;</div>
+<div>
+Using standby mode requires a standby file, specified by standby_file_name, whose location is stored in the log of the database. If the specified file already exists, the Database Engine overwrites it; if the file does not exist, the Database Engine creates it. The standby file becomes part of the database.</div>
+<div>
+<h3>
+NO_TRUNCATE</h3>
+</div>
+<div>
+Specifies that the log not truncated and causes the Database Engine to attempt the backup regardless of the state of the database. Consequently, a backup taken with NO_TRUNCATE might have incomplete metadata. This option allows backing up the log in situations where the database is damaged.</div>
+<div>
+The NO_TRUNCATE option of BACKUP LOG is equivalent to specifying both COPY_ONLY and CONTINUE_AFTER_ERROR.</div>
+</div>
+</div>
+</div>
+</div>
+

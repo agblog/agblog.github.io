@@ -1,0 +1,76 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on"><br><div dir="ltr" style="text-align: left;" trbidi="on"><div>
+<div>
+<br></div>
+<div><b>
+Full Backups</b></div>
+<div>
+The simplest kind of backup is a full database backup.&nbsp;</div><div>
+A full database backup provides a complete copy of the database and provides a single point-in-time to which the database can be restored. A full backup does not allow recovery to any point in time while the backup was running.</div>
+<div>
+<br></div>
+<div><b>
+A full backup does the following:</b></div>
+<div>
+1. Force a database checkpoint and make a note of the log sequence number at this point. This flushes all updated-in-memory pages to disk before anything is read by the backup to help minimize the amount of work the recovery part of restore has to do.</div>
+<div>
+2. Start reading from the data files in the database.</div>
+<div>
+3. Stop reading from the data files and make a note of the log sequence number of the start of the oldest active transaction at that point.</div>
+<div>
+4. Read as much transaction log as is necessary.</div>
+</div>
+<div>
+<br></div>
+<div>
+<div><b>
+Differential Backups</b></div>
+<div>A differential backup performs the same operations as a full backup, but only contains all the data that has changed or been added since the previous full backup. This backups are actually cumulative and successive differential backups after a full backup and will increase in size as more data is changed or added.</div>
+<div><br></div><div>
+In every 4GB section (called a GAM interval) of every data file there is a special database page called a differential bitmap that tracks which portions (called extents) of that 4GB section have changed since the last full backup, indicating data that has changed or been added to the database.&nbsp;</div>
+<div><br></div><div>
+A differential backup scans through these bitmaps and only backs up the data file extents that are marked as changed. The bitmaps are reset by the next full backup, so you can see that as more and more of the database changes, more of it will be marked in the differential bitmaps and successive differential backups will be larger and larger.&nbsp;</div><div><br></div><div>You can find out how large your next differential backup will be using a script I wrote that is available from my blog article "New script: How much of the database has changed since the last full backup?."&nbsp;</div><div><br></div>
+<div>Advantage of differential backups is it can speed up restore operations by allowing many transaction log backups to be skipped in the restore process.&nbsp;</div><div><br></div><div>If you want to take an ad-hoc full backup of database and not have it reset the differential bitmaps or backup strategy, you should use the WITH COPY_ONLY option on the BACKUP statement.&nbsp;<br></div>
+</div>
+<div>
+<br></div>
+<div>
+<div><b>
+Transaction Log Backups</b></div>
+<div>
+<br></div>
+<div>
+A transaction log backup contains all the transaction log records generated since the last log backup or full backup that starts a log backup chain and is used to allow the database to be recovered to a specific point in time.&nbsp;</div><div>A transaction log backup are incremental, unlike differential backups, which are cumulative.</div>
+<div>
+A chain starts with a full database backup, and continues until the breaks of the chain.</div>
+<div>
+Operations that break the log backup chain include switching to the SIMPLE recovery model, reverting from a database snapshot, and forcibly clearing the log using the WITH NO_LOG or TRUNCATE_ONLY options.</div>
+</div>
+<div>
+<br></div>
+<div>
+<br></div>
+<div>
+<div>
+Metadata</div>
+<div>
+<br></div>
+<div>
+SQL Server includes the following backup history tables that track backup activity:</div>
+<div>
+â€¢ backupfile</div>
+<div>
+â€¢ backupfilegroup</div>
+<div>
+â€¢ backupmediafamily</div>
+<div>
+â€¢ backupmediaset</div>
+<div>
+â€¢ backupset</div>
+<div>
+When a restore is performed, if the backup set was not already recorded in the msdb database, the backup history tables might be modified.</div>
+</div>
+<div>
+<br></div>
+</div>
+</div>
+

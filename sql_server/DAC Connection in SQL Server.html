@@ -1,0 +1,47 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>DAC Connection in SQL Server:</b><br />
+<div dir="ltr" trbidi="on">
+<br /></div>
+<div dir="ltr" trbidi="on">
+<div dir="ltr" id="docs-internal-guid-72577aa6-7fff-859b-2593-377b5be8511a">
+The
+ DAC allows database administrators to connect to a SQL Server Instance 
+and to execute T-SQL commands to troubleshoot and fix issues rather than
+ rebooting the SQL Server which could lead to database corruption or 
+other problems.</div>
+<div dir="ltr">
+However, only one dedicated administrator connection is allowed at a time on SQL Server 2005 and later versions.&nbsp;</div>
+<br />
+<div dir="ltr">
+<b>Using DAC with SQLCMD</b><br />
+<br />
+You
+ need to be a member of the sysadmin fixed server role in order to use 
+this feature. The "-A" switch is used to specify that the user is trying
+ to connect to SQL Server using the Dedicated Administrator Connection.</div>
+<div dir="ltr">
+check options:</div>
+<div dir="ltr">
+open cmd and type sqlcmd /?</div>
+<div dir="ltr">
+The syntax to use DAC is mentioned below.</div>
+<div dir="ltr">
+SQLCMD -S [SQL Server Name] -U [User Name] -P [Password] -A&nbsp;</div>
+<div dir="ltr">
+select @@servername</div>
+<br />
+<div dir="ltr">
+SQLCMD â€“S ANURAG\ANURAG2014 â€“U sa â€“P clover@123 -A</div>
+<div dir="ltr">
+<b>Using DAC with SQL Server Management Studio</b><br />
+<br />
+You
+ need to specify "ADMIN:" before the SQL Server Instance name when 
+trying to connect to an SQL Server Instance to using DAC feature as 
+shown in the snippet below.</div>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFYqB_zSYTfaQY9rfggoerd4uHznHa0d9l4vEg22UmYXpUeqFMJTpL2Qh1Gr2p_VbWE6oEomY7HBzXzitcVP6s0zDhzweflvDwc0iI4sK2Q0q-OFLfNEyJVuhxEoU7b7HXMiu8tMo4mfR5/s1600/1578979221258821-0.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFYqB_zSYTfaQY9rfggoerd4uHznHa0d9l4vEg22UmYXpUeqFMJTpL2Qh1Gr2p_VbWE6oEomY7HBzXzitcVP6s0zDhzweflvDwc0iI4sK2Q0q-OFLfNEyJVuhxEoU7b7HXMiu8tMo4mfR5/s1600/1578979221258821-0.png" width="400" /></a></div>
+<div>
+<br /></div>
+</div>
+</div>
+

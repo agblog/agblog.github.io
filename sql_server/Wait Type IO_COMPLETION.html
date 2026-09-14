@@ -1,0 +1,44 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div><b>IO_COMPLETION</b>:</div>
+<div>
+Occurs while waiting for I/O operations to finish. This wait type generally represents non-data page I/Os. Data page I/O completion waits appear as PAGEIOLATCH_* waits.</div>
+<div>
+Identify disk bottlenecks by using Performance Counters, Profiler, sys.dm_io_virtual_file_stats and SHOWPLAN.</div>
+<div>
+<br></div>
+<div>
+Any of the following reduces these waits:</div>
+<div>
+1. Adding additional IO bandwidth,&nbsp;</div>
+<div>
+2. Balancing IO across other drives</div>
+<div>
+3. Reducing IO with appropriate indexing</div>
+<div>
+Check for bad query plans</div>
+<div>
+<br></div>
+<div>
+<b>Corrections</b>:</div>
+<div>
+<br></div>
+<div>
+See Disk performance counters:&nbsp;</div>
+<div>
+1. Disk sec/read</div>
+<div>
+2. Disk sec/write</div>
+<div>
+3. Disk queues</div>
+<div>
+See SQL Buffer Manager performance counters:</div>
+<div>
+1. Page Life Expectancy</div>
+<div>
+1. Checkpoint pages/sec</div>
+<div>
+2. Lazy writes/sec</div>
+<div>
+<br></div>
+</div>
+

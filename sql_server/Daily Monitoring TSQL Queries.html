@@ -1,0 +1,261 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<b>The basic monitoring points to keep in mind while monitoring a server:</b><br />
+<b><br /></b>
+<br />
+<ul style="text-align: left;">
+<li>Database state</li>
+<li>Log space</li>
+<li>Jobs</li>
+<li>Drive space</li>
+<li>If Backup is done</li>
+<li>Blocking</li>
+<li>Long Running</li>
+<li>Logshipping is in sync</li>
+</ul>
+<br />
+<br />
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<b>CHECKING WINDOWS INFO</b><br />
+<pre class="prettyprint"><code class="language-sql">
+WINVER
+</code></pre>
+<b><br /></b>
+<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<b>Checking Server Services MSSQLSERVER, AGENT&nbsp;</b><br />
+<pre class="prettyprint"><code class="language-sql">
+SELECT * FROM SYS.DM_SERVER_SERVICES
+</code></pre>
+<br />
+<b>CHECKING DATABASE STATUS WHERE NOT ONLINE</b><br />
+<pre class="prettyprint"><code class="language-sql">
+SELECT NAME,STATE_DESC,* FROM SYS.DATABASES WHERE STATE_DESC&lt;&gt;'ONLINE'
+</code></pre>
+<br />
+<b>CHECKING WHEN DATABASE STARTED</b><br />
+<pre class="prettyprint"><code class="language-sql">
+SELECT NAME,STATE_DESC,* FROM SYS.DATABASES WHERE NAME='TEMPDB'
+
+SELECT sqlserver_start_time FROM sys.dm_os_sys_info
+</code></pre>
+<br />
+<b><br /></b>
+<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<br />
+<b>Database States</b><br />
+<br />
+<ol style="text-align: left;">
+<li><b>
+ONLINE: </b>Database is available for access. The primary filegroup is online, although the undo phase of recovery may not have been completed.</li>
+<li><b>OFFLINE</b>: Database is unavailable. A database becomes offline by explicit user action and remains offline until additional user action is taken. For example, the database may be taken offline in order to move a file to a new disk. The database is then brought back online after the move has been completed.</li>
+<li><b>RESTORING</b>: One or more files of the primary filegroup are being restored, or one or more secondary files are being restored offline. The database is unavailable.</li>
+<li><b>RECOVERING </b>: Database is being recovered. The recovering process is a transient state; the database will automatically become online if the recovery succeeds. If the recovery fails, the database will become suspect. The database is unavailable.</li>
+<li><b>RECOVERY PENDING</b>: SQL Server has encountered a resource-related error during recovery. The database is not damaged, but files may be missing or system resource limitations may be preventing it from starting. The database is unavailable. Additional action by the user is required to resolve the error and let the recovery process be completed.</li>
+<li><b>SUSPECT</b>: At least the primary filegroup is suspect and may be damaged. The database cannot be recovered during startup of SQL Server. The database is unavailable. Additional action by the user is required to resolve the problem.</li>
+<li><b>EMERGENCY</b>: User has changed the database and set the status to EMERGENCY. The database is in single-user mode and may be repaired or restored. The database is marked READ_ONLY, logging is disabled, and access is limited to members of the sysadmin fixed server role. EMERGENCY is primarily used for troubleshooting purposes. For example, a database marked as suspect can be set to the EMERGENCY state. This could permit the system administrator read-only access to the database. Only members of the sysadmin fixed server role can set a database to the EMERGENCY state.</li>
+</ol>
+<br />
+<div>
+<br /></div>
+<div>
+Checking Database State:</div>
+<div>
+<pre class="prettyprint"><code class="language-sql">
+select name,state_desc,* from sys.databases where state_desc&lt;&gt;'online'
+</code></pre>
+</div>
+<div>
+<br /></div>
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<b>Blocking and Long Running queries:</b><br />
+Blocking can created slowness on the server so it is very important to check for any blocking&nbsp; in the sessions on the server<br />
+<br />
+Also long running queries can take up high CPU and cause slowness on the server<br />
+<div>
+<br /></div>
+<b>Monitoring Sessions, blocking:</b><br />
+<pre class="prettyprint"><code class="language-sql">
+
+SELECT SP.SPID, DB_NAME(SP.DBID) AS DBNAME,LASTWAITTYPE,SP.BLOCKED,CMD,TEXT,P.REQUIRED_MEMORY_KB,P.GRANTED_MEMORY_KB,P.USED_MEMORY_KB,P.QUERY_COST
+
+,SP.CPU,SP.PHYSICAL_IO,* FROM SYS.SYSPROCESSES SP
+
+CROSS APPLY SYS.DM_EXEC_SQL_TEXT(SP.SQL_HANDLE) SH
+
+LEFT JOIN SYS.DM_EXEC_QUERY_MEMORY_GRANTS P
+
+ON SP.SPID=P.SESSION_ID
+
+WHERE STATUS&lt;&gt;'SLEEPING' AND SP.SPID&lt;&gt;@@SPID
+
+ORDER BY SP.LOGIN_TIME ASC
+</code></pre>
+<br />
+<b>Checking Active Processes, status ,blocking if any:</b><br />
+<pre class="prettyprint"><code class="language-sql">
+Exec SP_WHO2 ACTIVE 
+</code></pre>
+<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<b>Check Hard Disk Space</b><br />
+<b><br /></b>
+Check for drive space on the server.<br />
+<br />
+If a particular drive has low space check if any space can be reclaimed by shrinking logs or deleting unwanted backups.<br />
+<br />
+<pre class="prettyprint"><code class="language-sql">
+Exec XP_FIXEDDRIVES
+</code></pre>
+<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<b>Log Space</b><br />
+<b><br /></b>
+<br />
+<ul style="text-align: left;">
+<li>All monitor log space to see if there is any log growth&nbsp;</li>
+<li>Shrink the logs if necessary take a log backup and shrink logs .</li>
+<li>Check log usage using the command dbcc sqlperf(logspace)</li>
+</ul>
+<br />
+<b>CHECK THE SIZE OF LOG FILE GREATER THAN 900 MB 
+</b><br />
+<pre class="prettyprint"><code class="language-sql">
+SELECT B.NAME,(A.SIZE*8)/(1024*1024)AS LOG FROM SYS.SYSALTFILES A,SYS.SYSDATABASES B WHERE A.DBID = B.DBID AND
+
+A.FILENAME LIKE '%.LDF'AND (A.SIZE*8)/(1024*1024)&gt;0.9
+</code></pre>
+<br />
+<b>To calculate database size(mdf+ldf)</b><br />
+<pre class="prettyprint"><code class="language-sql">
+-- CALCULATING DATABASE SIZE IN KB
+
+SELECT name, SIZE*8 AS LOG FROM SYS.SYSALTFILES
+
+
+-- CALCULATING DATABASE SIZE IN MB
+
+SELECT name, SIZE*8/1024 AS LOG FROM SYS.SYSALTFILES
+
+
+
+-- CALCULATING DATABASE SIZE IN GB
+
+SELECT name, SIZE*8/(1024*1024) AS LOG FROM SYS.SYSALTFILES</code></pre>
+<b><br /></b>
+<b>SHRINKING LOG FILE IF GREATER THAN 1GB (IF STANDALONE DATABASE)
+</b><br />
+<pre class="prettyprint"><code class="language-sql">
+USE DATABASE
+
+DBCC SHRINKFILE (2)
+</code></pre>
+<br />
+NOTE--IF LOG CANNOT SHRINKED CHANGE RECOVERY MODEL TO SIMPLE AND SHRINK, THEN CHANGE RECOVERY MODEL TO FULL (LSN START FROM 1)<br />
+<br />
+NOTE--DONOT CHNAGE RECOVERY MODEL OF LOG SHIPPING DATABASE<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<b>Jobs:</b><br />
+<b><br /></b>
+Check for failed jobs in Job Activity Monitor<br />
+<br />
+Check for backup Jobs and subplans<br />
+<div>
+<br /></div>
+<b>TO CHECK FAILED JOBS--change run date</b><br />
+<pre class="prettyprint"><code class="language-sql">
+SELECT DISTINCT B.NAME,A.RUN_DATE FROM MSDB..SYSJOBHISTORY A ,MSDB..SYSJOBS B WHERE A.JOB_ID=B.JOB_ID AND RUN_STATUS=0
+
+AND A.RUN_DATE&gt;=20180707
+</code></pre>
+<br />
+<div style="font-family: Roboto, sans-serif; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="font-family: Roboto, sans-serif; overflow-wrap: break-word !important;" />
+<div style="font-family: Roboto, sans-serif; overflow-wrap: break-word !important;">
+<br /></div>
+</div>
+<b>LOG SHIPPING DATABASE MONITORING:</b><br />
+<b><br /></b>
+If the server has logshipping configured check if the log shipping is in sync or not by using the Transaction logshipping reports.<br />
+If not in sync check if the restore or copy job is in running , else run the jobs.<br />
+<br />
+If the above does not log take the log backup after the last restored log backup and&nbsp; restore those logs after such restoration run the job and check.<br />
+<div>
+<br /></div>
+<br />
+<i>CHECK PRIMARY SERVER JOB
+</i><br />
+<pre class="prettyprint"><code class="language-sql">
+USE MASTER
+
+EXEC sp_help_log_shipping_monitor
+
+SELECT @@SERVERNAME
+
+EXEC sp_help_log_shipping_monitor_primary @primary_server='CLOVERCONNECT-S', @primary_database = 'TESTDB' 
+</code></pre>
+<br />
+<b><br /></b>
+<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<b><br /></b><b>CHECK PROGRESS OF BACKUP OR RESTORE 
+
+</b><br />
+<pre class="prettyprint"><code class="language-sql"> 
+SELECT PERCENT_COMPLETE , * FROM SYS.DM_EXEC_REQUESTS WHERE PERCENT_COMPLETE&lt;&gt;0
+</code></pre>
+<br />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<b>How to resolve a slowness issue ?</b><br />
+<br />
+Question that should 1st come our mind when there is slowness on a server are:<br />
+<br />
+<ul style="text-align: left;">
+<li>Is there any blocking on the server&nbsp;</li>
+<li>Is the max memory set enough for the server</li>
+<li>Check the wait types that occurred the most in the time of slowness</li>
+<li>Check if the Paging File on the server is set properly.</li>
+<li>Sleeping sessions&nbsp;</li>
+<li>Missing indexes , Bad Indexes, Unused indexes</li>
+<li>Fragmentation</li>
+</ul>
+<br />
+<div>
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+<hr style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;" />
+<div style="background-color: white; color: #222222; font-family: Roboto, sans-serif; font-size: 15px; overflow-wrap: break-word !important;">
+<br /></div>
+</div>
+</div>
+

@@ -1,0 +1,243 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<div dir="ltr">
+<div dir="ltr">
+<br />
+<b>Following are some important Scripts/DMV'S For monitoring Mirroring:</b></div>
+<div dir="ltr">
+<br />
+<h2 style="text-align: left;">
+<b>Check which databases have mirroring configured</b></h2>
+</div>
+<pre class="prettyprint code-box prettyprinted" id="pre-0"><code class="language-sql"><span class="pln">
+
+SELECT DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> AS these_databases_have_mirroring_configured
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL</span><span class="pun">--</span><span class="kwd">if</span><span class="pln"> IS NULL
+</span><span class="pun">--</span><span class="kwd">then</span><span class="pln"> databases </span><span class="kwd">do</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> have mirroring </span><span class="pun">--</span><span class="pln">configured
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span><span class="pln">
+</span></code></pre>
+<br />
+<h2 style="text-align: left;">
+Synchronous and Asynchronous Modes:</h2>
+<br />
+<div style="text-align: left;">
+<b>Check which mirrored databases are in synchronous mode</b></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-1"><code class="language-sql"><span class="pln">
+
+ SELECT DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> AS these_databases_are_in_synchronous_mode
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'MIRROR'</span><span class="pln">
+AND mirroring_safety_level_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'FULL'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<div style="text-align: left;">
+<b>Check which mirrored databases are not in synchronous mode</b></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-2"><code class="language-sql"><span class="pln">
+
+SELECT DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> AS these_databases_are_not_in_synchronous_mode
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'MIRROR'</span><span class="pln">
+AND mirroring_safety_level_desc </span><span class="pun">&lt;&gt;</span><span class="pln"> </span><span class="str">'FULL'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<div style="text-align: left;">
+<b>Check which mirrored databases are in asynchronous mode</b></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-3"><code class="language-sql"><span class="pln">
+SELECT DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> AS these_mirrored_databases_are_in_asynchronous_mode
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'MIRROR'</span><span class="pln">
+AND mirroring_safety_level_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'OFF'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<div style="text-align: left;">
+<b>Check which mirrored databases are not in asynchronous mode</b></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-4"><code class="language-sql"><span class="pln">
+selECT DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> AS these_mirrored_databases_are_not_in_asynchronous_mode
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'MIRROR'</span><span class="pln">
+AND mirroring_safety_level_desc </span><span class="pun">&lt;&gt;</span><span class="pln"> </span><span class="str">'OFF'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<div style="text-align: left;">
+<b>Change mirrored databases to asynchronous mode</b></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-10"><code class="language-sql"><span class="pln">
+SELECT 
+  </span><span class="str">'ALTER DATABASE ['</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] SET PARTNER SAFETY OFF;'</span><span class="pln">
+</span><span class="pun">+</span><span class="pln"> </span><span class="str">' PRINT ''['</span><span class="pln"> </span><span class="pun">+</span><span class="pln">  DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] has been set to asynchronous mirroring mode.'';'</span><span class="pln">
+  AS command_to_set_mirrored_database_to_use_synchronous_mirroring_mode
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+AND mirroring_safety_level_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'FULL'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<div style="text-align: left;">
+<b>Change mirrored databases to synchronous mode</b></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-11"><code class="language-sql"><span class="pln">
+SELECT 
+  </span><span class="str">'ALTER DATABASE ['</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] SET PARTNER SAFETY FULL;'</span><span class="pln">
+</span><span class="pun">+</span><span class="pln"> </span><span class="str">' PRINT ''['</span><span class="pln"> </span><span class="pun">+</span><span class="pln">  DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] has been set to synchronous mirroring mode.'';'</span><span class="pln">
+  AS command_to_set_mirrored_database_to_use_synchronous_mirroring_mode
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+AND mirroring_safety_level_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'OFF'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code>&nbsp;</pre>
+<h2 style="text-align: left;">
+Check Synchronized or Not Synchronized:</h2>
+<div style="text-align: left;">
+&nbsp; <b>Check which mirrored databases are synchronized</b></div>
+<div class="pre-header rel">
+<br /></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-5"><code class="language-sql"><span class="pln">
+SELECT 
+ DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> AS these_databases_are_fully_synchronized
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'MIRROR'</span><span class="pln">
+AND mirroring_state_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'SYNCHRONIZED'</span><span class="pln"> 
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<b>Check which mirrored databases are not synchronized</b><br />
+<div class="pre-header rel">
+<br /></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-6"><code class="language-sql"><span class="pln">
+SELECT 
+ DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> AS these_databases_are_not_fully_synchronized
+ </span><span class="pun">,</span><span class="pln">mirroring_state_desc 
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'MIRROR'</span><span class="pln">
+AND mirroring_state_desc </span><span class="pun">&lt;&gt;</span><span class="pln"> </span><span class="str">'SYNCHRONIZED'</span><span class="pln"> 
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<h2 class="prettyprint code-box prettyprinted" id="pre-11" style="text-align: left;">
+Ping timeout:</h2>
+<div style="text-align: left;">
+<b>Check what the mirroring ping timeout value is for the mirrored databases</b><br />
+<div class="pre-header rel">
+<br /></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-9"><code class="language-sql"><span class="pln">
+SELECT DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> AS mirrored_database
+</span><span class="pun">,</span><span class="pln">mirroring_connection_timeout AS mirroring_connection_timeout_value_in_seconds
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<br />
+<b>Change the mirroring ping timeout value for the mirrored databases</b><br />
+<div class="pre-header rel">
+<br /></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-12"><code class="language-sql"><span class="pln">
+SELECT 
+  </span><span class="str">'ALTER DATABASE ['</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] SET PARTNER TIMEOUT 90;'</span><span class="pln">
+</span><span class="pun">+</span><span class="pln"> </span><span class="str">' PRINT ''The mirroring ping timeout value for ['</span><span class="pln"> </span><span class="pun">+</span><span class="pln">  DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] has been changed.'';'</span><span class="pln">
+  AS command_to_change_the_mirroring_ping_timeout_value_for_the_mirrored_database
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+</div>
+<h2 style="text-align: left;">
+&nbsp;Pause &amp; Resume Mirroring:</h2>
+<div style="text-align: left;">
+<b>
+Check which mirrored databases have mirroring paused</b><br />
+<div class="pre-header rel">
+<br /></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-7"><code class="language-sql"><span class="pln">
+SELECT DB_NAME</span><span class="pun">(</span><span class="pln"> database_id </span><span class="pun">)</span><span class="pln"> AS these_databases_have_mirroring_paused
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'MIRROR'</span><span class="pln">
+AND mirroring_state_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'SUSPENDED'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln"> database_id </span><span class="pun">);</span></code></pre>
+<b>Check which mirrored databases do not have mirroring paused</b><br />
+<div class="pre-header rel">
+<br /></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-8"><code class="language-sql"><span class="pln">
+ SELECT DB_NAME</span><span class="pun">(</span><span class="pln"> database_id </span><span class="pun">)</span><span class="pln"> AS these_databases_do_not_have_mirroring_paused
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+</span><span class="pun">--</span><span class="pln">AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'MIRROR'</span><span class="pln">
+AND mirroring_state_desc </span><span class="pun">&lt;&gt;</span><span class="pln"> </span><span class="str">'SUSPENDED'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln"> database_id </span><span class="pun">);</span></code></pre>
+</div>
+<div style="text-align: left;">
+<br /></div>
+<div style="text-align: left;">
+<b>&nbsp;Pause mirroring for mirrored databases</b></div>
+<div class="pre-header rel">
+<br /></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-13"><code class="language-sql"><span class="pln">
+SELECT 
+ </span><span class="str">'ALTER DATABASE ['</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> DB_NAME</span><span class="pun">(</span><span class="pln"> database_id </span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] SET PARTNER SUSPEND;'</span><span class="pln">
+</span><span class="pun">+</span><span class="pln"> </span><span class="str">' PRINT ''['</span><span class="pln"> </span><span class="pun">+</span><span class="pln">  DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] has had mirroring paused.'';'</span><span class="pln"> 
+  AS command_to_pause_mirroring_for_the_mirrored_database 
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+AND mirroring_state_desc </span><span class="pun">&lt;&gt;</span><span class="pln"> </span><span class="str">'SUSPENDED'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<b>Resume mirroring for mirrored databases</b><br />
+<div class="pre-header rel">
+<br /></div>
+<pre class="prettyprint code-box prettyprinted" id="pre-14"><code class="language-sql"><span class="pln">
+SELECT 
+ </span><span class="str">'ALTER DATABASE ['</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> DB_NAME</span><span class="pun">(</span><span class="pln"> database_id </span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] SET PARTNER RESUME;'</span><span class="pln">
+</span><span class="pun">+</span><span class="pln"> </span><span class="str">' PRINT ''['</span><span class="pln"> </span><span class="pun">+</span><span class="pln">  DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] has had mirroring resumed.'';'</span><span class="pln"> 
+  AS command_to_resume_mirroring_for_the_mirrored_database 
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+AND mirroring_state_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'SUSPENDED'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<h2 style="text-align: left;">
+Manually failover mirrored databases</h2>
+<pre class="prettyprint code-box prettyprinted" id="pre-15"><code class="language-sql"><span class="pln">
+SELECT 
+ </span><span class="str">'ALTER DATABASE ['</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] SET PARTNER FAILOVER;'</span><span class="pln">
+</span><span class="pun">+</span><span class="pln"> </span><span class="str">' PRINT ''['</span><span class="pln"> </span><span class="pun">+</span><span class="pln">  DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] has been been manually failed over.'';'</span><span class="pln"> 
+  AS command_to_manually_failover_the_mirrored_database
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+AND mirroring_role_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'PRINCIPAL'</span><span class="pln">
+AND mirroring_safety_level_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'FULL'</span><span class="pln">
+AND mirroring_state_desc </span><span class="pun">=</span><span class="pln"> </span><span class="str">'SYNCHRONIZED'</span><span class="pln">
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<h2 style="text-align: left;">
+Remove database mirroring from mirrored databases</h2>
+<pre class="prettyprint code-box prettyprinted" id="pre-16"><code class="language-sql"><span class="pln">
+SELECT 
+ </span><span class="str">'ALTER DATABASE ['</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> DB_NAME</span><span class="pun">(</span><span class="pln"> database_id </span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] SET PARTNER OFF;'</span><span class="pln">
+</span><span class="pun">+</span><span class="pln"> </span><span class="str">' PRINT ''['</span><span class="pln"> </span><span class="pun">+</span><span class="pln">  DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'] has had mirroring removed.'';'</span><span class="pln"> 
+  AS command_to_remove_mirroring_from_the_mirrored_database 
+FROM master</span><span class="pun">.</span><span class="pln">sys</span><span class="pun">.</span><span class="pln">database_mirroring 
+WHERE </span><span class="lit">1</span><span class="pun">=</span><span class="lit">1</span><span class="pln">
+AND mirroring_guid IS NOT NULL
+ORDER BY DB_NAME</span><span class="pun">(</span><span class="pln">database_id</span><span class="pun">);</span></code></pre>
+<div dir="ltr">
+<br /></div>
+</div>
+</div>
+
