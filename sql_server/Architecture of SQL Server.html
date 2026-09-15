@@ -1,0 +1,101 @@
+﻿<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+Architecture of SQL Server<br />
+<br />
+<br />
+The general architecture of SQL Server, which has 4 major components<br />
+1.Protocols,<br />
+2.Relational engine (also called the Query Processor),<br />
+3.Storage engine,<br />
+4. SQLOS.<br />
+<br />
+<br />
+Each Every instruction &amp; batch submitted to SQL Server for execution, from any client application, must interact with these four components.<br />
+<br />
+The protocol layer receives the request from the end client and translates it into the form where SQL Server relational engine can understand and work on it.<br />
+<br />
+The query processor accepts the T-SQL batches processes and executes the T-SQL batch.  If data is required the request is passed to Storage Engine.<br />
+<br />
+The Storage Engine manages the data access and service the requested data.<br />
+<br />
+The SQLOS takes responsibility of operating system and manages locks, synchronization, buffer pool, memory, thread scheduling, I/O etc.<br />
+<br />
+<br />
+A Basic select Statement Life Cycle Summary<br />
+<br />
+
+<!-- Cleaned up and updated to your local assets path -->
+<img src="assets/img/architecture.png" alt="SQL Server Architecture Diagram" border="0" />
+<br />
+<br />
+<!-- Line 33 -->
+
+Figure shows the whole life cycle of a SELECT query, described here:<br />
+<br />
+<br />
+1. The SQL Server Network Interface (SNI) on the client established a connection to the SNI on the SQL Server using a network protocol such as TCP/IP. It then created a connection to a TDS endpoint over the TCP/IP connection and sent the SELECT statement to SQL Server as a TDS message.<br />
+<br />
+<br />
+2. The SNI on the SQL Server unpacked the TDS message, read the SELECT statement, and passed a â€œSQL Commandâ€ to the Command Parser.<br />
+<br />
+<br />
+3. The Command Parser checked the plan cache in the buffer pool for an existing, usable query plan. When it didnâ€™t fi nd one, it created a query tree based on the SELECT statement and passed it to the Optimizer to generate a query plan.<br />
+<br />
+<br />
+4. The Optimizer generated a â€œzero costâ€ or â€œtrivialâ€ plan in the pre-optimization phase because the statement was so simple. The query plan created was then passed to the Query Executor for execution.<br />
+<br />
+<br />
+5. At execution time, the Query Executor determined that data needed to be read to complete the query plan so it passed the request to the Access Methods in the Storage Engine via an OLE DB interface.<br />
+<br />
+<br />
+6. The Access Methods needed to read a page from the database to complete the request from the Query Executor and asked the Buffer Manager to provision the data page.<br />
+<br />
+<br />
+7. The Buffer Manager checked the data cache to see if it already had the page in cache. It wasnâ€™t in cache so it pulled the page from disk, put it in cache, and passed it back to the Access Methods.<br />
+<br />
+<br />
+Example-:The following query will give you the space occupied by each database in the memory in mb. <br />
+<br />
+<br />
+SELECT COUNT(*)*8/1024 AS â€˜cached_size_(mb)â€™<br />
+<br />
+,CASE database_id<br />
+<br />
+WHEN 32767 THEN â€˜ResourceDbâ€™<br />
+<br />
+ELSE db_name(database_id)<br />
+<br />
+END AS â€˜database_nameâ€™<br />
+<br />
+FROM sys.dm_os_buffer_descriptors<br />
+<br />
+GROUP BY DB_NAME(database_id) ,database_id<br />
+<br />
+ORDER BY cached_size_(mb)â€™ DESC; <br />
+<br />
+<br />
+Example-:the following dmv will give the information for each data pages in the buffer pool in the form of one row for each page. <br />
+<br />
+<br />
+select * from sys.dm_os_buffer_descriptors <br />
+<br />
+<br />
+Example-:the following query will clean some part of the buffer pool. <br />
+<br />
+<br />
+dbcc dropcleanbuffers <br />
+<br />
+8. Finally, the Access Methods passed the result set back to the Relational Engine to send to the client.<br />
+<br />
+<br />
+<b>When Checkpoint occurs: </b><br />
+Manual checkpoint command fires <br />
+Auto check point <br />
+Backup command fired <br />
+Alter database command <br />
+SQL Server shutdown <br />
+Cluster failover <br />
+Snapshot is created <br />
+Commit is issued. <br />
+<br /></div>
+
